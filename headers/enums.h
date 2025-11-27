@@ -1,0 +1,49 @@
+#ifndef ENUMS_H
+#define ENUMS_H
+
+typedef enum {
+    FLORESTAL,
+    URBANO,
+    INDUSTRIAL
+} TipoOcorrencia;
+
+typedef enum {
+    BAIXA,
+    NORMAL,
+    ALTA
+} Prioridade;
+
+typedef enum {
+    OCORR_REPORTADA,
+    OCORR_INTERVENCAO,
+    OCORR_CONCLUIDA
+} EstadoOcorrencia;
+
+typedef enum {
+    INT_PLANEAMENTO,
+    INT_EXECUCAO,
+    INT_CONCLUIDA
+} EstadoIntervencao;
+
+typedef enum {
+    SUPRESSAO_INCENDIOS,
+    SALVAMENTO,
+    SOCORRO_MEDICO,
+    OPERACOES_ESPECIAIS,
+    LOGISTICA,
+    COMUNICACOES
+} EspecialidadeBombeiro;
+ 
+typedef enum {
+    EM_DISPONIVEL,
+    EM_INTERVENCAO,
+    EM_TREINO
+} EstadoBombeiro;
+
+typedef enum {
+    EQ_DISPONIVEL,
+    EQ_EM_USO,
+    EQ_MANUTENCAO
+} EstadoEquipamento;
+
+#endif
