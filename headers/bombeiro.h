@@ -11,4 +11,6 @@ typedef struct {
     EstadoBombeiro estado;
 } Bombeiro;
 
+void criarBombeiro(Bombeiro **bombeiros, int *numBombeiros);
+
 #endif
