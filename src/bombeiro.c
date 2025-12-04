@@ -27,7 +27,8 @@ Bombeiro novoBombeiro;
 int op;
 
 novoBombeiro.id = (*numBombeiros) + 1;
-    printf("\n--- Nome do Bombeiro---\n");
+
+    printf("\n--- Nome do Bombeiro ---\n");
     scanf("%s", novoBombeiro.nome);
 
     printf("\n--- Especialidade ---\n");
@@ -43,8 +44,8 @@ novoBombeiro.id = (*numBombeiros) + 1;
     novoBombeiro.estado = (EstadoBombeiro) op;
 
 (*numBombeiros)++;
-    *tarefas = realloc(tarefas, (*numTarefas) sizeof(Tarefa));
-    (*tarefas)[(*numTarefas) - 1] = novaTarefa;
+    *bombeiros = realloc(*bombeiros, (*numBombeiros) * sizeof(Bombeiro));
+    (*bombeiros)[(*numBombeiros) - 1] = novoBombeiro;
 
 }
 
@@ -52,7 +53,7 @@ void listarBombeiro(Bombeiro **bombeiros, int *numBombeiros) {
 for (int i = 0; i < numBombeiros; i++) {
     printf("ID: %d\n", bombeiros[i].id);
     printf("Nome: %s\n", bombeiros[i].nome);
-    printf("Especialidade: %s\n", especialidadeToString(bombeiros[i].especialidade));
+    printf("Especialidade: %s\0n", especialidadeToString(bombeiros[i].especialidade));
     printf("Estado: %s\n", estadoToString(bombeiros[i].estado));
     }
 }
@@ -122,7 +123,7 @@ scanf("%d", &id);
 
 }
 
-void salvarBombeirosEmFicheiros(Bombeiro *bombeiros, int numBombeiros) {
+void guardarBombeirosEmFicheiros(Bombeiro *bombeiros, int numBombeiros) {
 FILE *f = fopen("bombeiros.txt", "w");
 
     if (!f) {
@@ -131,7 +132,7 @@ FILE *f = fopen("bombeiros.txt", "w");
     }
 
     for (int i = 0; i < numBombeiros; i++) {
-        if (bombeiros[i].ativo != 0) {  // Salva apenas tarefas ativas
+        if (bombeiros[i].ativo != 0) {  // Guarda apenas tarefas ativas
             fprintf(f, "%d,%s,%d,%d,%d\n", b[i].id, b[i].nome, b[i].especialidade, b[i].estado);
     }
         fclose(f);

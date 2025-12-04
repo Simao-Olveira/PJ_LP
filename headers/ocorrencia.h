@@ -11,4 +11,11 @@ typedef struct {
     EstadoOcorrencia estado;
 } Ocorrencia;
 
+void adicionarOcorrencia(Ocorrencia **ocorrencias, int *numOcorrencias);
+void listarOcorrencia(Ocorrencia **ocorrencias, int *numOcorrencias);
+void atualizarOcorrencia(Ocorrencia *ocorrencias, int numOcorrencias);
+void removerOcorrencia (Ocorrencia *ocorrencias, int numOcorrencias);
+void guardarOcorrenciasEmFicheiros(Ocorrencia *ocorrencias, int numOcorrencias);
+void carregarOcorrenciasDeFicheiros(Ocorrencias **ocorrencias, int *numOcorrencias);
+
 #endif
