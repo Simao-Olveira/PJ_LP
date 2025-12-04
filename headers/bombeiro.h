@@ -12,6 +12,11 @@ typedef struct {
     int ativo;
 } Bombeiro;
 
-void criarBombeiro(Bombeiro **bombeiros, int *numBombeiros);
+void adicionarBombeiro(Bombeiro **bombeiros, int *numBombeiros);
+void listarBombeiro(Bombeiro **bombeiros, int *numBombeiros);
+void atualizarBombeiro(Bombeiro *bombeiros, int numBombeiros);
+void removerBombeiro (Bombeiro *bombeiros, int numBombeiros);
+void salvarBombeirosEmFicheiros(Bombeiro *bombeiros, int numBombeiros);
+void carregarBombeirosDeFicheiros(Bombeiros **bombeiros, int *numBombeiros);
 
 #endif

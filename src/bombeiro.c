@@ -48,7 +48,7 @@ novoBombeiro.id = (*numBombeiros) + 1;
 
 }
 
-void listarBombeiro(Bombeiro **bombeiros, int *numBombeiros)
+void listarBombeiro(Bombeiro **bombeiros, int *numBombeiros) {
 for (int i = 0; i < numBombeiros; i++) {
     printf("ID: %d\n", bombeiros[i].id);
     printf("Nome: %s\n", bombeiros[i].nome);
