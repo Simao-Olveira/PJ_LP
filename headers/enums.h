@@ -26,12 +26,9 @@ typedef enum {
 } EstadoIntervencao;
 
 typedef enum {
-    SUPRESSAO_INCENDIOS,
-    SALVAMENTO,
-    SOCORRO_MEDICO,
-    OPERACOES_ESPECIAIS,
-    LOGISTICA,
-    COMUNICACOES
+    COMBATE_FLORESTAL,
+    COMBATE_AEREO,
+    RESGATE
 } EspecialidadeBombeiro;
  
 typedef enum {

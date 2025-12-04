@@ -9,6 +9,7 @@ typedef struct {
     TipoOcorrencia tipo;
     Prioridade prioridade;
     EstadoOcorrencia estado;
+    int ativo; // 1 para ativo, 0 para inativo
 } Ocorrencia;
 
 #endif

@@ -9,4 +9,11 @@ typedef struct {
     EstadoEquipamento estado;
 } Equipamento;
 
+typedef struct 
+{
+    int tamanhos;
+    
+}Equipamentos;
+
+
 #endif

@@ -1,8 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "menus.h"
+#include "ocorrencia.h"
+#include "intervencao.h"
+#include "bombeiro.h"
+#include "equipamento.h"
+#include "quartel.h"
 
-void menuPrincipal() {
+void menuPrincipal(Bombeiro *bombeiros, int numBombeiros, Ocorrencia *ocorrencias, int numOcorrencias,
+                    Intervencao *intervencoes, int numIntervencoes,
+                    Equipamento *equipamentos, int numEquipamentos, Quartel *quartel, int numQuartel) {
     int opcao;
     do {
         //system("clear"); // Limpa a tela (Linux/Mac). Use "cls" para Windows.
@@ -96,8 +103,30 @@ void menuIntervencoes() {
         printf("4. Remover Intervencao\n");\
         printf("0. Voltar ao Menu Principal\n");
         printf("==============================\n");
-}
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
+        switch(opcao) {
+            case 1:
+                
+                break;
+            case 2:
+                
+                break;
+            case 0:
+                printf("A Sair...\n");
+                break;
+            default:
+                printf("Opcao invalida! Tente novamente.\n");
+        }
 
+        if(opcao != 0) {
+            printf("Pressione ENTER para voltar ao menu...");
+            getchar(); // captura o \n deixado pelo scanf
+            getchar(); // espera o ENTER
+        }
+    } while(opcao != 0);
+}
+ 
 void menuBombeiros() {
     // Implementar menu de bombeiros
 }
