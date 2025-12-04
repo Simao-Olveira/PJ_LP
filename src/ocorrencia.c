@@ -18,16 +18,16 @@ const char* estadoToString(EstadoBombeiro e) {
 }
 
 void adicionarOcorrencia(Ocorrencia **ocorrencias, int *numOcorrencias) {
-    Ocorrencia novaOcorrencia;
-    int op;
+Ocorrencia novaOcorrencia;
+int op;
 
-    novaOcorrencia.id = (*numOcorrencias) + 1;
+novaOcorrencia.id = (*numOcorrencias) + 1;
 
     printf("\n--- Localização da Ocorrencia ---\n");
     scanf("%s", novaOcorrencia.localizacao);
 
     printf("\n--- Data e hora da Ocorrencia ---\n");
-
+    scanf("%d", ---------------);
 
 
 
@@ -176,7 +176,7 @@ void carregarOcorrenciasDeFicheiros(Ocorrencias **ocorrencias, int *numOcorrenci
     while (!feof(f)) {
         Ocorrencias o;
         int estado;
-        if (fscanf(f, "\n%d,%99[^,],%10[^,],%10[^,],%d,%d", &t.id, t.localizacao, t.datehora, t.tipo, t.prioridade, &estado) == 6)
+        if (fscanf(f, "\n%d,%99[^,],%10[^,],%10[^,],%d,%d", &o.id, o.localizacao, o.datehora, o.tipo, o.prioridade, &estado) == 6)
         {
             o.estado = estado;
             (*numOcorrencias)++;

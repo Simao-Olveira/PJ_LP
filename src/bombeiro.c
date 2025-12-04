@@ -149,7 +149,7 @@ void carregarBombeirosDeFicheiros(Bombeiros **bombeiros, int *numBombeiros) {
     while (!feof(f)) {
         Bombeiros b;
         int estado;
-        if (fscanf(f, "\n%d,%99[^,],%10[^,],%10[^,],%d,%d", &t.id, t.nome, t.especialidade, &estado) == 4)
+        if (fscanf(f, "\n%d,%99[^,],%10[^,],%10[^,],%d,%d", &b.id, b.nome, b.especialidade, &estado) == 4)
 {
             b.estado = estado;
             (*numBombeiros)++;

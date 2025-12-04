@@ -19,4 +19,11 @@ typedef struct {
     EstadoIntervencao estado;
 } Intervencao;
 
+void adicionarIntervencao(Intervencao **intervencoes, int *numIntervencoes);
+void listarIntervencao(Intervencao **intervencoes, int *numIntervencoes);
+void atualizarIntervencao(Intervencao *intervencoes, int numIntervencoes);
+void removerIntervencao (Intervencao *intervencoes, int numIntervencoes);
+void guardarIntervencoesEmFicheiros(Intervencao *intervencoes, int numIntervencoes);
+void carregarIntervencoesDeFicheiros(Intervencoes **intervencoes, int *numIntervencoes);
+
 #endif
