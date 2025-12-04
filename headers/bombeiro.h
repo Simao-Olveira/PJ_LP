@@ -9,6 +9,7 @@ typedef struct {
     int idade;
     EspecialidadeBombeiro especialidade;
     EstadoBombeiro estado;
+    int ativo;
 } Bombeiro;
 
 void criarBombeiro(Bombeiro **bombeiros, int *numBombeiros);

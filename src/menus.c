@@ -57,8 +57,8 @@ void menuOcorrencias(Ocorrencia *ocorrencias, int *numOcorrencias) {
         printf("==============================\n");
         printf("       GESTAO OCORRENCIAS     \n");
         printf("==============================\n");
-        printf("1. Listar Ocorrencias\n");
-        printf("2. Adicionar Ocorrencia\n");
+        printf("1. Adicionar Ocorrencias\n");
+        printf("2. Listar Ocorrencia\n");
         printf("3. Atualizar Ocorrencia\n");
         printf("4. Remover Ocorrencia\n");
         printf("0. Voltar ao Menu Principal\n");
@@ -102,8 +102,8 @@ void menuIntervencoes(Intervencao *intervencoes, int *numIntervencoes) {
         printf("==============================\n");
         printf("      GESTAO INTERVENCOES     \n");
         printf("==============================\n");
-        printf("1. Listar Intervencoes\n");
-        printf("2. Adicionar Intervencao\n");
+        printf("1. Adicionar Intervencoes\n");
+        printf("2. Listar Intervencao\n");
         printf("3. Atualizar Intervencao\n");
         printf("4. Remover Intervencao\n");\
         printf("0. Voltar ao Menu Principal\n");
@@ -147,21 +147,21 @@ void menuBombeiros(Bombeiro *bombeiros, int *numBombeiros) {
         printf("==============================\n");
         printf("        GESTAO BOMBEIROS       \n");
         printf("==============================\n");
-        printf("1. Listar Bombeiros\n");
-        printf("2. Adicionar Bombeiros\n");
+        printf("1. Adicionar Bombeiros\n");
+        printf("2. Listar Bombeiros\n");
         printf("3. Atualizar Bombeiros\n");
         printf("4. Remover Bombeiros\n");\
         printf("0. Voltar ao Menu Principal\n");
         printf("--------------//--------------\n");
-        printf("Escolha uma opcao: ");
+        printf("Escolha uma opcao:\n");
         scanf("%d", &opcao);
 
         switch(opcao) {
             case 1:
-
+                adicionarBombeiro(&bombeiros, numBombeiros);
                 break;
             case 2:
-
+                listarBombeiro(bombeiros, *numBombeiros);
                 break;
             case 3:
 
@@ -192,8 +192,8 @@ void menuEquipamentos(Equipamento *equipamentos, int *numEquipamentos) {
         printf("==============================\n");
         printf("       GESTAO EQUIPAMENTOS     \n");
         printf("==============================\n");
-        printf("1. Listar Euipamentos\n");
-        printf("2. Adicionar Equipamentos\n");
+        printf("1. Adicionar Euipamentos\n");
+        printf("2. Listar Equipamentos\n");
         printf("3. Atualizar Equipamentos\n");
         printf("4. Remover Equipamentos\n");
         printf("0. Voltar ao Menu Principal\n");
@@ -237,8 +237,8 @@ void menuQuarteis(Quartel *quarteis, int *numQuarteis) {
         printf("==============================\n");
         printf("       GESTAO QUARTEIS      \n");
         printf("==============================\n");
-        printf("1. Listar Quarteis\n");
-        printf("2. Adicionar Quarteis\n");
+        printf("1. Adicionar Quarteis\n");
+        printf("2. Listar Quarteis\n");
         printf("3. Atualizar Quarteis\n");
         printf("4. Remover Quarteis\n");
         printf("0. Voltar ao Menu Principal\n");
