@@ -68,16 +68,16 @@ void menuOcorrencias(Ocorrencia *ocorrencias, int *numOcorrencias) {
 
         switch(opcao) {
             case 1:
-
+                adicionarOcorrencia(&ocorrencias, numOcorrencias);
                 break;
             case 2:
-
+                listarOcorrencias(ocorrencias, *numOcorrencias);
                 break;
             case 3:
-
+                atualizarOcorrencia(ocorrencias, *numOcorrencias);
                 break;
             case 4:
-
+                removerOcorrencia(ocorrencias, numOcorrencias);
                 break;
             case 0:
                 printf("A Sair...\n");
@@ -113,16 +113,16 @@ void menuIntervencoes(Intervencao *intervencoes, int *numIntervencoes) {
 
         switch(opcao) {
             case 1:
-
+                adicionarIntervencao(&intervencoes, numIntervencoes);
                 break;
             case 2:
-
+                listarIntervencoes(intervencoes, *numIntervencoes);
                 break;
             case 3:
-
+                atualizarIntervencao(intervencoes, *numIntervencoes);
                 break;
             case 4:
-
+                removerIntervencao(intervencoes, numIntervencoes);
                 break;
             case 0:
                 printf("A Sair...\n");
@@ -161,13 +161,13 @@ void menuBombeiros(Bombeiro *bombeiros, int *numBombeiros) {
                 adicionarBombeiro(&bombeiros, numBombeiros);
                 break;
             case 2:
-                listarBombeiro(bombeiros, *numBombeiros);
+                listarBombeiros(bombeiros, *numBombeiros);
                 break;
             case 3:
-
+                atualizarBombeiro(bombeiros, *numBombeiros);
                 break;
             case 4:
-
+                removerBombeiro(bombeiros, numBombeiros);
                 break;
             case 0:
                 printf("A Sair...\n");
@@ -203,16 +203,16 @@ void menuEquipamentos(Equipamento *equipamentos, int *numEquipamentos) {
 
         switch(opcao) {
             case 1:
-
+                adicionarEquipamento(&equipamentos, numEquipamentos);
                 break;
             case 2:
-
+                listarEquipamentos(equipamentos, *numEquipamentos);
                 break;
             case 3:
-
+                atualizarEquipamento(equipamentos, *numEquipamentos);
                 break;
             case 4:
-
+                removerEquipamento(equipamentos, numEquipamentos);
                 break;
             case 0:
                 printf("A Sair...\n");
@@ -248,16 +248,16 @@ void menuQuarteis(Quartel *quarteis, int *numQuarteis) {
 
         switch(opcao) {
             case 1:
-
+                adicionarQuartel(&quarteis, numQuarteis);
                 break;
             case 2:
-
+                listarQuarteis(quarteis, *numQuarteis);
                 break;
             case 3:
-
+                atualizarQuartel(quarteis, *numQuarteis);
                 break;
             case 4:
-
+                removerQuartel(quarteis, numQuarteis);
                 break;
             case 0:
                 printf("A Sair...\n");
