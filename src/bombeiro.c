@@ -28,7 +28,7 @@ int op;
 
 novoBombeiro.id = (*numBombeiros) + 1;
 
-    printf("\n--- Nome do Bombeiro ---\n");
+    printf("\n--- Nome do bombeiro ---\n");
     scanf("%s", novoBombeiro.nome);
 
     printf("\n--- Especialidade ---\n");

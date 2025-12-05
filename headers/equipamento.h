@@ -9,4 +9,11 @@ typedef struct {
     EstadoEquipamento estado;
 } Equipamento;
 
+void adicionarEquipamento(Equipamento **equipamentos, int *numEquipamentos);
+void listarEquipamento(Equipamento **equipamentos, int *numEquipamentos);
+void atualizarEquipamento(Equipamento *equipamentos, int numEquipamentos);
+void removerEquipamento (Equipamento *equipamentos, int numEquipamentos);
+void guardarEquipamentosEmFicheiros(Equipamento *equipamentos, int numEquipamentos);
+void carregarEquipamentosDeFicheiros(Equipamentos **equipamentos, int *numEquipamentos);
+
 #endif
