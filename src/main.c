@@ -17,7 +17,6 @@ void libertarMemoria(Bombeiro *bombeiros, Ocorrencia *ocorrencias, Intervencao *
 }
 
 int main() {
-
     Bombeiro *bombeiros = NULL;
     Ocorrencia *ocorrencias = NULL;
     Intervencao *intervencoes = NULL;
@@ -26,6 +25,6 @@ int main() {
 
     int numBombeiros = 0, numOcorrencias = 0, numIntervencoes = 0, numEquipamentos = 0, numQuartel = 0;
 
-    menuPrincipal(bombeiros, numBombeiros, ocorrencias, numOcorrencias, intervencoes, numIntervencoes, equipamentos, numEquipamentos, quartel, numQuartel);
+    menuPrincipal(&bombeiros, &numBombeiros, ocorrencias, &numOcorrencias, intervencoes, &numIntervencoes, equipamentos, &numEquipamentos, quartel, &numQuartel);
     return 0;
 }
