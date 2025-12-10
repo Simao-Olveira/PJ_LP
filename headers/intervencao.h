@@ -17,11 +17,10 @@ typedef struct {
     int ativo; // 1 para ativo, 0 para inativo
 } Intervencao;
 
-void adicionarIntervencao(Intervencao **intervencoes, int *numIntervencoes);
-void listarIntervencao(Intervencao **intervencoes, int *numIntervencoes);
-void atualizarIntervencao(Intervencao *intervencoes, int numIntervencoes);
-void removerIntervencao (Intervencao *intervencoes, int numIntervencoes);
-void guardarIntervencoesEmFicheiros(Intervencao *intervencoes, int numIntervencoes);
-void carregarIntervencoesDeFicheiros(Intervencao **intervencoes, int *numIntervencoes);
+typedef struct {
+    Intervencao *intervencoes;  // Ponteiro para o array dinâmico
+    int totalIntervencoes;      // Capacidade total alocada
+    int numIntervencoes;        // Quantidade atual de intervenções
+} Intervencoes;
 
 #endif

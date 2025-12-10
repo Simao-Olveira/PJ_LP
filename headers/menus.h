@@ -8,11 +8,11 @@
 #include "equipamento.h"
 #include "quartel.h"
 
-void menuPrincipal(Bombeiros *bombeiros);
+void menuPrincipal(Bombeiros *bombeiros, Equipamentos *equipamentos);
 void menuOcorrencias();
 void menuIntervencoes();
 void menuBombeiros(Bombeiros *bombeiros);
-void menuEquipamentos();
+void menuEquipamentos(Equipamentos *equipamentos);
 void menuRelatorios();
 
 #endif

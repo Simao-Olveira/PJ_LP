@@ -7,10 +7,11 @@
 #include "bombeiro.h"
 #include "gestaoBombeiro.h"
 #include "equipamento.h"
+#include "gestaoEquipamento.h"
 #include "quartel.h"
 
 
-void menuPrincipal(Bombeiros *bombeiros) {
+void menuPrincipal(Bombeiros *bombeiros, Equipamentos *equipamentos) {
     int opcao;
     do {
         printf("==============================\n");
@@ -36,7 +37,7 @@ void menuPrincipal(Bombeiros *bombeiros) {
                 menuBombeiros(bombeiros);
                 break;
             case 4:
-                //menuEquipamentos();
+                menuEquipamentos(equipamentos);
                 break;
             case 5:
                 //menuRelatorios();
@@ -181,32 +182,38 @@ void menuBombeiros(Bombeiros *bombeiros) {
 
     } while(opcao != 0);
 }
-/*
-void menuEquipamentos(Equipamento *equipamentos, int *numEquipamentos) {
+
+void menuEquipamentos(Equipamentos *equipamentos) {
     int opcao;
     do {
-        // system("clear"); // Limpa a tela (Linux/Mac). Use "cls" para Windows.
         printf("==============================\n");
-        printf("       GESTAO EQUIPAMENTOS     \n");
+        printf("       GESTAO EQUIPAMENTOS       \n");
         printf("==============================\n");
-        printf("Escolha uma opcao: ");
-        scanf("%d", &opcao);
+        printf("1. Listar Equipamentos\n");
+        printf("2. Adicionar Equipamento\n");
+        printf("3. Atualizar Equipamento\n");
+        printf("4. Remover Equipamento\n");
+        printf("0. Voltar ao Menu Principal\n");
+        printf("--------------//--------------\n");
+        opcao = obterInteiro(0, 4, "Escolha uma opcao: ");
 
         switch(opcao) {
             case 1:
-                adicionarEquipamento(&equipamentos, numEquipamentos);
+                listarEquipamentos(*equipamentos);
                 break;
             case 2:
-                listarEquipamentos(equipamentos, *numEquipamentos);
+                adicionarEquipamento(equipamentos);
                 break;
             case 3:
-                atualizarEquipamento(equipamentos, *numEquipamentos);
+                editarEquipamento(equipamentos);
                 break;
             case 4:
-                removerEquipamento(equipamentos, numEquipamentos);
+                eliminarEquipamento(equipamentos);
                 break;
             case 0:
                 printf("A Sair...\n");
+                writeEquipamentos(equipamentos);
+                libertarMemEquipamentos(equipamentos);
                 break;
             default:
                 printf("Opcao invalida! Tente novamente.\n");
@@ -214,13 +221,12 @@ void menuEquipamentos(Equipamento *equipamentos, int *numEquipamentos) {
 
         if(opcao != 0) {
             printf("Pressione ENTER para voltar ao menu...");
-            getchar(); // captura o \n deixado pelo scanf
             getchar(); // espera o ENTER
         }
 
     } while(opcao != 0);
 }
-
+/*
 void menuQuarteis(Quartel *quarteis, int *numQuarteis) {
     int opcao;
     do {

@@ -59,9 +59,8 @@ void adicionarBombeiro(Bombeiros *bombeiros) {
 
     if (procurarBombeiro(*bombeiros, id) == -1) {
 
-        // Realocação de memória se o array estiver cheio
         if ((*bombeiros).totalBombeiros == (*bombeiros).numBombeiros) {
-            (*bombeiros).totalBombeiros += 3; // Expande de 3 em 3
+            (*bombeiros).totalBombeiros += 3; 
             Bombeiro *temp = (Bombeiro*) realloc((*bombeiros).bombeiros, ((*bombeiros).totalBombeiros) * sizeof(Bombeiro));
             if (temp == NULL) {
                 printf("Erro ao alocar memória!\n");

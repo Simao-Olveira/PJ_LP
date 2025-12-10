@@ -43,4 +43,10 @@ typedef enum {
     EQ_MANUTENCAO
 } EstadoEquipamento;
 
+typedef enum {
+    VESTUARIO,
+    VEICULOS,
+    FERRAMENTAS,
+    COMUNICACAO
+} TipoEquipamento;
 #endif
