@@ -9,12 +9,19 @@
 typedef struct {
     int id;
     Ocorrencia *ocorrencia;
-    Bombeiro *bombeiros;   // lista dinâmica
+    Bombeiro *bombeiros;  
     int numBombeiros;
-    Equipamento *equipamentos; // lista dinâmica
+    Equipamento *equipamentos;
     int numEquipamentos;
     EstadoIntervencao estado;
     int ativo; // 1 para ativo, 0 para inativo
 } Intervencao;
+
+void adicionarIntervencao(Intervencao **intervencoes, int *numIntervencoes);
+void listarIntervencao(Intervencao **intervencoes, int *numIntervencoes);
+void atualizarIntervencao(Intervencao *intervencoes, int numIntervencoes);
+void removerIntervencao (Intervencao *intervencoes, int numIntervencoes);
+void guardarIntervencoesEmFicheiros(Intervencao *intervencoes, int numIntervencoes);
+void carregarIntervencoesDeFicheiros(Intervencao **intervencoes, int *numIntervencoes);
 
 #endif

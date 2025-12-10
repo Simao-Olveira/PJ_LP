@@ -8,23 +8,21 @@
 #include "../headers/enums.h"
 #include "../headers/menus.h"
 
-void libertarMemoria(Bombeiro *bombeiros, Ocorrencia *ocorrencias, Intervencao *intervencoes, Equipamento *equipamentos, Quartel *quartel) {
-    free(bombeiros);
-    free(ocorrencias);
-    free(intervencoes);
-    free(equipamentos);
-    free(quartel);
-}
 
 int main() {
-    Bombeiro *bombeiros = NULL;
-    Ocorrencia *ocorrencias = NULL;
-    Intervencao *intervencoes = NULL;
-    Equipamento *equipamentos = NULL;
-    Quartel *quartel = NULL;
+    Bombeiros bombeiros;
+   
+    bombeiros.numBombeiros = 0;
+    bombeiros.totalBombeiros = 5; 
 
-    int numBombeiros = 0, numOcorrencias = 0, numIntervencoes = 0, numEquipamentos = 0, numQuartel = 0;
+    bombeiros.bombeiros = (Bombeiro*) malloc(sizeof(Bombeiro) * bombeiros.totalBombeiros);
+    if (bombeiros.bombeiros == NULL) {
+        printf("Erro fatal: Falha na alocação de memória.\n");
+        return 1; 
+    }
 
-    menuPrincipal(&bombeiros, &numBombeiros, ocorrencias, &numOcorrencias, intervencoes, &numIntervencoes, equipamentos, &numEquipamentos, quartel, &numQuartel);
+    readBombeiros(&bombeiros);
+    
+    menuPrincipal(&bombeiros);
     return 0;
 }

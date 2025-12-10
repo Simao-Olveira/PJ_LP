@@ -1,4 +1,0 @@
-1;Caminhão Auto-Escala;0
-2;Mangueira 30m;1
-3;Desfibrilhador;2
-4;Bate-fogo;0

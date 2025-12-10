@@ -1,19 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "input.h"
 #include "menus.h"
 #include "ocorrencia.h"
 #include "intervencao.h"
 #include "bombeiro.h"
+#include "gestaoBombeiro.h"
 #include "equipamento.h"
 #include "quartel.h"
 
-void menuPrincipal(Bombeiro *bombeiros, int *numBombeiros, Ocorrencia *ocorrencias, int *numOcorrencias,
-                    Intervencao *intervencoes, int *numIntervencoes,
-                    Equipamento *equipamentos, int *numEquipamentos, 
-                    Quartel *quartel , int *numQuartel) {
+
+void menuPrincipal(Bombeiros *bombeiros) {
     int opcao;
     do {
-        //system("clear"); // Limpa a tela (Linux/Mac). Use "cls" para Windows.
         printf("==============================\n");
         printf("         MENU PRINCIPAL       \n");
         printf("==============================\n");
@@ -24,24 +23,23 @@ void menuPrincipal(Bombeiro *bombeiros, int *numBombeiros, Ocorrencia *ocorrenci
         printf("5. Relatórios\n");
         printf("0. Sair\n");
         printf("==============================\n");
-        printf("Escolha uma opcao: ");
-        scanf("%d", &opcao);
+        opcao = obterInteiro(0, 5, "Escolha uma opcao: ");
 
         switch(opcao) {
             case 1:
-                menuOcorrencias();
+                //menuOcorrencias();
                 break;
             case 2:
-                menuIntervencoes();
+                //menuIntervencoes();
                 break;
             case 3:
-                menuBombeiros(&bombeiros, numBombeiros);
+                menuBombeiros(bombeiros);
                 break;
             case 4:
-                menuEquipamentos();
+                //menuEquipamentos();
                 break;
             case 5:
-                menuRelatorios();
+                //menuRelatorios();
                 break;
             case 0:
                 printf("A Sair...\n");
@@ -52,6 +50,7 @@ void menuPrincipal(Bombeiro *bombeiros, int *numBombeiros, Ocorrencia *ocorrenci
     } while(opcao != 0);
 }
 
+/*
 void menuOcorrencias() {
     int opcao;
     do {
@@ -70,10 +69,16 @@ void menuOcorrencias() {
 
         switch(opcao) {
             case 1:
-                
+                adicionarOcorrencia(&ocorrencias, numOcorrencias);
                 break;
             case 2:
-                
+                listarOcorrencias(ocorrencias, *numOcorrencias);
+                break;
+            case 3:
+                atualizarOcorrencia(ocorrencias, *numOcorrencias);
+                break;
+            case 4:
+                removerOcorrencia(ocorrencias, numOcorrencias);
                 break;
             case 0:
                 printf("A Sair...\n");
@@ -108,10 +113,16 @@ void menuIntervencoes() {
         scanf("%d", &opcao);
         switch(opcao) {
             case 1:
-                
+                adicionarIntervencao(&intervencoes, numIntervencoes);
                 break;
             case 2:
-                
+                listarIntervencoes(intervencoes, *numIntervencoes);
+                break;
+            case 3:
+                atualizarIntervencao(intervencoes, *numIntervencoes);
+                break;
+            case 4:
+                removerIntervencao(intervencoes, numIntervencoes);
                 break;
             case 0:
                 printf("A Sair...\n");
@@ -127,11 +138,10 @@ void menuIntervencoes() {
         }
     } while(opcao != 0);
 }
- 
-void menuBombeiros(Bombeiro **bombeiros, int *numBombeiros) {
+ */
+void menuBombeiros(Bombeiros *bombeiros) {
     int opcao;
     do {
-        system("clear"); // Limpa a tela (Linux/Mac). Use "cls" para Windows.
         printf("==============================\n");
         printf("       GESTAO BOMBEIROS       \n");
         printf("==============================\n");
@@ -140,22 +150,60 @@ void menuBombeiros(Bombeiro **bombeiros, int *numBombeiros) {
         printf("3. Atualizar Bombeiro\n");
         printf("4. Remover Bombeiro\n");
         printf("0. Voltar ao Menu Principal\n");
+        printf("--------------//--------------\n");
+        opcao = obterInteiro(0, 4, "Escolha uma opcao: ");
+
+        switch(opcao) {
+            case 1:
+                listarBombeiros(*bombeiros);
+                break;
+            case 2:
+                adicionarBombeiro(bombeiros);
+                break;
+            case 3:
+                editarBombeiro(bombeiros);
+                break;
+            case 4:
+                eliminarBombeiro(bombeiros);
+                break;
+            case 0:
+                printf("A Sair...\n");
+                writeBombeiros(bombeiros);
+                libertarMemBombeiros(bombeiros);
+                break;
+            default:
+                printf("Opcao invalida! Tente novamente.\n");
+        }
+
+        if(opcao != 0) {
+            
+        }
+
+    } while(opcao != 0);
+}
+/*
+void menuEquipamentos(Equipamento *equipamentos, int *numEquipamentos) {
+    int opcao;
+    do {
+        // system("clear"); // Limpa a tela (Linux/Mac). Use "cls" para Windows.
+        printf("==============================\n");
+        printf("       GESTAO EQUIPAMENTOS     \n");
         printf("==============================\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
 
         switch(opcao) {
             case 1:
-                listarBombeiro(*bombeiros, *numBombeiros);
+                adicionarEquipamento(&equipamentos, numEquipamentos);
                 break;
             case 2:
-                adicionarBombeiro(bombeiros, numBombeiros);
+                listarEquipamentos(equipamentos, *numEquipamentos);
                 break;
             case 3:
-                atualizarBombeiro(*bombeiros, *numBombeiros);
+                atualizarEquipamento(equipamentos, *numEquipamentos);
                 break;
             case 4:
-                removerBombeiro(*bombeiros, *numBombeiros);
+                removerEquipamento(equipamentos, numEquipamentos);
                 break;
             case 0:
                 printf("A Sair...\n");
@@ -173,10 +221,47 @@ void menuBombeiros(Bombeiro **bombeiros, int *numBombeiros) {
     } while(opcao != 0);
 }
 
-void menuEquipamentos() {
-    // Implementar menu de equipamentos
-}
+void menuQuarteis(Quartel *quarteis, int *numQuarteis) {
+    int opcao;
+    do {
+        // system("clear"); // Limpa a tela (Linux/Mac). Use "cls" para Windows.
+        printf("==============================\n");
+        printf("       GESTAO QUARTEIS      \n");
+        printf("==============================\n");
+        printf("1. Adicionar Quarteis\n");
+        printf("2. Listar Quarteis\n");
+        printf("3. Atualizar Quarteis\n");
+        printf("4. Remover Quarteis\n");
+        printf("0. Voltar ao Menu Principal\n");
+        printf("--------------//--------------\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
 
-void menuRelatorios() {
-    // Implementar menu de relatórios
-}
+        switch(opcao) {
+            case 1:
+                adicionarQuartel(&quarteis, numQuarteis);
+                break;
+            case 2:
+                listarQuarteis(quarteis, *numQuarteis);
+                break;
+            case 3:
+                atualizarQuartel(quarteis, *numQuarteis);
+                break;
+            case 4:
+                removerQuartel(quarteis, numQuarteis);
+                break;
+            case 0:
+                printf("A Sair...\n");
+                break;
+            default:
+                printf("Opcao invalida! Tente novamente.\n");
+        }
+
+        if(opcao != 0) {
+            printf("Pressione ENTER para voltar ao menu...");
+            getchar(); // captura o \n deixado pelo scanf
+            getchar(); // espera o ENTER
+        }
+
+    } while(opcao != 0);
+}*/

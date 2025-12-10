@@ -9,4 +9,10 @@ typedef struct {
     char local[100];
 } Quartel;
 
+typedef struct {
+    Quartel *quarteis;  // Ponteiro para o array dinâmico
+    int totalQuarteis;  // Capacidade total alocada
+    int numQuarteis;    // Quantidade atual de bombeiros
+} Quarteis;
+
 #endif
