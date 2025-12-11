@@ -9,11 +9,10 @@ typedef struct {
     EstadoEquipamento estado;
 } Equipamento;
 
-void adicionarEquipamento(Equipamento **equipamentos, int *numEquipamentos);
-void listarEquipamento(Equipamento **equipamentos, int *numEquipamentos);
-void atualizarEquipamento(Equipamento *equipamentos, int numEquipamentos);
-void removerEquipamento (Equipamento *equipamentos, int numEquipamentos);
-void guardarEquipamentosEmFicheiros(Equipamento *equipamentos, int numEquipamentos);
-void carregarEquipamentosDeFicheiros(Equipamentos **equipamentos, int *numEquipamentos);
+typedef struct {
+    Equipamento *equipamentos; // Ponteiro para o array dinâmico
+    int totalEquipamentos;  // Capacidade total alocada
+    int numEquipamentos;    // Quantidade atual de equipamentos
+} Equipamentos;
 
 #endif

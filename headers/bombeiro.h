@@ -12,11 +12,10 @@ typedef struct {
     int ativo;
 } Bombeiro;
 
-void adicionarBombeiro(Bombeiro **bombeiros, int *numBombeiros);
-void listarBombeiro(Bombeiro **bombeiros, int *numBombeiros);
-void atualizarBombeiro(Bombeiro *bombeiros, int numBombeiros);
-void removerBombeiro (Bombeiro *bombeiros, int numBombeiros);
-void guardarBombeirosEmFicheiros(Bombeiro *bombeiros, int numBombeiros);
-void carregarBombeirosDeFicheiros(Bombeiros **bombeiros, int *numBombeiros);
+typedef struct {
+    Bombeiro *bombeiros; // Ponteiro para o array dinâmico
+    int totalBombeiros;  // Capacidade total alocada
+    int numBombeiros;    // Quantidade atual de bombeiros
+} Bombeiros;
 
 #endif
