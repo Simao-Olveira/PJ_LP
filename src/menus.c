@@ -8,10 +8,11 @@
 #include "gestaoBombeiro.h"
 #include "equipamento.h"
 #include "gestaoEquipamento.h"
+#include "gestaoQuartel.h"
 #include "quartel.h"
 
 
-void menuPrincipal(Bombeiros *bombeiros, Equipamentos *equipamentos) {
+void menuPrincipal(Bombeiros *bombeiros, Equipamentos *equipamentos, Quarteis *quarteis) {
     int opcao;
     do {
         printf("==============================\n");
@@ -21,7 +22,7 @@ void menuPrincipal(Bombeiros *bombeiros, Equipamentos *equipamentos) {
         printf("2. Gestão de Intervenções\n");
         printf("3. Gestão de Bombeiros\n");
         printf("4. Gestão de Equipamentos\n");
-        printf("5. Relatórios\n");
+        printf("5. Gestão de Quarteis\n");
         printf("0. Sair\n");
         printf("==============================\n");
         opcao = obterInteiro(0, 5, "Escolha uma opcao: ");
@@ -40,7 +41,7 @@ void menuPrincipal(Bombeiros *bombeiros, Equipamentos *equipamentos) {
                 menuEquipamentos(equipamentos);
                 break;
             case 5:
-                //menuRelatorios();
+                menuQuarteis(quarteis);
                 break;
             case 0:
                 printf("A Sair...\n");
@@ -226,16 +227,16 @@ void menuEquipamentos(Equipamentos *equipamentos) {
 
     } while(opcao != 0);
 }
-/*
-void menuQuarteis(Quartel *quarteis, int *numQuarteis) {
+
+void menuQuarteis(Quarteis *quarteis) {
     int opcao;
     do {
         // system("clear"); // Limpa a tela (Linux/Mac). Use "cls" para Windows.
         printf("==============================\n");
         printf("       GESTAO QUARTEIS      \n");
         printf("==============================\n");
-        printf("1. Adicionar Quarteis\n");
-        printf("2. Listar Quarteis\n");
+        printf("1. Listar Quarteis\n");
+        printf("2. Adicionar Quarteis\n");
         printf("3. Atualizar Quarteis\n");
         printf("4. Remover Quarteis\n");
         printf("0. Voltar ao Menu Principal\n");
@@ -244,30 +245,32 @@ void menuQuarteis(Quartel *quarteis, int *numQuarteis) {
         scanf("%d", &opcao);
 
         switch(opcao) {
-            case 1:
-                adicionarQuartel(&quarteis, numQuarteis);
+                        case 1:
+                listarQuarteis(*quarteis);
                 break;
             case 2:
-                listarQuarteis(quarteis, *numQuarteis);
+                adicionarQuartel(quarteis);
                 break;
             case 3:
-                atualizarQuartel(quarteis, *numQuarteis);
+                editarQuartel(quarteis);
                 break;
             case 4:
-                removerQuartel(quarteis, numQuarteis);
+                eliminarQuartel(quarteis);
                 break;
             case 0:
                 printf("A Sair...\n");
+                writeQuarteis(quarteis);
+                libertarMemQuarteis(quarteis);
                 break;
             default:
                 printf("Opcao invalida! Tente novamente.\n");
         }
 
         if(opcao != 0) {
-            printf("Pressione ENTER para voltar ao menu...");
+            printf("Pressione ENTER para voltar ao menu...\n");
             getchar(); // captura o \n deixado pelo scanf
-            getchar(); // espera o ENTER
+            getchar(); // captura o \n deixado pelo scanf
         }
 
     } while(opcao != 0);
-}*/
+}

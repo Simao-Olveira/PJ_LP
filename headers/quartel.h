@@ -5,8 +5,10 @@
 
 typedef struct {
     int id;
-    char nome[100];
-    char local[100];
+    char *nome;
+    char *local;
+    int capacidade;
+    TipoQuartel tipo;
 } Quartel;
 
 typedef struct {

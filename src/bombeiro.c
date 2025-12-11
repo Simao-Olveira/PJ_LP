@@ -27,13 +27,13 @@ void imprimirEspecialidade(EspecialidadeBombeiro esp) {
 // Converte o Enum Estado em texto
 void imprimirEstado(EstadoBombeiro est) {
     switch (est) {
-        case EM_DISPONIVEL:
+        case EB_DISPONIVEL:
             printf("Disponível");
             break;
-        case EM_INTERVENCAO:
+        case EB_INTERVENCAO:
             printf("Em Intervenção");
             break;
-        case EM_TREINO:
+        case EB_TREINO:
             printf("Em Treino");
             break;
         default:
@@ -53,9 +53,8 @@ int procurarBombeiro(Bombeiros bombeiros, int id) {
 }
 
 void adicionarBombeiro(Bombeiros *bombeiros) {
-    int id;
     printf("Criar bombeiro:\n");
-    id = bombeiros->numBombeiros + 1;
+    int id = bombeiros->numBombeiros + 1;
 
     if (procurarBombeiro(*bombeiros, id) == -1) {
 
@@ -73,13 +72,13 @@ void adicionarBombeiro(Bombeiros *bombeiros) {
         (*bombeiros).bombeiros[(*bombeiros).numBombeiros].id = id;
         (*bombeiros).bombeiros[(*bombeiros).numBombeiros].ativo = 1; // Define como ativo por defeito
 
-        // Leitura do Nome (Array fixo, usa strcpy)
-        char buffer[100];
-        lerString(buffer, 100, "Nome: ");
-        strcpy((*bombeiros).bombeiros[(*bombeiros).numBombeiros].nome, buffer);
-
+        char buffer[SIZE_BUFFER];
+        lerString(buffer, SIZE_BUFFER, "Nome: ");
+        (*bombeiros).bombeiros[(*bombeiros).numBombeiros].nome = (char*) malloc((strlen(buffer) + 1) * sizeof(char));
+        if ((*bombeiros).bombeiros[(*bombeiros).numBombeiros].nome != NULL) {
+            strcpy((*bombeiros).bombeiros[(*bombeiros).numBombeiros].nome, buffer);
+        }
         
-        // Exemplo dentro de adicionarBombeiro:
         printf("\nEspecialidades:\n0 - Combate Florestal\n1 - Combate Aéreo\n2 - Resgate\n");
         int espInput = obterInteiro(0, 2, "Escolha a Especialidade: ");
         (*bombeiros).bombeiros[(*bombeiros).numBombeiros].especialidade = (EspecialidadeBombeiro)espInput;
@@ -96,10 +95,10 @@ void adicionarBombeiro(Bombeiros *bombeiros) {
 }
 
 void libertarMemBombeiros(Bombeiros *bombeiros) {
+    for (int i = 0; i < bombeiros->numBombeiros; i++) {
+        free(bombeiros->bombeiros[i].nome);
+    }
     free(bombeiros->bombeiros);
-    bombeiros->bombeiros = NULL;
-    bombeiros->numBombeiros = 0;
-    bombeiros->totalBombeiros = 0;
 }
 
 void imprimirBombeiro(Bombeiro bombeiro) {
@@ -116,10 +115,9 @@ void imprimirBombeiro(Bombeiro bombeiro) {
 }
 
 void listarBombeiros(Bombeiros bombeiros) {
-    int i;
     if (bombeiros.numBombeiros > 0) {
-        for (i = 0; i < bombeiros.numBombeiros; i++) {
-            if(bombeiros.bombeiros->ativo == 1) imprimirBombeiro(bombeiros.bombeiros[i]);
+        for (int i = 0; i < bombeiros.numBombeiros; i++) {
+            if(bombeiros.bombeiros[i].ativo == 1) imprimirBombeiro(bombeiros.bombeiros[i]);
         }
     } else {
         printf("Não existem bombeiros registados!!\n");
@@ -128,7 +126,7 @@ void listarBombeiros(Bombeiros bombeiros) {
 
 void atualizarDadosBombeiro(Bombeiro *bombeiro) {
     int escolha;
-    char buffer[100];
+    char buffer[SIZE_BUFFER];
 
     do {
         printf("\nAlterar:\n1- Nome\n2- Especialidade\n3- Estado\n4- Atividade (Ativo/Inativo)\n0- Voltar\n");
@@ -138,7 +136,8 @@ void atualizarDadosBombeiro(Bombeiro *bombeiro) {
             case 0:
                 break;
             case 1:
-                lerString(buffer, 100, "Novo Nome: ");
+                lerString(buffer, SIZE_BUFFER, "Nome: ");
+                bombeiro->nome = realloc(bombeiro->nome, (strlen(buffer) + 1) * sizeof (char));
                 strcpy(bombeiro->nome, buffer);
                 break;
             case 2:
@@ -160,7 +159,7 @@ void atualizarDadosBombeiro(Bombeiro *bombeiro) {
 void editarBombeiro(Bombeiros *bombeiros) {
     listarBombeiros(*bombeiros);
     printf("Editar dados do bombeiro:\n");
-    int id = procurarBombeiro(*bombeiros, obterInteiro(0, 999999, "Insira o ID do bombeiro a alterar: "));
+    int id = procurarBombeiro(*bombeiros, obterInteiro(0, MAX_INT, "Insira o ID do bombeiro a alterar: "));
 
     if (id != -1) {
         imprimirBombeiro((*bombeiros).bombeiros[id]);
@@ -207,36 +206,48 @@ void readBombeiros(Bombeiros *bombeiros) {
     fread(&bombeiros->totalBombeiros, sizeof(int), 1, ficheiro);
     fread(&bombeiros->numBombeiros, sizeof(int), 1, ficheiro);
 
-    bombeiros->bombeiros = (Bombeiro*) malloc(bombeiros->totalBombeiros * sizeof(Bombeiro));
-
-    if (bombeiros->bombeiros == NULL) {
-        printf("Erro fatal: Falha de memória ao carregar ficheiro.\n");
+     if (bombeiros->numBombeiros == 0) {
         fclose(ficheiro);
-        return;
-    }
+        printf("\nNao existem bombeiros para importar\n");
 
-    if (bombeiros->numBombeiros > 0) {
-        fread(bombeiros->bombeiros, sizeof(Bombeiro), bombeiros->numBombeiros, ficheiro);
+    } else {
+        bombeiros->bombeiros = (Bombeiro*) realloc((*bombeiros).bombeiros, ((*bombeiros).totalBombeiros) * sizeof (Bombeiro));
+        for (int i = 0; i < bombeiros->numBombeiros; i++) {
+            fread(&bombeiros->bombeiros[i].id, sizeof(int), 1, ficheiro);
+            fread(&bombeiros->bombeiros[i].especialidade, sizeof(EspecialidadeBombeiro), 1, ficheiro);
+            fread(&bombeiros->bombeiros[i].estado, sizeof(EstadoBombeiro), 1, ficheiro);
+            fread(&bombeiros->bombeiros[i].ativo, sizeof(int), 1, ficheiro);
+            int buffer;
+            fread(&buffer, sizeof (int), 1, ficheiro);
+            bombeiros->bombeiros[i].nome = (char*) malloc(sizeof (char) * (buffer + 1));
+            fread(bombeiros->bombeiros[i].nome, sizeof (char), buffer, ficheiro);
+            bombeiros->bombeiros[i].nome[buffer] = '\0';
+        }
+        fclose(ficheiro);
+        printf("\nCarregados %d bombeiros.\n", bombeiros->numBombeiros);
     }
-
-    fclose(ficheiro);
-    printf("\nCarregados %d bombeiros do ficheiro binário.\n", bombeiros->numBombeiros);
 }
 
 void writeBombeiros(Bombeiros *bombeiros) {
-    FILE *ficheiro = fopen("data/bombeiros.bin", "wb"); // "wb" = Write Binary
+    FILE *ficheiro = fopen("data/bombeiros.bin", "wb");
     if (ficheiro == NULL) {
-        printf("\nErro ao criar o ficheiro 'data/bombeiros.bin'. Verifica se a pasta 'data' existe.\n");
+        printf("\nErro ao criar ficheiro.\n");
         return;
     }
 
     fwrite(&bombeiros->totalBombeiros, sizeof(int), 1, ficheiro);
     fwrite(&bombeiros->numBombeiros, sizeof(int), 1, ficheiro);
 
-    if (bombeiros->numBombeiros > 0) {
-        fwrite(bombeiros->bombeiros, sizeof(Bombeiro), bombeiros->numBombeiros, ficheiro);
+    for (int i = 0; i < bombeiros->numBombeiros; i++) {
+        fwrite(&bombeiros->bombeiros[i].id, sizeof(int), 1, ficheiro);
+        fwrite(&bombeiros->bombeiros[i].especialidade, sizeof(EspecialidadeBombeiro), 1, ficheiro);
+        fwrite(&bombeiros->bombeiros[i].estado, sizeof(EstadoBombeiro), 1, ficheiro);
+        fwrite(&bombeiros->bombeiros[i].ativo, sizeof(int), 1, ficheiro);
+        int buffer = strlen(bombeiros->bombeiros[i].nome); 
+        fwrite(&buffer, sizeof(int), 1, ficheiro);
+        fwrite(bombeiros->bombeiros[i].nome, sizeof (char), buffer, ficheiro);
     }
 
     fclose(ficheiro);
-    printf("\nDados guardados em 'data/bombeiros.bin' com sucesso.\n");
+    printf("\nBombeiros guardados com sucesso.\n");
 }

@@ -55,9 +55,6 @@ int procurarEquipamento(Equipamentos equipamentos, int id) {
 
 void adicionarEquipamento(Equipamentos *equipamentos) {
     printf("\nCriar Equipamento:\n");
-    
-    // NOTA: Gerar ID assim pode causar duplicados se apagares equipamentos antigos.
-    // O ideal seria encontrar o maior ID existente + 1. Mas mantive a tua lógica.
     int id = equipamentos->numEquipamentos + 1;
 
     // Verificação simples (apenas procura se existe ativo com esse ID)
@@ -77,10 +74,13 @@ void adicionarEquipamento(Equipamentos *equipamentos) {
         equipamentos->equipamentos[equipamentos->numEquipamentos].id = id;
         equipamentos->equipamentos[equipamentos->numEquipamentos].ativo = 1; 
 
-        char buffer[100];
-        lerString(buffer, 100, "Nome do Equipamento: ");
-        strcpy(equipamentos->equipamentos[equipamentos->numEquipamentos].nome, buffer);
-
+        char buffer[SIZE_BUFFER];
+        lerString(buffer, SIZE_BUFFER, "Nome: ");
+        (*equipamentos).equipamentos[(*equipamentos).numEquipamentos].nome = (char*) malloc((strlen(buffer) + 1) * sizeof(char));
+        if ((*equipamentos).equipamentos[(*equipamentos).numEquipamentos].nome != NULL) {
+             strcpy((*equipamentos).equipamentos[(*equipamentos).numEquipamentos].nome, buffer);
+        }
+           
         // Pedir Estado
         printf("\nEstados:\n0 - Disponível\n1 - Em Uso\n2 - Manutenção\n");
         int estInput = obterInteiro(0, 2, "Estado inicial: ");
@@ -116,7 +116,6 @@ void listarEquipamentos(Equipamentos equipamentos) {
     int encontrou = 0;
     if (equipamentos.numEquipamentos > 0) {
         for (int i = 0; i < equipamentos.numEquipamentos; i++) {
-            // CORREÇÃO: Usar [i] para verificar o item atual, e não o primeiro pointer
             if(equipamentos.equipamentos[i].ativo == 1) { 
                 imprimirEquipamento(equipamentos.equipamentos[i]);
                 encontrou = 1;
@@ -133,7 +132,7 @@ void listarEquipamentos(Equipamentos equipamentos) {
 
 void atualizarDadosEquipamento(Equipamento *equipamento) {
     int escolha;
-    char buffer[100];
+    char buffer[SIZE_BUFFER];
 
     do {
         printf("\nEditar Equipamento %d:\n1- Nome\n2- Estado\n3- Tipo\n0- Voltar\n", equipamento->id);
@@ -141,7 +140,8 @@ void atualizarDadosEquipamento(Equipamento *equipamento) {
 
         switch (escolha) {
             case 1:
-                lerString(buffer, 100, "Novo Nome: ");
+                lerString(buffer, SIZE_BUFFER, "Nome: ");
+                equipamento->nome = realloc(equipamento->nome, (strlen(buffer) + 1) * sizeof (char));
                 strcpy(equipamento->nome, buffer);
                 break;
             case 2:
@@ -149,7 +149,7 @@ void atualizarDadosEquipamento(Equipamento *equipamento) {
                 int novoEstado = obterInteiro(0, 2, "Novo Estado: ");
                 equipamento->estado = (EstadoEquipamento)novoEstado;
                 break;
-            case 3: // <--- Novo Caso para Editar Tipo
+            case 3:
                 printf("\n0- Vestuário | 1- Veículos | 2- Ferramentas | 3- Comunicação\n");
                 int novoTipo = obterInteiro(0, 3, "Novo Tipo: ");
                 equipamento->tipo = (TipoEquipamento)novoTipo;
@@ -211,7 +211,7 @@ void readEquipamentos(Equipamentos *equipamentos) {
     FILE *ficheiro = fopen("data/equipamentos.bin", "rb");
     
     if (ficheiro == NULL) {
-        printf("\nFicheiro 'data/equipamentos.bin' não encontrado. A iniciar vazio.\n");
+        printf("\nO ficheiro 'equipamentos.bin' não foi encontrado. A iniciar a lista vazia.\n");
         equipamentos->numEquipamentos = 0;
         equipamentos->totalEquipamentos = 5;
         equipamentos->equipamentos = (Equipamento*) malloc(equipamentos->totalEquipamentos * sizeof(Equipamento));

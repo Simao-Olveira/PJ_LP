@@ -7,7 +7,12 @@
 #define VALOR_INVALIDO "O valor inserido é invalido"
 #define MAX_INT 2147483647
 #define SIZE_BUFFER 100
-#define CODE 3500
+
+typedef struct {
+    int dia;
+    int mes;
+    int ano;
+} Data;
 
 void cleanInputBuffer();
 

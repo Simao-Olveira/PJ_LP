@@ -32,9 +32,9 @@ typedef enum {
 } EspecialidadeBombeiro;
  
 typedef enum {
-    EM_DISPONIVEL,
-    EM_INTERVENCAO,
-    EM_TREINO
+    EB_DISPONIVEL,
+    EB_INTERVENCAO,
+    EB_TREINO
 } EstadoBombeiro;
 
 typedef enum {
@@ -49,4 +49,10 @@ typedef enum {
     FERRAMENTAS,
     COMUNICACAO
 } TipoEquipamento;
+
+typedef enum {
+    VOLUNTARIO,
+    SAPADOR,
+    MUNICIPAL
+} TipoQuartel;
 #endif

@@ -5,7 +5,7 @@
 
 typedef struct {
     int id;
-    char nome[100];
+    char *nome;
     EstadoEquipamento estado;
     TipoEquipamento tipo;
     int ativo; // 1 para ativo, 0 para inativo
