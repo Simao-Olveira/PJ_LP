@@ -2,6 +2,8 @@
 #ifndef PJ_LP_INTERVENCAOGESTAO_H
 #define PJ_LP_INTERVENCAOGESTAO_H
 
+#include "intervencao.h"
+
 int procurarIntervencao(Intervencoes intervencoes, int id);
 void adicionarIntervencao(Intervencoes intervencoes);
 void libertarMemIntervencoes(Intervencoesintervencoes);

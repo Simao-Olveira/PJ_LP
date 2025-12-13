@@ -2,6 +2,8 @@
 #ifndef PJ_LP_QUARTELGESTAO_H
 #define PJ_LP_QUARTELGESTAO_H
 
+#include "quartel.h"
+
 int procurarQuartel(Quarteis quarteis, int id);
 void adicionarQuartel(Quarteis quarteis);
 void libertarMemQuarteis(Quarteisquarteis);

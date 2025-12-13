@@ -2,6 +2,8 @@
 #ifndef PJ_LP_OCORRENCIAGESTAO_H
 #define PJ_LP_OCORRENCIAGESTAO_H
 
+#include "ocorrencia.h"
+
 int procurarOcorrencia(Ocorrencias ocorrencias, int id);
 void adicionarOcorrencia(Ocorrencias ocorrencias);
 void libertarMemOcorrencias(Ocorrenciasocorrencias);
