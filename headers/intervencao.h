@@ -1,20 +1,24 @@
 #ifndef INTERVENCAO_H
 #define INTERVENCAO_H
 
+#include "input.h"
 #include "enums.h"
 #include "bombeiro.h"
 #include "equipamento.h"
 #include "ocorrencia.h"
 
 typedef struct {
-    int id;
-    Ocorrencia *ocorrencia;
-    Bombeiro *bombeiros;  
+    int id; //id da intervenção
+    int idOcorrencia;        
+    int *idsBombeiros;       
     int numBombeiros;
-    Equipamento *equipamentos;
+    int *idsEquipamentos;    
     int numEquipamentos;
     EstadoIntervencao estado;
-    int ativo; // 1 para ativo, 0 para inativo
+    Data dataInicio;
+    Hora horaInicio;
+    Data dataFim;
+    Hora horaFim;
 } Intervencao;
 
 typedef struct {

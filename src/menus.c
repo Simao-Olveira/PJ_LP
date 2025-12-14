@@ -2,17 +2,27 @@
 #include <stdlib.h>
 #include "input.h"
 #include "menus.h"
-#include "ocorrencia.h"
-#include "intervencao.h"
-#include "bombeiro.h"
-#include "gestaoBombeiro.h"
-#include "equipamento.h"
-#include "gestaoEquipamento.h"
-#include "gestaoQuartel.h"
-#include "quartel.h"
+#include "log.h"
+
+#include "../headers/ocorrencia.h"
+#include "../headers/gestaoOcorrencia.h"
+
+#include "../headers/intervencao.h"
+#include "../headers/gestaoIntervencao.h"
+
+#include "../headers/bombeiro.h"
+#include "../headers/gestaoBombeiro.h"
+
+#include "../headers/intervencao.h"
+
+#include "../headers/equipamento.h"
+#include "../headers/gestaoEquipamento.h"
+
+#include "../headers/quartel.h"
+#include "../headers/gestaoQuartel.h"
 
 
-void menuPrincipal(Bombeiros *bombeiros, Equipamentos *equipamentos, Quarteis *quarteis) {
+void menuPrincipal(Ocorrencias *ocorrencias, Intervencoes *intervencoes, Bombeiros *bombeiros, Equipamentos *equipamentos, Quarteis *quarteis) {
     int opcao;
     do {
         printf("==============================\n");
@@ -29,22 +39,33 @@ void menuPrincipal(Bombeiros *bombeiros, Equipamentos *equipamentos, Quarteis *q
 
         switch(opcao) {
             case 1:
-                //menuOcorrencias();
+                logMsg("A entrar no menu de ocorrências.");
+                menuOcorrencias(ocorrencias);
                 break;
             case 2:
-                //menuIntervencoes();
+                logMsg("A entrar no menu de intervenções.");
+                menuIntervencoes(intervencoes, ocorrencias, bombeiros, equipamentos);
                 break;
             case 3:
+                logMsg("A entrar no menu de bombeiros.");
                 menuBombeiros(bombeiros);
                 break;
             case 4:
+                logMsg("A entrar no menu de equipamentos.");
                 menuEquipamentos(equipamentos);
                 break;
             case 5:
+                logMsg("A entrar no menu de quarteis.");
                 menuQuarteis(quarteis);
                 break;
             case 0:
+                logMsg("A sair do sistema.");
                 printf("A Sair...\n");
+                libertarMemBombeiros(bombeiros);
+                libertarMemEquipamentos(equipamentos);
+                libertarMemIntervencoes(intervencoes);
+                libertarMemOcorrencias(ocorrencias);
+                libertarMemQuarteis(quarteis);
                 break;
             default:
                 printf("Opcao invalida! Tente novamente.\n");
@@ -52,11 +73,9 @@ void menuPrincipal(Bombeiros *bombeiros, Equipamentos *equipamentos, Quarteis *q
     } while(opcao != 0);
 }
 
-/*
-void menuOcorrencias() {
+void menuOcorrencias(Ocorrencias *ocorrencias) {
     int opcao;
     do {
-        system("clear"); // Limpa a tela (Linux/Mac). Use "cls" para Windows.
         printf("==============================\n");
         printf("       GESTAO OCORRENCIAS     \n");
         printf("==============================\n");
@@ -66,42 +85,45 @@ void menuOcorrencias() {
         printf("4. Remover Ocorrencia\n");
         printf("0. Voltar ao Menu Principal\n");
         printf("==============================\n");
-        printf("Escolha uma opcao: ");
-        scanf("%d", &opcao);
+        opcao = obterInteiro(0, 4, "Escolha uma opcao: ");
 
         switch(opcao) {
             case 1:
-                adicionarOcorrencia(&ocorrencias, numOcorrencias);
+                logMsg("A listar ocorrências.");
+                listarOcorrencias(*ocorrencias);
                 break;
             case 2:
-                listarOcorrencias(ocorrencias, *numOcorrencias);
+                logMsg("A adicionar uma nova ocorrência.");
+                adicionarOcorrencia(ocorrencias);
                 break;
             case 3:
-                atualizarOcorrencia(ocorrencias, *numOcorrencias);
+                logMsg("A editar uma ocorrência.");
+                editarOcorrencia(ocorrencias);
                 break;
             case 4:
-                removerOcorrencia(ocorrencias, numOcorrencias);
+                logMsg("A eliminar uma ocorrência.");
+                eliminarOcorrencia(ocorrencias);
                 break;
             case 0:
+                logMsg("A sair do menu de ocorrências.");
                 printf("A Sair...\n");
+                logMsg("A guardar ocorrências no ficheiro.");
+                writeOcorrencias(ocorrencias);
                 break;
             default:
                 printf("Opcao invalida! Tente novamente.\n");
         }
-
         if(opcao != 0) {
             printf("Pressione ENTER para voltar ao menu...");
-            getchar(); // captura o \n deixado pelo scanf
-            getchar(); // espera o ENTER
+            getchar();
         }
 
     } while(opcao != 0);
 }
 
-void menuIntervencoes() {
+void menuIntervencoes(Intervencoes *intervencoes, Ocorrencias *ocorrencias, Bombeiros *bombeiros, Equipamentos *equipamentos) {
     int opcao;
     do {
-        system("clear"); // Limpa a tela (Linux/Mac). Use "cls"
         printf("==============================\n");
         printf("      GESTAO INTERVENCOES     \n");
         printf("==============================\n");
@@ -111,23 +133,30 @@ void menuIntervencoes() {
         printf("4. Remover Intervencao\n");\
         printf("0. Voltar ao Menu Principal\n");
         printf("==============================\n");
-        printf("Escolha uma opcao: ");
-        scanf("%d", &opcao);
+        opcao = obterInteiro(0, 4, "Escolha uma opcao: ");
+
         switch(opcao) {
             case 1:
-                adicionarIntervencao(&intervencoes, numIntervencoes);
+                logMsg("A listar intervenções.");
+                listarIntervencoes(*intervencoes);
                 break;
             case 2:
-                listarIntervencoes(intervencoes, *numIntervencoes);
+                logMsg("A adicionar uma nova intervenção.");
+                adicionarIntervencao(intervencoes, ocorrencias, bombeiros, equipamentos);
                 break;
             case 3:
-                atualizarIntervencao(intervencoes, *numIntervencoes);
+                logMsg("A editar uma intervenção.");
+                editarIntervencao(intervencoes);
                 break;
             case 4:
-                removerIntervencao(intervencoes, numIntervencoes);
+                logMsg("A eliminar uma intervenção.");
+                eliminarIntervencao(intervencoes);
                 break;
             case 0:
+                logMsg("A sair do menu de intervenções.");
                 printf("A Sair...\n");
+                logMsg("A guardar intervenções no ficheiro.");
+                writeIntervencoes(intervencoes);
                 break;
             default:
                 printf("Opcao invalida! Tente novamente.\n");
@@ -135,12 +164,11 @@ void menuIntervencoes() {
 
         if(opcao != 0) {
             printf("Pressione ENTER para voltar ao menu...");
-            getchar(); // captura o \n deixado pelo scanf
-            getchar(); // espera o ENTER
+            getchar();
         }
     } while(opcao != 0);
 }
- */
+
 void menuBombeiros(Bombeiros *bombeiros) {
     int opcao;
     do {
@@ -157,28 +185,33 @@ void menuBombeiros(Bombeiros *bombeiros) {
 
         switch(opcao) {
             case 1:
+                logMsg("A listar bombeiros.");
                 listarBombeiros(*bombeiros);
                 break;
             case 2:
+                logMsg("A adicionar um novo bombeiro.");
                 adicionarBombeiro(bombeiros);
                 break;
             case 3:
+                logMsg("A editar um bombeiro.");
                 editarBombeiro(bombeiros);
                 break;
             case 4:
+                logMsg("A eliminar um bombeiro.");
                 eliminarBombeiro(bombeiros);
                 break;
             case 0:
+                logMsg("A sair do menu de bombeiros.");
                 printf("A Sair...\n");
+                logMsg("A guardar bombeiros no ficheiro.");
                 writeBombeiros(bombeiros);
-                libertarMemBombeiros(bombeiros);
                 break;
             default:
                 printf("Opcao invalida! Tente novamente.\n");
         }
-
         if(opcao != 0) {
-            
+            printf("Pressione ENTER para voltar ao menu...");
+            getchar();
         }
 
     } while(opcao != 0);
@@ -200,29 +233,33 @@ void menuEquipamentos(Equipamentos *equipamentos) {
 
         switch(opcao) {
             case 1:
+                logMsg("A listar equipamentos.");
                 listarEquipamentos(*equipamentos);
                 break;
             case 2:
+                logMsg("A adicionar um novo equipamento.");
                 adicionarEquipamento(equipamentos);
                 break;
             case 3:
+                logMsg("A editar um equipamento.");
                 editarEquipamento(equipamentos);
                 break;
             case 4:
+                logMsg("A eliminar um equipamento.");
                 eliminarEquipamento(equipamentos);
                 break;
             case 0:
+                logMsg("A sair do menu de equipamentos.");
                 printf("A Sair...\n");
+                logMsg("A guardar equipamentos no ficheiro.");
                 writeEquipamentos(equipamentos);
-                libertarMemEquipamentos(equipamentos);
                 break;
             default:
                 printf("Opcao invalida! Tente novamente.\n");
         }
-
         if(opcao != 0) {
             printf("Pressione ENTER para voltar ao menu...");
-            getchar(); // espera o ENTER
+            getchar();
         }
 
     } while(opcao != 0);
@@ -231,7 +268,6 @@ void menuEquipamentos(Equipamentos *equipamentos) {
 void menuQuarteis(Quarteis *quarteis) {
     int opcao;
     do {
-        // system("clear"); // Limpa a tela (Linux/Mac). Use "cls" para Windows.
         printf("==============================\n");
         printf("       GESTAO QUARTEIS      \n");
         printf("==============================\n");
@@ -245,31 +281,34 @@ void menuQuarteis(Quarteis *quarteis) {
         scanf("%d", &opcao);
 
         switch(opcao) {
-                        case 1:
+            case 1:
+                logMsg("A listar quarteis.");
                 listarQuarteis(*quarteis);
                 break;
             case 2:
+                logMsg("A adicionar um novo quartel.");
                 adicionarQuartel(quarteis);
                 break;
             case 3:
+                logMsg("A editar um quartel.");
                 editarQuartel(quarteis);
                 break;
             case 4:
+                logMsg("A eliminar um quartel.");
                 eliminarQuartel(quarteis);
                 break;
             case 0:
+                logMsg("A sair do menu de quarteis.");
                 printf("A Sair...\n");
+                logMsg("A guardar quarteis no ficheiro.");
                 writeQuarteis(quarteis);
-                libertarMemQuarteis(quarteis);
                 break;
             default:
                 printf("Opcao invalida! Tente novamente.\n");
         }
-
         if(opcao != 0) {
             printf("Pressione ENTER para voltar ao menu...\n");
-            getchar(); // captura o \n deixado pelo scanf
-            getchar(); // captura o \n deixado pelo scanf
+            getchar();
         }
 
     } while(opcao != 0);

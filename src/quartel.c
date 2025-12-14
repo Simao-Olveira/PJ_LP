@@ -2,9 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include "quartel.h"
+#include "gestaoQuartel.h"
 #include "input.h"
+#include "enums.h"
+#include "log.h"
 
-// Função auxiliar para converter o Enum em texto
+// Função auxiliar para imprimir o texto dos Enums
 void imprimirTipoQuartel(TipoQuartel tipo) {
     switch (tipo) {
         case VOLUNTARIO:
@@ -32,235 +35,262 @@ int procurarQuartel(Quarteis quarteis, int id) {
 }
 
 void adicionarQuartel(Quarteis *quarteis) {
-    printf("\n--- Adicionar Novo Quartel ---\n");
-    int id = quarteis->numQuarteis + 1;
+    printf("\n--- Novo Quartel ---\n");
 
-    if (procurarQuartel(*quarteis, id) != -1) {
-        printf("Erro: Já existe um quartel com esse ID.\n");
-        return;
-    }
-
-    // 1. Verificar se há espaço no array principal
-    if (quarteis->numQuarteis == quarteis->totalQuarteis) {
-        quarteis->totalQuarteis += 2; // Expande de 2 em 2
-        Quartel *temp = (Quartel*) realloc(quarteis->quarteis, quarteis->totalQuarteis * sizeof(Quartel));
-        if (temp == NULL) {
-            printf("Erro crítico de memória (realloc falhou).\n");
-            return;
+    // Gerar ID Automático (Lógica do Bombeiro)
+    int maiorId = 0;
+    for(int i = 0; i < quarteis->numQuarteis; i++) {
+        if(quarteis->quarteis[i].id > maiorId) {
+            maiorId = quarteis->quarteis[i].id;
         }
-        quarteis->quarteis = temp;
     }
+    int id = maiorId + 1;
 
-    // Ponteiro auxiliar para o novo quartel (para escrever menos código)
-    Quartel *novo = &quarteis->quarteis[quarteis->numQuarteis];
-    
-    novo->id = id;
+    if (procurarQuartel(*quarteis, id) == -1) {
 
-    char buffer[SIZE_BUFFER];
+        // Realocação de Memória do Array
+        if (quarteis->totalQuarteis == quarteis->numQuarteis) {
+            quarteis->totalQuarteis += 2; 
+            Quartel *temp = (Quartel*) realloc(quarteis->quarteis, quarteis->totalQuarteis * sizeof(Quartel));
+            if (temp == NULL) {
+                printf("Erro ao alocar memória!\n");
+                return;
+            }
+            quarteis->quarteis = temp;
+        }
 
-    // Nome
-    lerString(buffer, SIZE_BUFFER, "Nome do Quartel: ");
-    novo->nome = (char*) malloc((strlen(buffer) + 1) * sizeof(char)); // Aloca tamanho exato
-    strcpy(novo->nome, buffer); // Copia do buffer para a memória alocada
+        // Ponteiro auxiliar para facilitar leitura
+        int i = quarteis->numQuarteis;
+        quarteis->quarteis[i].id = id;
 
-    // Local
-    lerString(buffer, SIZE_BUFFER, "Localização: ");
-    novo->local = (char*) malloc((strlen(buffer) + 1) * sizeof(char));
-    strcpy(novo->local, buffer);
+        // Leitura do Nome (Dinâmico)
+        char buffer[SIZE_BUFFER];
+        lerString(buffer, SIZE_BUFFER, "Nome do Quartel: ");
+        quarteis->quarteis[i].nome = (char*) malloc((strlen(buffer) + 1) * sizeof(char));
+        if (quarteis->quarteis[i].nome != NULL) {
+            strcpy(quarteis->quarteis[i].nome, buffer);
+        }
 
-    // 3. Outros dados
-    novo->capacidade = obterInteiro(1, 1000, "Capacidade máxima de viaturas/bombeiros: ");
+        // Leitura do Local (Dinâmico)
+        lerString(buffer, SIZE_BUFFER, "Localização: ");
+        quarteis->quarteis[i].local = (char*) malloc((strlen(buffer) + 1) * sizeof(char));
+        if (quarteis->quarteis[i].local != NULL) {
+            strcpy(quarteis->quarteis[i].local, buffer);
+        }
 
-    printf("\nTipos de Quartel:\n0 - Voluntário\n1 - Sapador\n2 - Municipal\n");
-    int tipoInput = obterInteiro(0, 2, "Selecione o tipo: ");
-    novo->tipo = (TipoQuartel) tipoInput;
+        // Outros Dados
+        quarteis->quarteis[i].capacidade = obterInteiro(1, 1000, "Capacidade: ");
 
-    quarteis->numQuarteis++;
-    printf("Quartel adicionado com sucesso!\n");
+        printf("\nTipos de Quartel:\n0 - Voluntário\n1 - Sapador\n2 - Municipal\n");
+        int tipoInput = obterInteiro(0, 2, "Selecione o tipo: ");
+        quarteis->quarteis[i].tipo = (TipoQuartel) tipoInput;
+
+        quarteis->numQuarteis++;
+        printf("Quartel criado com sucesso!\n");
+    } else {
+        printf("O quartel com esse ID já existe!!\n");
+    }
+}
+
+void libertarMemQuarteis(Quarteis *quarteis) {
+    if (quarteis->quarteis != NULL) {
+        for (int i = 0; i < quarteis->numQuarteis; i++) {
+            free(quarteis->quarteis[i].nome);
+            free(quarteis->quarteis[i].local);
+        }
+        free(quarteis->quarteis);
+        quarteis->quarteis = NULL;
+    }
+    quarteis->numQuarteis = 0;
+    quarteis->totalQuarteis = 0;
 }
 
 void imprimirQuartel(Quartel q) {
-    printf("\n--------------------------------");
+    printf("\n----------------------------");
     printf("\nID: %d", q.id);
     printf("\nNome: %s", q.nome);
     printf("\nLocal: %s", q.local);
     printf("\nCapacidade: %d", q.capacidade);
     printf("\nTipo: ");
     imprimirTipoQuartel(q.tipo);
-    printf("\n--------------------------------\n");
+    printf("\n----------------------------\n");
 }
 
 void listarQuarteis(Quarteis quarteis) {
-    if (quarteis.numQuarteis == 0) {
-        printf("Não existem quarteis registados.\n");
-    } else {
+    if (quarteis.numQuarteis > 0) {
         for (int i = 0; i < quarteis.numQuarteis; i++) {
             imprimirQuartel(quarteis.quarteis[i]);
         }
+    } else {
+        printf("Não existem quarteis registados!!\n");
     }
+}
+
+void atualizarDadosQuartel(Quartel *quartel) {
+    int escolha;
+    char buffer[SIZE_BUFFER];
+
+    do {
+        printf("\n--- Editar Dados ---\n");
+        printf("1- Nome\n");
+        printf("2- Local\n");
+        printf("3- Capacidade\n");
+        printf("4- Tipo\n");
+        printf("0- Voltar\n");
+        escolha = obterInteiro(0, 4, "\nEscolha uma opção: ");
+        
+        switch (escolha) {
+            case 0:
+                break;
+            case 1:
+                lerString(buffer, SIZE_BUFFER, "Novo Nome: ");
+                quartel->nome = realloc(quartel->nome, (strlen(buffer) + 1) * sizeof (char));
+                strcpy(quartel->nome, buffer);
+                break;
+            case 2:
+                lerString(buffer, SIZE_BUFFER, "Novo Local: ");
+                quartel->local = realloc(quartel->local, (strlen(buffer) + 1) * sizeof (char));
+                strcpy(quartel->local, buffer);
+                break;
+            case 3:
+                quartel->capacidade = obterInteiro(1, 1000, "Nova Capacidade: ");
+                break;
+            case 4:
+                printf("\nTipos:\n0 - Voluntário\n1 - Sapador\n2 - Municipal\n");
+                quartel->tipo = (TipoQuartel)obterInteiro(0, 2, "Novo Tipo: ");
+                break;
+            default:
+                printf("Opção inválida\n");
+                break;
+        }
+    } while (escolha != 0);
 }
 
 void editarQuartel(Quarteis *quarteis) {
     listarQuarteis(*quarteis);
-    int id = obterInteiro(0, quarteis->numQuarteis, "Insira o ID do quartel a editar: ");
-    int idx = procurarQuartel(*quarteis, id);
+    printf("Editar dados do quartel:\n");
+    int id = procurarQuartel(*quarteis, obterInteiro(0, MAX_INT, "Insira o ID do quartel a alterar: "));
 
-    if (idx == -1) {
-        printf("Quartel não encontrado.\n");
-        return;
+    if (id != -1) {
+        imprimirQuartel(quarteis->quarteis[id]);
+        atualizarDadosQuartel(&quarteis->quarteis[id]);
+        printf("Quartel atualizado com sucesso!\n");
+    } else {
+        printf("Quartel não existe!!\n");
     }
-
-    Quartel *q = &quarteis->quarteis[idx];
-    int opcao;
-    char buffer[SIZE_BUFFER];
-
-    do {
-        printf("\n--- Editar Quartel %d ---\n", q->id);
-        printf("1 - Alterar Nome\n");
-        printf("2 - Alterar Local\n");
-        printf("3 - Alterar Capacidade\n");
-        printf("4 - Alterar Tipo\n");
-        printf("0 - Voltar\n");
-        opcao = obterInteiro(0, 4, "Opção: ");
-
-        switch (opcao) {
-            case 1:
-                lerString(buffer, SIZE_BUFFER, "Novo Nome: ");
-                // Realloc ajusta o tamanho da memória preservando o ponteiro se possível
-                q->nome = (char*) realloc(q->nome, (strlen(buffer) + 1) * sizeof(char));
-                strcpy(q->nome, buffer);
-                break;
-            case 2:
-                lerString(buffer, SIZE_BUFFER, "Novo Local: ");
-                q->local = (char*) realloc(q->local, (strlen(buffer) + 1) * sizeof(char));
-                strcpy(q->local, buffer);
-                break;
-            case 3:
-                q->capacidade = obterInteiro(1, 1000, "Nova Capacidade: ");
-                break;
-            case 4:
-                printf("\n0 - Voluntário | 1 - Sapador | 2 - Municipal\n");
-                int novoTipo = obterInteiro(0, 2, "Novo Tipo: ");
-                q->tipo = (TipoQuartel) novoTipo;
-                break;
-            case 0:
-                break;
-        }
-    } while (opcao != 0);
 }
 
-void eliminarQuartel(Quarteis *quarteis) {
+void eliminarQuartel(Quarteis *quarteis) {    
     listarQuarteis(*quarteis);
-    int id = obterInteiro(0, MAX_INT, "Insira o ID do quartel a eliminar: ");
-    int idx = procurarQuartel(*quarteis, id);
+    printf("Eliminar quartel:\n");
+    
+    int idBusca = obterInteiro(0, MAX_INT, "Insira o ID do quartel a eliminar: ");
+    int indice = procurarQuartel(*quarteis, idBusca);
 
-    if (idx == -1) {
-        printf("Quartel não encontrado.\n");
-        return;
+    if (indice != -1) {
+        // Libertar memória das strings
+        free(quarteis->quarteis[indice].nome);
+        free(quarteis->quarteis[indice].local);
+
+        // Shift do array
+        for(int i = indice; i < quarteis->numQuarteis - 1; i++){
+            quarteis->quarteis[i] = quarteis->quarteis[i+1];
+        }
+
+        quarteis->numQuarteis--;
+        printf("Quartel eliminado com sucesso.\n");
+
+    } else {
+        printf("Quartel não encontrado!!\n");
     }
-
-    // 1. IMPORTANTE: Libertar a memória das strings ANTES de apagar a struct
-    free(quarteis->quarteis[idx].nome);
-    free(quarteis->quarteis[idx].local);
-
-    // 2. Puxar os elementos seguintes para trás
-    for (int i = idx; i < quarteis->numQuarteis - 1; i++) {
-        quarteis->quarteis[i] = quarteis->quarteis[i + 1];
-    }
-
-    quarteis->numQuarteis--;
-    printf("Quartel eliminado com sucesso.\n");
 }
 
-void libertarMemQuarteis(Quarteis *quarteis) {
-    // Liberta as strings de cada quartel individualmente
-    for (int i = 0; i < quarteis->numQuarteis; i++) {
-        free(quarteis->quarteis[i].nome);
-        free(quarteis->quarteis[i].local);
-    }
-    // Liberta o array principal
-    free(quarteis->quarteis);
-    quarteis->quarteis = NULL;
-    quarteis->numQuarteis = 0;
-    quarteis->totalQuarteis = 0;
-}
-
-// ==========================================
-//      GESTÃO DE FICHEIROS COM PONTEIROS
-// ==========================================
-
-void writeQuarteis(Quarteis *quarteis) {
-    FILE *fp = fopen("data/quarteis.bin", "wb");
-    if (fp == NULL) {
-        printf("Erro ao abrir 'data/quarteis.bin' para escrita.\n");
-        return;
-    }
-
-    // Escreve cabeçalho
-    fwrite(&quarteis->totalQuarteis, sizeof(int), 1, fp);
-    fwrite(&quarteis->numQuarteis, sizeof(int), 1, fp);
-
-    for (int i = 0; i < quarteis->numQuarteis; i++) {
-        Quartel *q = &quarteis->quarteis[i];
-
-        // 1. Escreve dados primitivos (int, enum)
-        fwrite(&q->id, sizeof(int), 1, fp);
-        fwrite(&q->capacidade, sizeof(int), 1, fp);
-        fwrite(&q->tipo, sizeof(TipoQuartel), 1, fp);
-
-        // 2. Escreve NOME (Tamanho + Conteúdo)
-        int lenNome = strlen(q->nome) + 1; // +1 para incluir o \0
-        fwrite(&lenNome, sizeof(int), 1, fp);
-        fwrite(q->nome, sizeof(char), lenNome, fp);
-
-        // 3. Escreve LOCAL (Tamanho + Conteúdo)
-        int lenLocal = strlen(q->local) + 1;
-        fwrite(&lenLocal, sizeof(int), 1, fp);
-        fwrite(q->local, sizeof(char), lenLocal, fp);
-    }
-
-    fclose(fp);
-    printf("Dados dos quarteis guardados com sucesso.\n");
-}
-
+// ------ FICHEIROS ------
 void readQuarteis(Quarteis *quarteis) {
-    FILE *fp = fopen("data/quarteis.bin", "rb");
-    if (fp == NULL) {
-         printf("\nO ficheiro 'quarteis.bin' não foi encontrado. A iniciar a lista vazia.\n");
+    FILE *ficheiro = fopen("data/quarteis.bin", "rb");
+    
+    // 1. FICHEIRO NÃO EXISTE: Inicia lista vazia e limpa memória
+    if (ficheiro == NULL) {
+        logMsg("Ficheiro 'quarteis.bin' não foi encontrado. A iniciar a lista vazia.");
         quarteis->numQuarteis = 0;
-        quarteis->totalQuarteis = 2;
+        quarteis->totalQuarteis = 5; 
         quarteis->quarteis = (Quartel*) malloc(quarteis->totalQuarteis * sizeof(Quartel));
         return;
     }
 
-    // Lê cabeçalho
-    fread(&quarteis->totalQuarteis, sizeof(int), 1, fp);
-    fread(&quarteis->numQuarteis, sizeof(int), 1, fp);
+    // 2. LER CABEÇALHOS
+    fread(&quarteis->totalQuarteis, sizeof(int), 1, ficheiro);
+    fread(&quarteis->numQuarteis, sizeof(int), 1, ficheiro);
 
-    // Aloca o array principal
-    quarteis->quarteis = (Quartel*) malloc(quarteis->totalQuarteis * sizeof(Quartel));
-
-    for (int i = 0; i < quarteis->numQuarteis; i++) {
-        Quartel *q = &quarteis->quarteis[i];
-
-        // 1. Lê dados primitivos
-        fread(&q->id, sizeof(int), 1, fp);
-        fread(&q->capacidade, sizeof(int), 1, fp);
-        fread(&q->tipo, sizeof(TipoQuartel), 1, fp);
-
-        // 2. Lê NOME
-        int lenNome;
-        fread(&lenNome, sizeof(int), 1, fp);           // Lê tamanho
-        q->nome = (char*) malloc(lenNome * sizeof(char)); // Aloca memória
-        fread(q->nome, sizeof(char), lenNome, fp);     // Lê conteúdo
-
-        // 3. Lê LOCAL
-        int lenLocal;
-        fread(&lenLocal, sizeof(int), 1, fp);
-        q->local = (char*) malloc(lenLocal * sizeof(char));
-        fread(q->local, sizeof(char), lenLocal, fp);
+    // 3. SE A LISTA NO FICHEIRO ESTIVER VAZIA
+    if (quarteis->numQuarteis == 0) {
+        quarteis->totalQuarteis = 5; // Garante tamanho mínimo
+        quarteis->quarteis = (Quartel*) malloc(quarteis->totalQuarteis * sizeof(Quartel));
+        fclose(ficheiro);
+        logMsg("\nLista de quarteis importada vazia.\n");
+        return;
     }
 
-    fclose(fp);
-    printf("Carregados %d quarteis do ficheiro.\n", quarteis->numQuarteis);
+    // 4. ALOCAÇÃO SEGURA (MALLOC)
+    // Usamos malloc porque estamos a ler do zero, evitando lixo de memória
+    quarteis->quarteis = (Quartel*) malloc(quarteis->totalQuarteis * sizeof(Quartel));
+
+    // 5. LER DADOS (Campo a campo, incluindo as strings dinâmicas)
+    for (int i = 0; i < quarteis->numQuarteis; i++) {
+        // Leitura dos dados primitivos
+        fread(&quarteis->quarteis[i].id, sizeof(int), 1, ficheiro);
+        fread(&quarteis->quarteis[i].capacidade, sizeof(int), 1, ficheiro);
+        fread(&quarteis->quarteis[i].tipo, sizeof(TipoQuartel), 1, ficheiro);
+        
+        // --- Leitura da String 1: NOME ---
+        int bufferTamNome;
+        fread(&bufferTamNome, sizeof(int), 1, ficheiro);
+        quarteis->quarteis[i].nome = (char*) malloc(sizeof(char) * (bufferTamNome + 1));
+        fread(quarteis->quarteis[i].nome, sizeof(char), bufferTamNome, ficheiro);
+        quarteis->quarteis[i].nome[bufferTamNome] = '\0';
+
+        // --- Leitura da String 2: LOCAL ---
+        int bufferTamLocal;
+        fread(&bufferTamLocal, sizeof(int), 1, ficheiro);
+        quarteis->quarteis[i].local = (char*) malloc(sizeof(char) * (bufferTamLocal + 1));
+        fread(quarteis->quarteis[i].local, sizeof(char), bufferTamLocal, ficheiro);
+        quarteis->quarteis[i].local[bufferTamLocal] = '\0';
+    }
+    
+    fclose(ficheiro);
+    logMsg("Quarteis carregados com sucesso do ficheiro.");
+}
+
+void writeQuarteis(Quarteis *quarteis) {
+    FILE *ficheiro = fopen("data/quarteis.bin", "wb");
+    if (ficheiro == NULL) {
+        printf("\nErro ao criar ficheiro 'quarteis.bin'.\n");
+        logMsg("Erro ao criar ficheiro 'quarteis.bin'.");
+        return;
+    }
+
+    // 1. ESCREVER CABEÇALHOS
+    fwrite(&quarteis->totalQuarteis, sizeof(int), 1, ficheiro);
+    fwrite(&quarteis->numQuarteis, sizeof(int), 1, ficheiro);
+
+    // 2. ESCREVER DADOS
+    for (int i = 0; i < quarteis->numQuarteis; i++) {
+        // Escrita dos dados primitivos
+        fwrite(&quarteis->quarteis[i].id, sizeof(int), 1, ficheiro);
+        fwrite(&quarteis->quarteis[i].capacidade, sizeof(int), 1, ficheiro);
+        fwrite(&quarteis->quarteis[i].tipo, sizeof(TipoQuartel), 1, ficheiro);
+        
+        // --- Escrita da String 1: NOME ---
+        int bufferNome = strlen(quarteis->quarteis[i].nome); 
+        fwrite(&bufferNome, sizeof(int), 1, ficheiro);
+        fwrite(quarteis->quarteis[i].nome, sizeof(char), bufferNome, ficheiro);
+
+        // --- Escrita da String 2: LOCAL ---
+        int bufferLocal = strlen(quarteis->quarteis[i].local); 
+        fwrite(&bufferLocal, sizeof(int), 1, ficheiro);
+        fwrite(quarteis->quarteis[i].local, sizeof(char), bufferLocal, ficheiro);
+    }
+
+    fclose(ficheiro);
+    logMsg("Quarteis guardados com sucesso no ficheiro.");
 }

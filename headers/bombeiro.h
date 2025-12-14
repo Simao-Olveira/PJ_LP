@@ -7,7 +7,6 @@ typedef struct {
     char *nome;
     EspecialidadeBombeiro especialidade;
     EstadoBombeiro estado;
-    int ativo; // 1 para ativo, 0 para inativo
 } Bombeiro;
 
 typedef struct {

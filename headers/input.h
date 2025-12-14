@@ -14,6 +14,11 @@ typedef struct {
     int ano;
 } Data;
 
+typedef struct {
+    int horas;
+    int minutos;
+} Hora;
+
 void cleanInputBuffer();
 
 int obterInteiro(int minValor, int maxValor, char *msg);

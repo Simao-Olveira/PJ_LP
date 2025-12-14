@@ -3,6 +3,8 @@
 
 #include "equipamento.h"
 
+void imprimirTipoEquipamento(TipoEquipamento tipo);
+
 // --- Protótipos ---
 int procurarEquipamento(Equipamentos Equipamentos, int id);
 void adicionarEquipamento(Equipamentos *Equipamentos);

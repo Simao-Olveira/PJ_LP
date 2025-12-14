@@ -2,51 +2,55 @@
 #include <stdlib.h>
 #include <string.h>
 #include "equipamento.h"
+#include "gestaoEquipamento.h"
+#include "enums.h"
 #include "input.h"
+#include "log.h"
 
-// Função auxiliar para imprimir o estado em texto
+// --- FUNÇÕES AUXILIARES ---
+
 void imprimirEstadoEquipamento(EstadoEquipamento est) {
     switch (est) {
-        case EQ_DISPONIVEL:
-            printf("Disponível");
+        case EQ_DISPONIVEL: 
+            printf("Disponível"); 
             break;
-        case EQ_EM_USO:
-            printf("Em Uso");
+        case EQ_EM_USO:     
+            printf("Em Uso"); 
             break;
-        case EQ_MANUTENCAO:
-            printf("Em Manutenção");
+        case EQ_MANUTENCAO: 
+            printf("Em Manutenção"); 
             break;
-        default:
-            printf("Desconhecido");
+        default:            
+            printf("Desconhecido"); 
             break;
     }
 }
 
-// Função auxiliar para imprimir o TIPO em texto
 void imprimirTipoEquipamento(TipoEquipamento tipo) {
     switch (tipo) {
-        case VESTUARIO:
-            printf("Vestuário");
+        case VESTUARIO:   
+            printf("Vestuário"); 
             break;
-        case VEICULOS:
-            printf("Veículos");
+        case VEICULOS:    
+            printf("Veículos"); 
             break;
-        case FERRAMENTAS:
-            printf("Ferramentas");
+        case FERRAMENTAS: 
+            printf("Ferramentas"); 
             break;
-        case COMUNICACAO:
-            printf("Sistemas de Comunicação");
+        case COMUNICACAO: 
+            printf("Comunicação"); 
             break;
-        default:
-            printf("Outro");
+        default:          
+            printf("Outro"); 
             break;
     }
 }
+
+// --- FUNÇÕES PRINCIPAIS ---
 
 int procurarEquipamento(Equipamentos equipamentos, int id) {
     for (int i = 0; i < equipamentos.numEquipamentos; i++) {
-        // Verifica se o ID bate certo E se o equipamento está ativo
-        if (equipamentos.equipamentos[i].id == id && equipamentos.equipamentos[i].ativo == 1) {
+        if (equipamentos.equipamentos[i].id == id) {
             return i;
         }
     }
@@ -54,12 +58,20 @@ int procurarEquipamento(Equipamentos equipamentos, int id) {
 }
 
 void adicionarEquipamento(Equipamentos *equipamentos) {
-    printf("\nCriar Equipamento:\n");
-    int id = equipamentos->numEquipamentos + 1;
+    printf("\n--- Novo Equipamento ---\n");
+    
+    // Gerar ID Automático (Max + 1)
+    int maiorId = 0;
+    for(int i = 0; i < equipamentos->numEquipamentos; i++) {
+        if(equipamentos->equipamentos[i].id > maiorId) {
+            maiorId = equipamentos->equipamentos[i].id;
+        }
+    }
+    int id = maiorId + 1;
 
-    // Verificação simples (apenas procura se existe ativo com esse ID)
     if (procurarEquipamento(*equipamentos, id) == -1) {
         
+        // Realocação do Array Principal
         if (equipamentos->totalEquipamentos == equipamentos->numEquipamentos) {
             equipamentos->totalEquipamentos += 5;
             Equipamento *temp = (Equipamento*) realloc(equipamentos->equipamentos, equipamentos->totalEquipamentos * sizeof(Equipamento));
@@ -70,62 +82,66 @@ void adicionarEquipamento(Equipamentos *equipamentos) {
             equipamentos->equipamentos = temp;
         }
 
-        // --- Preenchimento dos dados ---
-        equipamentos->equipamentos[equipamentos->numEquipamentos].id = id;
-        equipamentos->equipamentos[equipamentos->numEquipamentos].ativo = 1; 
+        int i = equipamentos->numEquipamentos;
 
+        // Preenchimento dos dados
+        equipamentos->equipamentos[i].id = id;
+
+        // Nome (String Dinâmica)
         char buffer[SIZE_BUFFER];
         lerString(buffer, SIZE_BUFFER, "Nome: ");
-        (*equipamentos).equipamentos[(*equipamentos).numEquipamentos].nome = (char*) malloc((strlen(buffer) + 1) * sizeof(char));
-        if ((*equipamentos).equipamentos[(*equipamentos).numEquipamentos].nome != NULL) {
-             strcpy((*equipamentos).equipamentos[(*equipamentos).numEquipamentos].nome, buffer);
+        equipamentos->equipamentos[i].nome = (char*) malloc((strlen(buffer) + 1) * sizeof(char));
+        if (equipamentos->equipamentos[i].nome != NULL) {
+             strcpy(equipamentos->equipamentos[i].nome, buffer);
         }
            
-        // Pedir Estado
+        // Tipo
+        printf("\nTipos:\n0 - Vestuário\n1 - Veículos\n2 - Ferramentas\n3 - Comunicação\n");
+        int tipoInput = obterInteiro(0, 3, "Tipo de Equipamento: ");
+        equipamentos->equipamentos[i].tipo = (TipoEquipamento)tipoInput;
+
+        // Estado
         printf("\nEstados:\n0 - Disponível\n1 - Em Uso\n2 - Manutenção\n");
         int estInput = obterInteiro(0, 2, "Estado inicial: ");
-        equipamentos->equipamentos[equipamentos->numEquipamentos].estado = (EstadoEquipamento)estInput;
-
-        // Pedir Tipo (NOVO)
-        printf("\nTipos:\n0 - Vestuário\n1 - Veículos\n2 - Ferramentas\n3 - Sistemas de Comunicação\n");
-        int tipoInput = obterInteiro(0, 3, "Tipo de Equipamento: ");
-        equipamentos->equipamentos[equipamentos->numEquipamentos].tipo = (TipoEquipamento)tipoInput;
+        equipamentos->equipamentos[i].estado = (EstadoEquipamento)estInput;
 
         equipamentos->numEquipamentos++;
         printf("Equipamento adicionado com sucesso!\n");
 
     } else {
-        printf("Já existe um equipamento ativo com esse ID!\n");
+        printf("Erro: ID duplicado.\n");
     }
 }
 
+void libertarMemEquipamentos(Equipamentos *equipamentos) {
+    if (equipamentos->equipamentos != NULL) {
+        for(int i = 0; i < equipamentos->numEquipamentos; i++) {
+            free(equipamentos->equipamentos[i].nome);
+        }
+        free(equipamentos->equipamentos);
+        equipamentos->equipamentos = NULL;
+    }
+    equipamentos->numEquipamentos = 0;
+    equipamentos->totalEquipamentos = 0;
+}
+
 void imprimirEquipamento(Equipamento equipamento) {
-    printf("\n--- ID: %d ---", equipamento.id);
+    printf("\n----------------------------");
+    printf("\nID: %d", equipamento.id);
     printf("\nNome: %s", equipamento.nome);
-    
+    printf("\nTipo: ");
+    imprimirTipoEquipamento(equipamento.tipo);
     printf("\nEstado: ");
     imprimirEstadoEquipamento(equipamento.estado);
-
-    printf("\nTipo: ");
-    imprimirTipoEquipamento(equipamento.tipo); // <--- Imprimir o novo campo
-
-    printf("\n----------------\n");
+    printf("\n----------------------------\n");
 }
 
 void listarEquipamentos(Equipamentos equipamentos) {
-    int encontrou = 0;
     if (equipamentos.numEquipamentos > 0) {
         for (int i = 0; i < equipamentos.numEquipamentos; i++) {
-            if(equipamentos.equipamentos[i].ativo == 1) { 
-                imprimirEquipamento(equipamentos.equipamentos[i]);
-                encontrou = 1;
-            }
+             imprimirEquipamento(equipamentos.equipamentos[i]);
         }
-    } 
-    
-    if (!encontrou && equipamentos.numEquipamentos > 0) {
-         printf("Não existem equipamentos ativos.\n");
-    } else if (equipamentos.numEquipamentos == 0) {
+    } else {
          printf("Não existem equipamentos registados.\n");
     }
 }
@@ -135,26 +151,31 @@ void atualizarDadosEquipamento(Equipamento *equipamento) {
     char buffer[SIZE_BUFFER];
 
     do {
-        printf("\nEditar Equipamento %d:\n1- Nome\n2- Estado\n3- Tipo\n0- Voltar\n", equipamento->id);
-        escolha = obterInteiro(0, 3, "Opção: ");
+        printf("\n--- Editar Dados ---\n");
+        printf("1- Nome\n");
+        printf("2- Tipo\n");
+        printf("3- Estado\n");
+        printf("0- Voltar\n");
+        escolha = obterInteiro(0, 3, "\nEscolha uma opção: ");
 
         switch (escolha) {
+            case 0:
+                break;
             case 1:
-                lerString(buffer, SIZE_BUFFER, "Nome: ");
+                lerString(buffer, SIZE_BUFFER, "Novo Nome: ");
                 equipamento->nome = realloc(equipamento->nome, (strlen(buffer) + 1) * sizeof (char));
                 strcpy(equipamento->nome, buffer);
                 break;
             case 2:
-                printf("\n0- Disponível | 1- Em Uso | 2- Manutenção\n");
-                int novoEstado = obterInteiro(0, 2, "Novo Estado: ");
-                equipamento->estado = (EstadoEquipamento)novoEstado;
+                printf("\n0- Vestuário | 1- Veículos | 2- Ferramentas | 3- Comunicação\n");
+                equipamento->tipo = (TipoEquipamento)obterInteiro(0, 3, "Novo Tipo: ");
                 break;
             case 3:
-                printf("\n0- Vestuário | 1- Veículos | 2- Ferramentas | 3- Comunicação\n");
-                int novoTipo = obterInteiro(0, 3, "Novo Tipo: ");
-                equipamento->tipo = (TipoEquipamento)novoTipo;
+                printf("\n0- Disponível | 1- Em Uso | 2- Manutenção\n");
+                equipamento->estado = (EstadoEquipamento)obterInteiro(0, 2, "Novo Estado: ");
                 break;
-            case 0:
+            default:
+                printf("Opção inválida\n");
                 break;
         }
     } while (escolha != 0);
@@ -162,11 +183,14 @@ void atualizarDadosEquipamento(Equipamento *equipamento) {
 
 void editarEquipamento(Equipamentos *equipamentos) {
     listarEquipamentos(*equipamentos);
-    int id = obterInteiro(0, 999999, "Insira o ID do equipamento a editar: ");
+    printf("Editar dados do equipamento:\n");
+    int id = obterInteiro(0, MAX_INT, "Insira o ID do equipamento a editar: ");
     int indice = procurarEquipamento(*equipamentos, id);
 
     if (indice != -1) {
+        imprimirEquipamento(equipamentos->equipamentos[indice]);
         atualizarDadosEquipamento(&equipamentos->equipamentos[indice]);
+        printf("Equipamento atualizado com sucesso.\n");
     } else {
         printf("Equipamento não encontrado.\n");
     }
@@ -174,35 +198,25 @@ void editarEquipamento(Equipamentos *equipamentos) {
 
 void eliminarEquipamento(Equipamentos *equipamentos) {
     listarEquipamentos(*equipamentos);
-    int id = obterInteiro(0, 999999, "Insira o ID do equipamento a eliminar: ");
+    printf("Eliminar equipamento:\n");
+    
+    int id = obterInteiro(0, MAX_INT, "Insira o ID do equipamento a eliminar: ");
     int indice = procurarEquipamento(*equipamentos, id);
 
     if (indice != -1) {
-        // Soft Delete: Apenas marca como inativo.
-        // Nota: Não precisas de fazer o loop "for" para puxar os elementos para trás
-        // se estiveres a usar a flag 'ativo'. Podes apenas mudar o estado.
-        // Se quiseres manter a lógica de puxar para trás (Hard Delete), o 'ativo' torna-se redundante.
-        // Vou manter a tua lógica mista (puxa para trás E marca inativo o último espaço):
-        
+        // 1. Libertar memória da string ANTES de apagar
+        free(equipamentos->equipamentos[indice].nome);
+
+        // 2. Shift do array (Eliminação Física)
         for (int i = indice; i < equipamentos->numEquipamentos - 1; i++) {
             equipamentos->equipamentos[i] = equipamentos->equipamentos[i + 1];
         }
         
         equipamentos->numEquipamentos--;
-        // Limpar dados do último (opcional, mas boa prática)
-        equipamentos->equipamentos[equipamentos->numEquipamentos].ativo = 0; 
-        
-        printf("Equipamento eliminado.\n");
+        printf("Equipamento eliminado com sucesso.\n");
     } else {
         printf("Equipamento não encontrado.\n");
     }
-}
-
-void libertarMemEquipamentos(Equipamentos *equipamentos) {
-    free(equipamentos->equipamentos);
-    equipamentos->equipamentos = NULL;
-    equipamentos->numEquipamentos = 0;
-    equipamentos->totalEquipamentos = 0;
 }
 
 // ------ FICHEIROS ------
@@ -210,50 +224,73 @@ void libertarMemEquipamentos(Equipamentos *equipamentos) {
 void readEquipamentos(Equipamentos *equipamentos) {
     FILE *ficheiro = fopen("data/equipamentos.bin", "rb");
     
+    // 1. FICHEIRO NÃO EXISTE
     if (ficheiro == NULL) {
-        printf("\nO ficheiro 'equipamentos.bin' não foi encontrado. A iniciar a lista vazia.\n");
+        logMsg("Ficheiro 'equipamentos.bin' não foi encontrado. A iniciar a lista vazia.");
         equipamentos->numEquipamentos = 0;
-        equipamentos->totalEquipamentos = 5;
+        equipamentos->totalEquipamentos = 5; 
         equipamentos->equipamentos = (Equipamento*) malloc(equipamentos->totalEquipamentos * sizeof(Equipamento));
         return;
     }
 
+    // 2. LER CONTADORES
     fread(&equipamentos->totalEquipamentos, sizeof(int), 1, ficheiro);
     fread(&equipamentos->numEquipamentos, sizeof(int), 1, ficheiro);
 
-    equipamentos->equipamentos = (Equipamento*) malloc(equipamentos->totalEquipamentos * sizeof(Equipamento));
-    
-    if (equipamentos->equipamentos == NULL) {
-        printf("Erro fatal de memória.\n");
+    // 3. SE LISTA VAZIA
+    if (equipamentos->numEquipamentos == 0) {
+        equipamentos->totalEquipamentos = 5; // Garante tamanho mínimo
+        equipamentos->equipamentos = (Equipamento*) malloc(equipamentos->totalEquipamentos * sizeof(Equipamento));
         fclose(ficheiro);
+        logMsg("\nLista de equipamentos importada vazia.\n");
         return;
     }
 
-    if (equipamentos->numEquipamentos > 0) {
-        // Como o struct mudou de tamanho, o fread vai ajustar-se automaticamente.
-        // Mas o ficheiro BIN antigo tem dados com tamanho diferente, por isso vai falhar se não o apagares.
-        fread(equipamentos->equipamentos, sizeof(Equipamento), equipamentos->numEquipamentos, ficheiro);
-    }
+    // 4. ALOCAÇÃO SEGURA (MALLOC)
+    equipamentos->equipamentos = (Equipamento*) malloc(equipamentos->totalEquipamentos * sizeof(Equipamento));
 
+    // 5. LER DADOS CAMPO A CAMPO (INCLUINDO STRING 'NOME')
+    for (int i = 0; i < equipamentos->numEquipamentos; i++) {
+        fread(&equipamentos->equipamentos[i].id, sizeof(int), 1, ficheiro);
+        fread(&equipamentos->equipamentos[i].tipo, sizeof(TipoEquipamento), 1, ficheiro);
+        fread(&equipamentos->equipamentos[i].estado, sizeof(EstadoEquipamento), 1, ficheiro);
+        
+        // Leitura da String Nome (tamanho + conteúdo)
+        int buffer;
+        fread(&buffer, sizeof (int), 1, ficheiro);
+        equipamentos->equipamentos[i].nome = (char*) malloc(sizeof (char) * (buffer + 1));
+        fread(equipamentos->equipamentos[i].nome, sizeof (char), buffer, ficheiro);
+        equipamentos->equipamentos[i].nome[buffer] = '\0';
+    }
+    
     fclose(ficheiro);
-    printf("\nCarregados %d equipamentos.\n", equipamentos->numEquipamentos);
+    logMsg("Bombeiros carregados com sucesso do ficheiro.");
 }
 
 void writeEquipamentos(Equipamentos *equipamentos) {
     FILE *ficheiro = fopen("data/equipamentos.bin", "wb");
-    
     if (ficheiro == NULL) {
-        printf("\nErro ao abrir ficheiro 'data/equipamentos.bin'.\n");
+        printf("\nErro ao criar ficheiro 'equipamentos.bin'.\n");
+        logMsg("Erro ao criar ficheiro 'equipamentos.bin'.");
         return;
     }
 
+    // 1. ESCREVER CONTADORES
     fwrite(&equipamentos->totalEquipamentos, sizeof(int), 1, ficheiro);
     fwrite(&equipamentos->numEquipamentos, sizeof(int), 1, ficheiro);
 
-    if (equipamentos->numEquipamentos > 0) {
-        fwrite(equipamentos->equipamentos, sizeof(Equipamento), equipamentos->numEquipamentos, ficheiro);
+    // 2. ESCREVER DADOS
+    for (int i = 0; i < equipamentos->numEquipamentos; i++) {
+        fwrite(&equipamentos->equipamentos[i].id, sizeof(int), 1, ficheiro);
+        fwrite(&equipamentos->equipamentos[i].tipo, sizeof(TipoEquipamento), 1, ficheiro);
+        fwrite(&equipamentos->equipamentos[i].estado, sizeof(EstadoEquipamento), 1, ficheiro);
+        
+        // Escrita da String Nome (tamanho + conteúdo)
+        int buffer = strlen(equipamentos->equipamentos[i].nome);
+        fwrite(&buffer, sizeof(int), 1, ficheiro);
+        fwrite(equipamentos->equipamentos[i].nome, sizeof (char), buffer, ficheiro);
     }
 
     fclose(ficheiro);
-    printf("\nEquipamentos guardados com sucesso.\n");
+    logMsg("Equipamentos guardados com sucesso no ficheiro.");
 }
