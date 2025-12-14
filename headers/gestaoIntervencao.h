@@ -4,15 +4,16 @@
 
 #include "intervencao.h"
 
+void imprimirEstadoIntervencao(EstadoIntervencao estado);
 int procurarIntervencao(Intervencoes intervencoes, int id);
-void adicionarIntervencao(Intervencoes intervencoes);
-void libertarMemIntervencoes(Intervencoesintervencoes);
+void adicionarIntervencao(Intervencoes *intervencoes, Ocorrencias *ocorrencias, Bombeiros *bombeiros, Equipamentos *equipamentos);
+void libertarMemIntervencoes(Intervencoes *intervencoes);
 void imprimirIntervencao(Intervencao intervencao);
 void listarIntervencoes(Intervencoes intervencoes);
-void atualizarDadosIntervencao(Intervencao intervencao);
-void editarIntervencao(Intervencoesintervencoes);
-void eliminarIntervencao(Intervencoes intervencoes);
+void atualizarDadosIntervencao(Intervencao *intervencao);
+void editarIntervencao(Intervencoes *intervencoes);
+void eliminarIntervencao(Intervencoes *intervencoes);
+void carregarIntervencoes(Intervencoes *intervencoes);
 void guardarIntervencoes(Intervencoes *intervencoes);
-void carregarIntervencoes(Intervencoesintervencoes);
 
 #endif //PJ_LP_INTERVENCAOGESTAO_H

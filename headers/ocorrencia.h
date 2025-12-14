@@ -1,20 +1,23 @@
 #ifndef OCORRENCIA_H
 #define OCORRENCIA_H
+#include "input.h"
 
 #include "enums.h"
 
 typedef struct {
     int id;
-    char local[100];
+    char local;
     TipoOcorrencia tipo;
     Prioridade prioridade;
     EstadoOcorrencia estado;
+    Data dataRegisto;
+    Hora horaRegisto;
 } Ocorrencia;
 
 typedef struct {
-    Ocorrencia *ocorrencias; // Ponteiro para o array dinâmico
-    int totalOcorrencias;  // Capacidade total alocada
-    int numOcorrencias;    // Quantidade atual de ocorrencias
+    Ocorrenciaocorrencias;
+    int totalOcorrencias;
+    int numOcorrencias;
 } Ocorrencias;
 
 #endif

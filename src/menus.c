@@ -61,6 +61,7 @@ void menuOcorrencias(Ocorrencia *ocorrencias, int *numOcorrencias) {
         printf("2. Listar Ocorrencia\n");
         printf("3. Atualizar Ocorrencia\n");
         printf("4. Remover Ocorrencia\n");
+        printf("5. Relatórios da Ocorrencia\n");
         printf("0. Voltar ao Menu Principal\n");
         printf("--------------//--------------\n");
         printf("Escolha uma opcao: ");
@@ -78,6 +79,14 @@ void menuOcorrencias(Ocorrencia *ocorrencias, int *numOcorrencias) {
                 break;
             case 4:
                 removerOcorrencia(ocorrencias, numOcorrencias);
+                break;
+            case 5:
+                relatorioEstado(ocorrencias, totalOcorrencias);
+                relatorioTipo(ocorrencias, totalOcorrencias);
+                relatorioPrioridade(ocorrencias, totalOcorrencias);
+                relatorioTempoMedioResposta(ocorrencias, totalOcorrencias);
+                relatorioAnaliseLocalizacao(ocorrencias, totalOcorrencias);
+                relatorioFrequenciaIncidentes(ocorrencias, totalOcorrencias);
                 break;
             case 0:
                 printf("A Sair...\n");
@@ -106,6 +115,7 @@ void menuIntervencoes(Intervencao *intervencoes, int *numIntervencoes) {
         printf("2. Listar Intervencao\n");
         printf("3. Atualizar Intervencao\n");
         printf("4. Remover Intervencao\n");\
+        printf("5. Relatórios da Intervencao\n");
         printf("0. Voltar ao Menu Principal\n");
         printf("--------------//--------------\n");
         printf("Escolha uma opcao: ");
@@ -123,6 +133,9 @@ void menuIntervencoes(Intervencao *intervencoes, int *numIntervencoes) {
                 break;
             case 4:
                 removerIntervencao(intervencoes, numIntervencoes);
+                break;
+            case 5:
+                //----------
                 break;
             case 0:
                 printf("A Sair...\n");
@@ -151,6 +164,7 @@ void menuBombeiros(Bombeiro *bombeiros, int *numBombeiros) {
         printf("2. Listar Bombeiros\n");
         printf("3. Atualizar Bombeiros\n");
         printf("4. Remover Bombeiros\n");\
+        printf("5. Relatórios do Bombeiro\n");
         printf("0. Voltar ao Menu Principal\n");
         printf("--------------//--------------\n");
         printf("Escolha uma opcao:\n");
@@ -168,6 +182,11 @@ void menuBombeiros(Bombeiro *bombeiros, int *numBombeiros) {
                 break;
             case 4:
                 removerBombeiro(bombeiros, numBombeiros);
+                break;
+            case 5:
+                relatorioDisponibilidadeEspecialidade(bombeiros);
+                relatorioParticipacaoIntervencoes(bombeiros);
+                relatorioRankingDesempenho(bombeiros);
                 break;
             case 0:
                 printf("A Sair...\n");
@@ -196,6 +215,7 @@ void menuEquipamentos(Equipamento *equipamentos, int *numEquipamentos) {
         printf("2. Listar Equipamentos\n");
         printf("3. Atualizar Equipamentos\n");
         printf("4. Remover Equipamentos\n");
+        printf("5. Relatórios do Equipamento\n");
         printf("0. Voltar ao Menu Principal\n");
         printf("--------------//--------------\n");
         printf("Escolha uma opcao: ");
@@ -213,6 +233,9 @@ void menuEquipamentos(Equipamento *equipamentos, int *numEquipamentos) {
                 break;
             case 4:
                 removerEquipamento(equipamentos, numEquipamentos);
+                break;
+            case 5:
+
                 break;
             case 0:
                 printf("A Sair...\n");
@@ -241,6 +264,7 @@ void menuQuarteis(Quartel *quarteis, int *numQuarteis) {
         printf("2. Listar Quarteis\n");
         printf("3. Atualizar Quarteis\n");
         printf("4. Remover Quarteis\n");
+        printf("5. Relatórios do Quartel\n");
         printf("0. Voltar ao Menu Principal\n");
         printf("--------------//--------------\n");
         printf("Escolha uma opcao: ");
@@ -258,6 +282,9 @@ void menuQuarteis(Quartel *quarteis, int *numQuarteis) {
                 break;
             case 4:
                 removerQuartel(quarteis, numQuarteis);
+                break;
+            case 5:
+
                 break;
             case 0:
                 printf("A Sair...\n");

@@ -4,15 +4,16 @@
 
 #include "quartel.h"
 
+void imprimirTipoQuartel(TipoQuartel tipo);
 int procurarQuartel(Quarteis quarteis, int id);
-void adicionarQuartel(Quarteis quarteis);
-void libertarMemQuarteis(Quarteisquarteis);
-void imprimirQuartel(Quartel quartel);
+void adicionarQuartel(Quarteis *quarteis);
+void libertarMemQuarteis(Quarteis *quarteis);
+void imprimirQuartel(Quartel q);
 void listarQuarteis(Quarteis quarteis);
-void atualizarDadosQuartel(Quartel quartel);
-void editarQuartel(Quarteisquarteis);
-void eliminarQuartel(Quarteis quarteis);
+void atualizarDadosQuartel(Quartel *quartel);
+void editarQuartel(Quarteis *quarteis);
+void eliminarQuartel(Quarteis *quarteis);
+void carregarQuarteis(Quarteis *quarteis);
 void guardarQuarteis(Quarteis *quarteis);
-void carregarQuarteis(Quarteisquarteis);
 
 #endif //PJ_LP_QUARTELGESTAO_H

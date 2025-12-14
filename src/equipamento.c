@@ -1,4 +1,10 @@
-
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "enums.h"
+#include "bombeiro.h"
+#include "gestaoBombeiro.h"
+#include "input.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -85,7 +91,7 @@ id = equipamentos->numEquipamentos + 1;
 
 
         // Exemplo dentro de adicionarEquipamento:
-        printf("\nTipo:\n0 - Vestuários\n1 - Veiculos\n2 - Ferramentas\n3 - Sistemas de Comunicação ");
+        printf("\nTipo:\n0 - Vestuário\n1 - Veiculo\n2 - Ferramenta\n3 - Sistema de Comunicação ");
         int espInput = obterInteiro(0, 2, "Escolha o Tipo: ");
         (*equipamentos).equipamentos[(*equipamentos).numEquipamentos].tipo = (TipoEquipamento)espInput;
 

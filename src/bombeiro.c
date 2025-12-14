@@ -6,6 +6,14 @@
 #include "bombeiro.h"
 #include "gestaoBombeiro.h"
 #include "input.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "bombeiro.h"
+#include "gestaoOBombeiro.h"
+#include "enums.h"
+#include "input.h"
+#include "log.h
 
 // Função auxiliar para imprimir o texto dos Enums (Exemplo genérico)
 void imprimirEspecialidade(EspecialidadeBombeiro esp) {
