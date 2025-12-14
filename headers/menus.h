@@ -14,5 +14,6 @@ void menuIntervencoes(Intervencoes *intervencoes, Ocorrencias *ocorrencias, Bomb
 void menuBombeiros(Bombeiros *bombeiros);
 void menuEquipamentos(Equipamentos *equipamentos);
 void menuQuarteis(Quarteis *quarteis);
+void menuRelatorios(Ocorrencias *ocorrencias, Intervencoes *intervencoes, Bombeiros *bombeiros, Equipamentos *equipamentos, Quarteis *quarteis);
 
 #endif

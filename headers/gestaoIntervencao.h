@@ -6,6 +6,8 @@
 #include "bombeiro.h"
 #include "equipamento.h"
 
+void imprimirEstadoIntervencao(EstadoIntervencao estado);
+
 int procurarIntervencao(Intervencoes intervencoes, int id);
 void adicionarIntervencao(Intervencoes *intervencoes, Ocorrencias *ocorrencias, Bombeiros *bombeiros, Equipamentos *equipamentos);
 void libertarMemIntervencoes(Intervencoes *intervencoes);

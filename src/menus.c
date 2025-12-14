@@ -3,6 +3,7 @@
 #include "input.h"
 #include "menus.h"
 #include "log.h"
+#include "../headers/relatorios.h"
 
 #include "../headers/ocorrencia.h"
 #include "../headers/gestaoOcorrencia.h"
@@ -33,9 +34,10 @@ void menuPrincipal(Ocorrencias *ocorrencias, Intervencoes *intervencoes, Bombeir
         printf("3. Gestão de Bombeiros\n");
         printf("4. Gestão de Equipamentos\n");
         printf("5. Gestão de Quarteis\n");
+        printf("6. Relatórios\n");
         printf("0. Sair\n");
         printf("==============================\n");
-        opcao = obterInteiro(0, 5, "Escolha uma opcao: ");
+        opcao = obterInteiro(0, 6, "Escolha uma opcao: ");
 
         switch(opcao) {
             case 1:
@@ -57,6 +59,10 @@ void menuPrincipal(Ocorrencias *ocorrencias, Intervencoes *intervencoes, Bombeir
             case 5:
                 logMsg("A entrar no menu de quarteis.");
                 menuQuarteis(quarteis);
+                break;
+            case 6:
+                logMsg("A entrar no menu de relatórios.");
+                menuRelatorios(ocorrencias, intervencoes, bombeiros, equipamentos, quarteis);
                 break;
             case 0:
                 logMsg("A sair do sistema.");
@@ -308,6 +314,57 @@ void menuQuarteis(Quarteis *quarteis) {
         }
         if(opcao != 0) {
             printf("Pressione ENTER para voltar ao menu...\n");
+            getchar();
+        }
+
+    } while(opcao != 0);
+}
+
+void menuRelatorios(Ocorrencias *ocorrencias, Intervencoes *intervencoes, Bombeiros *bombeiros, Equipamentos *equipamentos, Quarteis *quarteis) {
+    int opcao;
+    do {
+        printf("==============================\n");
+        printf("         MENU RELATÓRIOS      \n");
+        printf("==============================\n");
+        printf("1. Relatórios das Ocorrencias\n");
+        printf("2. Relatorio das Intervenções\n");
+        printf("3. Relatório dos Bombeiros\n");
+        printf("4. Relatório dos Equipamentos\n");
+        printf("5. Relatório dos Quarteis\n");
+        printf("0. Voltar ao Menu Principal\n");
+        printf("==============================\n");
+        opcao = obterInteiro(0, 5, "Escolha uma opcao: ");
+
+        switch(opcao) {
+            case 1:
+                //logMsg("A abrir menu de relatórios de ocorrências.");
+                //relatoriosOcorrencias(*ocorrencias);
+                break;
+            case 2:
+                //logMsg("A abrir menu de relatórios de intervenções.");
+                //relatoriosIntervencoes(*intervencoes, *ocorrencias);
+                break;
+            case 3:
+                logMsg("A abrir menu de relatórios de bombeiros.");
+                relatoriosBombeiros(*intervencoes, *ocorrencias, *bombeiros);
+                break;
+            case 4:
+                logMsg("A abrir menu de relatórios de equipamentos.");
+                relatoriosEquipamentos(*intervencoes, *ocorrencias, *equipamentos);
+                break;
+            case 5:
+                //logMsg("A abrir menu de relatórios de quarteis.");
+                //relatoriosQuarteis(*quarteis, *bombeiros);
+                break;
+            case 0:
+                logMsg("A sair do menu de relatórios.");
+                printf("A Sair...\n");
+                break;
+            default:
+                printf("Opcao invalida! Tente novamente.\n");
+        }
+        if(opcao != 0) {
+            printf("Pressione ENTER para voltar ao menu...");
             getchar();
         }
 
