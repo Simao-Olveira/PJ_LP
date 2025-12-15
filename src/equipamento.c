@@ -113,9 +113,11 @@ void adicionarEquipamento(Equipamentos *equipamentos) {
 void libertarMemEquipamentos(Equipamentos *equipamentos) {
     if (equipamentos->equipamentos != NULL) {
         for(int i = 0; i < equipamentos->numEquipamentos; i++) {
-            free(equipamentos->equipamentos[i].nome);
+            if (equipamentos->equipamentos[i].nome)
+                free(equipamentos->equipamentos[i].nome);
         }
-        free(equipamentos->equipamentos);
+        if (equipamentos->equipamentos)
+            free(equipamentos->equipamentos);
         equipamentos->equipamentos = NULL;
     }
     equipamentos->numEquipamentos = 0;
@@ -204,7 +206,8 @@ void eliminarEquipamento(Equipamentos *equipamentos) {
     int indice = procurarEquipamento(*equipamentos, id);
 
     if (indice != -1) {
-        free(equipamentos->equipamentos[indice].nome);
+        if (equipamentos->equipamentos[indice].nome)
+            free(equipamentos->equipamentos[indice].nome);
 
         for (int i = indice; i < equipamentos->numEquipamentos - 1; i++) {
             equipamentos->equipamentos[i] = equipamentos->equipamentos[i + 1];

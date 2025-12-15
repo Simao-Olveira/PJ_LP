@@ -278,10 +278,13 @@ void adicionarIntervencao(Intervencoes *intervencoes, Ocorrencias *ocorrencias, 
 void libertarMemIntervencoes(Intervencoes *intervencoes) {
     if (intervencoes->intervencoes != NULL) {
         for (int i = 0; i < intervencoes->numIntervencoes; i++) {
-            free(intervencoes->intervencoes[i].idsBombeiros);
-            free(intervencoes->intervencoes[i].idsEquipamentos);
+            if (intervencoes->intervencoes[i].idsBombeiros)
+                free(intervencoes->intervencoes[i].idsBombeiros);
+            if (intervencoes->intervencoes[i].idsEquipamentos)
+                free(intervencoes->intervencoes[i].idsEquipamentos);
         }
-        free(intervencoes->intervencoes);
+        if (intervencoes->intervencoes)
+            free(intervencoes->intervencoes);
         intervencoes->intervencoes = NULL;
     }
     intervencoes->numIntervencoes = 0;
@@ -465,8 +468,10 @@ void eliminarIntervencao(Intervencoes *intervencoes) {
     int idx = procurarIntervencao(*intervencoes, id);
 
     if (idx != -1) {
-        free(intervencoes->intervencoes[idx].idsBombeiros);
-        free(intervencoes->intervencoes[idx].idsEquipamentos);
+        if (intervencoes->intervencoes[idx].idsBombeiros)
+            free(intervencoes->intervencoes[idx].idsBombeiros);
+        if (intervencoes->intervencoes[idx].idsEquipamentos) 
+            free(intervencoes->intervencoes[idx].idsEquipamentos);
 
         for (int i = idx; i < intervencoes->numIntervencoes - 1; i++) {
             intervencoes->intervencoes[i] = intervencoes->intervencoes[i+1];

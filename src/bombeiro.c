@@ -131,9 +131,11 @@ void adicionarBombeiro(Bombeiros *bombeiros, Quarteis *quarteis) {
  */
 void libertarMemBombeiros(Bombeiros *bombeiros) {
     for (int i = 0; i < bombeiros->numBombeiros; i++) {
-        free(bombeiros->bombeiros[i].nome);
+        if (bombeiros->bombeiros[i].nome)
+            free(bombeiros->bombeiros[i].nome);
     }
-    free(bombeiros->bombeiros);
+    if (bombeiros->bombeiros)
+        free(bombeiros->bombeiros);
 }
 
 /** @brief Imprime os detalhes de um único bombeiro no ecrã. */
@@ -242,7 +244,8 @@ void eliminarBombeiro(Bombeiros *bombeiros) {
     int indice = procurarBombeiro(*bombeiros, idBusca);
 
     if (indice != -1) {
-        free(bombeiros->bombeiros[indice].nome);
+        if (bombeiros->bombeiros[indice].nome)
+            free(bombeiros->bombeiros[indice].nome);
 
         for(int i = indice; i < bombeiros->numBombeiros - 1; i++){
             bombeiros->bombeiros[i] = bombeiros->bombeiros[i + 1];

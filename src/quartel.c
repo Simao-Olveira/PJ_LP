@@ -105,10 +105,13 @@ void adicionarQuartel(Quarteis *quarteis) {
 void libertarMemQuarteis(Quarteis *quarteis) {
     if (quarteis->quarteis != NULL) {
         for (int i = 0; i < quarteis->numQuarteis; i++) {
-            free(quarteis->quarteis[i].nome);
-            free(quarteis->quarteis[i].local);
+            if (quarteis->quarteis[i].nome)
+                free(quarteis->quarteis[i].nome);
+            if (quarteis->quarteis[i].local)
+                free(quarteis->quarteis[i].local);
         }
-        free(quarteis->quarteis);
+        if (quarteis->quarteis)
+            free(quarteis->quarteis);
         quarteis->quarteis = NULL;
     }
     quarteis->numQuarteis = 0;
@@ -201,8 +204,10 @@ void eliminarQuartel(Quarteis *quarteis) {
 
     if (indice != -1) {
         // Libertar memória das duas strings
-        free(quarteis->quarteis[indice].nome);
-        free(quarteis->quarteis[indice].local);
+        if (quarteis->quarteis[indice].nome)
+            free(quarteis->quarteis[indice].nome);
+        if (quarteis->quarteis[indice].local)
+            free(quarteis->quarteis[indice].local);
 
         // Shift do array
         for(int i = indice; i < quarteis->numQuarteis - 1; i++){

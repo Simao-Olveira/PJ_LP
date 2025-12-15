@@ -220,8 +220,8 @@ void relatorioLocalizacaoEFrequencia(Ocorrencias ocorrencias) {
         printf("| %-25s | %-5d |\n", listaLocais[i].nome, listaLocais[i].qtd);
     }
     printf("==========================================\n");
-    
-    free(listaLocais);
+    if (listaLocais)
+        free(listaLocais);
     logMsg("Relatório de frequência por localização gerado.");
 }
 
@@ -381,9 +381,10 @@ void relatorioRecursosMaisUtilizados(Intervencoes intervencoes) {
         printf("ID %d (%d intervenções)\n", contEquip[i].id, contEquip[i].contagem);
     }
     printf("================================\n");
-
-    free(contBombeiros);
-    free(contEquip);
+    if (contBombeiros)
+        free(contBombeiros);
+    if (contEquip)
+        free(contEquip);
     logMsg("Relatório de recursos mais utilizados gerado.");
 }
 
@@ -545,8 +546,8 @@ void relatorioRankingDesempenho(Intervencoes intervencoes, Ocorrencias ocorrenci
         }
     }
     printf("-------------------------------------------------------------\n");
-
-    free(stats);
+    if (stats)
+        free(stats);
     logMsg("Relatório de ranking de desempenho gerado.");
 }
 

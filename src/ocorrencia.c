@@ -127,9 +127,11 @@ void adicionarOcorrencia(Ocorrencias *ocorrencias) {
 void libertarMemOcorrencias(Ocorrencias *ocorrencias) {
     if (ocorrencias->ocorrencias != NULL) {
         for (int i = 0; i < ocorrencias->numOcorrencias; i++) {
-            free(ocorrencias->ocorrencias[i].local);
+            if (ocorrencias->ocorrencias[i].local)
+                free(ocorrencias->ocorrencias[i].local);
         }
-        free(ocorrencias->ocorrencias);
+        if (ocorrencias->ocorrencias)
+            free(ocorrencias->ocorrencias);
         ocorrencias->ocorrencias = NULL;
     }
     ocorrencias->numOcorrencias = 0;
@@ -230,7 +232,8 @@ void eliminarOcorrencia(Ocorrencias *ocorrencias) {
     int indice = procurarOcorrencia(*ocorrencias, id);
 
     if (indice != -1) {
-        free(ocorrencias->ocorrencias[indice].local);
+        if (ocorrencias->ocorrencias[indice].local)
+            free(ocorrencias->ocorrencias[indice].local);
 
         // Movimento Shift Left para manter a ordem da lista
         for (int i = indice; i < ocorrencias->numOcorrencias - 1; i++) {
