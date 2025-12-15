@@ -1,50 +1,44 @@
+/**
+ * @file bombeiro.c
+ * @brief Implementação das funções de gestão de bombeiros.
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "bombeiro.h"
 #include "gestaoBombeiro.h"
-#include "quartel.h" // Necessário para validar o ID do quartel
-#include "gestaoQuartel.h" // Necessário para listar/procurar quarteis
+#include "quartel.h" 
+#include "gestaoQuartel.h" 
 #include "enums.h"
 #include "input.h"
 #include "log.h"
 
-// Função auxiliar para imprimir o texto dos Enums
+/** @brief Converte o enum Especialidade numa string para impressão. */
 void imprimirEspecialidade(EspecialidadeBombeiro esp) {
     switch (esp) {
-        case COMBATE_FLORESTAL: 
-            printf("Combate Florestal"); 
-            break;
-        case COMBATE_AEREO:     
-            printf("Combate Aéreo"); 
-            break;
-        case RESGATE:           
-            printf("Resgate"); 
-            break;
-        default:                
-            printf("Desconhecido"); 
-            break;
+        case COMBATE_FLORESTAL: printf("Combate Florestal"); break;
+        case COMBATE_AEREO:     printf("Combate Aéreo"); break;
+        case RESGATE:           printf("Resgate"); break;
+        default:                printf("Desconhecido"); break;
     }
 }
 
-// Converte o Enum Estado em texto
+/** @brief Converte o enum Estado numa string para impressão. */
 void imprimirEstado(EstadoBombeiro est) {
     switch (est) {
-        case EB_DISPONIVEL:  
-            printf("Disponível"); 
-            break;
-        case EB_INTERVENCAO: 
-            printf("Em Intervenção"); 
-            break;
-        case EB_TREINO:      
-            printf("Em Treino"); 
-            break;
-        default:             
-            printf("Desconhecido"); 
-            break;
+        case EB_DISPONIVEL:  printf("Disponível"); break;
+        case EB_INTERVENCAO: printf("Em Intervenção"); break;
+        case EB_TREINO:      printf("Em Treino"); break;
+        default:             printf("Desconhecido"); break;
     }
 }
 
+/** * @brief Procura um bombeiro pelo ID.
+ * * Percorre sequencialmente a lista de bombeiros até encontrar o identificador 
+ * correspondente, devolvendo a posição (índice) onde este se encontra.
+ * @return O índice no array se encontrado, ou -1 caso contrário.
+ */
 int procurarBombeiro(Bombeiros bombeiros, int id) {
     for (int i = 0; i < bombeiros.numBombeiros; i++) {
         if (bombeiros.bombeiros[i].id == id) {
@@ -54,6 +48,12 @@ int procurarBombeiro(Bombeiros bombeiros, int id) {
     return -1;
 }
 
+/** * @brief Adiciona um novo bombeiro ao sistema.
+ * * Calcula automaticamente o próximo ID disponível e verifica se existe capacidade 
+ * no array dinâmico, redimensionando a memória (realloc) se necessário.
+ * A função aloca memória específica para o nome e valida se o quartel indicado 
+ * existe na lista de quartéis antes de criar o registo final.
+ */
 void adicionarBombeiro(Bombeiros *bombeiros, Quarteis *quarteis) {
     printf("\n--- Novo Bombeiro ---\n");
 
@@ -71,18 +71,18 @@ void adicionarBombeiro(Bombeiros *bombeiros, Quarteis *quarteis) {
             (*bombeiros).totalBombeiros += 3; 
             Bombeiro *temp = (Bombeiro*) realloc((*bombeiros).bombeiros, ((*bombeiros).totalBombeiros) * sizeof(Bombeiro));
             if (temp == NULL) {
-                printf("Erro ao alocar memória!\n");
+                printf("Erro crítico: Falha ao alocar memória!\n");
                 return;
             }
             (*bombeiros).bombeiros = temp;
         }
 
-        // --- Preenchimento dos dados ---
         (*bombeiros).bombeiros[(*bombeiros).numBombeiros].id = id;
 
         char buffer[SIZE_BUFFER];
         lerString(buffer, SIZE_BUFFER, "Nome: ");
         
+        // Aloca apenas o tamanho exato da string para poupar memória
         (*bombeiros).bombeiros[(*bombeiros).numBombeiros].nome = (char*) malloc((strlen(buffer) + 1) * sizeof(char));
         if ((*bombeiros).bombeiros[(*bombeiros).numBombeiros].nome != NULL) {
             strcpy((*bombeiros).bombeiros[(*bombeiros).numBombeiros].nome, buffer);
@@ -96,28 +96,21 @@ void adicionarBombeiro(Bombeiros *bombeiros, Quarteis *quarteis) {
         int estInput = obterInteiro(0, 2, "Defina o Estado inicial: ");
         (*bombeiros).bombeiros[(*bombeiros).numBombeiros].estado = (EstadoBombeiro)estInput;
 
-        // --- NOVO CAMPO: QUARTEL (Agora usa 0 para "sem quartel") ---
         if (quarteis != NULL && quarteis->numQuarteis > 0) {
             printf("\n--- Associar a Quartel ---\n");
             listarQuarteis(*quarteis);
             
-            int idQ, idxQ;
             printf("(Digite 0 para deixar sem quartel)\n");
-            
-            // Alterado para aceitar 0 como valor mínimo
-            idQ = obterInteiro(0, MAX_INT, "ID do Quartel: ");
+            int idQ = obterInteiro(0, MAX_INT, "ID do Quartel: ");
             
             if (idQ != 0) {
-                idxQ = procurarQuartel(*quarteis, idQ);
-                if (idxQ != -1) {
-                    // Encontrou o quartel
+                if (procurarQuartel(*quarteis, idQ) != -1) {
                     (*bombeiros).bombeiros[(*bombeiros).numBombeiros].quartel = idQ;
                 } else {
                     printf("Quartel não encontrado. Ficará sem nenhum atribuído (0).\n");
                     (*bombeiros).bombeiros[(*bombeiros).numBombeiros].quartel = 0;
                 }
             } else {
-                // Escolheu 0 (sem quartel)
                 (*bombeiros).bombeiros[(*bombeiros).numBombeiros].quartel = 0;
             }
         } else {
@@ -132,6 +125,10 @@ void adicionarBombeiro(Bombeiros *bombeiros, Quarteis *quarteis) {
     }
 }
 
+/** * @brief Liberta toda a memória associada aos bombeiros.
+ * * Itera sobre todos os registos para libertar individualmente a memória das 
+ * strings (nomes) antes de libertar o array principal de estruturas.
+ */
 void libertarMemBombeiros(Bombeiros *bombeiros) {
     for (int i = 0; i < bombeiros->numBombeiros; i++) {
         free(bombeiros->bombeiros[i].nome);
@@ -139,26 +136,23 @@ void libertarMemBombeiros(Bombeiros *bombeiros) {
     free(bombeiros->bombeiros);
 }
 
+/** @brief Imprime os detalhes de um único bombeiro no ecrã. */
 void imprimirBombeiro(Bombeiro bombeiro) {
     printf("\n----------------------------");
     printf("\nID: %d", bombeiro.id);
     printf("\nNome: %s", bombeiro.nome);
-    
-    printf("\nEspecialidade: ");
-    imprimirEspecialidade(bombeiro.especialidade);
-    
-    printf("\nEstado Atual: ");
-    imprimirEstado(bombeiro.estado);
+    printf("\nEspecialidade: "); imprimirEspecialidade(bombeiro.especialidade);
+    printf("\nEstado Atual: "); imprimirEstado(bombeiro.estado);
 
     if (bombeiro.quartel != 0) {
         printf("\nQuartel ID: %d", bombeiro.quartel);
     } else {
         printf("\nQuartel: Sem atribuição");
     }
-
     printf("\n----------------------------\n");
 }
 
+/** @brief Lista todos os bombeiros registados. */
 void listarBombeiros(Bombeiros bombeiros) {
     if (bombeiros.numBombeiros > 0) {
         for (int i = 0; i < bombeiros.numBombeiros; i++) {
@@ -169,44 +163,41 @@ void listarBombeiros(Bombeiros bombeiros) {
     }
 }
 
+/** * @brief Submenu para atualizar campos específicos.
+ * * Permite a edição parcial dos campos. Ao alterar o nome, a memória é 
+ * realocada para se ajustar ao tamanho da nova string. A alteração do 
+ * quartel implica uma nova pesquisa para validar se o ID existe.
+ */
 void atualizarDadosBombeiro(Bombeiro *bombeiro, Quarteis *quarteis) {
     int escolha;
     char buffer[SIZE_BUFFER];
 
     do {
         printf("\n--- Editar Dados ---\n");
-        printf("1- Nome\n");
-        printf("2- Especialidade\n");
-        printf("3- Estado\n");
-        printf("4- Quartel\n"); 
-        printf("0- Voltar\n");
+        printf("1- Nome\n2- Especialidade\n3- Estado\n4- Quartel\n0- Voltar\n");
         escolha = obterInteiro(0, 4, "\nEscolha uma opção: ");
         switch (escolha) {
-            case 0:
-                break;
+            case 0: break;
             case 1:
                 lerString(buffer, SIZE_BUFFER, "Novo Nome: ");
                 bombeiro->nome = realloc(bombeiro->nome, (strlen(buffer) + 1) * sizeof (char));
                 strcpy(bombeiro->nome, buffer);
                 break;
             case 2:
-                printf("\nEspecialidades:\n0 - Combate Florestal\n1 - Combate Aéreo\n2 - Resgate\n");
-                bombeiro->especialidade = (EspecialidadeBombeiro)obterInteiro(0, 2, "Escolha a nova Especialidade: ");
+                printf("\n0 - Combate Florestal\n1 - Combate Aéreo\n2 - Resgate\n");
+                bombeiro->especialidade = (EspecialidadeBombeiro)obterInteiro(0, 2, "Nova Especialidade: ");
                 break;
             case 3:
-                printf("\nEstados:\n0 - Disponível\n1 - Em Intervenção\n2 - Em Treino\n");
-                bombeiro->estado = (EstadoBombeiro)obterInteiro(0, 2, "Escolha o novo Estado: ");
+                printf("\n0 - Disponível\n1 - Em Intervenção\n2 - Em Treino\n");
+                bombeiro->estado = (EstadoBombeiro)obterInteiro(0, 2, "Novo Estado: ");
                 break;
             case 4:
-                // Editar Quartel
                 if (quarteis != NULL && quarteis->numQuarteis > 0) {
                     listarQuarteis(*quarteis);
-                    // ALTERADO: Aceita 0 como mínimo e indica 0 para remover
                     int idQ = obterInteiro(0, MAX_INT, "Novo ID Quartel (0 para remover): ");
                     
-                    // ALTERADO: Verifica se é 0
                     if (idQ == 0) {
-                        bombeiro->quartel = 0; // ALTERADO: Define como 0
+                        bombeiro->quartel = 0; 
                         printf("Quartel removido.\n");
                     } else if (procurarQuartel(*quarteis, idQ) != -1) {
                         bombeiro->quartel = idQ;
@@ -218,13 +209,12 @@ void atualizarDadosBombeiro(Bombeiro *bombeiro, Quarteis *quarteis) {
                     printf("Não existem quartéis registados.\n");
                 }
                 break;
-            default:
-                printf("Opção inválida\n");
-                break;
+            default: printf("Opção inválida\n"); break;
         }
     } while (escolha != 0);
 }
 
+/** @brief Procura o bombeiro pelo ID e inicia o menu de edição. */
 void editarBombeiro(Bombeiros *bombeiros, Quarteis *quarteis) {
     listarBombeiros(*bombeiros);
     printf("Editar dados do bombeiro:\n");
@@ -239,6 +229,11 @@ void editarBombeiro(Bombeiros *bombeiros, Quarteis *quarteis) {
     }
 }
 
+/** * @brief Elimina um bombeiro do array.
+ * * Liberta a memória alocada para o nome do bombeiro alvo e reorganiza o array, 
+ * deslocando todos os elementos seguintes uma posição para trás (shift left) 
+ * para preencher o espaço vazio.
+ */
 void eliminarBombeiro(Bombeiros *bombeiros) {    
     listarBombeiros(*bombeiros);
     printf("Eliminar bombeiro:\n");
@@ -250,13 +245,11 @@ void eliminarBombeiro(Bombeiros *bombeiros) {
         free(bombeiros->bombeiros[indice].nome);
 
         for(int i = indice; i < bombeiros->numBombeiros - 1; i++){
-            bombeiros->bombeiros[i] = bombeiros->bombeiros[i+1];
+            bombeiros->bombeiros[i] = bombeiros->bombeiros[i + 1];
         }
 
         bombeiros->numBombeiros--;
-        
         printf("Bombeiro eliminado com sucesso.\n");
-
     } else {
         printf("Bombeiro não encontrado!!\n");
     }
@@ -264,6 +257,11 @@ void eliminarBombeiro(Bombeiros *bombeiros) {
 
 // ------ FICHEIROS ------
 
+/** * @brief Carrega dados do ficheiro binário.
+ * * Lê inicialmente os totais para alocar o array de estruturas. De seguida, 
+ * recupera os dados de cada bombeiro, lendo primeiro o tamanho do nome (int) 
+ * para alocar a memória exata necessária antes de ler os caracteres da string.
+ */
 void carregarBombeiros(Bombeiros *bombeiros) {
     FILE *ficheiro = fopen("data/bombeiros.bin", "rb");
     
@@ -279,7 +277,7 @@ void carregarBombeiros(Bombeiros *bombeiros) {
     fread(&bombeiros->numBombeiros, sizeof(int), 1, ficheiro);
 
     if (bombeiros->numBombeiros == 0) {
-        bombeiros->totalBombeiros = 5; // Garante tamanho mínimo
+        bombeiros->totalBombeiros = 5; 
         bombeiros->bombeiros = (Bombeiro*) malloc(bombeiros->totalBombeiros * sizeof(Bombeiro));
         fclose(ficheiro);
         logMsg("\nLista de bombeiros importada vazia.\n");
@@ -292,8 +290,6 @@ void carregarBombeiros(Bombeiros *bombeiros) {
         fread(&bombeiros->bombeiros[i].id, sizeof(int), 1, ficheiro);
         fread(&bombeiros->bombeiros[i].especialidade, sizeof(EspecialidadeBombeiro), 1, ficheiro);
         fread(&bombeiros->bombeiros[i].estado, sizeof(EstadoBombeiro), 1, ficheiro);
-        
-        // --- NOVO: LER QUARTEL ---
         fread(&bombeiros->bombeiros[i].quartel, sizeof(int), 1, ficheiro);
         
         int bufferTam;
@@ -307,6 +303,11 @@ void carregarBombeiros(Bombeiros *bombeiros) {
     logMsg("Bombeiros carregados com sucesso do ficheiro.");
 }
 
+/** * @brief Guarda dados em ficheiro binário.
+ * * Escreve a estrutura completa em disco. Para as strings dinâmicas (nomes), 
+ * guarda primeiro o tamanho da string em bytes seguido dos caracteres, 
+ * permitindo a recuperação correta na leitura.
+ */
 void guardarBombeiros(Bombeiros *bombeiros) {
     FILE *ficheiro = fopen("data/bombeiros.bin", "wb");
     if (ficheiro == NULL) {
@@ -322,8 +323,6 @@ void guardarBombeiros(Bombeiros *bombeiros) {
         fwrite(&bombeiros->bombeiros[i].id, sizeof(int), 1, ficheiro);
         fwrite(&bombeiros->bombeiros[i].especialidade, sizeof(EspecialidadeBombeiro), 1, ficheiro);
         fwrite(&bombeiros->bombeiros[i].estado, sizeof(EstadoBombeiro), 1, ficheiro);
-        
-        // --- NOVO: GUARDAR QUARTEL ---
         fwrite(&bombeiros->bombeiros[i].quartel, sizeof(int), 1, ficheiro);
         
         int buffer = strlen(bombeiros->bombeiros[i].nome); 

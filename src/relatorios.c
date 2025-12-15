@@ -1,43 +1,46 @@
+/**
+ * @file relatorios.c
+ * @brief Implementação dos relatórios e estatísticas do sistema.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include "../headers/enums.h"
-#include "../headers/input.h" // Para o obterInteiro
+#include "../headers/input.h" 
+#include "../headers/log.h" 
 
 // Includes das Entidades
 #include "../headers/ocorrencia.h"
 #include "../headers/gestaoOcorrencia.h"
-
 #include "../headers/intervencao.h"
 #include "../headers/gestaoIntervencao.h"
-
 #include "../headers/bombeiro.h"
 #include "../headers/gestaoBombeiro.h"
-
-#include "../headers/intervencao.h"
-
 #include "../headers/equipamento.h"
 #include "../headers/gestaoEquipamento.h"
-
 #include "../headers/quartel.h"
 #include "../headers/gestaoQuartel.h"
 
 // --- ESTRUTURAS AUXILIARES LOCAIS ---
+
+/** @brief Estrutura auxiliar para contagem de recursos (Top X). */
 typedef struct {
     int id;
     int contagem;
 } ContadorRecurso;
 
-// Estrutura auxiliar interna para o ranking
+/** @brief Estrutura auxiliar para o ranking de desempenho de bombeiros. */
 typedef struct {
     int idBombeiro;
     char nome[100];
     int totalIntervencoes;
-    int tempoTotalResposta; // Minutos acumulados (Início Intervenção - Registo Ocorrência)
+    int tempoTotalResposta; // Minutos acumulados
 } StatsBombeiro;
 
 // --- FUNÇÕES AUXILIARES (CONVERSÃO ENUM -> TEXTO) ---
+
 char* getStrEstadoOcorrencia(EstadoOcorrencia est) {
     switch(est) {
         case OCORR_REPORTADA: return "Reportada";
@@ -66,18 +69,15 @@ char* getStrEstadoEquipamento(EstadoEquipamento est) {
     }
 }
 
-// Função para calcular minutos totais de uma data/hora (para comparações)
+/** @brief Calcula o total de minutos desde o ano 0 (aproximado) para comparações. */
 long calcularMinutosTotais(Data d, Hora h) {
     return (d.ano * 525600) + (d.mes * 43800) + (d.dia * 1440) + (h.horas * 60) + h.minutos;
 }
 
-// Função auxiliar para calcular diferença em minutos entre duas datas/horas
+/** @brief Calcula a diferença em minutos entre duas datas/horas. */
 int calcularDiferencaMinutos(Data d1, Hora h1, Data d2, Hora h2) {
-    //Convertendo tudo para minutos
-    //1 dia = 1440 minutos & 1 hora = 60 minutos
     long minutos1 = (d1.dia * 1440) + (h1.horas * 60) + h1.minutos;
     long minutos2 = (d2.dia * 1440) + (h2.horas * 60) + h2.minutos;
-    
     return (int)(minutos2 - minutos1);
 }
 
@@ -85,9 +85,13 @@ int calcularDiferencaMinutos(Data d1, Hora h1, Data d2, Hora h2) {
 //                           RELATÓRIOS OCORRÊNCIA
 // =================================================================================
 
+/** * @brief Gera estatísticas gerais sobre as ocorrências (Tipos, Prioridades, Estados).
+ * * Contabiliza ocorrências iterando sobre o array e incrementando contadores locais.
+ */
 void relatorioEstatisticasGerais(Ocorrencias ocorrencias) {
     if (ocorrencias.numOcorrencias == 0) {
         printf("Nao existem ocorrencias para gerar estatisticas.\n");
+        logMsg("Tentativa de gerar estatísticas de ocorrências sem dados.");
         return;
     }
 
@@ -121,8 +125,14 @@ void relatorioEstatisticasGerais(Ocorrencias ocorrencias) {
     printf("\n[POR PRIORIDADE]\n");
     printf("Alta:           %d\nNormal:         %d\nBaixa:          %d\n", cAlta, cNormal, cBaixa);
     printf("===============================================\n");
+    
+    logMsg("Relatório de estatísticas gerais de ocorrências gerado.");
 }
 
+/** * @brief Calcula o tempo médio decorrido desde o registo das ocorrências.
+ * * Utiliza `difftime` da biblioteca `time.h` para comparar a data de registo 
+ * com a hora atual do sistema.
+ */
 void relatorioTempoMedioResposta(Ocorrencias ocorrencias) {
     if (ocorrencias.numOcorrencias == 0) return;
 
@@ -152,7 +162,7 @@ void relatorioTempoMedioResposta(Ocorrencias ocorrencias) {
             double diferenca = difftime(agora, tempoRegisto);
             double horas = diferenca / 3600.0;
 
-            if(horas >= 0) { // Evita tempos negativos por erro de data
+            if(horas >= 0) { 
                 somaSegundos += diferenca;
                 count++;
                 printf("| %d | %-15s | %18.2f h |\n",
@@ -168,8 +178,12 @@ void relatorioTempoMedioResposta(Ocorrencias ocorrencias) {
         printf("====================================================\n");
         printf("Tempo Medio desde o registo: %.2f horas\n", mediaHoras);
     }
+    logMsg("Relatório de tempo médio de resposta gerado.");
 }
 
+/** * @brief Analisa a frequência de ocorrências por localidade (string).
+ * * Cria uma lista dinâmica temporária de locais únicos para contar a repetição.
+ */
 void relatorioLocalizacaoEFrequencia(Ocorrencias ocorrencias) {
     if (ocorrencias.numOcorrencias == 0) return;
 
@@ -203,18 +217,22 @@ void relatorioLocalizacaoEFrequencia(Ocorrencias ocorrencias) {
         printf("| %-25s | %-5d |\n", listaLocais[i].nome, listaLocais[i].qtd);
     }
     printf("==========================================\n");
+    
     free(listaLocais);
+    logMsg("Relatório de frequência por localização gerado.");
 }
 
 // =================================================================================
 //                           RELATÓRIOS INTERVENÇÃO
 // =================================================================================
 
+/** @brief Mostra a percentagem de intervenções em cada estado (Planeamento, Execução, Concluída). */
 void relatorioIntervencoesEstado(Intervencoes intervencoes) {
     int cPlaneamento = 0, cExecucao = 0, cConcluida = 0;
 
     if (intervencoes.numIntervencoes == 0) {
         printf("Sem dados para gerar relatorio.\n");
+        logMsg("Tentativa de gerar relatório de estados de intervenção sem dados.");
         return;
     }
 
@@ -234,8 +252,13 @@ void relatorioIntervencoesEstado(Intervencoes intervencoes) {
     printf("| Concluidas    | %3d | %5.1f%%      |\n", cConcluida, (float)cConcluida/intervencoes.numIntervencoes * 100);
     printf("| TOTAL         | %3d | 100.0%%      |\n", intervencoes.numIntervencoes);
     printf("=========================================\n");
+    
+    logMsg("Relatório de estados das intervenções gerado.");
 }
 
+/** * @brief Calcula a duração média das intervenções já concluídas.
+ * * Identifica também a intervenção que demorou mais tempo.
+ */
 void relatorioTempoDuracao(Intervencoes intervencoes) {
     long totalMinutos = 0;
     int qtdConcluidas = 0;
@@ -271,8 +294,13 @@ void relatorioTempoDuracao(Intervencoes intervencoes) {
         printf("Não existem intervenções concluídas para calcular médias.\n");
     }
     printf("=======================================================\n");
+    logMsg("Relatório de duração das intervenções gerado.");
 }
 
+/** * @brief Identifica os Bombeiros e Equipamentos mais requisitados.
+ * * Utiliza arrays auxiliares (`ContadorRecurso`) para acumular a contagem 
+ * de IDs presentes nos arrays aninhados de cada intervenção e ordena (Bubble Sort).
+ */
 void relatorioRecursosMaisUtilizados(Intervencoes intervencoes) {
     int maxCapacidade = 100; 
     ContadorRecurso *contBombeiros = (ContadorRecurso*) calloc(maxCapacidade, sizeof(ContadorRecurso));
@@ -322,6 +350,7 @@ void relatorioRecursosMaisUtilizados(Intervencoes intervencoes) {
 
     printf("\n=== RECURSOS MAIS UTILIZADOS ===\n");
     printf(">> Bombeiros (Top 3):\n");
+    // Ordenação simples (Bubble Sort)
     for(int i=0; i<totalDiffBomb-1; i++){
         for(int j=0; j<totalDiffBomb-i-1; j++){
             if(contBombeiros[j].contagem < contBombeiros[j+1].contagem){
@@ -352,8 +381,10 @@ void relatorioRecursosMaisUtilizados(Intervencoes intervencoes) {
 
     free(contBombeiros);
     free(contEquip);
+    logMsg("Relatório de recursos mais utilizados gerado.");
 }
 
+/** @brief Calcula rácios operacionais (recursos por ocorrência e taxa de conclusão). */
 void relatorioEficiencia(Intervencoes intervencoes) {
     if (intervencoes.numIntervencoes == 0) return;
 
@@ -377,20 +408,20 @@ void relatorioEficiencia(Intervencoes intervencoes) {
     printf("Taxa de Conclusão Global: %.2f%%\n", taxaConclusao);
     printf("Média de Recursos: %.1f Bombeiros/Ocorr. | %.1f Equip/Ocorr.\n", mediaBombeiros, mediaEquip);
     printf("=========================================\n");
+    logMsg("Relatório de eficiência operacional gerado.");
 }
 
 // =================================================================================
 //                           RELATÓRIOS BOMBEIRO
 // =================================================================================
 
+/** @brief Lista quantos bombeiros 'DISPONÍVEIS' existem por especialidade. */
 void relatorioDisponibilidadeEspecialidade(Bombeiros bombeiros) {
-    // 3 = Tamanho do Enum EspecialidadeBombeiro (0, 1, 2)
     int contadores[3] = {0};
 
     printf("\n=== RELATÓRIO: Disponibilidade por Especialidade ===\n");
 
     for (int i = 0; i < bombeiros.numBombeiros; i++) {
-        // CORREÇÃO: "EB_DISPONIVEL" é o enum correto da tua struct
         if (bombeiros.bombeiros[i].estado == EB_DISPONIVEL) {
             contadores[bombeiros.bombeiros[i].especialidade]++;
         }
@@ -400,16 +431,18 @@ void relatorioDisponibilidadeEspecialidade(Bombeiros bombeiros) {
     printf("Combate Aereo:     %d disponíveis\n", contadores[COMBATE_AEREO]);
     printf("Resgate:           %d disponíveis\n", contadores[RESGATE]);
     printf("----------------------------------------------------\n");
+    logMsg("Relatório de disponibilidade de bombeiros gerado.");
 }
 
-// CORREÇÃO: Precisa receber INTERVENCOES para contar (struct Bombeiro não tem contador)
+/** * @brief Conta em quantas intervenções cada bombeiro participou.
+ * * Percorre todas as intervenções e verifica se o ID do bombeiro está na lista de alocados.
+ */
 void relatorioParticipacaoIntervencoes(Bombeiros bombeiros, Intervencoes intervencoes) {
     printf("\n=== RELATÓRIO: Participação em Intervenções ===\n");
     printf("%-5s | %-30s | %-15s\n", "ID", "Nome", "Intervenções");
     printf("--------------------------------------------------------\n");
 
     for (int i = 0; i < bombeiros.numBombeiros; i++) {
-        // Calcular em tempo real
         int count = 0;
         for(int k=0; k < intervencoes.numIntervencoes; k++){
             if(intervencoes.intervencoes[k].idsBombeiros != NULL){
@@ -427,18 +460,23 @@ void relatorioParticipacaoIntervencoes(Bombeiros bombeiros, Intervencoes interve
             count);
     }
     printf("--------------------------------------------------------\n");
+    logMsg("Relatório de participação em intervenções gerado.");
 }
 
+/** * @brief Gera um ranking de desempenho com base nas intervenções CONCLUÍDAS.
+ * * Calcula o tempo médio de resposta (diferença entre Registo da Ocorrência e Início da Intervenção)
+ * para as equipas onde o bombeiro esteve presente.
+ */
 void relatorioRankingDesempenho(Intervencoes intervencoes, Ocorrencias ocorrencias, Bombeiros bombeiros) {
     if (bombeiros.numBombeiros == 0) {
         printf("Sem bombeiros para classificar.\n");
+        logMsg("Tentativa de gerar ranking sem bombeiros.");
         return;
     }
 
-    // 1. Criar array temporário para estatísticas
     StatsBombeiro *stats = (StatsBombeiro*) malloc(bombeiros.numBombeiros * sizeof(StatsBombeiro));
     
-    // Inicializar
+    // Inicialização
     for (int i = 0; i < bombeiros.numBombeiros; i++) {
         stats[i].idBombeiro = bombeiros.bombeiros[i].id;
         strcpy(stats[i].nome, bombeiros.bombeiros[i].nome);
@@ -446,11 +484,10 @@ void relatorioRankingDesempenho(Intervencoes intervencoes, Ocorrencias ocorrenci
         stats[i].tempoTotalResposta = 0;
     }
 
-    // 2. Processar Intervenções CONCLUÍDAS
+    // Processar Intervenções CONCLUÍDAS
     for (int i = 0; i < intervencoes.numIntervencoes; i++) {
         if (intervencoes.intervencoes[i].estado == INT_CONCLUIDA) {
             
-            // Calcular tempo de resposta (Se tivermos a ocorrência)
             int tempoResposta = 0;
             int idxOcor = procurarOcorrencia(ocorrencias, intervencoes.intervencoes[i].idOcorrencia);
             
@@ -463,12 +500,10 @@ void relatorioRankingDesempenho(Intervencoes intervencoes, Ocorrencias ocorrenci
                 );
             }
 
-            // Atribuir stats aos bombeiros desta intervenção
             if (intervencoes.intervencoes[i].idsBombeiros != NULL) {
                 for (int k = 0; k < intervencoes.intervencoes[i].numBombeiros; k++) {
                     int idB = intervencoes.intervencoes[i].idsBombeiros[k];
                     
-                    // Encontrar o bombeiro no array de stats
                     for (int j = 0; j < bombeiros.numBombeiros; j++) {
                         if (stats[j].idBombeiro == idB) {
                             stats[j].totalIntervencoes++;
@@ -481,7 +516,7 @@ void relatorioRankingDesempenho(Intervencoes intervencoes, Ocorrencias ocorrenci
         }
     }
 
-    // 3. Ordenar (Bubble Sort simples pela qtd intervenções)
+    // Ordenar (Bubble Sort)
     for (int i = 0; i < bombeiros.numBombeiros - 1; i++) {
         for (int j = 0; j < bombeiros.numBombeiros - i - 1; j++) {
             if (stats[j].totalIntervencoes < stats[j+1].totalIntervencoes) {
@@ -492,7 +527,6 @@ void relatorioRankingDesempenho(Intervencoes intervencoes, Ocorrencias ocorrenci
         }
     }
     
-    // 4. Imprimir Ranking
     printf("\n=== Ranking de Desempenho de Intervenções Concluídas) ===\n");
     printf("%-5s | %-20s | %-10s | %-15s\n", "Rank", "Nome", "Qtd.", "Temp. Médio Resposta");
     printf("-------------------------------------------------------------\n");
@@ -510,12 +544,14 @@ void relatorioRankingDesempenho(Intervencoes intervencoes, Ocorrencias ocorrenci
     printf("-------------------------------------------------------------\n");
 
     free(stats);
+    logMsg("Relatório de ranking de desempenho gerado.");
 }
 
 // =================================================================================
 //                           RELATÓRIOS EQUIPAMENTO
 // =================================================================================
 
+/** @brief Lista o inventário geral de equipamentos com contagem por tipo. */
 void relatorioInventarioEquipamentos(Equipamentos equipamentos) {
     int totalVeiculos = 0, totalFerramentas = 0, totalVestuario = 0, totalComunicacao = 0;
     int totalGeral = 0;
@@ -523,7 +559,6 @@ void relatorioInventarioEquipamentos(Equipamentos equipamentos) {
     printf("\n====================================================================\n");
     printf("                 INVENTARIO GERAL DE EQUIPAMENTOS                   \n");
     printf("====================================================================\n");
-    // CORREÇÃO: Removida coluna "Localização" pois não existe na struct
     printf("| %s | %-20s | %-12s | %-12s |\n", "ID", "Nome", "Tipo", "Estado");
     printf("|----|----------------------|--------------|--------------|\n");
 
@@ -545,14 +580,16 @@ void relatorioInventarioEquipamentos(Equipamentos equipamentos) {
     printf("====================================================================\n");
     printf("TOTAL: %d | Veic: %d | Ferr: %d | Vest: %d | Com: %d\n",
             totalGeral, totalVeiculos, totalFerramentas, totalVestuario, totalComunicacao);
+    
+    logMsg("Relatório de inventário de equipamentos gerado.");
 }
 
+/** @brief Filtra e mostra apenas os equipamentos em estado 'EQ_EM_USO'. */
 void relatorioUtilizacaoTipoIntervencao(Equipamentos equipamentos) {
     int count = 0;
     printf("\n========================================================\n");
     printf("          RELATORIO DE UTILIZACAO (EM USO)              \n");
     printf("========================================================\n");
-    // CORREÇÃO: Removida localização
     printf("| %s | %-20s | %-12s |\n", "ID", "Nome", "Tipo");
     printf("|----|----------------------|--------------|\n");
 
@@ -568,8 +605,10 @@ void relatorioUtilizacaoTipoIntervencao(Equipamentos equipamentos) {
     if (count == 0) printf("|          Nenhum equipamento esta a ser utilizado.      |\n");
     printf("========================================================\n");
     printf("Total em Uso: %d\n", count);
+    logMsg("Relatório de equipamentos em uso gerado.");
 }
 
+/** @brief Filtra e mostra apenas os equipamentos em estado 'EQ_MANUTENCAO'. */
 void relatorioManutencaoEquipamentos(Equipamentos equipamentos) {
     int count = 0;
     printf("\n========================================================\n");
@@ -590,25 +629,21 @@ void relatorioManutencaoEquipamentos(Equipamentos equipamentos) {
     if (count == 0) printf("|       Nenhum equipamento está em manutencao.           |\n");
     printf("========================================================\n");
     printf("Total em Manutencao: %d\n", count);
+    logMsg("Relatório de equipamentos em manutenção gerado.");
 }
 
 // =================================================================================
 //                           RELATÓRIOS QUARTÉIS
 // =================================================================================
 
+/** @brief Mostra a distribuição dos quartéis por tipo (Voluntários, Sapadores, Municipais). */
 void relatorioQuarteisPorTipo(Quarteis quarteis) {
     int totalVoluntarios = 0, totalSapadores = 0, totalMunicipais = 0;
     for(int i=0; i < quarteis.numQuarteis; i++) {
         switch(quarteis.quarteis[i].tipo) {
-            case VOLUNTARIO: 
-                totalVoluntarios++; 
-                break;
-            case SAPADOR: 
-                totalSapadores++; 
-                break;
-            case MUNICIPAL: 
-                totalMunicipais++; 
-                break;
+            case VOLUNTARIO: totalVoluntarios++; break;
+            case SAPADOR:    totalSapadores++; break;
+            case MUNICIPAL:  totalMunicipais++; break;
         }
     }
     printf("\n============================================\n");
@@ -622,8 +657,13 @@ void relatorioQuarteisPorTipo(Quarteis quarteis) {
     printf("|---------------------------|------------|\n");
     printf("| TOTAL DE QUARTÉIS         | %-10d |\n", quarteis.numQuarteis);
     printf("============================================\n");
+    logMsg("Relatório de tipos de quartel gerado.");
 }
 
+/** * @brief Analisa a lotação de cada quartel e a quantidade de operacionais prontos.
+ * * Emite alertas visuais e LOGS de aviso caso existam quartéis sobrelotados 
+ * ou sem nenhum operacional disponível.
+ */
 void relatorioOcupacaoQuarteis(Quarteis quarteis, Bombeiros bombeiros) {
     printf("\n=======================================================================\n");
     printf("              RELATÓRIO DE OCUPAÇÃO E OPERACIONALIDADE                 \n");
@@ -631,34 +671,29 @@ void relatorioOcupacaoQuarteis(Quarteis quarteis, Bombeiros bombeiros) {
     printf("| %-20s | %-10s | %-12s | %-12s |\n", "Quartel", "Capacidade", "Ocupação", "Disponíveis");
     printf("|----------------------|------------|--------------|--------------|\n");
 
+    char bufferLog[200]; 
+
     for (int i = 0; i < quarteis.numQuarteis; i++) {
         int idQ = quarteis.quarteis[i].id;
         int capacidade = quarteis.quarteis[i].capacidade;
         
-        // Contadores para este quartel
         int ocupacaoAtual = 0;
         int operacionaisProntos = 0;
 
-        // Loop complexo: Percorre todos os bombeiros para encontrar os deste quartel
         for (int k = 0; k < bombeiros.numBombeiros; k++) {
-            // Verifica se o bombeiro pertence a este quartel
             if (bombeiros.bombeiros[k].quartel == idQ) {
                 ocupacaoAtual++;
-                
-                // Verifica se está operacional (Disponível)
                 if (bombeiros.bombeiros[k].estado == EB_DISPONIVEL) {
                     operacionaisProntos++;
                 }
             }
         }
 
-        // Cálculo de percentagem de lotação (Cast para float para ter casas decimais)
         float taxaOcupacao = 0;
         if(capacidade > 0) {
             taxaOcupacao = ((float)ocupacaoAtual / (float)capacidade) * 100;
         }
 
-        // Imprimir linha da tabela
         printf("| %-20s | %-10d | %-3d (%0.f%%)   | %-12d |\n", 
                quarteis.quarteis[i].nome, 
                capacidade, 
@@ -666,17 +701,22 @@ void relatorioOcupacaoQuarteis(Quarteis quarteis, Bombeiros bombeiros) {
                taxaOcupacao,
                operacionaisProntos);
 
-        // Alertas de validação
         if (ocupacaoAtual > capacidade) {
             printf("  -> [ALERTA] Quartel sobrelotado! Excesso de %d bombeiros.\n", ocupacaoAtual - capacidade);
+            sprintf(bufferLog, "ALERTA: Quartel '%s' sobrelotado (%d/%d).", quarteis.quarteis[i].nome, ocupacaoAtual, capacidade);
+            logMsg(bufferLog);
         }
         if (ocupacaoAtual > 0 && operacionaisProntos == 0) {
             printf("  -> [CRITICO] Nenhuma força operacional disponível neste quartel!\n");
+            sprintf(bufferLog, "CRITICO: Quartel '%s' sem operacionais disponiveis.", quarteis.quarteis[i].nome);
+            logMsg(bufferLog);
         }
     }
     printf("=======================================================================\n");
+    logMsg("Relatório de ocupação de quartéis gerado.");
 }
 
+/** @brief Mostra a distribuição de especialidades (Florestal, Aéreo, Resgate) por quartel. */
 void relatorioEspecialidadesPorQuartel(Quarteis quarteis, Bombeiros bombeiros) {
     printf("\n=======================================================================\n");
     printf("            DISTRIBUIÇÃO DE ESPECIALIDADES POR QUARTEL                 \n");
@@ -687,16 +727,12 @@ void relatorioEspecialidadesPorQuartel(Quarteis quarteis, Bombeiros bombeiros) {
     for (int i = 0; i < quarteis.numQuarteis; i++) {
         int idQ = quarteis.quarteis[i].id;
         
-        // Contadores locais para este quartel
         int cFlorestal = 0;
         int cAereo = 0;
         int cResgate = 0;
 
-        // Cruzamento de dados
         for (int k = 0; k < bombeiros.numBombeiros; k++) {
-            // Se o bombeiro pertence a este quartel...
             if (bombeiros.bombeiros[k].quartel == idQ) {
-                // ... verificamos a especialidade dele
                 switch (bombeiros.bombeiros[k].especialidade) {
                     case COMBATE_FLORESTAL: cFlorestal++; break;
                     case COMBATE_AEREO:     cAereo++; break;
@@ -705,8 +741,6 @@ void relatorioEspecialidadesPorQuartel(Quarteis quarteis, Bombeiros bombeiros) {
             }
         }
 
-        // Se o quartel tiver pelo menos 1 bombeiro, mostra os dados
-        // (Opcional: podes tirar o if se quiseres ver os quarteis vazios com zeros)
         if ((cFlorestal + cAereo + cResgate) > 0) {
             printf("| %-20s | %-12d | %-12d | %-12d |\n", 
                    quarteis.quarteis[i].nome, cFlorestal, cAereo, cResgate);
@@ -716,12 +750,14 @@ void relatorioEspecialidadesPorQuartel(Quarteis quarteis, Bombeiros bombeiros) {
         }
     }
     printf("=======================================================================\n");
+    logMsg("Relatório de especialidades por quartel gerado.");
 }
 
 // =================================================================================
-//                               MENUS
+//                               MENUS DE RELATÓRIOS
 // =================================================================================
 
+/** @brief Menu de navegação para os relatórios de Bombeiros. */
 void menuRelatoriosBombeiros(Intervencoes intervencoes, Ocorrencias ocorrencias, Bombeiros bombeiros) {
     if (bombeiros.numBombeiros == 0) {
         printf("Sem bombeiros para gerar relatórios.\n");
@@ -739,14 +775,17 @@ void menuRelatoriosBombeiros(Intervencoes intervencoes, Ocorrencias ocorrencias,
         
         switch(opcao) {
             case 1: 
+                logMsg("Selecionado relatório: Disponibilidade por Especialidade.");
                 relatorioDisponibilidadeEspecialidade(bombeiros); 
                 break;
             case 2: 
+                logMsg("Selecionado relatório: Histórico de Intervenções por Bombeiro.");
                 relatorioParticipacaoIntervencoes(bombeiros, intervencoes); 
-                break; // Atualizado
+                break;
             case 3: 
+                logMsg("Selecionado relatório: Ranking de Desempenho.");
                 relatorioRankingDesempenho(intervencoes, ocorrencias, bombeiros);
-                break; // Atualizado
+                break;
         }
         if(opcao != 0) { 
             printf("Enter para continuar..."); 
@@ -755,6 +794,7 @@ void menuRelatoriosBombeiros(Intervencoes intervencoes, Ocorrencias ocorrencias,
     } while(opcao != 0);
 }
 
+/** @brief Menu de navegação para os relatórios de Equipamentos. */
 void menuRelatoriosEquipamentos(Intervencoes intervencoes, Equipamentos equipamentos) {
     if (equipamentos.numEquipamentos == 0) {
         printf("Sem equipamentos para gerar relatórios.\n");
@@ -773,15 +813,19 @@ void menuRelatoriosEquipamentos(Intervencoes intervencoes, Equipamentos equipame
 
         switch(opcao) {
             case 1: 
+                logMsg("Selecionado relatório: Inventário Geral.");
                 relatorioInventarioEquipamentos(equipamentos); 
                 break;
             case 2: 
+                logMsg("Selecionado relatório: Equipamentos em Manutenção.");
                 relatorioManutencaoEquipamentos(equipamentos); 
                 break;
             case 3: 
+                logMsg("Selecionado relatório: Equipamentos em Uso.");
                 relatorioUtilizacaoTipoIntervencao(equipamentos); 
                 break;
             case 4: 
+                logMsg("Selecionado relatório: Ranking de Utilização.");
                 relatorioRecursosMaisUtilizados(intervencoes); 
                 break;
             case 0: 
@@ -796,6 +840,7 @@ void menuRelatoriosEquipamentos(Intervencoes intervencoes, Equipamentos equipame
     } while(opcao != 0);
 }
 
+/** @brief Menu de navegação para os relatórios de Intervenções. */
 void menuRelatoriosIntervencoes(Intervencoes intervencoes) {
     if (intervencoes.numIntervencoes == 0) {
         printf("Sem dados para gerar relatorio.\n");
@@ -814,15 +859,19 @@ void menuRelatoriosIntervencoes(Intervencoes intervencoes) {
 
         switch(opcao) {
             case 1: 
+                logMsg("Selecionado relatório: Estado das Intervenções.");
                 relatorioIntervencoesEstado(intervencoes); 
                 break;
             case 2: 
+                logMsg("Selecionado relatório: Tempo Médio de Duração.");
                 relatorioTempoDuracao(intervencoes); 
                 break;
             case 3: 
+                logMsg("Selecionado relatório: Recursos Mais Utilizados.");
                 relatorioRecursosMaisUtilizados(intervencoes); 
                 break;
             case 4: 
+                logMsg("Selecionado relatório: Eficiência Operacional.");
                 relatorioEficiencia(intervencoes); 
                 break;
             case 0: 
@@ -836,6 +885,7 @@ void menuRelatoriosIntervencoes(Intervencoes intervencoes) {
     } while(opcao != 0);
 }
 
+/** @brief Menu de navegação para os relatórios de Ocorrências. */
 void menuRelatoriosOcorrencias(Ocorrencias ocorrencias) {
     if (ocorrencias.numOcorrencias == 0) {
         printf("Sem ocorrencias para gerar relatorios.\n");
@@ -853,12 +903,15 @@ void menuRelatoriosOcorrencias(Ocorrencias ocorrencias) {
 
         switch(opcao) {
             case 1:
+                logMsg("Selecionado relatório: Estatísticas Gerais.");
                 relatorioEstatisticasGerais(ocorrencias);
                 break;
             case 2:
+                logMsg("Selecionado relatório: Tempo Médio de Resposta.");
                 relatorioTempoMedioResposta(ocorrencias);
                 break;
             case 3:
+                logMsg("Selecionado relatório: Localização e Frequência.");
                 relatorioLocalizacaoEFrequencia(ocorrencias);
                 break;
             case 0:
@@ -872,6 +925,7 @@ void menuRelatoriosOcorrencias(Ocorrencias ocorrencias) {
     } while(opcao != 0);
 }
 
+/** @brief Menu de navegação para os relatórios de Quartéis. */
 void menuRelatoriosQuarteis(Quarteis quarteis, Bombeiros bombeiros) {
     if (quarteis.numQuarteis == 0) {
         printf("Sem quarteis para gerar relatorios.\n");
@@ -889,12 +943,15 @@ void menuRelatoriosQuarteis(Quarteis quarteis, Bombeiros bombeiros) {
 
         switch(opcao) {
             case 1:
+                logMsg("Selecionado relatório: Distribuição por Tipo.");
                 relatorioQuarteisPorTipo(quarteis);
                 break;
             case 2:
+                logMsg("Selecionado relatório: Ocupação e Operacionalidade.");
                 relatorioOcupacaoQuarteis(quarteis, bombeiros);
                 break;
             case 3:
+                logMsg("Selecionado relatório: Especialidades por Quartel.");
                 relatorioEspecialidadesPorQuartel(quarteis, bombeiros);
                 break;
             case 0:

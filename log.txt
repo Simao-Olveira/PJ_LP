@@ -1,0 +1,4 @@
+2025-12-15 17:19:36 - A sair do sistema.
+2025-12-15 17:19:36 - A encerrar o sistema e a libertar memória.
+2025-12-15 17:19:36 - Sistema encerrado corretamente.
+

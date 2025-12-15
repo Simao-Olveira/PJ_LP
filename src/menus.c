@@ -1,10 +1,16 @@
+/**
+ * @file menus.c
+ * @brief Implementação dos menus de navegação do sistema.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "input.h"
 #include "menus.h"
 #include "log.h"
-#include "../headers/relatorios.h"
+#include "../headers/gestaoRelatorios.h"
 
+// Includes dos cabeçalhos das entidades
 #include "../headers/ocorrencia.h"
 #include "../headers/gestaoOcorrencia.h"
 
@@ -14,8 +20,6 @@
 #include "../headers/bombeiro.h"
 #include "../headers/gestaoBombeiro.h"
 
-#include "../headers/intervencao.h"
-
 #include "../headers/equipamento.h"
 #include "../headers/gestaoEquipamento.h"
 
@@ -23,6 +27,13 @@
 #include "../headers/gestaoQuartel.h"
 
 
+/** * @brief Menu Principal do Sistema.
+ * * Lógica de Navegação:
+ * Apresenta as opções principais e delega o controlo para os submenus específicos.
+ * Ao selecionar a opção '0' (Sair), invoca as funções de limpeza de memória 
+ * (libertarMem...) para garantir que todos os recursos alocados dinamicamente 
+ * são devolvidos ao sistema operativo antes do encerramento.
+ */
 void menuPrincipal(Ocorrencias *ocorrencias, Intervencoes *intervencoes, Bombeiros *bombeiros, Equipamentos *equipamentos, Quarteis *quarteis) {
     int opcao;
     do {
@@ -67,6 +78,8 @@ void menuPrincipal(Ocorrencias *ocorrencias, Intervencoes *intervencoes, Bombeir
             case 0:
                 logMsg("A sair do sistema.");
                 printf("A Sair...\n");
+                
+                // Limpeza de memória crítica antes de sair
                 libertarMemBombeiros(bombeiros);
                 libertarMemEquipamentos(equipamentos);
                 libertarMemIntervencoes(intervencoes);
@@ -79,6 +92,10 @@ void menuPrincipal(Ocorrencias *ocorrencias, Intervencoes *intervencoes, Bombeir
     } while(opcao != 0);
 }
 
+/** * @brief Submenu de Gestão de Ocorrências.
+ * * Permite realizar operações CRUD sobre as ocorrências. 
+ * Ao sair (opção 0), guarda automaticamente os dados em ficheiro binário para persistência.
+ */
 void menuOcorrencias(Ocorrencias *ocorrencias) {
     int opcao;
     do {
@@ -122,11 +139,16 @@ void menuOcorrencias(Ocorrencias *ocorrencias) {
         if(opcao != 0) {
             printf("Pressione ENTER para voltar ao menu...");
             getchar();
+            cleanInputBuffer(); // Garante limpeza extra se necessário
         }
 
     } while(opcao != 0);
 }
 
+/** * @brief Submenu de Gestão de Intervenções.
+ * * Recebe ponteiros para todas as entidades (Ocorrencias, Bombeiros, Equipamentos)
+ * pois a criação de intervenções requer validação cruzada de dados.
+ */
 void menuIntervencoes(Intervencoes *intervencoes, Ocorrencias *ocorrencias, Bombeiros *bombeiros, Equipamentos *equipamentos) {
     int opcao;
     do {
@@ -136,7 +158,7 @@ void menuIntervencoes(Intervencoes *intervencoes, Ocorrencias *ocorrencias, Bomb
         printf("1. Listar Intervencoes\n");
         printf("2. Adicionar Intervencao\n");
         printf("3. Atualizar Intervencao\n");
-        printf("4. Remover Intervencao\n");\
+        printf("4. Remover Intervencao\n");
         printf("0. Voltar ao Menu Principal\n");
         printf("==============================\n");
         opcao = obterInteiro(0, 4, "Escolha uma opcao: ");
@@ -171,10 +193,15 @@ void menuIntervencoes(Intervencoes *intervencoes, Ocorrencias *ocorrencias, Bomb
         if(opcao != 0) {
             printf("Pressione ENTER para voltar ao menu...");
             getchar();
+            cleanInputBuffer();
         }
     } while(opcao != 0);
 }
 
+/** * @brief Submenu de Gestão de Bombeiros.
+ * * Permite gerir o efetivo. Recebe 'Quarteis' para permitir a associação 
+ * de bombeiros às respetivas unidades operacionais.
+ */
 void menuBombeiros(Bombeiros *bombeiros, Quarteis *quarteis) {
     int opcao;
     do {
@@ -218,11 +245,15 @@ void menuBombeiros(Bombeiros *bombeiros, Quarteis *quarteis) {
         if(opcao != 0) {
             printf("Pressione ENTER para voltar ao menu...");
             getchar();
+            cleanInputBuffer();
         }
 
     } while(opcao != 0);
 }
 
+/** * @brief Submenu de Gestão de Equipamentos.
+ * * Gere o inventário de materiais. Guarda em ficheiro ao sair.
+ */
 void menuEquipamentos(Equipamentos *equipamentos) {
     int opcao;
     do {
@@ -266,11 +297,15 @@ void menuEquipamentos(Equipamentos *equipamentos) {
         if(opcao != 0) {
             printf("Pressione ENTER para voltar ao menu...");
             getchar();
+            cleanInputBuffer();
         }
 
     } while(opcao != 0);
 }
 
+/** * @brief Submenu de Gestão de Quartéis.
+ * * Gere a infraestrutura física. Guarda em ficheiro ao sair.
+ */
 void menuQuarteis(Quarteis *quarteis) {
     int opcao;
     do {
@@ -314,11 +349,15 @@ void menuQuarteis(Quarteis *quarteis) {
         if(opcao != 0) {
             printf("Pressione ENTER para voltar ao menu...\n");
             getchar();
+            cleanInputBuffer();
         }
 
     } while(opcao != 0);
 }
 
+/** * @brief Submenu de Relatórios.
+ * * Centraliza o acesso a todas as estatísticas e listagens analíticas do sistema.
+ */
 void menuRelatorios(Ocorrencias *ocorrencias, Intervencoes *intervencoes, Bombeiros *bombeiros, Equipamentos *equipamentos, Quarteis *quarteis) {
     int opcao;
     do {
@@ -336,8 +375,8 @@ void menuRelatorios(Ocorrencias *ocorrencias, Intervencoes *intervencoes, Bombei
 
         switch(opcao) {
             case 1:
-                //logMsg("A abrir menu de relatórios de ocorrências.");
-                menuRelatoriosOcorrencias(*intervencoes, *ocorrencias);
+                logMsg("A abrir menu de relatórios de ocorrências.");
+                menuRelatoriosOcorrencias(*ocorrencias);
                 break;
             case 2:
                 logMsg("A abrir menu de relatórios de intervenções.");
@@ -349,7 +388,7 @@ void menuRelatorios(Ocorrencias *ocorrencias, Intervencoes *intervencoes, Bombei
                 break;
             case 4:
                 logMsg("A abrir menu de relatórios de equipamentos.");
-                menuRelatoriosEquipamentos(*intervencoes, *ocorrencias, *equipamentos);
+                menuRelatoriosEquipamentos(*intervencoes, *equipamentos);
                 break;
             case 5:
                 logMsg("A abrir menu de relatórios de quarteis.");

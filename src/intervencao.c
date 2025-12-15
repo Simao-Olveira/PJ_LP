@@ -1,3 +1,8 @@
+/**
+ * @file intervencao.c
+ * @brief Implementação das funções de gestão de intervenções.
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -13,23 +18,20 @@
 #include "enums.h"
 #include "log.h"
 
+/** @brief Converte o estado da intervenção em texto para impressão. */
 void imprimirEstadoIntervencao(EstadoIntervencao estado) {
     switch (estado) {
-        case INT_PLANEAMENTO:
-            printf("Planeamento"); 
-            break;
-        case INT_EXECUCAO:
-            printf("Em Execução"); 
-            break;
-        case INT_CONCLUIDA:
-            printf("Concluída"); 
-            break;
-        default:    
-            printf("Desconhecido");
-            break;
+        case INT_PLANEAMENTO: printf("Planeamento"); break;
+        case INT_EXECUCAO:    printf("Em Execução"); break;
+        case INT_CONCLUIDA:   printf("Concluída"); break;
+        default:              printf("Desconhecido"); break;
     }
 }
 
+/** * @brief Procura uma intervenção pelo ID.
+ * * Percorre sequencialmente a lista até encontrar o identificador fornecido.
+ * @return O índice no array ou -1 se não encontrar.
+ */
 int procurarIntervencao(Intervencoes intervencoes, int id) {
     for (int i = 0; i < intervencoes.numIntervencoes; i++) {
         if (intervencoes.intervencoes[i].id == id) {
@@ -39,7 +41,21 @@ int procurarIntervencao(Intervencoes intervencoes, int id) {
     return -1;
 }
 
-// === FUNÇÃO ADICIONAR (COM LIMITAÇÃO DE QUANTIDADE) ===
+/** * @brief Cria uma nova intervenção e aloca recursos (Bombeiros/Equipamentos).
+ * * Lógica Complexa de Validação e Alocação:
+ * 1. Pré-condição: Verifica se existem ocorrências registadas.
+ * 2. Gera ID automático e redimensiona a memória (realloc) se necessário.
+ * 3. Associa a uma Ocorrência existente (validação de chave estrangeira).
+ * 4. **Alocação de Bombeiros**:
+ * - Conta quantos bombeiros têm estado 'DISPONIVEL'.
+ * - Solicita ao utilizador quantos quer alocar (limitado aos disponíveis).
+ * - Para cada bombeiro escolhido: valida se existe, se não é duplicado na lista
+ * e se está realmente disponível.
+ * - IMPORTANTE: Altera o estado do bombeiro para 'EM_INTERVENCAO'.
+ * 5. **Alocação de Equipamentos**:
+ * - Segue a mesma lógica dos bombeiros. Altera o estado para 'EM_USO'.
+ * 6. Regista as datas e horas de início.
+ */
 void adicionarIntervencao(Intervencoes *intervencoes, Ocorrencias *ocorrencias, Bombeiros *bombeiros, Equipamentos *equipamentos) {
     
     // 1. VALIDAÇÃO CRÍTICA
@@ -59,7 +75,7 @@ void adicionarIntervencao(Intervencoes *intervencoes, Ocorrencias *ocorrencias, 
     }
     int id = maiorId + 1;
 
-    // Verificar memória
+    // Verificar memória do array principal
     if (intervencoes->totalIntervencoes == intervencoes->numIntervencoes) {
         intervencoes->totalIntervencoes += 5;
         Intervencao *temp = (Intervencao*) realloc(intervencoes->intervencoes, intervencoes->totalIntervencoes * sizeof(Intervencao));
@@ -91,7 +107,7 @@ void adicionarIntervencao(Intervencoes *intervencoes, Ocorrencias *ocorrencias, 
         printf("\n--- Alocar Bombeiros ---\n");
         listarBombeiros(*bombeiros); 
 
-        // 3.1. Contar apenas os disponíveis
+        // 3.1. Contar apenas os disponíveis para definir o limite
         int disponiveis = 0;
         for(int k=0; k < bombeiros->numBombeiros; k++){
             if(bombeiros->bombeiros[k].estado == EB_DISPONIVEL) disponiveis++;
@@ -99,10 +115,10 @@ void adicionarIntervencao(Intervencoes *intervencoes, Ocorrencias *ocorrencias, 
         printf(">> Total de Bombeiros Disponíveis: %d\n", disponiveis);
 
         if (disponiveis > 0) {
-            // 3.2. Limita o input à quantidade de disponíveis
             int qtdPedida = obterInteiro(0, disponiveis, "Quantos bombeiros quer alocar? ");
             
             if (qtdPedida > 0) {
+                // Aloca array dinâmico interno para guardar os IDs
                 intervencoes->intervencoes[i].idsBombeiros = (int*) malloc(qtdPedida * sizeof(int));
                 
                 for (int k = 0; k < qtdPedida; k++) {
@@ -121,7 +137,7 @@ void adicionarIntervencao(Intervencoes *intervencoes, Ocorrencias *ocorrencias, 
                             printf("Aviso: Bombeiro com ID %d não encontrado.\n", idBomb);
                             aux = 1;
                         } else {
-                            // Valida duplicados
+                            // Valida duplicados na mesma intervenção
                             for (int j = 0; j < k; j++) {
                                 if (intervencoes->intervencoes[i].idsBombeiros[j] == idBomb) {
                                     printf("Erro: O ID %d já foi adicionado.\n", idBomb);
@@ -131,7 +147,7 @@ void adicionarIntervencao(Intervencoes *intervencoes, Ocorrencias *ocorrencias, 
                             }
                         }
 
-                        // Valida Estado
+                        // Valida Estado (se está disponível)
                         if (aux == 0 && idxBomb != -1) {
                             if (bombeiros->bombeiros[idxBomb].estado != EB_DISPONIVEL) {
                                 printf("ERRO: O bombeiro %s não está Disponível.\n", bombeiros->bombeiros[idxBomb].nome);
@@ -141,7 +157,7 @@ void adicionarIntervencao(Intervencoes *intervencoes, Ocorrencias *ocorrencias, 
 
                     } while (aux == 1);
                     
-                    // Inserir e mudar estado
+                    // Inserir na lista da intervenção e MUDAR ESTADO NA LISTA GERAL
                     intervencoes->intervencoes[i].idsBombeiros[k] = idBomb;
                     bombeiros->bombeiros[idxBomb].estado = EB_INTERVENCAO;
                 }
@@ -169,7 +185,6 @@ void adicionarIntervencao(Intervencoes *intervencoes, Ocorrencias *ocorrencias, 
         printf("\n--- Alocar Equipamentos ---\n");
         listarEquipamentos(*equipamentos);
         
-        // 4.1. Contar disponíveis
         int eqDisponiveis = 0;
         for(int k=0; k < equipamentos->numEquipamentos; k++){
             if(equipamentos->equipamentos[k].estado == EQ_DISPONIVEL) eqDisponiveis++;
@@ -177,10 +192,10 @@ void adicionarIntervencao(Intervencoes *intervencoes, Ocorrencias *ocorrencias, 
         printf(">> Total de Equipamentos Disponíveis: %d\n", eqDisponiveis);
 
         if (eqDisponiveis > 0) {
-            // 4.2. Limita o input
             int qtdPedida = obterInteiro(0, eqDisponiveis, "Quantos equipamentos quer alocar? ");
             
             if (qtdPedida > 0) {
+                // Aloca array dinâmico interno para guardar os IDs
                 intervencoes->intervencoes[i].idsEquipamentos = (int*) malloc(qtdPedida * sizeof(int));
                 
                 for (int k = 0; k < qtdPedida; k++) {
@@ -216,7 +231,7 @@ void adicionarIntervencao(Intervencoes *intervencoes, Ocorrencias *ocorrencias, 
 
                     } while (aux == 1);
                     
-                    // Inserir e mudar estado
+                    // Inserir na lista da intervenção e MUDAR ESTADO NA LISTA GERAL
                     intervencoes->intervencoes[i].idsEquipamentos[k] = idEquip;
                     equipamentos->equipamentos[idxEquip].estado = EQ_EM_USO;
                 }
@@ -255,6 +270,11 @@ void adicionarIntervencao(Intervencoes *intervencoes, Ocorrencias *ocorrencias, 
     printf("Intervenção registada com sucesso!\n");
 }
 
+/** * @brief Liberta toda a memória das intervenções.
+ * * IMPORTANTE: Como cada intervenção tem arrays dinâmicos internos (IDs de 
+ * bombeiros e IDs de equipamentos), é necessário libertar esses arrays num ciclo 
+ * antes de libertar o array principal de intervenções.
+ */
 void libertarMemIntervencoes(Intervencoes *intervencoes) {
     if (intervencoes->intervencoes != NULL) {
         for (int i = 0; i < intervencoes->numIntervencoes; i++) {
@@ -268,6 +288,7 @@ void libertarMemIntervencoes(Intervencoes *intervencoes) {
     intervencoes->totalIntervencoes = 0;
 }
 
+/** @brief Imprime os detalhes de uma intervenção, incluindo recursos alocados. */
 void imprimirIntervencao(Intervencao intervencao) {
     printf("\n========================================");
     printf("\nID Intervenção: %d", intervencao.id);
@@ -301,6 +322,7 @@ void imprimirIntervencao(Intervencao intervencao) {
     printf("\n========================================\n");
 }
 
+/** @brief Lista todas as intervenções registadas. */
 void listarIntervencoes(Intervencoes intervencoes) {
     if (intervencoes.numIntervencoes > 0) {
         for (int i = 0; i < intervencoes.numIntervencoes; i++) {
@@ -311,7 +333,17 @@ void listarIntervencoes(Intervencoes intervencoes) {
     }
 }
 
-// === FUNÇÃO ATUALIZAR (LIBERTA RECURSOS) ===
+
+
+/** * @brief Atualiza dados e gere o ciclo de vida da intervenção.
+ * * Lógica de Conclusão:
+ * Quando o utilizador altera o estado para 'INT_CONCLUIDA':
+ * 1. O sistema pede a data de fim.
+ * 2. Percorre a lista de bombeiros alocados a esta intervenção e altera o seu estado 
+ * na lista geral de 'EM_INTERVENCAO' para 'DISPONIVEL'.
+ * 3. Faz o mesmo para os equipamentos (volta para 'DISPONIVEL').
+ * 4. Fecha automaticamente a Ocorrência associada (passa para 'CONCLUIDA').
+ */
 void atualizarDadosIntervencao(Intervencao *intervencao, Bombeiros *bombeiros, Ocorrencias *ocorrencias, Equipamentos *equipamentos) {
     int escolha;
 
@@ -330,10 +362,10 @@ void atualizarDadosIntervencao(Intervencao *intervencao, Bombeiros *bombeiros, O
                 printf("\nEstados:\n0 - Planeamento\n1 - Em Execução\n2 - Concluída\n");
                 EstadoIntervencao novoEstado = (EstadoIntervencao)obterInteiro(0, 2, "Novo Estado: ");
                 
-                // Se mudar para CONCLUIDA
+                // Se mudar para CONCLUIDA (Lógica de libertação de recursos)
                 if (novoEstado == INT_CONCLUIDA && intervencao->estado != INT_CONCLUIDA) {
                     
-                    // --- 1. PEDIR DATAS ---
+                    // 1. PEDIR DATAS
                     printf("\n--- Data de Fim ---\n");
                     intervencao->dataFim.dia = obterInteiro(1, 31, "Dia: ");
                     intervencao->dataFim.mes = obterInteiro(1, 12, "Mês: ");
@@ -342,10 +374,10 @@ void atualizarDadosIntervencao(Intervencao *intervencao, Bombeiros *bombeiros, O
                     intervencao->horaFim.horas = obterInteiro(0, 23, "Horas: ");
                     intervencao->horaFim.minutos = obterInteiro(0, 59, "Minutos: ");
                     
-                    // --- 2. ATUALIZAR ESTADO ---
+                    // 2. ATUALIZAR ESTADO
                     intervencao->estado = INT_CONCLUIDA;
 
-                    // --- 3. LIBERTAR BOMBEIROS (AUTOMÁTICO) ---
+                    // 3. LIBERTAR BOMBEIROS (Devolve à disponibilidade)
                     if (intervencao->idsBombeiros != NULL && bombeiros != NULL) {
                         for (int k = 0; k < intervencao->numBombeiros; k++) {
                             int idBomb = intervencao->idsBombeiros[k];
@@ -357,7 +389,7 @@ void atualizarDadosIntervencao(Intervencao *intervencao, Bombeiros *bombeiros, O
                         }
                     }
 
-                    // --- 4. LIBERTAR EQUIPAMENTOS (AUTOMÁTICO) ---
+                    // 4. LIBERTAR EQUIPAMENTOS (Devolve à disponibilidade)
                     if (intervencao->idsEquipamentos != NULL && equipamentos != NULL) {
                         for (int k = 0; k < intervencao->numEquipamentos; k++) {
                             int idEq = intervencao->idsEquipamentos[k];
@@ -369,7 +401,7 @@ void atualizarDadosIntervencao(Intervencao *intervencao, Bombeiros *bombeiros, O
                         }
                     }
 
-                    // --- 5. FECHAR OCORRÊNCIA (AUTOMÁTICO) ---
+                    // 5. FECHAR OCORRÊNCIA AUTOMATICAMENTE
                     if (ocorrencias != NULL) {
                         int idxOcc = procurarOcorrencia(*ocorrencias, intervencao->idOcorrencia);
                         if (idxOcc != -1) {
@@ -406,7 +438,7 @@ void atualizarDadosIntervencao(Intervencao *intervencao, Bombeiros *bombeiros, O
     } while (escolha != 0);
 }
 
-// === FUNÇÃO EDITAR ===
+/** @brief Procura a intervenção e inicia o menu de edição. */
 void editarIntervencao(Intervencoes *intervencoes, Bombeiros *bombeiros, Ocorrencias *ocorrencias, Equipamentos *equipamentos) {
     listarIntervencoes(*intervencoes);
     printf("Editar dados da intervenção:\n");
@@ -416,7 +448,7 @@ void editarIntervencao(Intervencoes *intervencoes, Bombeiros *bombeiros, Ocorren
 
     if (idx != -1) {
         imprimirIntervencao(intervencoes->intervencoes[idx]);
-        // Passa todas as listas para a função auxiliar
+        // Passa todas as listas para a função auxiliar para permitir libertação de recursos
         atualizarDadosIntervencao(&intervencoes->intervencoes[idx], bombeiros, ocorrencias, equipamentos);
         printf("Intervenção atualizada com sucesso!\n");
     } else {
@@ -424,6 +456,10 @@ void editarIntervencao(Intervencoes *intervencoes, Bombeiros *bombeiros, Ocorren
     }
 }
 
+/** * @brief Elimina uma intervenção.
+ * * Liberta os arrays dinâmicos internos (bombeiros e equipamentos) antes de 
+ * remover a intervenção do array principal e reorganizar a lista.
+ */
 void eliminarIntervencao(Intervencoes *intervencoes) {
     int id = obterInteiro(0, MAX_INT, "ID a eliminar: ");
     int idx = procurarIntervencao(*intervencoes, id);
@@ -442,6 +478,17 @@ void eliminarIntervencao(Intervencoes *intervencoes) {
     }
 }
 
+// ------ FICHEIROS ------
+
+/** * @brief Carrega dados das intervenções (incluindo arrays aninhados).
+ * * Lógica de Desserialização Complexa:
+ * 1. Lê os contadores principais.
+ * 2. Para cada intervenção, lê os dados básicos.
+ * 3. Lê o contador de bombeiros alocados (`numBombeiros`).
+ * 4. Se `numBombeiros > 0`, aloca memória (malloc) para o array `idsBombeiros` 
+ * e lê os IDs do ficheiro.
+ * 5. Repete o processo para os equipamentos.
+ */
 void carregarIntervencoes(Intervencoes *intervencoes) {
     FILE *ficheiro = fopen("data/intervencoes.bin", "rb");
     
@@ -475,6 +522,7 @@ void carregarIntervencoes(Intervencoes *intervencoes) {
         fread(&intervencoes->intervencoes[i].dataFim, sizeof(Data), 1, ficheiro);
         fread(&intervencoes->intervencoes[i].horaFim, sizeof(Hora), 1, ficheiro);
 
+        // Carregar Array de Bombeiros Aninhado
         fread(&intervencoes->intervencoes[i].numBombeiros, sizeof(int), 1, ficheiro);
         if (intervencoes->intervencoes[i].numBombeiros > 0) {
             intervencoes->intervencoes[i].idsBombeiros = (int*) malloc(intervencoes->intervencoes[i].numBombeiros * sizeof(int));
@@ -483,6 +531,7 @@ void carregarIntervencoes(Intervencoes *intervencoes) {
             intervencoes->intervencoes[i].idsBombeiros = NULL;
         }
 
+        // Carregar Array de Equipamentos Aninhado
         fread(&intervencoes->intervencoes[i].numEquipamentos, sizeof(int), 1, ficheiro);
         if (intervencoes->intervencoes[i].numEquipamentos > 0) {
             intervencoes->intervencoes[i].idsEquipamentos = (int*) malloc(intervencoes->intervencoes[i].numEquipamentos * sizeof(int));
@@ -495,6 +544,12 @@ void carregarIntervencoes(Intervencoes *intervencoes) {
     logMsg("Intervenções carregadas com sucesso do ficheiro.");
 }
 
+/** * @brief Guarda dados das intervenções.
+ * * Lógica de Serialização:
+ * Escreve os dados primitivos e, para os arrays dinâmicos internos (bombeiros e equipamentos), 
+ * escreve primeiro o tamanho do array seguido dos próprios elementos (IDs), 
+ * garantindo a integridade dos dados aninhados.
+ */
 void guardarIntervencoes(Intervencoes *intervencoes) {
     FILE *ficheiro = fopen("data/intervencoes.bin", "wb");
     if (ficheiro == NULL) { 
@@ -516,11 +571,13 @@ void guardarIntervencoes(Intervencoes *intervencoes) {
         fwrite(&intervencoes->intervencoes[i].dataFim, sizeof(Data), 1, ficheiro);
         fwrite(&intervencoes->intervencoes[i].horaFim, sizeof(Hora), 1, ficheiro);
 
+        // Guardar Array de Bombeiros
         fwrite(&intervencoes->intervencoes[i].numBombeiros, sizeof(int), 1, ficheiro);
         if (intervencoes->intervencoes[i].numBombeiros > 0) {
             fwrite(intervencoes->intervencoes[i].idsBombeiros, sizeof(int), intervencoes->intervencoes[i].numBombeiros, ficheiro);
         }
 
+        // Guardar Array de Equipamentos
         fwrite(&intervencoes->intervencoes[i].numEquipamentos, sizeof(int), 1, ficheiro);
         if (intervencoes->intervencoes[i].numEquipamentos > 0) {
             fwrite(intervencoes->intervencoes[i].idsEquipamentos, sizeof(int), intervencoes->intervencoes[i].numEquipamentos, ficheiro);
