@@ -596,44 +596,130 @@ void relatorioManutencaoEquipamentos(Equipamentos equipamentos) {
 //                           RELATÓRIOS QUARTÉIS
 // =================================================================================
 
-// 1. DEFINIR PRIMEIRO AS FUNÇÕES DE RELATÓRIO
-void relatorioCapacidadeQuarteis(Quarteis quarteis) {
-    printf("\n=== CAPACIDADE DOS QUARTEIS ===\n");
-    printf("| %s | %-20s | %-12s | %-10s |\n", "ID", "Nome", "Tipo", "Capacidade");
-    printf("|----|----------------------|--------------|------------|\n");
-    
+void relatorioQuarteisPorTipo(Quarteis quarteis) {
+    int totalVoluntarios = 0, totalSapadores = 0, totalMunicipais = 0;
     for(int i=0; i < quarteis.numQuarteis; i++) {
-        char *tipoStr = "Desc.";
         switch(quarteis.quarteis[i].tipo) {
-            case VOLUNTARIO: tipoStr = "Voluntario"; break;
-            case SAPADOR: tipoStr = "Sapador"; break;
-            case MUNICIPAL: tipoStr = "Municipal"; break;
+            case VOLUNTARIO: 
+                totalVoluntarios++; 
+                break;
+            case SAPADOR: 
+                totalSapadores++; 
+                break;
+            case MUNICIPAL: 
+                totalMunicipais++; 
+                break;
         }
-        // Ajusta se a tua struct tiver o campo capacidade, senão mete "N/A"
-        printf("| %d | %-20s | %-12s | %-10d |\n", 
-           quarteis.quarteis[i].id, quarteis.quarteis[i].nome, tipoStr, quarteis.quarteis[i].capacidade);
     }
-    printf("===========================================================\n");
+    printf("\n============================================\n");
+    printf("       DISTRIBUIÇÃO POR TIPO DE QUARTEL      \n");
+    printf("============================================\n");
+    printf("| %-27s | %-10s |\n", "Tipo de Corporação", "Quantidade");
+    printf("|---------------------------|------------|\n");
+    printf("| Bombeiros Voluntários     | %-10d |\n", totalVoluntarios);
+    printf("| Bombeiros Sapadores       | %-10d |\n", totalSapadores);
+    printf("| Bombeiros Municipais      | %-10d |\n", totalMunicipais);
+    printf("|---------------------------|------------|\n");
+    printf("| TOTAL DE QUARTÉIS         | %-10d |\n", quarteis.numQuarteis);
+    printf("============================================\n");
 }
 
-void relatorioDistribuicaoQuarteis(Quarteis quarteis) {
-    int cVol = 0, cSap = 0, cMun = 0;
-    for(int i=0; i < quarteis.numQuarteis; i++) {
-        switch(quarteis.quarteis[i].tipo) {
-            case VOLUNTARIO: cVol++; break;
-            case SAPADOR: cSap++; break;
-            case MUNICIPAL: cMun++; break;
+void relatorioOcupacaoQuarteis(Quarteis quarteis, Bombeiros bombeiros) {
+    printf("\n=======================================================================\n");
+    printf("              RELATÓRIO DE OCUPAÇÃO E OPERACIONALIDADE                 \n");
+    printf("=======================================================================\n");
+    printf("| %-20s | %-10s | %-12s | %-12s |\n", "Quartel", "Capacidade", "Ocupação", "Disponíveis");
+    printf("|----------------------|------------|--------------|--------------|\n");
+
+    for (int i = 0; i < quarteis.numQuarteis; i++) {
+        int idQ = quarteis.quarteis[i].id;
+        int capacidade = quarteis.quarteis[i].capacidade;
+        
+        // Contadores para este quartel
+        int ocupacaoAtual = 0;
+        int operacionaisProntos = 0;
+
+        // Loop complexo: Percorre todos os bombeiros para encontrar os deste quartel
+        for (int k = 0; k < bombeiros.numBombeiros; k++) {
+            // Verifica se o bombeiro pertence a este quartel
+            if (bombeiros.bombeiros[k].quartel == idQ) {
+                ocupacaoAtual++;
+                
+                // Verifica se está operacional (Disponível)
+                if (bombeiros.bombeiros[k].estado == EB_DISPONIVEL) {
+                    operacionaisProntos++;
+                }
+            }
+        }
+
+        // Cálculo de percentagem de lotação (Cast para float para ter casas decimais)
+        float taxaOcupacao = 0;
+        if(capacidade > 0) {
+            taxaOcupacao = ((float)ocupacaoAtual / (float)capacidade) * 100;
+        }
+
+        // Imprimir linha da tabela
+        printf("| %-20s | %-10d | %-3d (%0.f%%)   | %-12d |\n", 
+               quarteis.quarteis[i].nome, 
+               capacidade, 
+               ocupacaoAtual, 
+               taxaOcupacao,
+               operacionaisProntos);
+
+        // Alertas de validação
+        if (ocupacaoAtual > capacidade) {
+            printf("  -> [ALERTA] Quartel sobrelotado! Excesso de %d bombeiros.\n", ocupacaoAtual - capacidade);
+        }
+        if (ocupacaoAtual > 0 && operacionaisProntos == 0) {
+            printf("  -> [CRITICO] Nenhuma força operacional disponível neste quartel!\n");
         }
     }
-    printf("\n=== DISTRIBUICAO DA REDE DE QUARTEIS ===\n");
-    printf("Bombeiros Voluntarios:   %d\n", cVol);
-    printf("Companhias de Sapadores: %d\n", cSap);
-    printf("Bombeiros Municipais:    %d\n", cMun);
-    printf("========================================\n");
+    printf("=======================================================================\n");
+}
+
+void relatorioEspecialidadesPorQuartel(Quarteis quarteis, Bombeiros bombeiros) {
+    printf("\n=======================================================================\n");
+    printf("            DISTRIBUIÇÃO DE ESPECIALIDADES POR QUARTEL                 \n");
+    printf("=======================================================================\n");
+    printf("| %-20s | %-12s | %-12s | %-12s |\n", "Quartel", "Florestal", "Aéreo", "Resgate");
+    printf("|----------------------|--------------|--------------|--------------|\n");
+
+    for (int i = 0; i < quarteis.numQuarteis; i++) {
+        int idQ = quarteis.quarteis[i].id;
+        
+        // Contadores locais para este quartel
+        int cFlorestal = 0;
+        int cAereo = 0;
+        int cResgate = 0;
+
+        // Cruzamento de dados
+        for (int k = 0; k < bombeiros.numBombeiros; k++) {
+            // Se o bombeiro pertence a este quartel...
+            if (bombeiros.bombeiros[k].quartel == idQ) {
+                // ... verificamos a especialidade dele
+                switch (bombeiros.bombeiros[k].especialidade) {
+                    case COMBATE_FLORESTAL: cFlorestal++; break;
+                    case COMBATE_AEREO:     cAereo++; break;
+                    case RESGATE:           cResgate++; break;
+                }
+            }
+        }
+
+        // Se o quartel tiver pelo menos 1 bombeiro, mostra os dados
+        // (Opcional: podes tirar o if se quiseres ver os quarteis vazios com zeros)
+        if ((cFlorestal + cAereo + cResgate) > 0) {
+            printf("| %-20s | %-12d | %-12d | %-12d |\n", 
+                   quarteis.quarteis[i].nome, cFlorestal, cAereo, cResgate);
+        } else {
+             printf("| %-20s | %-12s | %-12s | %-12s |\n", 
+                   quarteis.quarteis[i].nome, "-", "-", "-");
+        }
+    }
+    printf("=======================================================================\n");
 }
 
 // =================================================================================
-//                               MENUS ATUALIZADOS
+//                               MENUS
 // =================================================================================
 
 void menuRelatoriosBombeiros(Intervencoes intervencoes, Ocorrencias ocorrencias, Bombeiros bombeiros) {
@@ -786,7 +872,7 @@ void menuRelatoriosOcorrencias(Intervencoes intervencoes, Ocorrencias ocorrencia
     } while(opcao != 0);
 }
 
-void menuRelatoriosQuarteis(Quarteis quarteis) {
+void menuRelatoriosQuarteis(Quarteis quarteis, Bombeiros bombeiros) {
     if (quarteis.numQuarteis == 0) {
         printf("Sem quarteis para gerar relatorios.\n");
         return;
@@ -794,18 +880,22 @@ void menuRelatoriosQuarteis(Quarteis quarteis) {
     int opcao;
     do {
         printf("\n=== RELATORIOS QUARTEIS ===\n");
-        printf("1. Capacidade e Lista de Quarteis\n");
-        printf("2. Distribuicao por Tipo\n");
+        printf("1. Distribuicao por Tipo\n");
+        printf("2. Ocupação e Operacionalidade\n");
+        printf("3. Especialidades por Quartel\n"); 
         printf("0. Voltar\n");
         printf("=============================\n");
-        opcao = obterInteiro(0, 2, "Opcao: ");
+        opcao = obterInteiro(0, 3, "Opcao: ");
 
         switch(opcao) {
             case 1:
-                relatorioCapacidadeQuarteis(quarteis);
+                relatorioQuarteisPorTipo(quarteis);
                 break;
             case 2:
-                relatorioDistribuicaoQuarteis(quarteis);
+                relatorioOcupacaoQuarteis(quarteis, bombeiros);
+                break;
+            case 3:
+                relatorioEspecialidadesPorQuartel(quarteis, bombeiros);
                 break;
             case 0:
                 printf("A voltar...\n");

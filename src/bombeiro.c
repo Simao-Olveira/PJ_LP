@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include "bombeiro.h"
 #include "gestaoBombeiro.h"
+#include "quartel.h" // Necessário para validar o ID do quartel
+#include "gestaoQuartel.h" // Necessário para listar/procurar quarteis
 #include "enums.h"
 #include "input.h"
 #include "log.h"
@@ -10,17 +12,17 @@
 // Função auxiliar para imprimir o texto dos Enums
 void imprimirEspecialidade(EspecialidadeBombeiro esp) {
     switch (esp) {
-        case COMBATE_FLORESTAL:
-            printf("Combate Florestal");
+        case COMBATE_FLORESTAL: 
+            printf("Combate Florestal"); 
             break;
-        case COMBATE_AEREO:
-            printf("Combate Aéreo");
+        case COMBATE_AEREO:     
+            printf("Combate Aéreo"); 
             break;
-        case RESGATE:
-            printf("Resgate");
+        case RESGATE:           
+            printf("Resgate"); 
             break;
-        default:
-            printf("Desconhecido");
+        default:                
+            printf("Desconhecido"); 
             break;
     }
 }
@@ -28,17 +30,17 @@ void imprimirEspecialidade(EspecialidadeBombeiro esp) {
 // Converte o Enum Estado em texto
 void imprimirEstado(EstadoBombeiro est) {
     switch (est) {
-        case EB_DISPONIVEL:
-            printf("Disponível");
+        case EB_DISPONIVEL:  
+            printf("Disponível"); 
             break;
-        case EB_INTERVENCAO:
-            printf("Em Intervenção");
+        case EB_INTERVENCAO: 
+            printf("Em Intervenção"); 
             break;
-        case EB_TREINO:
-            printf("Em Treino");
+        case EB_TREINO:      
+            printf("Em Treino"); 
             break;
-        default:
-            printf("Desconhecido");
+        default:             
+            printf("Desconhecido"); 
             break;
     }
 }
@@ -52,7 +54,7 @@ int procurarBombeiro(Bombeiros bombeiros, int id) {
     return -1;
 }
 
-void adicionarBombeiro(Bombeiros *bombeiros) {
+void adicionarBombeiro(Bombeiros *bombeiros, Quarteis *quarteis) {
     printf("\n--- Novo Bombeiro ---\n");
 
     int maiorId = 0;
@@ -75,11 +77,12 @@ void adicionarBombeiro(Bombeiros *bombeiros) {
             (*bombeiros).bombeiros = temp;
         }
 
-        // Preenchimento dos dados
+        // --- Preenchimento dos dados ---
         (*bombeiros).bombeiros[(*bombeiros).numBombeiros].id = id;
 
         char buffer[SIZE_BUFFER];
         lerString(buffer, SIZE_BUFFER, "Nome: ");
+        
         (*bombeiros).bombeiros[(*bombeiros).numBombeiros].nome = (char*) malloc((strlen(buffer) + 1) * sizeof(char));
         if ((*bombeiros).bombeiros[(*bombeiros).numBombeiros].nome != NULL) {
             strcpy((*bombeiros).bombeiros[(*bombeiros).numBombeiros].nome, buffer);
@@ -92,6 +95,35 @@ void adicionarBombeiro(Bombeiros *bombeiros) {
         printf("\nEstados:\n0 - Disponível\n1 - Em Intervenção\n2 - Em Treino\n");
         int estInput = obterInteiro(0, 2, "Defina o Estado inicial: ");
         (*bombeiros).bombeiros[(*bombeiros).numBombeiros].estado = (EstadoBombeiro)estInput;
+
+        // --- NOVO CAMPO: QUARTEL (Agora usa 0 para "sem quartel") ---
+        if (quarteis != NULL && quarteis->numQuarteis > 0) {
+            printf("\n--- Associar a Quartel ---\n");
+            listarQuarteis(*quarteis);
+            
+            int idQ, idxQ;
+            printf("(Digite 0 para deixar sem quartel)\n");
+            
+            // Alterado para aceitar 0 como valor mínimo
+            idQ = obterInteiro(0, MAX_INT, "ID do Quartel: ");
+            
+            if (idQ != 0) {
+                idxQ = procurarQuartel(*quarteis, idQ);
+                if (idxQ != -1) {
+                    // Encontrou o quartel
+                    (*bombeiros).bombeiros[(*bombeiros).numBombeiros].quartel = idQ;
+                } else {
+                    printf("Quartel não encontrado. Ficará sem nenhum atribuído (0).\n");
+                    (*bombeiros).bombeiros[(*bombeiros).numBombeiros].quartel = 0;
+                }
+            } else {
+                // Escolheu 0 (sem quartel)
+                (*bombeiros).bombeiros[(*bombeiros).numBombeiros].quartel = 0;
+            }
+        } else {
+            printf("\nAviso: Não existem quartéis registados. O bombeiro ficará sem quartel.\n");
+            (*bombeiros).bombeiros[(*bombeiros).numBombeiros].quartel = 0;
+        }
 
         (*bombeiros).numBombeiros++;
         printf("Bombeiro criado com sucesso!\n");
@@ -117,6 +149,13 @@ void imprimirBombeiro(Bombeiro bombeiro) {
     
     printf("\nEstado Atual: ");
     imprimirEstado(bombeiro.estado);
+
+    if (bombeiro.quartel != 0) {
+        printf("\nQuartel ID: %d", bombeiro.quartel);
+    } else {
+        printf("\nQuartel: Sem atribuição");
+    }
+
     printf("\n----------------------------\n");
 }
 
@@ -130,7 +169,7 @@ void listarBombeiros(Bombeiros bombeiros) {
     }
 }
 
-void atualizarDadosBombeiro(Bombeiro *bombeiro) {
+void atualizarDadosBombeiro(Bombeiro *bombeiro, Quarteis *quarteis) {
     int escolha;
     char buffer[SIZE_BUFFER];
 
@@ -139,8 +178,9 @@ void atualizarDadosBombeiro(Bombeiro *bombeiro) {
         printf("1- Nome\n");
         printf("2- Especialidade\n");
         printf("3- Estado\n");
+        printf("4- Quartel\n"); 
         printf("0- Voltar\n");
-        escolha = obterInteiro(0, 5, "\nEscolha uma opção: ");
+        escolha = obterInteiro(0, 4, "\nEscolha uma opção: ");
         switch (escolha) {
             case 0:
                 break;
@@ -157,6 +197,27 @@ void atualizarDadosBombeiro(Bombeiro *bombeiro) {
                 printf("\nEstados:\n0 - Disponível\n1 - Em Intervenção\n2 - Em Treino\n");
                 bombeiro->estado = (EstadoBombeiro)obterInteiro(0, 2, "Escolha o novo Estado: ");
                 break;
+            case 4:
+                // Editar Quartel
+                if (quarteis != NULL && quarteis->numQuarteis > 0) {
+                    listarQuarteis(*quarteis);
+                    // ALTERADO: Aceita 0 como mínimo e indica 0 para remover
+                    int idQ = obterInteiro(0, MAX_INT, "Novo ID Quartel (0 para remover): ");
+                    
+                    // ALTERADO: Verifica se é 0
+                    if (idQ == 0) {
+                        bombeiro->quartel = 0; // ALTERADO: Define como 0
+                        printf("Quartel removido.\n");
+                    } else if (procurarQuartel(*quarteis, idQ) != -1) {
+                        bombeiro->quartel = idQ;
+                        printf("Quartel atualizado.\n");
+                    } else {
+                        printf("Quartel não encontrado.\n");
+                    }
+                } else {
+                    printf("Não existem quartéis registados.\n");
+                }
+                break;
             default:
                 printf("Opção inválida\n");
                 break;
@@ -164,14 +225,14 @@ void atualizarDadosBombeiro(Bombeiro *bombeiro) {
     } while (escolha != 0);
 }
 
-void editarBombeiro(Bombeiros *bombeiros) {
+void editarBombeiro(Bombeiros *bombeiros, Quarteis *quarteis) {
     listarBombeiros(*bombeiros);
     printf("Editar dados do bombeiro:\n");
     int id = procurarBombeiro(*bombeiros, obterInteiro(0, MAX_INT, "Insira o ID do bombeiro a alterar: "));
 
     if (id != -1) {
         imprimirBombeiro((*bombeiros).bombeiros[id]);
-        atualizarDadosBombeiro(&(*bombeiros).bombeiros[id]);
+        atualizarDadosBombeiro(&(*bombeiros).bombeiros[id], quarteis);
         printf("Bombeiro atualizado com sucesso!\n");
     } else {
         printf("\nBombeiro não existe!!\n\n");
@@ -232,6 +293,9 @@ void carregarBombeiros(Bombeiros *bombeiros) {
         fread(&bombeiros->bombeiros[i].especialidade, sizeof(EspecialidadeBombeiro), 1, ficheiro);
         fread(&bombeiros->bombeiros[i].estado, sizeof(EstadoBombeiro), 1, ficheiro);
         
+        // --- NOVO: LER QUARTEL ---
+        fread(&bombeiros->bombeiros[i].quartel, sizeof(int), 1, ficheiro);
+        
         int bufferTam;
         fread(&bufferTam, sizeof (int), 1, ficheiro);
         bombeiros->bombeiros[i].nome = (char*) malloc(sizeof (char) * (bufferTam + 1));
@@ -242,6 +306,7 @@ void carregarBombeiros(Bombeiros *bombeiros) {
     fclose(ficheiro);
     logMsg("Bombeiros carregados com sucesso do ficheiro.");
 }
+
 void guardarBombeiros(Bombeiros *bombeiros) {
     FILE *ficheiro = fopen("data/bombeiros.bin", "wb");
     if (ficheiro == NULL) {
@@ -257,6 +322,10 @@ void guardarBombeiros(Bombeiros *bombeiros) {
         fwrite(&bombeiros->bombeiros[i].id, sizeof(int), 1, ficheiro);
         fwrite(&bombeiros->bombeiros[i].especialidade, sizeof(EspecialidadeBombeiro), 1, ficheiro);
         fwrite(&bombeiros->bombeiros[i].estado, sizeof(EstadoBombeiro), 1, ficheiro);
+        
+        // --- NOVO: GUARDAR QUARTEL ---
+        fwrite(&bombeiros->bombeiros[i].quartel, sizeof(int), 1, ficheiro);
+        
         int buffer = strlen(bombeiros->bombeiros[i].nome); 
         fwrite(&buffer, sizeof(int), 1, ficheiro);
         fwrite(bombeiros->bombeiros[i].nome, sizeof (char), buffer, ficheiro);

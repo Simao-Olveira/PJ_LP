@@ -8,6 +8,6 @@ void menuRelatoriosBombeiros(Intervencoes intervencoes, Ocorrencias ocorrencias,
 void menuRelatoriosEquipamentos(Intervencoes intervencoes, Ocorrencias ocorrencias, Equipamentos equipamentos);
 void menuRelatoriosOcorrencias(Intervencoes intervencoes, Ocorrencias ocorrencias);
 void menuRelatoriosIntervencoes(Intervencoes intervencoes);
-void menuRelatoriosQuarteis(Quarteis quarteis);
+void menuRelatoriosQuarteis(Quarteis quarteis, Bombeiros bombeiros);
 
 #endif 

@@ -50,7 +50,7 @@ void menuPrincipal(Ocorrencias *ocorrencias, Intervencoes *intervencoes, Bombeir
                 break;
             case 3:
                 logMsg("A entrar no menu de bombeiros.");
-                menuBombeiros(bombeiros);
+                menuBombeiros(bombeiros, quarteis);
                 break;
             case 4:
                 logMsg("A entrar no menu de equipamentos.");
@@ -175,7 +175,7 @@ void menuIntervencoes(Intervencoes *intervencoes, Ocorrencias *ocorrencias, Bomb
     } while(opcao != 0);
 }
 
-void menuBombeiros(Bombeiros *bombeiros) {
+void menuBombeiros(Bombeiros *bombeiros, Quarteis *quarteis) {
     int opcao;
     do {
         printf("==============================\n");
@@ -196,11 +196,11 @@ void menuBombeiros(Bombeiros *bombeiros) {
                 break;
             case 2:
                 logMsg("A adicionar um novo bombeiro.");
-                adicionarBombeiro(bombeiros);
+                adicionarBombeiro(bombeiros, quarteis);
                 break;
             case 3:
                 logMsg("A editar um bombeiro.");
-                editarBombeiro(bombeiros);
+                editarBombeiro(bombeiros, quarteis);
                 break;
             case 4:
                 logMsg("A eliminar um bombeiro.");
@@ -353,7 +353,7 @@ void menuRelatorios(Ocorrencias *ocorrencias, Intervencoes *intervencoes, Bombei
                 break;
             case 5:
                 logMsg("A abrir menu de relatórios de quarteis.");
-                menuRelatoriosQuarteis(*quarteis);
+                menuRelatoriosQuarteis(*quarteis, *bombeiros);
                 break;
             case 0:
                 logMsg("A sair do menu de relatórios.");
