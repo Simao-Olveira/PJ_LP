@@ -341,3 +341,80 @@
 2025-12-15 03:02:23 - A sair do sistema.
 2025-12-15 03:02:23 - Sistema encerrado.
 
+2025-12-15 03:07:01 - Iniciar sistema.
+2025-12-15 03:07:01 - A iniciar a alocação de memória para ocorrências.
+2025-12-15 03:07:01 - A iniciar a alocação de memória para intervenções.
+2025-12-15 03:07:01 - A iniciar a alocação de memória para bombeiros.
+2025-12-15 03:07:01 - A iniciar a alocação de memória para equipamentos.
+2025-12-15 03:07:01 - A iniciar a alocação de memória para quarteis.
+2025-12-15 03:07:01 - A iniciar a leitura dos ficheiros de dados.
+2025-12-15 03:07:01 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-15 03:07:01 - Intervenções carregadas com sucesso do ficheiro.
+2025-12-15 03:07:01 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 03:07:01 - Equipamentos carregados com sucesso do ficheiro.
+2025-12-15 03:07:01 - Quarteis carregados com sucesso do ficheiro.
+2025-12-15 03:07:01 - A iniciar o menu principal.
+2025-12-15 03:07:02 - A entrar no menu de ocorrências.
+2025-12-15 03:07:03 - A listar ocorrências.
+2025-12-15 03:07:06 - A listar ocorrências.
+2025-12-15 03:07:11 - A sair do menu de ocorrências.
+2025-12-15 03:07:11 - A guardar ocorrências no ficheiro.
+2025-12-15 03:07:11 - Ocorrências guardadas com sucesso no ficheiro.
+2025-12-15 03:07:13 - A entrar no menu de intervenções.
+2025-12-15 03:07:13 - A listar intervenções.
+2025-12-15 03:11:27 - A sair do menu de intervenções.
+2025-12-15 03:11:27 - A guardar intervenções no ficheiro.
+2025-12-15 03:11:27 - Intervenções guardadas com sucesso no ficheiro.
+2025-12-15 03:11:29 - A sair do sistema.
+2025-12-15 03:11:29 - Sistema encerrado.
+
+2025-12-15 03:18:42 - Iniciar sistema.
+2025-12-15 03:18:42 - A iniciar a alocação de memória para ocorrências.
+2025-12-15 03:18:42 - A iniciar a alocação de memória para intervenções.
+2025-12-15 03:18:42 - A iniciar a alocação de memória para bombeiros.
+2025-12-15 03:18:42 - A iniciar a alocação de memória para equipamentos.
+2025-12-15 03:18:42 - A iniciar a alocação de memória para quarteis.
+2025-12-15 03:18:42 - A iniciar a leitura dos ficheiros de dados.
+2025-12-15 03:18:42 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-15 03:18:42 - Ficheiro 'intervencoes.bin' não foi encontrado. A iniciar a lista vazia.
+2025-12-15 03:18:42 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 03:18:42 - Equipamentos carregados com sucesso do ficheiro.
+2025-12-15 03:18:42 - Quarteis carregados com sucesso do ficheiro.
+2025-12-15 03:18:42 - A iniciar o menu principal.
+2025-12-15 03:18:43 - A entrar no menu de intervenções.
+2025-12-15 03:18:43 - A listar intervenções.
+2025-12-15 03:18:44 - A adicionar uma nova intervenção.
+2025-12-15 03:30:25 - Iniciar sistema.
+2025-12-15 03:30:25 - A iniciar a alocação de memória para ocorrências.
+2025-12-15 03:30:25 - A iniciar a alocação de memória para intervenções.
+2025-12-15 03:30:25 - A iniciar a alocação de memória para bombeiros.
+2025-12-15 03:30:25 - A iniciar a alocação de memória para equipamentos.
+2025-12-15 03:30:25 - A iniciar a alocação de memória para quarteis.
+2025-12-15 03:30:25 - A iniciar a leitura dos ficheiros de dados.
+2025-12-15 03:30:25 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-15 03:30:25 - Ficheiro 'intervencoes.bin' não foi encontrado. A iniciar a lista vazia.
+2025-12-15 03:30:25 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 03:30:25 - Equipamentos carregados com sucesso do ficheiro.
+2025-12-15 03:30:25 - Quarteis carregados com sucesso do ficheiro.
+2025-12-15 03:30:25 - A iniciar o menu principal.
+2025-12-15 03:30:31 - A entrar no menu de intervenções.
+2025-12-15 03:30:32 - A listar intervenções.
+2025-12-15 03:30:33 - A adicionar uma nova intervenção.
+2025-12-15 03:34:24 - A listar intervenções.
+2025-12-15 03:34:42 - A sair do menu de intervenções.
+2025-12-15 03:34:42 - A guardar intervenções no ficheiro.
+2025-12-15 03:34:42 - Intervenções guardadas com sucesso no ficheiro.
+2025-12-15 03:34:44 - A entrar no menu de intervenções.
+2025-12-15 03:34:47 - A editar uma intervenção.
+2025-12-15 03:35:15 - A listar intervenções.
+2025-12-15 03:35:17 - A sair do menu de intervenções.
+2025-12-15 03:35:17 - A guardar intervenções no ficheiro.
+2025-12-15 03:35:17 - Intervenções guardadas com sucesso no ficheiro.
+2025-12-15 03:35:20 - A entrar no menu de ocorrências.
+2025-12-15 03:35:20 - A listar ocorrências.
+2025-12-15 03:35:24 - A sair do menu de ocorrências.
+2025-12-15 03:35:24 - A guardar ocorrências no ficheiro.
+2025-12-15 03:35:24 - Ocorrências guardadas com sucesso no ficheiro.
+2025-12-15 03:35:25 - A sair do sistema.
+2025-12-15 03:35:25 - Sistema encerrado.
+

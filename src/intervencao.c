@@ -39,9 +39,10 @@ int procurarIntervencao(Intervencoes intervencoes, int id) {
     return -1;
 }
 
+// === FUNÇÃO ADICIONAR (COM LIMITAÇÃO DE QUANTIDADE) ===
 void adicionarIntervencao(Intervencoes *intervencoes, Ocorrencias *ocorrencias, Bombeiros *bombeiros, Equipamentos *equipamentos) {
     
-    // 1. VALIDAÇÃO CRÍTICA (Apenas Ocorrências são estritamente obrigatórias)
+    // 1. VALIDAÇÃO CRÍTICA
     if (ocorrencias == NULL || ocorrencias->numOcorrencias <= 0) {
         printf("Erro: Não existem ocorrências registadas. Crie uma ocorrência primeiro.\n");
         return;
@@ -58,7 +59,7 @@ void adicionarIntervencao(Intervencoes *intervencoes, Ocorrencias *ocorrencias, 
     }
     int id = maiorId + 1;
 
-    // Verificar memória da lista de intervenções
+    // Verificar memória
     if (intervencoes->totalIntervencoes == intervencoes->numIntervencoes) {
         intervencoes->totalIntervencoes += 5;
         Intervencao *temp = (Intervencao*) realloc(intervencoes->intervencoes, intervencoes->totalIntervencoes * sizeof(Intervencao));
@@ -85,90 +86,154 @@ void adicionarIntervencao(Intervencoes *intervencoes, Ocorrencias *ocorrencias, 
     intervencoes->intervencoes[i].idOcorrencia = idOcorrencia;
 
 
-    // --- 3. ALOCAR BOMBEIROS (OPCIONAL) ---
+    // --- 3. ALOCAR BOMBEIROS (Limitado aos Disponíveis) ---
     if (bombeiros != NULL && bombeiros->numBombeiros > 0) {
         printf("\n--- Alocar Bombeiros ---\n");
-        listarBombeiros(*bombeiros);
-        
-        intervencoes->intervencoes[i].numBombeiros = obterInteiro(0, bombeiros->numBombeiros, "Quantos bombeiros quer alocar? ");
-        
-        if (intervencoes->intervencoes[i].numBombeiros > 0) {
-            intervencoes->intervencoes[i].idsBombeiros = (int*) malloc(intervencoes->intervencoes[i].numBombeiros * sizeof(int));
+        listarBombeiros(*bombeiros); 
+
+        // 3.1. Contar apenas os disponíveis
+        int disponiveis = 0;
+        for(int k=0; k < bombeiros->numBombeiros; k++){
+            if(bombeiros->bombeiros[k].estado == EB_DISPONIVEL) disponiveis++;
+        }
+        printf(">> Total de Bombeiros Disponíveis: %d\n", disponiveis);
+
+        if (disponiveis > 0) {
+            // 3.2. Limita o input à quantidade de disponíveis
+            int qtdPedida = obterInteiro(0, disponiveis, "Quantos bombeiros quer alocar? ");
             
-            for (int k = 0; k < intervencoes->intervencoes[i].numBombeiros; k++) {
-                int idBomb, aux;
-                do {
-                    aux = 0;
-                    printf("Bombeiro %d/%d: ", k+1, intervencoes->intervencoes[i].numBombeiros);
-                    idBomb = obterInteiro(0, MAX_INT, "ID do Bombeiro: ");
-                    
-                    if(procurarBombeiro(*bombeiros, idBomb) == -1){
-                        printf("Aviso: Bombeiro com ID %d não encontrado.\n", idBomb);
-                        aux = 1;
-                    } 
-                    // Verificação de duplicados
-                    else {
-                        for (int j = 0; j < k; j++) {
-                            if (intervencoes->intervencoes[i].idsBombeiros[j] == idBomb) {
-                                printf("Erro: O ID %d já foi adicionado.\n", idBomb);
-                                aux = 1;
-                                break;
+            if (qtdPedida > 0) {
+                intervencoes->intervencoes[i].idsBombeiros = (int*) malloc(qtdPedida * sizeof(int));
+                
+                for (int k = 0; k < qtdPedida; k++) {
+                    int idBomb, aux;
+                    int idxBomb = -1; 
+
+                    do {
+                        aux = 0;
+                        printf("Bombeiro %d/%d: ", k+1, qtdPedida);
+                        idBomb = obterInteiro(0, MAX_INT, "ID do Bombeiro: ");
+
+                        idxBomb = procurarBombeiro(*bombeiros, idBomb);
+
+                        // Valida existência
+                        if(idxBomb == -1){
+                            printf("Aviso: Bombeiro com ID %d não encontrado.\n", idBomb);
+                            aux = 1;
+                        } else {
+                            // Valida duplicados
+                            for (int j = 0; j < k; j++) {
+                                if (intervencoes->intervencoes[i].idsBombeiros[j] == idBomb) {
+                                    printf("Erro: O ID %d já foi adicionado.\n", idBomb);
+                                    aux = 1;
+                                    break;
+                                }
                             }
                         }
-                    }
-                } while (aux == 1);
-                intervencoes->intervencoes[i].idsBombeiros[k] = idBomb;
+
+                        // Valida Estado
+                        if (aux == 0 && idxBomb != -1) {
+                            if (bombeiros->bombeiros[idxBomb].estado != EB_DISPONIVEL) {
+                                printf("ERRO: O bombeiro %s não está Disponível.\n", bombeiros->bombeiros[idxBomb].nome);
+                                aux = 1; 
+                            }
+                        }
+
+                    } while (aux == 1);
+                    
+                    // Inserir e mudar estado
+                    intervencoes->intervencoes[i].idsBombeiros[k] = idBomb;
+                    bombeiros->bombeiros[idxBomb].estado = EB_INTERVENCAO;
+                }
+                
+                intervencoes->intervencoes[i].numBombeiros = qtdPedida;
+
+            } else {
+                intervencoes->intervencoes[i].numBombeiros = 0;
+                intervencoes->intervencoes[i].idsBombeiros = NULL;
             }
         } else {
+            printf(">> Não há bombeiros disponíveis para alocar.\n");
+            intervencoes->intervencoes[i].numBombeiros = 0;
             intervencoes->intervencoes[i].idsBombeiros = NULL;
         }
+
     } else {
         printf("\n(Aviso: Sem bombeiros registados. Alocação ignorada.)\n");
         intervencoes->intervencoes[i].numBombeiros = 0;
         intervencoes->intervencoes[i].idsBombeiros = NULL;
     }
 
-
-    // --- 4. ALOCAR EQUIPAMENTOS (OPCIONAL) ---
+    // --- 4. ALOCAR EQUIPAMENTOS (Limitado aos Disponíveis) ---
     if (equipamentos != NULL && equipamentos->numEquipamentos > 0) {
         printf("\n--- Alocar Equipamentos ---\n");
         listarEquipamentos(*equipamentos);
         
-        intervencoes->intervencoes[i].numEquipamentos = obterInteiro(0, equipamentos->numEquipamentos, "Quantos equipamentos quer alocar? ");
-        
-        if (intervencoes->intervencoes[i].numEquipamentos > 0) {
-            intervencoes->intervencoes[i].idsEquipamentos = (int*) malloc(intervencoes->intervencoes[i].numEquipamentos * sizeof(int));
+        // 4.1. Contar disponíveis
+        int eqDisponiveis = 0;
+        for(int k=0; k < equipamentos->numEquipamentos; k++){
+            if(equipamentos->equipamentos[k].estado == EQ_DISPONIVEL) eqDisponiveis++;
+        }
+        printf(">> Total de Equipamentos Disponíveis: %d\n", eqDisponiveis);
+
+        if (eqDisponiveis > 0) {
+            // 4.2. Limita o input
+            int qtdPedida = obterInteiro(0, eqDisponiveis, "Quantos equipamentos quer alocar? ");
             
-             for (int k = 0; k < intervencoes->intervencoes[i].numEquipamentos; k++) {
-                int idEquip, aux;
-                do {
-                    aux = 0;
-                    printf("Equipamento %d/%d: ", k+1, intervencoes->intervencoes[i].numEquipamentos);
-                    idEquip = obterInteiro(0, MAX_INT, "ID do Equipamento: ");
-                    
-                    if(procurarEquipamento(*equipamentos, idEquip) == -1){
-                        printf("Aviso: Equipamento com ID %d não encontrado.\n", idEquip);
-                        aux = 1;
-                    } 
-                    // Verificação de duplicados
-                    else {
-                        for (int j = 0; j < k; j++) {
-                            if (intervencoes->intervencoes[i].idsEquipamentos[j] == idEquip) {
-                                printf("Erro: O ID %d já foi adicionado.\n", idEquip);
-                                aux = 1;
-                                break;
+            if (qtdPedida > 0) {
+                intervencoes->intervencoes[i].idsEquipamentos = (int*) malloc(qtdPedida * sizeof(int));
+                
+                for (int k = 0; k < qtdPedida; k++) {
+                    int idEquip, aux;
+                    int idxEquip = -1;
+
+                    do {
+                        aux = 0;
+                        printf("Equipamento %d/%d: ", k+1, qtdPedida);
+                        idEquip = obterInteiro(0, MAX_INT, "ID do Equipamento: ");
+
+                        idxEquip = procurarEquipamento(*equipamentos, idEquip);
+
+                        if(idxEquip == -1){
+                            printf("Aviso: Equipamento com ID %d não encontrado.\n", idEquip);
+                            aux = 1;
+                        } else {
+                            for (int j = 0; j < k; j++) {
+                                if (intervencoes->intervencoes[i].idsEquipamentos[j] == idEquip) {
+                                    printf("Erro: O ID %d já foi adicionado.\n", idEquip);
+                                    aux = 1;
+                                    break;
+                                }
                             }
                         }
-                    }
-                } while (aux == 1);
-                intervencoes->intervencoes[i].idsEquipamentos[k] = idEquip;
-            }
 
+                        if (aux == 0 && idxEquip != -1) {
+                            if (equipamentos->equipamentos[idxEquip].estado != EQ_DISPONIVEL) {
+                                printf("ERRO: O equipamento %s não está Disponível.\n", equipamentos->equipamentos[idxEquip].nome);
+                                aux = 1;
+                            }
+                        }
+
+                    } while (aux == 1);
+                    
+                    // Inserir e mudar estado
+                    intervencoes->intervencoes[i].idsEquipamentos[k] = idEquip;
+                    equipamentos->equipamentos[idxEquip].estado = EQ_EM_USO;
+                }
+
+                intervencoes->intervencoes[i].numEquipamentos = qtdPedida;
+
+            } else {
+                intervencoes->intervencoes[i].numEquipamentos = 0;
+                intervencoes->intervencoes[i].idsEquipamentos = NULL;
+            }
         } else {
+            printf(">> Não há equipamentos disponíveis para alocar.\n");
+            intervencoes->intervencoes[i].numEquipamentos = 0;
             intervencoes->intervencoes[i].idsEquipamentos = NULL;
         }
+
     } else {
-        // Se não houver equipamentos, não faz mal, continua!
         printf("\n(Aviso: Sem equipamentos registados. Alocação ignorada.)\n");
         intervencoes->intervencoes[i].numEquipamentos = 0;
         intervencoes->intervencoes[i].idsEquipamentos = NULL;
@@ -246,7 +311,8 @@ void listarIntervencoes(Intervencoes intervencoes) {
     }
 }
 
-void atualizarDadosIntervencao(Intervencao *intervencao) {
+// === FUNÇÃO ATUALIZAR (LIBERTA RECURSOS) ===
+void atualizarDadosIntervencao(Intervencao *intervencao, Bombeiros *bombeiros, Ocorrencias *ocorrencias, Equipamentos *equipamentos) {
     int escolha;
 
     do {
@@ -262,8 +328,12 @@ void atualizarDadosIntervencao(Intervencao *intervencao) {
                 break;
             case 1:
                 printf("\nEstados:\n0 - Planeamento\n1 - Em Execução\n2 - Concluída\n");
-                intervencao->estado = (EstadoIntervencao)obterInteiro(0, 2, "Novo Estado: ");
-                if (intervencao->estado == INT_CONCLUIDA) {
+                EstadoIntervencao novoEstado = (EstadoIntervencao)obterInteiro(0, 2, "Novo Estado: ");
+                
+                // Se mudar para CONCLUIDA
+                if (novoEstado == INT_CONCLUIDA && intervencao->estado != INT_CONCLUIDA) {
+                    
+                    // --- 1. PEDIR DATAS ---
                     printf("\n--- Data de Fim ---\n");
                     intervencao->dataFim.dia = obterInteiro(1, 31, "Dia: ");
                     intervencao->dataFim.mes = obterInteiro(1, 12, "Mês: ");
@@ -271,6 +341,44 @@ void atualizarDadosIntervencao(Intervencao *intervencao) {
                     printf("\n--- Hora de Fim ---\n");
                     intervencao->horaFim.horas = obterInteiro(0, 23, "Horas: ");
                     intervencao->horaFim.minutos = obterInteiro(0, 59, "Minutos: ");
+                    
+                    // --- 2. ATUALIZAR ESTADO ---
+                    intervencao->estado = INT_CONCLUIDA;
+
+                    // --- 3. LIBERTAR BOMBEIROS (AUTOMÁTICO) ---
+                    if (intervencao->idsBombeiros != NULL && bombeiros != NULL) {
+                        for (int k = 0; k < intervencao->numBombeiros; k++) {
+                            int idBomb = intervencao->idsBombeiros[k];
+                            int idx = procurarBombeiro(*bombeiros, idBomb);
+                            
+                            if (idx != -1) {
+                                bombeiros->bombeiros[idx].estado = EB_DISPONIVEL;
+                            }
+                        }
+                    }
+
+                    // --- 4. LIBERTAR EQUIPAMENTOS (AUTOMÁTICO) ---
+                    if (intervencao->idsEquipamentos != NULL && equipamentos != NULL) {
+                        for (int k = 0; k < intervencao->numEquipamentos; k++) {
+                            int idEq = intervencao->idsEquipamentos[k];
+                            int idx = procurarEquipamento(*equipamentos, idEq);
+                            
+                            if (idx != -1) {
+                                equipamentos->equipamentos[idx].estado = EQ_DISPONIVEL;
+                            }
+                        }
+                    }
+
+                    // --- 5. FECHAR OCORRÊNCIA (AUTOMÁTICO) ---
+                    if (ocorrencias != NULL) {
+                        int idxOcc = procurarOcorrencia(*ocorrencias, intervencao->idOcorrencia);
+                        if (idxOcc != -1) {
+                            ocorrencias->ocorrencias[idxOcc].estado = OCORR_CONCLUIDA;
+                        }
+                    }
+
+                } else {
+                    intervencao->estado = novoEstado;
                 }
                 break;
             case 2:
@@ -298,7 +406,8 @@ void atualizarDadosIntervencao(Intervencao *intervencao) {
     } while (escolha != 0);
 }
 
-void editarIntervencao(Intervencoes *intervencoes) {
+// === FUNÇÃO EDITAR ===
+void editarIntervencao(Intervencoes *intervencoes, Bombeiros *bombeiros, Ocorrencias *ocorrencias, Equipamentos *equipamentos) {
     listarIntervencoes(*intervencoes);
     printf("Editar dados da intervenção:\n");
     
@@ -307,7 +416,8 @@ void editarIntervencao(Intervencoes *intervencoes) {
 
     if (idx != -1) {
         imprimirIntervencao(intervencoes->intervencoes[idx]);
-        atualizarDadosIntervencao(&intervencoes->intervencoes[idx]);
+        // Passa todas as listas para a função auxiliar
+        atualizarDadosIntervencao(&intervencoes->intervencoes[idx], bombeiros, ocorrencias, equipamentos);
         printf("Intervenção atualizada com sucesso!\n");
     } else {
         printf("Intervenção não existe!!\n");
@@ -319,7 +429,6 @@ void eliminarIntervencao(Intervencoes *intervencoes) {
     int idx = procurarIntervencao(*intervencoes, id);
 
     if (idx != -1) {
-        // Libertar sub-arrays antes de apagar
         free(intervencoes->intervencoes[idx].idsBombeiros);
         free(intervencoes->intervencoes[idx].idsEquipamentos);
 
@@ -333,13 +442,9 @@ void eliminarIntervencao(Intervencoes *intervencoes) {
     }
 }
 
-// --- FICHEIROS ---
-
-
 void carregarIntervencoes(Intervencoes *intervencoes) {
     FILE *ficheiro = fopen("data/intervencoes.bin", "rb");
     
-    // Inicialização segura (como explicado anteriormente)
     if (ficheiro == NULL) {
         logMsg("Ficheiro 'intervencoes.bin' não foi encontrado. A iniciar a lista vazia.");
         intervencoes->numIntervencoes = 0;
@@ -352,7 +457,7 @@ void carregarIntervencoes(Intervencoes *intervencoes) {
     fread(&intervencoes->numIntervencoes, sizeof(int), 1, ficheiro);
 
     if (intervencoes->numIntervencoes == 0) {
-        intervencoes->totalIntervencoes = 5; // Garante tamanho mínimo
+        intervencoes->totalIntervencoes = 5; 
         intervencoes->intervencoes = (Intervencao*) malloc(intervencoes->totalIntervencoes * sizeof(Intervencao));
         fclose(ficheiro);
         return;
@@ -361,18 +466,15 @@ void carregarIntervencoes(Intervencoes *intervencoes) {
     intervencoes->intervencoes = (Intervencao*) malloc(intervencoes->totalIntervencoes * sizeof(Intervencao));
 
     for (int i = 0; i < intervencoes->numIntervencoes; i++) {
-        // Dados estáticos
         fread(&intervencoes->intervencoes[i].id, sizeof(int), 1, ficheiro);
         fread(&intervencoes->intervencoes[i].idOcorrencia, sizeof(int), 1, ficheiro);
         fread(&intervencoes->intervencoes[i].estado, sizeof(EstadoIntervencao), 1, ficheiro);
         
-        // Datas
         fread(&intervencoes->intervencoes[i].dataInicio, sizeof(Data), 1, ficheiro);
         fread(&intervencoes->intervencoes[i].horaInicio, sizeof(Hora), 1, ficheiro);
         fread(&intervencoes->intervencoes[i].dataFim, sizeof(Data), 1, ficheiro);
         fread(&intervencoes->intervencoes[i].horaFim, sizeof(Hora), 1, ficheiro);
 
-        // Array Bombeiros
         fread(&intervencoes->intervencoes[i].numBombeiros, sizeof(int), 1, ficheiro);
         if (intervencoes->intervencoes[i].numBombeiros > 0) {
             intervencoes->intervencoes[i].idsBombeiros = (int*) malloc(intervencoes->intervencoes[i].numBombeiros * sizeof(int));
@@ -381,7 +483,6 @@ void carregarIntervencoes(Intervencoes *intervencoes) {
             intervencoes->intervencoes[i].idsBombeiros = NULL;
         }
 
-        // Array Equipamentos
         fread(&intervencoes->intervencoes[i].numEquipamentos, sizeof(int), 1, ficheiro);
         if (intervencoes->intervencoes[i].numEquipamentos > 0) {
             intervencoes->intervencoes[i].idsEquipamentos = (int*) malloc(intervencoes->intervencoes[i].numEquipamentos * sizeof(int));
@@ -406,24 +507,20 @@ void guardarIntervencoes(Intervencoes *intervencoes) {
     fwrite(&intervencoes->numIntervencoes, sizeof(int), 1, ficheiro);
 
     for (int i = 0; i < intervencoes->numIntervencoes; i++) {
-        // Dados estáticos
         fwrite(&intervencoes->intervencoes[i].id, sizeof(int), 1, ficheiro);
-        fwrite(&intervencoes->intervencoes[i].idOcorrencia, sizeof(int), 1, ficheiro); // Guarda ID, não ponteiro
+        fwrite(&intervencoes->intervencoes[i].idOcorrencia, sizeof(int), 1, ficheiro); 
         fwrite(&intervencoes->intervencoes[i].estado, sizeof(EstadoIntervencao), 1, ficheiro);
         
-        // Datas
         fwrite(&intervencoes->intervencoes[i].dataInicio, sizeof(Data), 1, ficheiro);
         fwrite(&intervencoes->intervencoes[i].horaInicio, sizeof(Hora), 1, ficheiro);
         fwrite(&intervencoes->intervencoes[i].dataFim, sizeof(Data), 1, ficheiro);
         fwrite(&intervencoes->intervencoes[i].horaFim, sizeof(Hora), 1, ficheiro);
 
-        // Array Dinâmico Bombeiros
         fwrite(&intervencoes->intervencoes[i].numBombeiros, sizeof(int), 1, ficheiro);
         if (intervencoes->intervencoes[i].numBombeiros > 0) {
             fwrite(intervencoes->intervencoes[i].idsBombeiros, sizeof(int), intervencoes->intervencoes[i].numBombeiros, ficheiro);
         }
 
-        // Array Dinâmico Equipamentos
         fwrite(&intervencoes->intervencoes[i].numEquipamentos, sizeof(int), 1, ficheiro);
         if (intervencoes->intervencoes[i].numEquipamentos > 0) {
             fwrite(intervencoes->intervencoes[i].idsEquipamentos, sizeof(int), intervencoes->intervencoes[i].numEquipamentos, ficheiro);

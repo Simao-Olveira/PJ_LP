@@ -152,7 +152,7 @@ void menuIntervencoes(Intervencoes *intervencoes, Ocorrencias *ocorrencias, Bomb
                 break;
             case 3:
                 logMsg("A editar uma intervenção.");
-                editarIntervencao(intervencoes);
+                editarIntervencao(intervencoes, bombeiros, ocorrencias, equipamentos);
                 break;
             case 4:
                 logMsg("A eliminar uma intervenção.");

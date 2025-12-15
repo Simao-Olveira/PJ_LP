@@ -13,8 +13,8 @@ void adicionarIntervencao(Intervencoes *intervencoes, Ocorrencias *ocorrencias, 
 void libertarMemIntervencoes(Intervencoes *intervencoes);
 void imprimirIntervencao(Intervencao intervencao);
 void listarIntervencoes(Intervencoes intervencoes);
-void atualizarDadosIntervencao(Intervencao *intervencao);
-void editarIntervencao(Intervencoes *intervencoes);
+void atualizarDadosIntervencao(Intervencao *intervencao, Bombeiros *bombeiros, Ocorrencias *ocorrencias, Equipamentos *equipamentos);
+void editarIntervencao(Intervencoes *intervencoes, Bombeiros *bombeiros, Ocorrencias *ocorrencias, Equipamentos *equipamentos);
 void eliminarIntervencao(Intervencoes *intervencoes);
 
 // Funções de Ficheiros
