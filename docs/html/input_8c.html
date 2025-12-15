@@ -101,11 +101,11 @@ $(function(){initNavTree('input_8c.html','',''); });
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a11ac4d3ec555747d95fee8ae7aa18b5d" id="r_a11ac4d3ec555747d95fee8ae7aa18b5d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11ac4d3ec555747d95fee8ae7aa18b5d">cleanInputBuffer</a> ()</td></tr>
-<tr class="memdesc:a11ac4d3ec555747d95fee8ae7aa18b5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limpa o buffer de entrada (stdin).  <br /></td></tr>
+<tr class="memdesc:a11ac4d3ec555747d95fee8ae7aa18b5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limpa o buffer de entrada (stdin). Consome todos os caracteres pendentes no buffer de entrada num ciclo até encontrar uma quebra de linha ('\n') ou o fim do ficheiro (EOF). Isto impede que caracteres "lixo" deixados por leituras anteriores (como um Enter pendente) afetem a próxima solicitação de dados.  <br /></td></tr>
 <tr class="memitem:aa8f067a5ff0a81c9af0f5fd554750960" id="r_aa8f067a5ff0a81c9af0f5fd554750960"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8f067a5ff0a81c9af0f5fd554750960">obterInteiro</a> (int minValor, int maxValor, char *msg)</td></tr>
-<tr class="memdesc:aa8f067a5ff0a81c9af0f5fd554750960"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solicita um número inteiro dentro de um intervalo específico.  <br /></td></tr>
+<tr class="memdesc:aa8f067a5ff0a81c9af0f5fd554750960"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solicita um número inteiro dentro de um intervalo específico. Exibe a mensagem ao utilizador. Utiliza um ciclo <span class="tt">while</span> que verifica três condições de erro simultaneamente:  <br /></td></tr>
 <tr class="memitem:a8deaff72b3466f323d5ffe40426e1ea1" id="r_a8deaff72b3466f323d5ffe40426e1ea1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8deaff72b3466f323d5ffe40426e1ea1">lerString</a> (char *string, unsigned int tamanho, char *msg)</td></tr>
-<tr class="memdesc:a8deaff72b3466f323d5ffe40426e1ea1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lê uma string do teclado de forma segura.  <br /></td></tr>
+<tr class="memdesc:a8deaff72b3466f323d5ffe40426e1ea1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lê uma string do teclado de forma segura. Utiliza <span class="tt">fgets</span> para garantir que nunca lê mais caracteres do que o tamanho do buffer. Verifica o último caracter lido:  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementação de funções utilitárias para entrada de dados segura. </p>
@@ -125,9 +125,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Limpa o buffer de entrada (stdin). </p>
+<p>Limpa o buffer de entrada (stdin). Consome todos os caracteres pendentes no buffer de entrada num ciclo até encontrar uma quebra de linha ('\n') ou o fim do ficheiro (EOF). Isto impede que caracteres "lixo" deixados por leituras anteriores (como um Enter pendente) afetem a próxima solicitação de dados. </p>
 <p>Limpa o buffer de entrada (stdin) para evitar erros de leitura.</p>
-<p>** Lógica: Consome todos os caracteres pendentes no buffer de entrada num ciclo até encontrar uma quebra de linha ('\n') ou o fim do ficheiro (EOF). Isto impede que caracteres "lixo" deixados por leituras anteriores (como um Enter pendente) afetem a próxima solicitação de dados. </p>
+<ul>
+<li></li>
+</ul>
 
 </div>
 </div>
@@ -155,15 +157,10 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Lê uma string do teclado de forma segura. </p>
+<p>Lê uma string do teclado de forma segura. Utiliza <span class="tt">fgets</span> para garantir que nunca lê mais caracteres do que o tamanho do buffer. Verifica o último caracter lido: </p>
 <p>Lê uma string do teclado de forma segura (remove o \n final).</p>
-<p>** Lógica de Leitura:</p><ol type="1">
-<li>Utiliza <span class="tt">fgets</span> para garantir que nunca lê mais caracteres do que o tamanho do buffer.</li>
-<li>Verifica o último caracter lido:</li>
-</ol>
-<ul>
-<li>Se for um <span class="tt">\\n</span> (Enter), substitui-o por <span class="tt">\\0</span> (fim de string) para o texto ficar limpo.</li>
-<li>Se NÃO for um <span class="tt">\\n</span>, significa que o utilizador escreveu mais texto do que cabia. Nesse caso, chama <span class="tt"><a class="el" href="input_8h.html#a11ac4d3ec555747d95fee8ae7aa18b5d" title="Limpa o buffer de entrada (stdin) para evitar erros de leitura.">cleanInputBuffer</a></span> para descartar o excesso e impedir erros futuros. </li>
+<p>*- Se for um <span class="tt">\\n</span> (Enter), substitui-o por <span class="tt">\\0</span> (fim de string) para o texto ficar limpo.</p><ul>
+<li>Se NÃO for um <span class="tt">\\n</span>, significa que o utilizador escreveu mais texto do que cabia. Nesse caso, chama a função <span class="tt"><a class="el" href="input_8h.html#a11ac4d3ec555747d95fee8ae7aa18b5d" title="Limpa o buffer de entrada (stdin) para evitar erros de leitura.">cleanInputBuffer</a></span> para descartar o excesso e impedir erros futuros. </li>
 </ul>
 
 </div>
@@ -192,21 +189,13 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Solicita um número inteiro dentro de um intervalo específico. </p>
+<p>Solicita um número inteiro dentro de um intervalo específico. Exibe a mensagem ao utilizador. Utiliza um ciclo <span class="tt">while</span> que verifica três condições de erro simultaneamente: </p>
 <p>Solicita um número inteiro ao utilizador, validando o intervalo (min/max).</p>
-<p>** Lógica de Validação:</p><ol type="1">
-<li>Exibe a mensagem ao utilizador.</li>
-<li>Utiliza um ciclo <span class="tt">while</span> que verifica três condições de erro simultaneamente:</li>
-</ol>
-<ul>
-<li>Se o <span class="tt">scanf</span> falhou em ler um número (retorno != 1).</li>
+<p>*- Se o <span class="tt">scanf</span> falhou em ler um número (retorno != 1).</p><ul>
 <li>Se o valor é menor que o mínimo permitido.</li>
-<li>Se o valor é maior que o máximo permitido.</li>
-</ul>
-<ol type="1">
-<li>Se houver erro, limpa o buffer e pede novamente. <dl class="section return"><dt>Returns</dt><dd>O valor inteiro validado. </dd></dl>
+<li>Se o valor é maior que o máximo permitido. Se houver erro, limpa o buffer e pede novamente. <dl class="section return"><dt>Returns</dt><dd>O valor inteiro validado. </dd></dl>
 </li>
-</ol>
+</ul>
 
 </div>
 </div>

@@ -13,7 +13,7 @@ Ponto de entrada da aplicação (Fire Station Management System).
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
-\begin{DoxyCompactList}\small\item\em Função principal do programa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Função principal do programa. Regista imediatamente o início da execução no sistema de logs para auditoria. Delega a responsabilidade total de inicialização (alocação de memória, leitura de ficheiros e execução do menu) para a função {\ttfamily \doxylink{iniciar_8h_a9c1de3f9a105ba78bdff4ee3de87ddea}{iniciar\+Sistema}}. Verifica o código de retorno\+: se {\ttfamily \doxylink{iniciar_8h_a9c1de3f9a105ba78bdff4ee3de87ddea}{iniciar\+Sistema}} devolver um valor diferente de 0, significa que houve um erro crítico (ex\+: falta de memória), forçando o encerramento com código de erro 1. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -32,14 +32,8 @@ int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
 
-Função principal do programa. 
+Função principal do programa. Regista imediatamente o início da execução no sistema de logs para auditoria. Delega a responsabilidade total de inicialização (alocação de memória, leitura de ficheiros e execução do menu) para a função {\ttfamily \doxylink{iniciar_8h_a9c1de3f9a105ba78bdff4ee3de87ddea}{iniciar\+Sistema}}. Verifica o código de retorno\+: se {\ttfamily \doxylink{iniciar_8h_a9c1de3f9a105ba78bdff4ee3de87ddea}{iniciar\+Sistema}} devolver um valor diferente de 0, significa que houve um erro crítico (ex\+: falta de memória), forçando o encerramento com código de erro 1. 
 
-\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Lógica de Execução\+:
-\begin{DoxyEnumerate}
-\item Regista imediatamente o início da execução no sistema de logs para auditoria.
-\item Delega a responsabilidade total de inicialização (alocação de memória, leitura de ficheiros e execução do menu) para a função {\ttfamily \doxylink{iniciar_8h_a9c1de3f9a105ba78bdff4ee3de87ddea}{iniciar\+Sistema}}.
-\item Verifica o código de retorno\+: se {\ttfamily \doxylink{iniciar_8h_a9c1de3f9a105ba78bdff4ee3de87ddea}{iniciar\+Sistema}} devolver um valor diferente de 0, significa que houve um erro crítico (ex\+: falta de memória), forçando o encerramento com código de erro 1. \begin{DoxyReturn}{Returns}
+\texorpdfstring{$\ast$}{*}\begin{DoxyReturn}{Returns}
 0 em caso de sucesso, 1 em caso de erro fatal. 
 \end{DoxyReturn}
-
-\end{DoxyEnumerate}

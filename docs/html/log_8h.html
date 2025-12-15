@@ -123,22 +123,12 @@ Functions</h2></td></tr>
 
 <p>Escreve uma mensagem no ficheiro de log (adicionando data/hora atual automaticamente). </p>
 <p>Escreve uma mensagem no ficheiro de log (adicionando data/hora atual automaticamente).</p>
-<p>** Lógica de Registo:</p><ol type="1">
-<li>Captura a hora atual do sistema (time/localtime).</li>
-<li>Tenta abrir o ficheiro "log.txt" em modo de "append" ('a'). Este modo é crucial para garantir que as mensagens anteriores não são apagadas, acrescentando a nova linha ao final do ficheiro.</li>
-<li>Validação Crítica: Se não for possível abrir o ficheiro (ex: permissões, disco cheio), o programa encerra forçosamente (exit), pois um sistema sem logs não é auditável.</li>
-<li>Formata e escreve a string: "AAAA-MM-DD HH:MM:SS - Mensagem".</li>
-<li>Fecha o ficheiro imediatamente para garantir a persistência dos dados em disco.</li>
-</ol>
-<ul>
-<li><dl class="params"><dt>Parameters</dt><dd>
+<p>** </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td>A mensagem de texto a ser registada. </td></tr>
   </table>
   </dd>
 </dl>
-</li>
-</ul>
 
 </div>
 </div>

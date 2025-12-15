@@ -115,15 +115,18 @@ $(function(){initNavTree('relatorios_8c.html','',''); });
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:ContadorRecurso" id="r_ContadorRecurso"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_contador_recurso.html">ContadorRecurso</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estrutura auxiliar para contagem de recursos (Top X).  <a href="struct_contador_recurso.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estrutura auxiliar para contagem de recursos.  <a href="struct_contador_recurso.html#details">More...</a><br /></td></tr>
 <tr class="memitem:StatsBombeiro" id="r_StatsBombeiro"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_stats_bombeiro.html">StatsBombeiro</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estrutura auxiliar para o ranking de desempenho de bombeiros.  <a href="struct_stats_bombeiro.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:abf3f956b02ed1443094583facf07eccf" id="r_abf3f956b02ed1443094583facf07eccf"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf3f956b02ed1443094583facf07eccf">getStrEstadoOcorrencia</a> (<a class="el" href="enums_8h.html#aa03a901485bdef7b8e7ae6757c2943cd">EstadoOcorrencia</a> est)</td></tr>
+<tr class="memdesc:abf3f956b02ed1443094583facf07eccf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função auxiliar que converte o estado da ocorrência para texto.  <br /></td></tr>
 <tr class="memitem:a2f27e5bfd2883d2c5a41dfb7a8d54479" id="r_a2f27e5bfd2883d2c5a41dfb7a8d54479"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f27e5bfd2883d2c5a41dfb7a8d54479">getStrTipoEquipamento</a> (<a class="el" href="enums_8h.html#a74d57d5ed91067127cc3a2537c50322a">TipoEquipamento</a> tipo)</td></tr>
+<tr class="memdesc:a2f27e5bfd2883d2c5a41dfb7a8d54479"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função auxiliar que converte o tipo do equipamento para texto.  <br /></td></tr>
 <tr class="memitem:a62104246a71d5711af6124a29cadf072" id="r_a62104246a71d5711af6124a29cadf072"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62104246a71d5711af6124a29cadf072">getStrEstadoEquipamento</a> (<a class="el" href="enums_8h.html#a7798c1385e8c3c9babaffe702a6e11a8">EstadoEquipamento</a> est)</td></tr>
+<tr class="memdesc:a62104246a71d5711af6124a29cadf072"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função auxiliar que converte o estado do equipamento para texto.  <br /></td></tr>
 <tr class="memitem:ac83e478bc82a6fdd37437084a737d7d5" id="r_ac83e478bc82a6fdd37437084a737d7d5"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac83e478bc82a6fdd37437084a737d7d5">calcularMinutosTotais</a> (<a class="el" href="struct_data.html">Data</a> d, <a class="el" href="struct_hora.html">Hora</a> h)</td></tr>
 <tr class="memdesc:ac83e478bc82a6fdd37437084a737d7d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula o total de minutos desde o ano 0 (aproximado) para comparações.  <br /></td></tr>
 <tr class="memitem:a1c967f3bd33ecfe64ed04546b9e4d1cd" id="r_a1c967f3bd33ecfe64ed04546b9e4d1cd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c967f3bd33ecfe64ed04546b9e4d1cd">calcularDiferencaMinutos</a> (<a class="el" href="struct_data.html">Data</a> d1, <a class="el" href="struct_hora.html">Hora</a> h1, <a class="el" href="struct_data.html">Data</a> d2, <a class="el" href="struct_hora.html">Hora</a> h2)</td></tr>
@@ -245,6 +248,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Função auxiliar que converte o estado do equipamento para texto. </p>
+
 </div>
 </div>
 <a id="abf3f956b02ed1443094583facf07eccf" name="abf3f956b02ed1443094583facf07eccf"></a>
@@ -262,6 +267,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Função auxiliar que converte o estado da ocorrência para texto. </p>
+
 </div>
 </div>
 <a id="a2f27e5bfd2883d2c5a41dfb7a8d54479" name="a2f27e5bfd2883d2c5a41dfb7a8d54479"></a>
@@ -278,6 +285,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Função auxiliar que converte o tipo do equipamento para texto. </p>
 
 </div>
 </div>
@@ -576,7 +585,9 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Analisa a lotação de cada quartel e a quantidade de operacionais prontos. </p>
-<p>** Emite alertas visuais e LOGS de aviso caso existam quartéis sobrelotados ou sem nenhum operacional disponível. </p>
+<ul>
+<li></li>
+</ul>
 
 </div>
 </div>
@@ -668,7 +679,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Identifica os <a class="el" href="struct_bombeiros.html" title="Estrutura de gestão para uma coleção de bombeiros.">Bombeiros</a> e <a class="el" href="struct_equipamentos.html" title="Estrutura de gestão para uma coleção de equipamentos.">Equipamentos</a> mais requisitados. </p>
-<p>** Utiliza arrays auxiliares (<span class="tt"><a class="el" href="struct_contador_recurso.html" title="Estrutura auxiliar para contagem de recursos (Top X).">ContadorRecurso</a></span>) para acumular a contagem de IDs presentes nos arrays aninhados de cada intervenção e ordena (Bubble Sort). </p>
+<p>** Utiliza arrays auxiliares (<span class="tt"><a class="el" href="struct_contador_recurso.html" title="Estrutura auxiliar para contagem de recursos.">ContadorRecurso</a></span>) para acumular a contagem de IDs presentes nos arrays aninhados de cada intervenção e ordena (Bubble Sort). </p>
 
 </div>
 </div>

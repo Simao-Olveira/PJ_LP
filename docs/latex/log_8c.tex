@@ -13,7 +13,7 @@ Implementação do sistema de registo de logs (histórico) do sistema.
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{log_8c_ad05de0fb57b91654936ba1ea54fc0f0f}{log\+Msg}} (char \texorpdfstring{$\ast$}{*}msg)
-\begin{DoxyCompactList}\small\item\em Escreve uma mensagem no ficheiro de log com carimbo temporal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Escreve uma mensagem no ficheiro de log com carimbo temporal. Captura a hora atual do sistema (time/localtime). Tenta abrir o ficheiro "{}log.\+txt"{} em modo de "{}append"{} (\textquotesingle{}a\textquotesingle{}). Este modo é crucial para garantir que as mensagens anteriores não são apagadas, acrescentando a nova linha ao final do ficheiro. Validação Crítica\+: Se não for possível abrir o ficheiro (ex\+: permissões, disco cheio), o programa encerra forçosamente (exit), pois um sistema sem logs não é auditável. Formata e escreve a string\+: "{}\+AAAA-\/\+MM-\/\+DD HH\+:\+MM\+:\+SS -\/ Mensagem"{}. Fecha o ficheiro imediatamente para garantir a persistência dos dados em disco. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -32,23 +32,12 @@ void log\+Msg (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{
 
 
 
-Escreve uma mensagem no ficheiro de log com carimbo temporal. 
+Escreve uma mensagem no ficheiro de log com carimbo temporal. Captura a hora atual do sistema (time/localtime). Tenta abrir o ficheiro "{}log.\+txt"{} em modo de "{}append"{} (\textquotesingle{}a\textquotesingle{}). Este modo é crucial para garantir que as mensagens anteriores não são apagadas, acrescentando a nova linha ao final do ficheiro. Validação Crítica\+: Se não for possível abrir o ficheiro (ex\+: permissões, disco cheio), o programa encerra forçosamente (exit), pois um sistema sem logs não é auditável. Formata e escreve a string\+: "{}\+AAAA-\/\+MM-\/\+DD HH\+:\+MM\+:\+SS -\/ Mensagem"{}. Fecha o ficheiro imediatamente para garantir a persistência dos dados em disco. 
 
 Escreve uma mensagem no ficheiro de log (adicionando data/hora atual automaticamente).
 
-\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Lógica de Registo\+:
-\begin{DoxyEnumerate}
-\item Captura a hora atual do sistema (time/localtime).
-\item Tenta abrir o ficheiro "{}log.\+txt"{} em modo de "{}append"{} (\textquotesingle{}a\textquotesingle{}). Este modo é crucial para garantir que as mensagens anteriores não são apagadas, acrescentando a nova linha ao final do ficheiro.
-\item Validação Crítica\+: Se não for possível abrir o ficheiro (ex\+: permissões, disco cheio), o programa encerra forçosamente (exit), pois um sistema sem logs não é auditável.
-\item Formata e escreve a string\+: "{}\+AAAA-\/\+MM-\/\+DD HH\+:\+MM\+:\+SS -\/ Mensagem"{}.
-\item Fecha o ficheiro imediatamente para garantir a persistência dos dados em disco.
-\end{DoxyEnumerate}
-\begin{DoxyItemize}
-\item 
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} 
 \begin{DoxyParams}{Parameters}
 {\em msg} & A mensagem de texto a ser registada. \\
 \hline
 \end{DoxyParams}
-
-\end{DoxyItemize}

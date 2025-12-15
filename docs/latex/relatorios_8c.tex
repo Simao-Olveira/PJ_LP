@@ -26,18 +26,18 @@ Implementação dos relatórios e estatísticas do sistema.
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{struct_contador_recurso}{Contador\+Recurso}}
-\begin{DoxyCompactList}\small\item\em Estrutura auxiliar para contagem de recursos (Top X). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Estrutura auxiliar para contagem de recursos. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{struct_stats_bombeiro}{Stats\+Bombeiro}}
 \begin{DoxyCompactList}\small\item\em Estrutura auxiliar para o ranking de desempenho de bombeiros. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{relatorios_8c_abf3f956b02ed1443094583facf07eccf}{get\+Str\+Estado\+Ocorrencia}} (\mbox{\hyperlink{enums_8h_aa03a901485bdef7b8e7ae6757c2943cd}{Estado\+Ocorrencia}} est)
-\item 
+\begin{DoxyCompactList}\small\item\em Função auxiliar que converte o estado da ocorrência para texto. \end{DoxyCompactList}\item 
 char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{relatorios_8c_a2f27e5bfd2883d2c5a41dfb7a8d54479}{get\+Str\+Tipo\+Equipamento}} (\mbox{\hyperlink{enums_8h_a74d57d5ed91067127cc3a2537c50322a}{Tipo\+Equipamento}} tipo)
-\item 
+\begin{DoxyCompactList}\small\item\em Função auxiliar que converte o tipo do equipamento para texto. \end{DoxyCompactList}\item 
 char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{relatorios_8c_a62104246a71d5711af6124a29cadf072}{get\+Str\+Estado\+Equipamento}} (\mbox{\hyperlink{enums_8h_a7798c1385e8c3c9babaffe702a6e11a8}{Estado\+Equipamento}} est)
-\item 
+\begin{DoxyCompactList}\small\item\em Função auxiliar que converte o estado do equipamento para texto. \end{DoxyCompactList}\item 
 long \mbox{\hyperlink{relatorios_8c_ac83e478bc82a6fdd37437084a737d7d5}{calcular\+Minutos\+Totais}} (\mbox{\hyperlink{struct_data}{Data}} d, \mbox{\hyperlink{struct_hora}{Hora}} h)
 \begin{DoxyCompactList}\small\item\em Calcula o total de minutos desde o ano 0 (aproximado) para comparações. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{relatorios_8c_a1c967f3bd33ecfe64ed04546b9e4d1cd}{calcular\+Diferenca\+Minutos}} (\mbox{\hyperlink{struct_data}{Data}} d1, \mbox{\hyperlink{struct_hora}{Hora}} h1, \mbox{\hyperlink{struct_data}{Data}} d2, \mbox{\hyperlink{struct_hora}{Hora}} h2)
@@ -120,17 +120,29 @@ Calcula o total de minutos desde o ano 0 (aproximado) para comparações.
 {\footnotesize\ttfamily \label{relatorios_8c_a62104246a71d5711af6124a29cadf072} 
 char \texorpdfstring{$\ast$}{*} get\+Str\+Estado\+Equipamento (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enums_8h_a7798c1385e8c3c9babaffe702a6e11a8}{Estado\+Equipamento}}}]{est}{}\end{DoxyParamCaption})}
 
+
+
+Função auxiliar que converte o estado do equipamento para texto. 
+
 \Hypertarget{relatorios_8c_abf3f956b02ed1443094583facf07eccf}\index{relatorios.c@{relatorios.c}!getStrEstadoOcorrencia@{getStrEstadoOcorrencia}}
 \index{getStrEstadoOcorrencia@{getStrEstadoOcorrencia}!relatorios.c@{relatorios.c}}
 \doxysubsubsection{\texorpdfstring{getStrEstadoOcorrencia()}{getStrEstadoOcorrencia()}}
 {\footnotesize\ttfamily \label{relatorios_8c_abf3f956b02ed1443094583facf07eccf} 
 char \texorpdfstring{$\ast$}{*} get\+Str\+Estado\+Ocorrencia (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enums_8h_aa03a901485bdef7b8e7ae6757c2943cd}{Estado\+Ocorrencia}}}]{est}{}\end{DoxyParamCaption})}
 
+
+
+Função auxiliar que converte o estado da ocorrência para texto. 
+
 \Hypertarget{relatorios_8c_a2f27e5bfd2883d2c5a41dfb7a8d54479}\index{relatorios.c@{relatorios.c}!getStrTipoEquipamento@{getStrTipoEquipamento}}
 \index{getStrTipoEquipamento@{getStrTipoEquipamento}!relatorios.c@{relatorios.c}}
 \doxysubsubsection{\texorpdfstring{getStrTipoEquipamento()}{getStrTipoEquipamento()}}
 {\footnotesize\ttfamily \label{relatorios_8c_a2f27e5bfd2883d2c5a41dfb7a8d54479} 
 char \texorpdfstring{$\ast$}{*} get\+Str\+Tipo\+Equipamento (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enums_8h_a74d57d5ed91067127cc3a2537c50322a}{Tipo\+Equipamento}}}]{tipo}{}\end{DoxyParamCaption})}
+
+
+
+Função auxiliar que converte o tipo do equipamento para texto. 
 
 \Hypertarget{relatorios_8c_adee804f6d9fb43e77bb84e5478cc7212}\index{relatorios.c@{relatorios.c}!menuRelatoriosBombeiros@{menuRelatoriosBombeiros}}
 \index{menuRelatoriosBombeiros@{menuRelatoriosBombeiros}!relatorios.c@{relatorios.c}}
@@ -272,7 +284,10 @@ void relatorio\+Ocupacao\+Quarteis (\begin{DoxyParamCaption}\item[{\mbox{\hyperl
 
 Analisa a lotação de cada quartel e a quantidade de operacionais prontos. 
 
-\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Emite alertas visuais e LOGS de aviso caso existam quartéis sobrelotados ou sem nenhum operacional disponível. \Hypertarget{relatorios_8c_afd89271d47cd8de28c3d93417c84ad21}\index{relatorios.c@{relatorios.c}!relatorioParticipacaoIntervencoes@{relatorioParticipacaoIntervencoes}}
+
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}\Hypertarget{relatorios_8c_afd89271d47cd8de28c3d93417c84ad21}\index{relatorios.c@{relatorios.c}!relatorioParticipacaoIntervencoes@{relatorioParticipacaoIntervencoes}}
 \index{relatorioParticipacaoIntervencoes@{relatorioParticipacaoIntervencoes}!relatorios.c@{relatorios.c}}
 \doxysubsubsection{\texorpdfstring{relatorioParticipacaoIntervencoes()}{relatorioParticipacaoIntervencoes()}}
 {\footnotesize\ttfamily \label{relatorios_8c_afd89271d47cd8de28c3d93417c84ad21} 

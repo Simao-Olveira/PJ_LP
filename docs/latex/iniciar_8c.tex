@@ -24,7 +24,7 @@ Implementação do fluxo de inicialização do sistema.
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{iniciar_8c_a9c1de3f9a105ba78bdff4ee3de87ddea}{iniciar\+Sistema}} ()
-\begin{DoxyCompactList}\small\item\em Inicializa o sistema, carrega dados e arranca o menu principal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Inicializa o sistema, carrega dados e arranca o menu principal. Declara as estruturas de controlo (\doxylink{struct_ocorrencias}{Ocorrencias}, \doxylink{struct_bombeiros}{Bombeiros}, etc.) na stack. Chama as funções de carregamento (ex\+: carregar\+Bombeiros). Estas funções são responsáveis por alocar a memória dinâmica necessária. Se os ficheiros não existirem, elas inicializam as estruturas vazias prontas a usar. Transfere o controlo para o Menu Principal. Após o fecho do menu (encerramento do programa), chama as funções de libertação de memória para garantir um encerramento limpo. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -43,17 +43,10 @@ int iniciar\+Sistema (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
 
-Inicializa o sistema, carrega dados e arranca o menu principal. 
+Inicializa o sistema, carrega dados e arranca o menu principal. Declara as estruturas de controlo (\doxylink{struct_ocorrencias}{Ocorrencias}, \doxylink{struct_bombeiros}{Bombeiros}, etc.) na stack. Chama as funções de carregamento (ex\+: carregar\+Bombeiros). Estas funções são responsáveis por alocar a memória dinâmica necessária. Se os ficheiros não existirem, elas inicializam as estruturas vazias prontas a usar. Transfere o controlo para o Menu Principal. Após o fecho do menu (encerramento do programa), chama as funções de libertação de memória para garantir um encerramento limpo. 
 
 Inicializa estruturas, carrega dados e executa o menu principal.
 
-\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Lógica do Algoritmo\+:
-\begin{DoxyEnumerate}
-\item Declara as estruturas de controlo (\doxylink{struct_ocorrencias}{Ocorrencias}, \doxylink{struct_bombeiros}{Bombeiros}, etc.) na stack.
-\item Chama as funções de carregamento (ex\+: carregar\+Bombeiros). Estas funções são responsáveis por alocar a memória dinâmica necessária. Se os ficheiros não existirem, elas inicializam as estruturas vazias prontas a usar.
-\item Transfere o controlo para o Menu Principal.
-\item Após o fecho do menu (encerramento do programa), chama as funções de libertação de memória para garantir um encerramento limpo. \begin{DoxyReturn}{Returns}
+\texorpdfstring{$\ast$}{*}\begin{DoxyReturn}{Returns}
 0 em caso de sucesso. 
 \end{DoxyReturn}
-
-\end{DoxyEnumerate}

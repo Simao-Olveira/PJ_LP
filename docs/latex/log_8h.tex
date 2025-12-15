@@ -33,19 +33,8 @@ Escreve uma mensagem no ficheiro de log (adicionando data/hora atual automaticam
 
 Escreve uma mensagem no ficheiro de log (adicionando data/hora atual automaticamente).
 
-\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Lógica de Registo\+:
-\begin{DoxyEnumerate}
-\item Captura a hora atual do sistema (time/localtime).
-\item Tenta abrir o ficheiro "{}log.\+txt"{} em modo de "{}append"{} (\textquotesingle{}a\textquotesingle{}). Este modo é crucial para garantir que as mensagens anteriores não são apagadas, acrescentando a nova linha ao final do ficheiro.
-\item Validação Crítica\+: Se não for possível abrir o ficheiro (ex\+: permissões, disco cheio), o programa encerra forçosamente (exit), pois um sistema sem logs não é auditável.
-\item Formata e escreve a string\+: "{}\+AAAA-\/\+MM-\/\+DD HH\+:\+MM\+:\+SS -\/ Mensagem"{}.
-\item Fecha o ficheiro imediatamente para garantir a persistência dos dados em disco.
-\end{DoxyEnumerate}
-\begin{DoxyItemize}
-\item 
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} 
 \begin{DoxyParams}{Parameters}
 {\em msg} & A mensagem de texto a ser registada. \\
 \hline
 \end{DoxyParams}
-
-\end{DoxyItemize}

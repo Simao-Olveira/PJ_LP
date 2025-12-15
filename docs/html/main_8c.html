@@ -102,7 +102,7 @@ $(function(){initNavTree('main_8c.html','',''); });
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
-<tr class="memdesc:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função principal do programa.  <br /></td></tr>
+<tr class="memdesc:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função principal do programa. Regista imediatamente o início da execução no sistema de logs para auditoria. Delega a responsabilidade total de inicialização (alocação de memória, leitura de ficheiros e execução do menu) para a função <span class="tt"><a class="el" href="iniciar_8h.html#a9c1de3f9a105ba78bdff4ee3de87ddea" title="Inicializa estruturas, carrega dados e executa o menu principal.">iniciarSistema</a></span>. Verifica o código de retorno: se <span class="tt"><a class="el" href="iniciar_8h.html#a9c1de3f9a105ba78bdff4ee3de87ddea" title="Inicializa estruturas, carrega dados e executa o menu principal.">iniciarSistema</a></span> devolver um valor diferente de 0, significa que houve um erro crítico (ex: falta de memória), forçando o encerramento com código de erro 1.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Ponto de entrada da aplicação (Fire Station Management System). </p>
@@ -122,13 +122,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Função principal do programa. </p>
-<p>** Lógica de Execução:</p><ol type="1">
-<li>Regista imediatamente o início da execução no sistema de logs para auditoria.</li>
-<li>Delega a responsabilidade total de inicialização (alocação de memória, leitura de ficheiros e execução do menu) para a função <span class="tt"><a class="el" href="iniciar_8h.html#a9c1de3f9a105ba78bdff4ee3de87ddea" title="Inicializa estruturas, carrega dados e executa o menu principal.">iniciarSistema</a></span>.</li>
-<li>Verifica o código de retorno: se <span class="tt"><a class="el" href="iniciar_8h.html#a9c1de3f9a105ba78bdff4ee3de87ddea" title="Inicializa estruturas, carrega dados e executa o menu principal.">iniciarSistema</a></span> devolver um valor diferente de 0, significa que houve um erro crítico (ex: falta de memória), forçando o encerramento com código de erro 1. <dl class="section return"><dt>Returns</dt><dd>0 em caso de sucesso, 1 em caso de erro fatal. </dd></dl>
-</li>
-</ol>
+<p>Função principal do programa. Regista imediatamente o início da execução no sistema de logs para auditoria. Delega a responsabilidade total de inicialização (alocação de memória, leitura de ficheiros e execução do menu) para a função <span class="tt"><a class="el" href="iniciar_8h.html#a9c1de3f9a105ba78bdff4ee3de87ddea" title="Inicializa estruturas, carrega dados e executa o menu principal.">iniciarSistema</a></span>. Verifica o código de retorno: se <span class="tt"><a class="el" href="iniciar_8h.html#a9c1de3f9a105ba78bdff4ee3de87ddea" title="Inicializa estruturas, carrega dados e executa o menu principal.">iniciarSistema</a></span> devolver um valor diferente de 0, significa que houve um erro crítico (ex: falta de memória), forçando o encerramento com código de erro 1. </p>
+<p>*</p><dl class="section return"><dt>Returns</dt><dd>0 em caso de sucesso, 1 em caso de erro fatal. </dd></dl>
 
 </div>
 </div>

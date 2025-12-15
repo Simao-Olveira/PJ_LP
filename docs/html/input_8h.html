@@ -183,7 +183,9 @@ Functions</h2></td></tr>
 
 <p>Limpa o buffer de entrada (stdin) para evitar erros de leitura. </p>
 <p>Limpa o buffer de entrada (stdin) para evitar erros de leitura.</p>
-<p>** Lógica: Consome todos os caracteres pendentes no buffer de entrada num ciclo até encontrar uma quebra de linha ('\n') ou o fim do ficheiro (EOF). Isto impede que caracteres "lixo" deixados por leituras anteriores (como um Enter pendente) afetem a próxima solicitação de dados. </p>
+<ul>
+<li></li>
+</ul>
 
 </div>
 </div>
@@ -213,13 +215,8 @@ Functions</h2></td></tr>
 
 <p>Lê uma string do teclado de forma segura (remove o \n final). </p>
 <p>Lê uma string do teclado de forma segura (remove o \n final).</p>
-<p>** Lógica de Leitura:</p><ol type="1">
-<li>Utiliza <span class="tt">fgets</span> para garantir que nunca lê mais caracteres do que o tamanho do buffer.</li>
-<li>Verifica o último caracter lido:</li>
-</ol>
-<ul>
-<li>Se for um <span class="tt">\\n</span> (Enter), substitui-o por <span class="tt">\\0</span> (fim de string) para o texto ficar limpo.</li>
-<li>Se NÃO for um <span class="tt">\\n</span>, significa que o utilizador escreveu mais texto do que cabia. Nesse caso, chama <span class="tt"><a class="el" href="#a11ac4d3ec555747d95fee8ae7aa18b5d" title="Limpa o buffer de entrada (stdin) para evitar erros de leitura.">cleanInputBuffer</a></span> para descartar o excesso e impedir erros futuros. </li>
+<p>*- Se for um <span class="tt">\\n</span> (Enter), substitui-o por <span class="tt">\\0</span> (fim de string) para o texto ficar limpo.</p><ul>
+<li>Se NÃO for um <span class="tt">\\n</span>, significa que o utilizador escreveu mais texto do que cabia. Nesse caso, chama a função <span class="tt"><a class="el" href="#a11ac4d3ec555747d95fee8ae7aa18b5d" title="Limpa o buffer de entrada (stdin) para evitar erros de leitura.">cleanInputBuffer</a></span> para descartar o excesso e impedir erros futuros. </li>
 </ul>
 
 </div>
@@ -250,19 +247,11 @@ Functions</h2></td></tr>
 
 <p>Solicita um número inteiro ao utilizador, validando o intervalo (min/max). </p>
 <p>Solicita um número inteiro ao utilizador, validando o intervalo (min/max).</p>
-<p>** Lógica de Validação:</p><ol type="1">
-<li>Exibe a mensagem ao utilizador.</li>
-<li>Utiliza um ciclo <span class="tt">while</span> que verifica três condições de erro simultaneamente:</li>
-</ol>
-<ul>
-<li>Se o <span class="tt">scanf</span> falhou em ler um número (retorno != 1).</li>
+<p>*- Se o <span class="tt">scanf</span> falhou em ler um número (retorno != 1).</p><ul>
 <li>Se o valor é menor que o mínimo permitido.</li>
-<li>Se o valor é maior que o máximo permitido.</li>
-</ul>
-<ol type="1">
-<li>Se houver erro, limpa o buffer e pede novamente. <dl class="section return"><dt>Returns</dt><dd>O valor inteiro validado. </dd></dl>
+<li>Se o valor é maior que o máximo permitido. Se houver erro, limpa o buffer e pede novamente. <dl class="section return"><dt>Returns</dt><dd>O valor inteiro validado. </dd></dl>
 </li>
-</ol>
+</ul>
 
 </div>
 </div>

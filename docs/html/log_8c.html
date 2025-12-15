@@ -102,7 +102,7 @@ $(function(){initNavTree('log_8c.html','',''); });
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ad05de0fb57b91654936ba1ea54fc0f0f" id="r_ad05de0fb57b91654936ba1ea54fc0f0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad05de0fb57b91654936ba1ea54fc0f0f">logMsg</a> (char *msg)</td></tr>
-<tr class="memdesc:ad05de0fb57b91654936ba1ea54fc0f0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Escreve uma mensagem no ficheiro de log com carimbo temporal.  <br /></td></tr>
+<tr class="memdesc:ad05de0fb57b91654936ba1ea54fc0f0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Escreve uma mensagem no ficheiro de log com carimbo temporal. Captura a hora atual do sistema (time/localtime). Tenta abrir o ficheiro "log.txt" em modo de "append" ('a'). Este modo é crucial para garantir que as mensagens anteriores não são apagadas, acrescentando a nova linha ao final do ficheiro. Validação Crítica: Se não for possível abrir o ficheiro (ex: permissões, disco cheio), o programa encerra forçosamente (exit), pois um sistema sem logs não é auditável. Formata e escreve a string: "AAAA-MM-DD HH:MM:SS - Mensagem". Fecha o ficheiro imediatamente para garantir a persistência dos dados em disco.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementação do sistema de registo de logs (histórico) do sistema. </p>
@@ -122,24 +122,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Escreve uma mensagem no ficheiro de log com carimbo temporal. </p>
+<p>Escreve uma mensagem no ficheiro de log com carimbo temporal. Captura a hora atual do sistema (time/localtime). Tenta abrir o ficheiro "log.txt" em modo de "append" ('a'). Este modo é crucial para garantir que as mensagens anteriores não são apagadas, acrescentando a nova linha ao final do ficheiro. Validação Crítica: Se não for possível abrir o ficheiro (ex: permissões, disco cheio), o programa encerra forçosamente (exit), pois um sistema sem logs não é auditável. Formata e escreve a string: "AAAA-MM-DD HH:MM:SS - Mensagem". Fecha o ficheiro imediatamente para garantir a persistência dos dados em disco. </p>
 <p>Escreve uma mensagem no ficheiro de log (adicionando data/hora atual automaticamente).</p>
-<p>** Lógica de Registo:</p><ol type="1">
-<li>Captura a hora atual do sistema (time/localtime).</li>
-<li>Tenta abrir o ficheiro "log.txt" em modo de "append" ('a'). Este modo é crucial para garantir que as mensagens anteriores não são apagadas, acrescentando a nova linha ao final do ficheiro.</li>
-<li>Validação Crítica: Se não for possível abrir o ficheiro (ex: permissões, disco cheio), o programa encerra forçosamente (exit), pois um sistema sem logs não é auditável.</li>
-<li>Formata e escreve a string: "AAAA-MM-DD HH:MM:SS - Mensagem".</li>
-<li>Fecha o ficheiro imediatamente para garantir a persistência dos dados em disco.</li>
-</ol>
-<ul>
-<li><dl class="params"><dt>Parameters</dt><dd>
+<p>** </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td>A mensagem de texto a ser registada. </td></tr>
   </table>
   </dd>
 </dl>
-</li>
-</ul>
 
 </div>
 </div>
