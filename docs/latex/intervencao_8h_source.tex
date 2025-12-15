@@ -1,0 +1,38 @@
+\doxysection{intervencao.\+h}
+\hypertarget{intervencao_8h_source}{}\label{intervencao_8h_source}\index{headers/intervencao.h@{headers/intervencao.h}}
+\mbox{\hyperlink{intervencao_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ INTERVENCAO\_H}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ INTERVENCAO\_H}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{input_8h}{input.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{enums_8h}{enums.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{bombeiro_8h}{bombeiro.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{equipamento_8h}{equipamento.h}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ocorrencia_8h}{ocorrencia.h}}"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_intervencao_a7441ef0865bcb3db9b8064dd7375c1ea}{id}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_intervencao_aa0891c9318ca0f7a0d7e6c07a0f921ac}{idOcorrencia}};\ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{int}\ *\mbox{\hyperlink{struct_intervencao_a8a8adfbdfc0db529592d47692a238705}{idsBombeiros}};\ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_intervencao_a7eb49a899ce1627fda55d6902be41ac3}{numBombeiros}};\ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{int}\ *\mbox{\hyperlink{struct_intervencao_a961f21335ebd8fa2328b7950042b2bec}{idsEquipamentos}};\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_intervencao_aea78ac17ea0d166fe20d190e8b45c12e}{numEquipamentos}};\ \ }
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{enums_8h_a28c304fa648c40b80c0e6e484baf34b0}{EstadoIntervencao}}\ \mbox{\hyperlink{struct_intervencao_a1513b25f158aea71ef1184ad012ac3b7}{estado}};\ }
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{struct_data}{Data}}\ \mbox{\hyperlink{struct_intervencao_a5eb2340e50a291abf8e9c94c69757cea}{dataInicio}};\ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{struct_hora}{Hora}}\ \mbox{\hyperlink{struct_intervencao_a9398e879ae9533fb0541cbdaf8d582db}{horaInicio}};\ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{struct_data}{Data}}\ \mbox{\hyperlink{struct_intervencao_a4a57340813d717aeb07774b8d02a0c93}{dataFim}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{struct_hora}{Hora}}\ \mbox{\hyperlink{struct_intervencao_a2606509797574bf57da5fa21d24138c7}{horaFim}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \}\ \mbox{\hyperlink{struct_intervencao}{Intervencao}};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{struct_intervencao}{Intervencao}}\ *\mbox{\hyperlink{struct_intervencoes_a5bcddb4266134a2a4d23b53d74a32397}{intervencoes}};\ \ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_intervencoes_ace3a916ede84fbc59adf287c27e11d88}{totalIntervencoes}};\ \ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_intervencoes_a691e92dd72a6b772bda0cd1d607f493d}{numIntervencoes}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00051\ \}\ \mbox{\hyperlink{struct_intervencoes}{Intervencoes}};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

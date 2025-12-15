@@ -1,0 +1,86 @@
+\doxysection{headers/gestao\+Relatorios.h File Reference}
+\hypertarget{gestao_relatorios_8h}{}\label{gestao_relatorios_8h}\index{headers/gestaoRelatorios.h@{headers/gestaoRelatorios.h}}
+
+
+Módulo de estatísticas e relatórios do sistema.  
+
+
+{\ttfamily \#include "{}bombeiro.\+h"{}}\newline
+{\ttfamily \#include "{}intervencao.\+h"{}}\newline
+{\ttfamily \#include "{}ocorrencia.\+h"{}}\newline
+{\ttfamily \#include "{}equipamento.\+h"{}}\newline
+{\ttfamily \#include "{}quartel.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{gestao_relatorios_8h_adee804f6d9fb43e77bb84e5478cc7212}{menu\+Relatorios\+Bombeiros}} (\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} intervencoes, \mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} ocorrencias, \mbox{\hyperlink{struct_bombeiros}{Bombeiros}} bombeiros)
+\begin{DoxyCompactList}\small\item\em Relatórios de produtividade/atuação dos bombeiros (cruza dados com intervenções). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_relatorios_8h_aa6fed0fbe24e49ab0ca79146d65c5073}{menu\+Relatorios\+Equipamentos}} (\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} intervencoes, \mbox{\hyperlink{struct_equipamentos}{Equipamentos}} equipamentos)
+\begin{DoxyCompactList}\small\item\em Relatórios de utilização e estado dos equipamentos nas intervenções. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_relatorios_8h_adfc778d718fc99809d564e7af04d3bdf}{menu\+Relatorios\+Ocorrencias}} (\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} ocorrencias)
+\begin{DoxyCompactList}\small\item\em Estatísticas globais sobre ocorrências (tipos, locais, frequência). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_relatorios_8h_ae9d38e963aa001db153f7fdab648c05b}{menu\+Relatorios\+Intervencoes}} (\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} intervencoes)
+\begin{DoxyCompactList}\small\item\em Análise de dados das intervenções (tempos médios, datas, eficácia). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_relatorios_8h_a97e1bbe185b7130dd98720ee6315ea54}{menu\+Relatorios\+Quarteis}} (\mbox{\hyperlink{struct_quarteis}{Quarteis}} quarteis, \mbox{\hyperlink{struct_bombeiros}{Bombeiros}} bombeiros)
+\begin{DoxyCompactList}\small\item\em Relatórios operacionais dos quartéis (lotação e distribuição de efetivos). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Módulo de estatísticas e relatórios do sistema. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{gestao_relatorios_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{gestao_relatorios_8h_adee804f6d9fb43e77bb84e5478cc7212}\index{gestaoRelatorios.h@{gestaoRelatorios.h}!menuRelatoriosBombeiros@{menuRelatoriosBombeiros}}
+\index{menuRelatoriosBombeiros@{menuRelatoriosBombeiros}!gestaoRelatorios.h@{gestaoRelatorios.h}}
+\doxysubsubsection{\texorpdfstring{menuRelatoriosBombeiros()}{menuRelatoriosBombeiros()}}
+{\footnotesize\ttfamily \label{gestao_relatorios_8h_adee804f6d9fb43e77bb84e5478cc7212} 
+void menu\+Relatorios\+Bombeiros (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}}]{intervencoes}{, }\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}}}]{ocorrencias}{, }\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}}}]{bombeiros}{}\end{DoxyParamCaption})}
+
+
+
+Relatórios de produtividade/atuação dos bombeiros (cruza dados com intervenções). 
+
+Relatórios de produtividade/atuação dos bombeiros (cruza dados com intervenções). \Hypertarget{gestao_relatorios_8h_aa6fed0fbe24e49ab0ca79146d65c5073}\index{gestaoRelatorios.h@{gestaoRelatorios.h}!menuRelatoriosEquipamentos@{menuRelatoriosEquipamentos}}
+\index{menuRelatoriosEquipamentos@{menuRelatoriosEquipamentos}!gestaoRelatorios.h@{gestaoRelatorios.h}}
+\doxysubsubsection{\texorpdfstring{menuRelatoriosEquipamentos()}{menuRelatoriosEquipamentos()}}
+{\footnotesize\ttfamily \label{gestao_relatorios_8h_aa6fed0fbe24e49ab0ca79146d65c5073} 
+void menu\+Relatorios\+Equipamentos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}}]{intervencoes}{, }\item[{\mbox{\hyperlink{struct_equipamentos}{Equipamentos}}}]{equipamentos}{}\end{DoxyParamCaption})}
+
+
+
+Relatórios de utilização e estado dos equipamentos nas intervenções. 
+
+Relatórios de utilização e estado dos equipamentos nas intervenções. \Hypertarget{gestao_relatorios_8h_ae9d38e963aa001db153f7fdab648c05b}\index{gestaoRelatorios.h@{gestaoRelatorios.h}!menuRelatoriosIntervencoes@{menuRelatoriosIntervencoes}}
+\index{menuRelatoriosIntervencoes@{menuRelatoriosIntervencoes}!gestaoRelatorios.h@{gestaoRelatorios.h}}
+\doxysubsubsection{\texorpdfstring{menuRelatoriosIntervencoes()}{menuRelatoriosIntervencoes()}}
+{\footnotesize\ttfamily \label{gestao_relatorios_8h_ae9d38e963aa001db153f7fdab648c05b} 
+void menu\+Relatorios\+Intervencoes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}}]{intervencoes}{}\end{DoxyParamCaption})}
+
+
+
+Análise de dados das intervenções (tempos médios, datas, eficácia). 
+
+Análise de dados das intervenções (tempos médios, datas, eficácia). \Hypertarget{gestao_relatorios_8h_adfc778d718fc99809d564e7af04d3bdf}\index{gestaoRelatorios.h@{gestaoRelatorios.h}!menuRelatoriosOcorrencias@{menuRelatoriosOcorrencias}}
+\index{menuRelatoriosOcorrencias@{menuRelatoriosOcorrencias}!gestaoRelatorios.h@{gestaoRelatorios.h}}
+\doxysubsubsection{\texorpdfstring{menuRelatoriosOcorrencias()}{menuRelatoriosOcorrencias()}}
+{\footnotesize\ttfamily \label{gestao_relatorios_8h_adfc778d718fc99809d564e7af04d3bdf} 
+void menu\+Relatorios\+Ocorrencias (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}}}]{ocorrencias}{}\end{DoxyParamCaption})}
+
+
+
+Estatísticas globais sobre ocorrências (tipos, locais, frequência). 
+
+Estatísticas globais sobre ocorrências (tipos, locais, frequência). \Hypertarget{gestao_relatorios_8h_a97e1bbe185b7130dd98720ee6315ea54}\index{gestaoRelatorios.h@{gestaoRelatorios.h}!menuRelatoriosQuarteis@{menuRelatoriosQuarteis}}
+\index{menuRelatoriosQuarteis@{menuRelatoriosQuarteis}!gestaoRelatorios.h@{gestaoRelatorios.h}}
+\doxysubsubsection{\texorpdfstring{menuRelatoriosQuarteis()}{menuRelatoriosQuarteis()}}
+{\footnotesize\ttfamily \label{gestao_relatorios_8h_a97e1bbe185b7130dd98720ee6315ea54} 
+void menu\+Relatorios\+Quarteis (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}}}]{quarteis}{, }\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}}}]{bombeiros}{}\end{DoxyParamCaption})}
+
+
+
+Relatórios operacionais dos quartéis (lotação e distribuição de efetivos). 
+
+Relatórios operacionais dos quartéis (lotação e distribuição de efetivos). 

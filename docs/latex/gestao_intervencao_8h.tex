@@ -1,0 +1,197 @@
+\doxysection{headers/gestao\+Intervencao.h File Reference}
+\hypertarget{gestao_intervencao_8h}{}\label{gestao_intervencao_8h}\index{headers/gestaoIntervencao.h@{headers/gestaoIntervencao.h}}
+{\ttfamily \#include "{}intervencao.\+h"{}}\newline
+{\ttfamily \#include "{}ocorrencia.\+h"{}}\newline
+{\ttfamily \#include "{}bombeiro.\+h"{}}\newline
+{\ttfamily \#include "{}equipamento.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{gestao_intervencao_8h_a8859ce45f8887c3d61558d28f8ee0b98}{imprimir\+Estado\+Intervencao}} (\mbox{\hyperlink{enums_8h_a28c304fa648c40b80c0e6e484baf34b0}{Estado\+Intervencao}} estado)
+\begin{DoxyCompactList}\small\item\em Traduz o estado da intervenção (enum) para uma string legível. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{gestao_intervencao_8h_a88eb866910a79e894eb7bef85b613cfc}{procurar\+Intervencao}} (\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} intervencoes, int id)
+\begin{DoxyCompactList}\small\item\em Procura uma intervenção pelo ID e devolve o índice (ou -\/1 caso não encontre). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_intervencao_8h_ae51fe4dbb653d9a34ac24c4567bb430d}{adicionar\+Intervencao}} (\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} \texorpdfstring{$\ast$}{*}intervencoes, \mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}ocorrencias, \mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}bombeiros, \mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}equipamentos)
+\begin{DoxyCompactList}\small\item\em Cria uma intervenção (usa \textquotesingle{}\doxylink{struct_ocorrencias}{Ocorrencias}\textquotesingle{}, \textquotesingle{}\doxylink{struct_bombeiros}{Bombeiros}\textquotesingle{} e \textquotesingle{}\doxylink{struct_equipamentos}{Equipamentos}\textquotesingle{} para associar recursos existentes). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_intervencao_8h_aab7f1d36695a50efe1d8deab50e26d86}{libertar\+Mem\+Intervencoes}} (\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} \texorpdfstring{$\ast$}{*}intervencoes)
+\begin{DoxyCompactList}\small\item\em Liberta toda a memória alocada para as intervenções. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_intervencao_8h_a67a6555e49cbce235ab9912a0d5bc0ee}{imprimir\+Intervencao}} (\mbox{\hyperlink{struct_intervencao}{Intervencao}} intervencao)
+\begin{DoxyCompactList}\small\item\em Mostra os dados de uma única intervenção. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_intervencao_8h_a4812443ac358e02b61ac324710ecdd87}{listar\+Intervencoes}} (\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} intervencoes)
+\begin{DoxyCompactList}\small\item\em Lista todas as intervenções registadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_intervencao_8h_aa3a2806d17f2c2e614a316c1805f8f91}{atualizar\+Dados\+Intervencao}} (\mbox{\hyperlink{struct_intervencao}{Intervencao}} \texorpdfstring{$\ast$}{*}intervencao, \mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}bombeiros, \mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}ocorrencias, \mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}equipamentos)
+\begin{DoxyCompactList}\small\item\em Atualiza dados (valida a existência de novos bombeiros, equipamentos ou ocorrências). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_intervencao_8h_a1fd80d5f79a73012883e9772a3823177}{editar\+Intervencao}} (\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} \texorpdfstring{$\ast$}{*}intervencoes, \mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}bombeiros, \mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}ocorrencias, \mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}equipamentos)
+\begin{DoxyCompactList}\small\item\em Menu para editar uma intervenção (mantém a integridade com as outras entidades). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_intervencao_8h_a21d8aa9ea02f778cafbed7f50492e5ac}{eliminar\+Intervencao}} (\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} \texorpdfstring{$\ast$}{*}intervencoes)
+\begin{DoxyCompactList}\small\item\em Remove uma intervenção do sistema. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_intervencao_8h_af8d5c0c6dbba68e5ae68f5cc757e0c74}{carregar\+Intervencoes}} (\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} \texorpdfstring{$\ast$}{*}intervencoes)
+\begin{DoxyCompactList}\small\item\em Carrega os dados do ficheiro binário. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_intervencao_8h_aa522273cc93433c417b87af856e79490}{guardar\+Intervencoes}} (\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} \texorpdfstring{$\ast$}{*}intervencoes)
+\begin{DoxyCompactList}\small\item\em Guarda os dados no ficheiro binário. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{gestao_intervencao_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{gestao_intervencao_8h_ae51fe4dbb653d9a34ac24c4567bb430d}\index{gestaoIntervencao.h@{gestaoIntervencao.h}!adicionarIntervencao@{adicionarIntervencao}}
+\index{adicionarIntervencao@{adicionarIntervencao}!gestaoIntervencao.h@{gestaoIntervencao.h}}
+\doxysubsubsection{\texorpdfstring{adicionarIntervencao()}{adicionarIntervencao()}}
+{\footnotesize\ttfamily \label{gestao_intervencao_8h_ae51fe4dbb653d9a34ac24c4567bb430d} 
+void adicionar\+Intervencao (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} \texorpdfstring{$\ast$}{*}}]{intervencoes}{, }\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}}]{ocorrencias}{, }\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}}]{bombeiros}{, }\item[{\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}}]{equipamentos}{}\end{DoxyParamCaption})}
+
+
+
+Cria uma intervenção (usa \textquotesingle{}\doxylink{struct_ocorrencias}{Ocorrencias}\textquotesingle{}, \textquotesingle{}\doxylink{struct_bombeiros}{Bombeiros}\textquotesingle{} e \textquotesingle{}\doxylink{struct_equipamentos}{Equipamentos}\textquotesingle{} para associar recursos existentes). 
+
+Cria uma intervenção (usa \textquotesingle{}\doxylink{struct_ocorrencias}{Ocorrencias}\textquotesingle{}, \textquotesingle{}\doxylink{struct_bombeiros}{Bombeiros}\textquotesingle{} e \textquotesingle{}\doxylink{struct_equipamentos}{Equipamentos}\textquotesingle{} para associar recursos existentes).
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Lógica Complexa de Validação e Alocação\+:
+\begin{DoxyEnumerate}
+\item Pré-\/condição\+: Verifica se existem ocorrências registadas.
+\item Gera ID automático e redimensiona a memória (realloc) se necessário.
+\item Associa a uma Ocorrência existente (validação de chave estrangeira).
+\item {\bfseries{Alocação de \doxylink{struct_bombeiros}{Bombeiros}}}\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item Conta quantos bombeiros têm estado \textquotesingle{}DISPONIVEL\textquotesingle{}.
+\item Solicita ao utilizador quantos quer alocar (limitado aos disponíveis).
+\item Para cada bombeiro escolhido\+: valida se existe, se não é duplicado na lista e se está realmente disponível.
+\item IMPORTANTE\+: Altera o estado do bombeiro para \textquotesingle{}EM\+\_\+\+INTERVENCAO\textquotesingle{}.
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item {\bfseries{Alocação de \doxylink{struct_equipamentos}{Equipamentos}}}\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item Segue a mesma lógica dos bombeiros. Altera o estado para \textquotesingle{}EM\+\_\+\+USO\textquotesingle{}.
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Regista as datas e horas de início. 
+\end{DoxyEnumerate}\Hypertarget{gestao_intervencao_8h_aa3a2806d17f2c2e614a316c1805f8f91}\index{gestaoIntervencao.h@{gestaoIntervencao.h}!atualizarDadosIntervencao@{atualizarDadosIntervencao}}
+\index{atualizarDadosIntervencao@{atualizarDadosIntervencao}!gestaoIntervencao.h@{gestaoIntervencao.h}}
+\doxysubsubsection{\texorpdfstring{atualizarDadosIntervencao()}{atualizarDadosIntervencao()}}
+{\footnotesize\ttfamily \label{gestao_intervencao_8h_aa3a2806d17f2c2e614a316c1805f8f91} 
+void atualizar\+Dados\+Intervencao (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencao}{Intervencao}} \texorpdfstring{$\ast$}{*}}]{intervencao}{, }\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}}]{bombeiros}{, }\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}}]{ocorrencias}{, }\item[{\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}}]{equipamentos}{}\end{DoxyParamCaption})}
+
+
+
+Atualiza dados (valida a existência de novos bombeiros, equipamentos ou ocorrências). 
+
+Atualiza dados (valida a existência de novos bombeiros, equipamentos ou ocorrências).
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Lógica de Conclusão\+: Quando o utilizador altera o estado para \textquotesingle{}INT\+\_\+\+CONCLUIDA\textquotesingle{}\+:
+\begin{DoxyEnumerate}
+\item O sistema pede a data de fim.
+\item Percorre a lista de bombeiros alocados a esta intervenção e altera o seu estado na lista geral de \textquotesingle{}EM\+\_\+\+INTERVENCAO\textquotesingle{} para \textquotesingle{}DISPONIVEL\textquotesingle{}.
+\item Faz o mesmo para os equipamentos (volta para \textquotesingle{}DISPONIVEL\textquotesingle{}).
+\item Fecha automaticamente a Ocorrência associada (passa para \textquotesingle{}CONCLUIDA\textquotesingle{}). 
+\end{DoxyEnumerate}\Hypertarget{gestao_intervencao_8h_af8d5c0c6dbba68e5ae68f5cc757e0c74}\index{gestaoIntervencao.h@{gestaoIntervencao.h}!carregarIntervencoes@{carregarIntervencoes}}
+\index{carregarIntervencoes@{carregarIntervencoes}!gestaoIntervencao.h@{gestaoIntervencao.h}}
+\doxysubsubsection{\texorpdfstring{carregarIntervencoes()}{carregarIntervencoes()}}
+{\footnotesize\ttfamily \label{gestao_intervencao_8h_af8d5c0c6dbba68e5ae68f5cc757e0c74} 
+void carregar\+Intervencoes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} \texorpdfstring{$\ast$}{*}}]{intervencoes}{}\end{DoxyParamCaption})}
+
+
+
+Carrega os dados do ficheiro binário. 
+
+Carrega os dados do ficheiro binário.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Lógica de Desserialização Complexa\+:
+\begin{DoxyEnumerate}
+\item Lê os contadores principais.
+\item Para cada intervenção, lê os dados básicos.
+\item Lê o contador de bombeiros alocados ({\ttfamily num\+Bombeiros}).
+\item Se {\ttfamily num\+Bombeiros \texorpdfstring{$>$}{>} 0}, aloca memória (malloc) para o array {\ttfamily ids\+Bombeiros} e lê os IDs do ficheiro.
+\item Repete o processo para os equipamentos. 
+\end{DoxyEnumerate}\Hypertarget{gestao_intervencao_8h_a1fd80d5f79a73012883e9772a3823177}\index{gestaoIntervencao.h@{gestaoIntervencao.h}!editarIntervencao@{editarIntervencao}}
+\index{editarIntervencao@{editarIntervencao}!gestaoIntervencao.h@{gestaoIntervencao.h}}
+\doxysubsubsection{\texorpdfstring{editarIntervencao()}{editarIntervencao()}}
+{\footnotesize\ttfamily \label{gestao_intervencao_8h_a1fd80d5f79a73012883e9772a3823177} 
+void editar\+Intervencao (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} \texorpdfstring{$\ast$}{*}}]{intervencoes}{, }\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}}]{bombeiros}{, }\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}}]{ocorrencias}{, }\item[{\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}}]{equipamentos}{}\end{DoxyParamCaption})}
+
+
+
+Menu para editar uma intervenção (mantém a integridade com as outras entidades). 
+
+Menu para editar uma intervenção (mantém a integridade com as outras entidades). \Hypertarget{gestao_intervencao_8h_a21d8aa9ea02f778cafbed7f50492e5ac}\index{gestaoIntervencao.h@{gestaoIntervencao.h}!eliminarIntervencao@{eliminarIntervencao}}
+\index{eliminarIntervencao@{eliminarIntervencao}!gestaoIntervencao.h@{gestaoIntervencao.h}}
+\doxysubsubsection{\texorpdfstring{eliminarIntervencao()}{eliminarIntervencao()}}
+{\footnotesize\ttfamily \label{gestao_intervencao_8h_a21d8aa9ea02f778cafbed7f50492e5ac} 
+void eliminar\+Intervencao (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} \texorpdfstring{$\ast$}{*}}]{intervencoes}{}\end{DoxyParamCaption})}
+
+
+
+Remove uma intervenção do sistema. 
+
+Remove uma intervenção do sistema.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Liberta os arrays dinâmicos internos (bombeiros e equipamentos) antes de remover a intervenção do array principal e reorganizar a lista. \Hypertarget{gestao_intervencao_8h_aa522273cc93433c417b87af856e79490}\index{gestaoIntervencao.h@{gestaoIntervencao.h}!guardarIntervencoes@{guardarIntervencoes}}
+\index{guardarIntervencoes@{guardarIntervencoes}!gestaoIntervencao.h@{gestaoIntervencao.h}}
+\doxysubsubsection{\texorpdfstring{guardarIntervencoes()}{guardarIntervencoes()}}
+{\footnotesize\ttfamily \label{gestao_intervencao_8h_aa522273cc93433c417b87af856e79490} 
+void guardar\+Intervencoes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} \texorpdfstring{$\ast$}{*}}]{intervencoes}{}\end{DoxyParamCaption})}
+
+
+
+Guarda os dados no ficheiro binário. 
+
+Guarda os dados no ficheiro binário.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Lógica de Serialização\+: Escreve os dados primitivos e, para os arrays dinâmicos internos (bombeiros e equipamentos), escreve primeiro o tamanho do array seguido dos próprios elementos (IDs), garantindo a integridade dos dados aninhados. \Hypertarget{gestao_intervencao_8h_a8859ce45f8887c3d61558d28f8ee0b98}\index{gestaoIntervencao.h@{gestaoIntervencao.h}!imprimirEstadoIntervencao@{imprimirEstadoIntervencao}}
+\index{imprimirEstadoIntervencao@{imprimirEstadoIntervencao}!gestaoIntervencao.h@{gestaoIntervencao.h}}
+\doxysubsubsection{\texorpdfstring{imprimirEstadoIntervencao()}{imprimirEstadoIntervencao()}}
+{\footnotesize\ttfamily \label{gestao_intervencao_8h_a8859ce45f8887c3d61558d28f8ee0b98} 
+void imprimir\+Estado\+Intervencao (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enums_8h_a28c304fa648c40b80c0e6e484baf34b0}{Estado\+Intervencao}}}]{estado}{}\end{DoxyParamCaption})}
+
+
+
+Traduz o estado da intervenção (enum) para uma string legível. 
+
+Traduz o estado da intervenção (enum) para uma string legível. \Hypertarget{gestao_intervencao_8h_a67a6555e49cbce235ab9912a0d5bc0ee}\index{gestaoIntervencao.h@{gestaoIntervencao.h}!imprimirIntervencao@{imprimirIntervencao}}
+\index{imprimirIntervencao@{imprimirIntervencao}!gestaoIntervencao.h@{gestaoIntervencao.h}}
+\doxysubsubsection{\texorpdfstring{imprimirIntervencao()}{imprimirIntervencao()}}
+{\footnotesize\ttfamily \label{gestao_intervencao_8h_a67a6555e49cbce235ab9912a0d5bc0ee} 
+void imprimir\+Intervencao (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencao}{Intervencao}}}]{intervencao}{}\end{DoxyParamCaption})}
+
+
+
+Mostra os dados de uma única intervenção. 
+
+Mostra os dados de uma única intervenção. \Hypertarget{gestao_intervencao_8h_aab7f1d36695a50efe1d8deab50e26d86}\index{gestaoIntervencao.h@{gestaoIntervencao.h}!libertarMemIntervencoes@{libertarMemIntervencoes}}
+\index{libertarMemIntervencoes@{libertarMemIntervencoes}!gestaoIntervencao.h@{gestaoIntervencao.h}}
+\doxysubsubsection{\texorpdfstring{libertarMemIntervencoes()}{libertarMemIntervencoes()}}
+{\footnotesize\ttfamily \label{gestao_intervencao_8h_aab7f1d36695a50efe1d8deab50e26d86} 
+void libertar\+Mem\+Intervencoes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} \texorpdfstring{$\ast$}{*}}]{intervencoes}{}\end{DoxyParamCaption})}
+
+
+
+Liberta toda a memória alocada para as intervenções. 
+
+Liberta toda a memória alocada para as intervenções.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} IMPORTANTE\+: Como cada intervenção tem arrays dinâmicos internos (IDs de bombeiros e IDs de equipamentos), é necessário libertar esses arrays num ciclo antes de libertar o array principal de intervenções. \Hypertarget{gestao_intervencao_8h_a4812443ac358e02b61ac324710ecdd87}\index{gestaoIntervencao.h@{gestaoIntervencao.h}!listarIntervencoes@{listarIntervencoes}}
+\index{listarIntervencoes@{listarIntervencoes}!gestaoIntervencao.h@{gestaoIntervencao.h}}
+\doxysubsubsection{\texorpdfstring{listarIntervencoes()}{listarIntervencoes()}}
+{\footnotesize\ttfamily \label{gestao_intervencao_8h_a4812443ac358e02b61ac324710ecdd87} 
+void listar\+Intervencoes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}}]{intervencoes}{}\end{DoxyParamCaption})}
+
+
+
+Lista todas as intervenções registadas. 
+
+\Hypertarget{gestao_intervencao_8h_a88eb866910a79e894eb7bef85b613cfc}\index{gestaoIntervencao.h@{gestaoIntervencao.h}!procurarIntervencao@{procurarIntervencao}}
+\index{procurarIntervencao@{procurarIntervencao}!gestaoIntervencao.h@{gestaoIntervencao.h}}
+\doxysubsubsection{\texorpdfstring{procurarIntervencao()}{procurarIntervencao()}}
+{\footnotesize\ttfamily \label{gestao_intervencao_8h_a88eb866910a79e894eb7bef85b613cfc} 
+int procurar\+Intervencao (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}}]{intervencoes}{, }\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Procura uma intervenção pelo ID e devolve o índice (ou -\/1 caso não encontre). 
+
+Procura uma intervenção pelo ID e devolve o índice (ou -\/1 caso não encontre).
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Percorre sequencialmente a lista até encontrar o identificador fornecido. \begin{DoxyReturn}{Returns}
+O índice no array ou -\/1 se não encontrar. 
+\end{DoxyReturn}

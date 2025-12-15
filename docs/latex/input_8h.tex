@@ -1,0 +1,128 @@
+\doxysection{headers/input.h File Reference}
+\hypertarget{input_8h}{}\label{input_8h}\index{headers/input.h@{headers/input.h}}
+
+
+Utilitários para entrada de dados, validações e estruturas de tempo.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_data}{Data}}
+\item 
+struct \mbox{\hyperlink{struct_hora}{Hora}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{input_8h_a7dac90953bf2709d6153d7503fe3c77e}{VALOR\+\_\+\+INVALIDO}}~"{}O valor inserido é inválido"{}
+\item 
+\#define \mbox{\hyperlink{input_8h_aaa1ac5caef84256eaeb39594e58e096f}{MAX\+\_\+\+INT}}~2147483647
+\item 
+\#define \mbox{\hyperlink{input_8h_a4dea39042071768c1e115b0ebbfc52f2}{SIZE\+\_\+\+BUFFER}}~100
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{input_8h_a11ac4d3ec555747d95fee8ae7aa18b5d}{clean\+Input\+Buffer}} ()
+\begin{DoxyCompactList}\small\item\em Limpa o buffer de entrada (stdin) para evitar erros de leitura. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{input_8h_aa8f067a5ff0a81c9af0f5fd554750960}{obter\+Inteiro}} (int min\+Valor, int max\+Valor, char \texorpdfstring{$\ast$}{*}msg)
+\begin{DoxyCompactList}\small\item\em Solicita um número inteiro ao utilizador, validando o intervalo (min/max). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{input_8h_a8deaff72b3466f323d5ffe40426e1ea1}{ler\+String}} (char \texorpdfstring{$\ast$}{*}string, unsigned int tamanho, char \texorpdfstring{$\ast$}{*}msg)
+\begin{DoxyCompactList}\small\item\em Lê uma string do teclado de forma segura (remove o \textbackslash{}n final). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Utilitários para entrada de dados, validações e estruturas de tempo. 
+
+
+
+\label{doc-define-members}
+\Hypertarget{input_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{input_8h_aaa1ac5caef84256eaeb39594e58e096f}\index{input.h@{input.h}!MAX\_INT@{MAX\_INT}}
+\index{MAX\_INT@{MAX\_INT}!input.h@{input.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_INT}{MAX\_INT}}
+{\footnotesize\ttfamily \label{input_8h_aaa1ac5caef84256eaeb39594e58e096f} 
+\#define MAX\+\_\+\+INT~2147483647}
+
+\Hypertarget{input_8h_a4dea39042071768c1e115b0ebbfc52f2}\index{input.h@{input.h}!SIZE\_BUFFER@{SIZE\_BUFFER}}
+\index{SIZE\_BUFFER@{SIZE\_BUFFER}!input.h@{input.h}}
+\doxysubsubsection{\texorpdfstring{SIZE\_BUFFER}{SIZE\_BUFFER}}
+{\footnotesize\ttfamily \label{input_8h_a4dea39042071768c1e115b0ebbfc52f2} 
+\#define SIZE\+\_\+\+BUFFER~100}
+
+\Hypertarget{input_8h_a7dac90953bf2709d6153d7503fe3c77e}\index{input.h@{input.h}!VALOR\_INVALIDO@{VALOR\_INVALIDO}}
+\index{VALOR\_INVALIDO@{VALOR\_INVALIDO}!input.h@{input.h}}
+\doxysubsubsection{\texorpdfstring{VALOR\_INVALIDO}{VALOR\_INVALIDO}}
+{\footnotesize\ttfamily \label{input_8h_a7dac90953bf2709d6153d7503fe3c77e} 
+\#define VALOR\+\_\+\+INVALIDO~"{}O valor inserido é inválido"{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{input_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{input_8h_a11ac4d3ec555747d95fee8ae7aa18b5d}\index{input.h@{input.h}!cleanInputBuffer@{cleanInputBuffer}}
+\index{cleanInputBuffer@{cleanInputBuffer}!input.h@{input.h}}
+\doxysubsubsection{\texorpdfstring{cleanInputBuffer()}{cleanInputBuffer()}}
+{\footnotesize\ttfamily \label{input_8h_a11ac4d3ec555747d95fee8ae7aa18b5d} 
+void clean\+Input\+Buffer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Limpa o buffer de entrada (stdin) para evitar erros de leitura. 
+
+Limpa o buffer de entrada (stdin) para evitar erros de leitura.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Lógica\+: Consome todos os caracteres pendentes no buffer de entrada num ciclo até encontrar uma quebra de linha (\textquotesingle{}\textbackslash{}n\textquotesingle{}) ou o fim do ficheiro (EOF). Isto impede que caracteres "{}lixo"{} deixados por leituras anteriores (como um Enter pendente) afetem a próxima solicitação de dados. \Hypertarget{input_8h_a8deaff72b3466f323d5ffe40426e1ea1}\index{input.h@{input.h}!lerString@{lerString}}
+\index{lerString@{lerString}!input.h@{input.h}}
+\doxysubsubsection{\texorpdfstring{lerString()}{lerString()}}
+{\footnotesize\ttfamily \label{input_8h_a8deaff72b3466f323d5ffe40426e1ea1} 
+void ler\+String (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{string}{, }\item[{unsigned int}]{tamanho}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{msg}{}\end{DoxyParamCaption})}
+
+
+
+Lê uma string do teclado de forma segura (remove o \textbackslash{}n final). 
+
+Lê uma string do teclado de forma segura (remove o \textbackslash{}n final).
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Lógica de Leitura\+:
+\begin{DoxyEnumerate}
+\item Utiliza {\ttfamily fgets} para garantir que nunca lê mais caracteres do que o tamanho do buffer.
+\item Verifica o último caracter lido\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item Se for um {\ttfamily \textbackslash{}\textbackslash{}n} (Enter), substitui-\/o por {\ttfamily \textbackslash{}\textbackslash{}0} (fim de string) para o texto ficar limpo.
+\item Se NÃO for um {\ttfamily \textbackslash{}\textbackslash{}n}, significa que o utilizador escreveu mais texto do que cabia. Nesse caso, chama {\ttfamily \doxylink{input_8h_a11ac4d3ec555747d95fee8ae7aa18b5d}{clean\+Input\+Buffer}} para descartar o excesso e impedir erros futuros. 
+\end{DoxyItemize}\Hypertarget{input_8h_aa8f067a5ff0a81c9af0f5fd554750960}\index{input.h@{input.h}!obterInteiro@{obterInteiro}}
+\index{obterInteiro@{obterInteiro}!input.h@{input.h}}
+\doxysubsubsection{\texorpdfstring{obterInteiro()}{obterInteiro()}}
+{\footnotesize\ttfamily \label{input_8h_aa8f067a5ff0a81c9af0f5fd554750960} 
+int obter\+Inteiro (\begin{DoxyParamCaption}\item[{int}]{min\+Valor}{, }\item[{int}]{max\+Valor}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{msg}{}\end{DoxyParamCaption})}
+
+
+
+Solicita um número inteiro ao utilizador, validando o intervalo (min/max). 
+
+Solicita um número inteiro ao utilizador, validando o intervalo (min/max).
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Lógica de Validação\+:
+\begin{DoxyEnumerate}
+\item Exibe a mensagem ao utilizador.
+\item Utiliza um ciclo {\ttfamily while} que verifica três condições de erro simultaneamente\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item Se o {\ttfamily scanf} falhou em ler um número (retorno != 1).
+\item Se o valor é menor que o mínimo permitido.
+\item Se o valor é maior que o máximo permitido.
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Se houver erro, limpa o buffer e pede novamente. \begin{DoxyReturn}{Returns}
+O valor inteiro validado. 
+\end{DoxyReturn}
+
+\end{DoxyEnumerate}

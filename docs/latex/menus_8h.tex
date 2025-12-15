@@ -1,0 +1,114 @@
+\doxysection{headers/menus.h File Reference}
+\hypertarget{menus_8h}{}\label{menus_8h}\index{headers/menus.h@{headers/menus.h}}
+{\ttfamily \#include "{}ocorrencia.\+h"{}}\newline
+{\ttfamily \#include "{}bombeiro.\+h"{}}\newline
+{\ttfamily \#include "{}intervencao.\+h"{}}\newline
+{\ttfamily \#include "{}equipamento.\+h"{}}\newline
+{\ttfamily \#include "{}quartel.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{menus_8h_aabbe00db54f7c722129e727416ec74f8}{menu\+Principal}} (\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}ocorrencias, \mbox{\hyperlink{struct_intervencoes}{Intervencoes}} \texorpdfstring{$\ast$}{*}intervencoes, \mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}bombeiros, \mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}equipamentos, \mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}quarteis)
+\begin{DoxyCompactList}\small\item\em Menu principal que orquestra a navegação entre todos os módulos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{menus_8h_a2ac53b7dc397e01f9129fdbe6a6c8ffd}{menu\+Ocorrencias}} (\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}ocorrencias)
+\begin{DoxyCompactList}\small\item\em Submenu para gestão de ocorrências. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{menus_8h_aac94ce9b8587b80c67ae538887bb9e38}{menu\+Intervencoes}} (\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} \texorpdfstring{$\ast$}{*}intervencoes, \mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}ocorrencias, \mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}bombeiros, \mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}equipamentos)
+\begin{DoxyCompactList}\small\item\em Submenu para gestão de intervenções (requer acesso a todas as entidades). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{menus_8h_aabeceeabd9d2da79ea893dd017d0895c}{menu\+Bombeiros}} (\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}bombeiros, \mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}quarteis)
+\begin{DoxyCompactList}\small\item\em Submenu para gestão de bombeiros. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{menus_8h_a0437560f7670a25ee1e89e01786e507a}{menu\+Equipamentos}} (\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}equipamentos)
+\begin{DoxyCompactList}\small\item\em Submenu para gestão de equipamentos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{menus_8h_a1e5ac548989b47d630066eec8afd7279}{menu\+Quarteis}} (\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}quarteis)
+\begin{DoxyCompactList}\small\item\em Submenu para gestão de quartéis. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{menus_8h_a84e20335ac54f40f1a7117f3bf378dd5}{menu\+Relatorios}} (\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}ocorrencias, \mbox{\hyperlink{struct_intervencoes}{Intervencoes}} \texorpdfstring{$\ast$}{*}intervencoes, \mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}bombeiros, \mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}equipamentos, \mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}quarteis)
+\begin{DoxyCompactList}\small\item\em Submenu para visualização de estatísticas e relatórios globais. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{menus_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{menus_8h_aabeceeabd9d2da79ea893dd017d0895c}\index{menus.h@{menus.h}!menuBombeiros@{menuBombeiros}}
+\index{menuBombeiros@{menuBombeiros}!menus.h@{menus.h}}
+\doxysubsubsection{\texorpdfstring{menuBombeiros()}{menuBombeiros()}}
+{\footnotesize\ttfamily \label{menus_8h_aabeceeabd9d2da79ea893dd017d0895c} 
+void menu\+Bombeiros (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}}]{bombeiros}{, }\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}}]{quarteis}{}\end{DoxyParamCaption})}
+
+
+
+Submenu para gestão de bombeiros. 
+
+Submenu para gestão de bombeiros.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Permite gerir o efetivo. Recebe \textquotesingle{}\doxylink{struct_quarteis}{Quarteis}\textquotesingle{} para permitir a associação de bombeiros às respetivas unidades operacionais. \Hypertarget{menus_8h_a0437560f7670a25ee1e89e01786e507a}\index{menus.h@{menus.h}!menuEquipamentos@{menuEquipamentos}}
+\index{menuEquipamentos@{menuEquipamentos}!menus.h@{menus.h}}
+\doxysubsubsection{\texorpdfstring{menuEquipamentos()}{menuEquipamentos()}}
+{\footnotesize\ttfamily \label{menus_8h_a0437560f7670a25ee1e89e01786e507a} 
+void menu\+Equipamentos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}}]{equipamentos}{}\end{DoxyParamCaption})}
+
+
+
+Submenu para gestão de equipamentos. 
+
+Submenu para gestão de equipamentos.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Gere o inventário de materiais. Guarda em ficheiro ao sair. \Hypertarget{menus_8h_aac94ce9b8587b80c67ae538887bb9e38}\index{menus.h@{menus.h}!menuIntervencoes@{menuIntervencoes}}
+\index{menuIntervencoes@{menuIntervencoes}!menus.h@{menus.h}}
+\doxysubsubsection{\texorpdfstring{menuIntervencoes()}{menuIntervencoes()}}
+{\footnotesize\ttfamily \label{menus_8h_aac94ce9b8587b80c67ae538887bb9e38} 
+void menu\+Intervencoes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} \texorpdfstring{$\ast$}{*}}]{intervencoes}{, }\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}}]{ocorrencias}{, }\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}}]{bombeiros}{, }\item[{\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}}]{equipamentos}{}\end{DoxyParamCaption})}
+
+
+
+Submenu para gestão de intervenções (requer acesso a todas as entidades). 
+
+Submenu para gestão de intervenções (requer acesso a todas as entidades).
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Recebe ponteiros para todas as entidades (\doxylink{struct_ocorrencias}{Ocorrencias}, \doxylink{struct_bombeiros}{Bombeiros}, \doxylink{struct_equipamentos}{Equipamentos}) pois a criação de intervenções requer validação cruzada de dados. \Hypertarget{menus_8h_a2ac53b7dc397e01f9129fdbe6a6c8ffd}\index{menus.h@{menus.h}!menuOcorrencias@{menuOcorrencias}}
+\index{menuOcorrencias@{menuOcorrencias}!menus.h@{menus.h}}
+\doxysubsubsection{\texorpdfstring{menuOcorrencias()}{menuOcorrencias()}}
+{\footnotesize\ttfamily \label{menus_8h_a2ac53b7dc397e01f9129fdbe6a6c8ffd} 
+void menu\+Ocorrencias (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}}]{ocorrencias}{}\end{DoxyParamCaption})}
+
+
+
+Submenu para gestão de ocorrências. 
+
+Submenu para gestão de ocorrências.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Permite realizar operações CRUD sobre as ocorrências. Ao sair (opção 0), guarda automaticamente os dados em ficheiro binário para persistência. \Hypertarget{menus_8h_aabbe00db54f7c722129e727416ec74f8}\index{menus.h@{menus.h}!menuPrincipal@{menuPrincipal}}
+\index{menuPrincipal@{menuPrincipal}!menus.h@{menus.h}}
+\doxysubsubsection{\texorpdfstring{menuPrincipal()}{menuPrincipal()}}
+{\footnotesize\ttfamily \label{menus_8h_aabbe00db54f7c722129e727416ec74f8} 
+void menu\+Principal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}}]{ocorrencias}{, }\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} \texorpdfstring{$\ast$}{*}}]{intervencoes}{, }\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}}]{bombeiros}{, }\item[{\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}}]{equipamentos}{, }\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}}]{quarteis}{}\end{DoxyParamCaption})}
+
+
+
+Menu principal que orquestra a navegação entre todos os módulos. 
+
+Menu principal que orquestra a navegação entre todos os módulos.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Lógica de Navegação\+: Apresenta as opções principais e delega o controlo para os submenus específicos. Ao selecionar a opção \textquotesingle{}0\textquotesingle{} (Sair), invoca as funções de limpeza de memória (libertar\+Mem...) para garantir que todos os recursos alocados dinamicamente são devolvidos ao sistema operativo antes do encerramento. \Hypertarget{menus_8h_a1e5ac548989b47d630066eec8afd7279}\index{menus.h@{menus.h}!menuQuarteis@{menuQuarteis}}
+\index{menuQuarteis@{menuQuarteis}!menus.h@{menus.h}}
+\doxysubsubsection{\texorpdfstring{menuQuarteis()}{menuQuarteis()}}
+{\footnotesize\ttfamily \label{menus_8h_a1e5ac548989b47d630066eec8afd7279} 
+void menu\+Quarteis (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}}]{quarteis}{}\end{DoxyParamCaption})}
+
+
+
+Submenu para gestão de quartéis. 
+
+Submenu para gestão de quartéis.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Gere a infraestrutura física. Guarda em ficheiro ao sair. \Hypertarget{menus_8h_a84e20335ac54f40f1a7117f3bf378dd5}\index{menus.h@{menus.h}!menuRelatorios@{menuRelatorios}}
+\index{menuRelatorios@{menuRelatorios}!menus.h@{menus.h}}
+\doxysubsubsection{\texorpdfstring{menuRelatorios()}{menuRelatorios()}}
+{\footnotesize\ttfamily \label{menus_8h_a84e20335ac54f40f1a7117f3bf378dd5} 
+void menu\+Relatorios (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}}]{ocorrencias}{, }\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} \texorpdfstring{$\ast$}{*}}]{intervencoes}{, }\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}}]{bombeiros}{, }\item[{\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}}]{equipamentos}{, }\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}}]{quarteis}{}\end{DoxyParamCaption})}
+
+
+
+Submenu para visualização de estatísticas e relatórios globais. 
+
+Submenu para visualização de estatísticas e relatórios globais.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Centraliza o acesso a todas as estatísticas e listagens analíticas do sistema. 

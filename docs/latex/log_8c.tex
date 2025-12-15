@@ -1,0 +1,54 @@
+\doxysection{src/log.c File Reference}
+\hypertarget{log_8c}{}\label{log_8c}\index{src/log.c@{src/log.c}}
+
+
+Implementação do sistema de registo de logs (histórico) do sistema.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include "{}log.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{log_8c_ad05de0fb57b91654936ba1ea54fc0f0f}{log\+Msg}} (char \texorpdfstring{$\ast$}{*}msg)
+\begin{DoxyCompactList}\small\item\em Escreve uma mensagem no ficheiro de log com carimbo temporal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementação do sistema de registo de logs (histórico) do sistema. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{log_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{log_8c_ad05de0fb57b91654936ba1ea54fc0f0f}\index{log.c@{log.c}!logMsg@{logMsg}}
+\index{logMsg@{logMsg}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{logMsg()}{logMsg()}}
+{\footnotesize\ttfamily \label{log_8c_ad05de0fb57b91654936ba1ea54fc0f0f} 
+void log\+Msg (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{msg}{}\end{DoxyParamCaption})}
+
+
+
+Escreve uma mensagem no ficheiro de log com carimbo temporal. 
+
+Escreve uma mensagem no ficheiro de log (adicionando data/hora atual automaticamente).
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Lógica de Registo\+:
+\begin{DoxyEnumerate}
+\item Captura a hora atual do sistema (time/localtime).
+\item Tenta abrir o ficheiro "{}log.\+txt"{} em modo de "{}append"{} (\textquotesingle{}a\textquotesingle{}). Este modo é crucial para garantir que as mensagens anteriores não são apagadas, acrescentando a nova linha ao final do ficheiro.
+\item Validação Crítica\+: Se não for possível abrir o ficheiro (ex\+: permissões, disco cheio), o programa encerra forçosamente (exit), pois um sistema sem logs não é auditável.
+\item Formata e escreve a string\+: "{}\+AAAA-\/\+MM-\/\+DD HH\+:\+MM\+:\+SS -\/ Mensagem"{}.
+\item Fecha o ficheiro imediatamente para garantir a persistência dos dados em disco.
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em msg} & A mensagem de texto a ser registada. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}

@@ -1,0 +1,286 @@
+\doxysection{headers/enums.h File Reference}
+\hypertarget{enums_8h}{}\label{enums_8h}\index{headers/enums.h@{headers/enums.h}}
+
+
+Definição de todas as enumerações utilizadas no sistema.  
+
+
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{enums_8h_ab65b46822216bbc3e525a5deeb6e9204}{Tipo\+Ocorrencia}} \{ \mbox{\hyperlink{enums_8h_ab65b46822216bbc3e525a5deeb6e9204aea4a4e68c67cce1bc25305dbacafbbff}{FLORESTAL}}
+, \mbox{\hyperlink{enums_8h_ab65b46822216bbc3e525a5deeb6e9204a6733ff5763111c1efec29177c178f55f}{URBANO}}
+, \mbox{\hyperlink{enums_8h_ab65b46822216bbc3e525a5deeb6e9204a406f3375508845ce68a9f7660ec707f0}{INDUSTRIAL}}
+ \}
+\begin{DoxyCompactList}\small\item\em Define a tipologia da ocorrência ou incêndio. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{enums_8h_ad89d1d0c04fe1ea4e2f1d2d503c8b3ee}{Prioridade}} \{ \mbox{\hyperlink{enums_8h_ad89d1d0c04fe1ea4e2f1d2d503c8b3eea24a91d93586fd9660bf7d7f23620f144}{BAIXA}}
+, \mbox{\hyperlink{enums_8h_ad89d1d0c04fe1ea4e2f1d2d503c8b3eea50d1448013c6f17125caee18aa418af7}{NORMAL}}
+, \mbox{\hyperlink{enums_8h_ad89d1d0c04fe1ea4e2f1d2d503c8b3eea5f504b4e3d4d75d14b4c8f8b89b85ac0}{ALTA}}
+ \}
+\begin{DoxyCompactList}\small\item\em Níveis de urgência para classificação de ocorrências. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{enums_8h_aa03a901485bdef7b8e7ae6757c2943cd}{Estado\+Ocorrencia}} \{ \mbox{\hyperlink{enums_8h_aa03a901485bdef7b8e7ae6757c2943cda9525033b6698d23c5b8924457816c21b}{OCORR\+\_\+\+REPORTADA}}
+, \mbox{\hyperlink{enums_8h_aa03a901485bdef7b8e7ae6757c2943cda8d712f4ee50e69f7be848844866e6509}{OCORR\+\_\+\+INTERVENCAO}}
+, \mbox{\hyperlink{enums_8h_aa03a901485bdef7b8e7ae6757c2943cda49d990d0891231db65af42118a982592}{OCORR\+\_\+\+CONCLUIDA}}
+ \}
+\begin{DoxyCompactList}\small\item\em Ciclo de vida administrativo de uma ocorrência. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{enums_8h_a28c304fa648c40b80c0e6e484baf34b0}{Estado\+Intervencao}} \{ \mbox{\hyperlink{enums_8h_a28c304fa648c40b80c0e6e484baf34b0a6ab68f6bc9848751cd8f7409f8435208}{INT\+\_\+\+PLANEAMENTO}}
+, \mbox{\hyperlink{enums_8h_a28c304fa648c40b80c0e6e484baf34b0a2a8239418a3c17448559c948bcf0c79e}{INT\+\_\+\+EXECUCAO}}
+, \mbox{\hyperlink{enums_8h_a28c304fa648c40b80c0e6e484baf34b0acce398cdc2705fb972db329dcd26b64f}{INT\+\_\+\+CONCLUIDA}}
+ \}
+\begin{DoxyCompactList}\small\item\em Fases operacionais de uma intervenção específica. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{enums_8h_a3685ad31303a5ee1aeba0f1c032488cd}{Especialidade\+Bombeiro}} \{ \mbox{\hyperlink{enums_8h_a3685ad31303a5ee1aeba0f1c032488cda20300a72451c3efcfe4ab9c9bf324b48}{COMBATE\+\_\+\+FLORESTAL}}
+, \mbox{\hyperlink{enums_8h_a3685ad31303a5ee1aeba0f1c032488cdaa05a14110e41f473cc3d1c3f3bf5c01c}{COMBATE\+\_\+\+AEREO}}
+, \mbox{\hyperlink{enums_8h_a3685ad31303a5ee1aeba0f1c032488cda2f980467c9e1004dd5ac1130b97ebc13}{RESGATE}}
+ \}
+\begin{DoxyCompactList}\small\item\em Áreas de especialização técnica dos bombeiros. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{enums_8h_ad5420257991cb90bfdc64197c35fdaeb}{Estado\+Bombeiro}} \{ \mbox{\hyperlink{enums_8h_ad5420257991cb90bfdc64197c35fdaeba96436b63406dae1b5d99fd20c5ecedba}{EB\+\_\+\+DISPONIVEL}}
+, \mbox{\hyperlink{enums_8h_ad5420257991cb90bfdc64197c35fdaeba70752f2b993e9952129f2c1a2dd27ffc}{EB\+\_\+\+INTERVENCAO}}
+, \mbox{\hyperlink{enums_8h_ad5420257991cb90bfdc64197c35fdaeba2d2a03325d2355e05d6c29907ade70d9}{EB\+\_\+\+TREINO}}
+ \}
+\begin{DoxyCompactList}\small\item\em Situação atual de disponibilidade do bombeiro. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{enums_8h_a7798c1385e8c3c9babaffe702a6e11a8}{Estado\+Equipamento}} \{ \mbox{\hyperlink{enums_8h_a7798c1385e8c3c9babaffe702a6e11a8a82ab69904d1077623cec65f1e076720c}{EQ\+\_\+\+DISPONIVEL}}
+, \mbox{\hyperlink{enums_8h_a7798c1385e8c3c9babaffe702a6e11a8afaaf9b0d5e950f24d8ed228af15ac125}{EQ\+\_\+\+EM\+\_\+\+USO}}
+, \mbox{\hyperlink{enums_8h_a7798c1385e8c3c9babaffe702a6e11a8a14487f0fd0ae8ef50ca2bc7d664ec22d}{EQ\+\_\+\+MANUTENCAO}}
+ \}
+\begin{DoxyCompactList}\small\item\em Condição de funcionamento e alocação de equipamentos. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{enums_8h_a74d57d5ed91067127cc3a2537c50322a}{Tipo\+Equipamento}} \{ \mbox{\hyperlink{enums_8h_a74d57d5ed91067127cc3a2537c50322aaf2719e0e569bc0a2ca4554141b339c92}{VESTUARIO}}
+, \mbox{\hyperlink{enums_8h_a74d57d5ed91067127cc3a2537c50322aa7487c761d4b5864cb0b848735280ec8c}{VEICULOS}}
+, \mbox{\hyperlink{enums_8h_a74d57d5ed91067127cc3a2537c50322aa7ade250ca3f5ef5e7ffa93cb3b8d2b7d}{FERRAMENTAS}}
+, \mbox{\hyperlink{enums_8h_a74d57d5ed91067127cc3a2537c50322aa74dcd05169ccde9df9ef93b6a0a3a849}{COMUNICACAO}}
+ \}
+\begin{DoxyCompactList}\small\item\em Categorização dos recursos materiais. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{enums_8h_a57c46da9480d65eb58e2656f0f133a60}{Tipo\+Quartel}} \{ \mbox{\hyperlink{enums_8h_a57c46da9480d65eb58e2656f0f133a60a99348de412e0cf52923b90ae780cf4ba}{VOLUNTARIO}}
+, \mbox{\hyperlink{enums_8h_a57c46da9480d65eb58e2656f0f133a60a31613eaf8d7aeca943e5f0a7c07b2ea8}{SAPADOR}}
+, \mbox{\hyperlink{enums_8h_a57c46da9480d65eb58e2656f0f133a60a0041d33a1db7d32d163d309fdbc9a0ac}{MUNICIPAL}}
+ \}
+\begin{DoxyCompactList}\small\item\em Classificação da entidade detentora do quartel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Definição de todas as enumerações utilizadas no sistema. 
+
+Este ficheiro contém os tipos enumerados que categorizam ocorrências, estados, prioridades, especialidades e tipos de equipamentos/quartéis. 
+
+\label{doc-enum-members}
+\Hypertarget{enums_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{enums_8h_a3685ad31303a5ee1aeba0f1c032488cd}\index{enums.h@{enums.h}!EspecialidadeBombeiro@{EspecialidadeBombeiro}}
+\index{EspecialidadeBombeiro@{EspecialidadeBombeiro}!enums.h@{enums.h}}
+\doxysubsubsection{\texorpdfstring{EspecialidadeBombeiro}{EspecialidadeBombeiro}}
+{\footnotesize\ttfamily \label{enums_8h_a3685ad31303a5ee1aeba0f1c032488cd} 
+enum \mbox{\hyperlink{enums_8h_a3685ad31303a5ee1aeba0f1c032488cd}{Especialidade\+Bombeiro}}}
+
+
+
+Áreas de especialização técnica dos bombeiros. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMBATE\_FLORESTAL@{COMBATE\_FLORESTAL}!enums.h@{enums.h}}\index{enums.h@{enums.h}!COMBATE\_FLORESTAL@{COMBATE\_FLORESTAL}}}\Hypertarget{enums_8h_a3685ad31303a5ee1aeba0f1c032488cda20300a72451c3efcfe4ab9c9bf324b48}\label{enums_8h_a3685ad31303a5ee1aeba0f1c032488cda20300a72451c3efcfe4ab9c9bf324b48} 
+COMBATE\+\_\+\+FLORESTAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMBATE\_AEREO@{COMBATE\_AEREO}!enums.h@{enums.h}}\index{enums.h@{enums.h}!COMBATE\_AEREO@{COMBATE\_AEREO}}}\Hypertarget{enums_8h_a3685ad31303a5ee1aeba0f1c032488cdaa05a14110e41f473cc3d1c3f3bf5c01c}\label{enums_8h_a3685ad31303a5ee1aeba0f1c032488cdaa05a14110e41f473cc3d1c3f3bf5c01c} 
+COMBATE\+\_\+\+AEREO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RESGATE@{RESGATE}!enums.h@{enums.h}}\index{enums.h@{enums.h}!RESGATE@{RESGATE}}}\Hypertarget{enums_8h_a3685ad31303a5ee1aeba0f1c032488cda2f980467c9e1004dd5ac1130b97ebc13}\label{enums_8h_a3685ad31303a5ee1aeba0f1c032488cda2f980467c9e1004dd5ac1130b97ebc13} 
+RESGATE&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{enums_8h_ad5420257991cb90bfdc64197c35fdaeb}\index{enums.h@{enums.h}!EstadoBombeiro@{EstadoBombeiro}}
+\index{EstadoBombeiro@{EstadoBombeiro}!enums.h@{enums.h}}
+\doxysubsubsection{\texorpdfstring{EstadoBombeiro}{EstadoBombeiro}}
+{\footnotesize\ttfamily \label{enums_8h_ad5420257991cb90bfdc64197c35fdaeb} 
+enum \mbox{\hyperlink{enums_8h_ad5420257991cb90bfdc64197c35fdaeb}{Estado\+Bombeiro}}}
+
+
+
+Situação atual de disponibilidade do bombeiro. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EB\_DISPONIVEL@{EB\_DISPONIVEL}!enums.h@{enums.h}}\index{enums.h@{enums.h}!EB\_DISPONIVEL@{EB\_DISPONIVEL}}}\Hypertarget{enums_8h_ad5420257991cb90bfdc64197c35fdaeba96436b63406dae1b5d99fd20c5ecedba}\label{enums_8h_ad5420257991cb90bfdc64197c35fdaeba96436b63406dae1b5d99fd20c5ecedba} 
+EB\+\_\+\+DISPONIVEL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EB\_INTERVENCAO@{EB\_INTERVENCAO}!enums.h@{enums.h}}\index{enums.h@{enums.h}!EB\_INTERVENCAO@{EB\_INTERVENCAO}}}\Hypertarget{enums_8h_ad5420257991cb90bfdc64197c35fdaeba70752f2b993e9952129f2c1a2dd27ffc}\label{enums_8h_ad5420257991cb90bfdc64197c35fdaeba70752f2b993e9952129f2c1a2dd27ffc} 
+EB\+\_\+\+INTERVENCAO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EB\_TREINO@{EB\_TREINO}!enums.h@{enums.h}}\index{enums.h@{enums.h}!EB\_TREINO@{EB\_TREINO}}}\Hypertarget{enums_8h_ad5420257991cb90bfdc64197c35fdaeba2d2a03325d2355e05d6c29907ade70d9}\label{enums_8h_ad5420257991cb90bfdc64197c35fdaeba2d2a03325d2355e05d6c29907ade70d9} 
+EB\+\_\+\+TREINO&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{enums_8h_a7798c1385e8c3c9babaffe702a6e11a8}\index{enums.h@{enums.h}!EstadoEquipamento@{EstadoEquipamento}}
+\index{EstadoEquipamento@{EstadoEquipamento}!enums.h@{enums.h}}
+\doxysubsubsection{\texorpdfstring{EstadoEquipamento}{EstadoEquipamento}}
+{\footnotesize\ttfamily \label{enums_8h_a7798c1385e8c3c9babaffe702a6e11a8} 
+enum \mbox{\hyperlink{enums_8h_a7798c1385e8c3c9babaffe702a6e11a8}{Estado\+Equipamento}}}
+
+
+
+Condição de funcionamento e alocação de equipamentos. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EQ\_DISPONIVEL@{EQ\_DISPONIVEL}!enums.h@{enums.h}}\index{enums.h@{enums.h}!EQ\_DISPONIVEL@{EQ\_DISPONIVEL}}}\Hypertarget{enums_8h_a7798c1385e8c3c9babaffe702a6e11a8a82ab69904d1077623cec65f1e076720c}\label{enums_8h_a7798c1385e8c3c9babaffe702a6e11a8a82ab69904d1077623cec65f1e076720c} 
+EQ\+\_\+\+DISPONIVEL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EQ\_EM\_USO@{EQ\_EM\_USO}!enums.h@{enums.h}}\index{enums.h@{enums.h}!EQ\_EM\_USO@{EQ\_EM\_USO}}}\Hypertarget{enums_8h_a7798c1385e8c3c9babaffe702a6e11a8afaaf9b0d5e950f24d8ed228af15ac125}\label{enums_8h_a7798c1385e8c3c9babaffe702a6e11a8afaaf9b0d5e950f24d8ed228af15ac125} 
+EQ\+\_\+\+EM\+\_\+\+USO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EQ\_MANUTENCAO@{EQ\_MANUTENCAO}!enums.h@{enums.h}}\index{enums.h@{enums.h}!EQ\_MANUTENCAO@{EQ\_MANUTENCAO}}}\Hypertarget{enums_8h_a7798c1385e8c3c9babaffe702a6e11a8a14487f0fd0ae8ef50ca2bc7d664ec22d}\label{enums_8h_a7798c1385e8c3c9babaffe702a6e11a8a14487f0fd0ae8ef50ca2bc7d664ec22d} 
+EQ\+\_\+\+MANUTENCAO&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{enums_8h_a28c304fa648c40b80c0e6e484baf34b0}\index{enums.h@{enums.h}!EstadoIntervencao@{EstadoIntervencao}}
+\index{EstadoIntervencao@{EstadoIntervencao}!enums.h@{enums.h}}
+\doxysubsubsection{\texorpdfstring{EstadoIntervencao}{EstadoIntervencao}}
+{\footnotesize\ttfamily \label{enums_8h_a28c304fa648c40b80c0e6e484baf34b0} 
+enum \mbox{\hyperlink{enums_8h_a28c304fa648c40b80c0e6e484baf34b0}{Estado\+Intervencao}}}
+
+
+
+Fases operacionais de uma intervenção específica. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INT\_PLANEAMENTO@{INT\_PLANEAMENTO}!enums.h@{enums.h}}\index{enums.h@{enums.h}!INT\_PLANEAMENTO@{INT\_PLANEAMENTO}}}\Hypertarget{enums_8h_a28c304fa648c40b80c0e6e484baf34b0a6ab68f6bc9848751cd8f7409f8435208}\label{enums_8h_a28c304fa648c40b80c0e6e484baf34b0a6ab68f6bc9848751cd8f7409f8435208} 
+INT\+\_\+\+PLANEAMENTO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INT\_EXECUCAO@{INT\_EXECUCAO}!enums.h@{enums.h}}\index{enums.h@{enums.h}!INT\_EXECUCAO@{INT\_EXECUCAO}}}\Hypertarget{enums_8h_a28c304fa648c40b80c0e6e484baf34b0a2a8239418a3c17448559c948bcf0c79e}\label{enums_8h_a28c304fa648c40b80c0e6e484baf34b0a2a8239418a3c17448559c948bcf0c79e} 
+INT\+\_\+\+EXECUCAO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INT\_CONCLUIDA@{INT\_CONCLUIDA}!enums.h@{enums.h}}\index{enums.h@{enums.h}!INT\_CONCLUIDA@{INT\_CONCLUIDA}}}\Hypertarget{enums_8h_a28c304fa648c40b80c0e6e484baf34b0acce398cdc2705fb972db329dcd26b64f}\label{enums_8h_a28c304fa648c40b80c0e6e484baf34b0acce398cdc2705fb972db329dcd26b64f} 
+INT\+\_\+\+CONCLUIDA&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{enums_8h_aa03a901485bdef7b8e7ae6757c2943cd}\index{enums.h@{enums.h}!EstadoOcorrencia@{EstadoOcorrencia}}
+\index{EstadoOcorrencia@{EstadoOcorrencia}!enums.h@{enums.h}}
+\doxysubsubsection{\texorpdfstring{EstadoOcorrencia}{EstadoOcorrencia}}
+{\footnotesize\ttfamily \label{enums_8h_aa03a901485bdef7b8e7ae6757c2943cd} 
+enum \mbox{\hyperlink{enums_8h_aa03a901485bdef7b8e7ae6757c2943cd}{Estado\+Ocorrencia}}}
+
+
+
+Ciclo de vida administrativo de uma ocorrência. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OCORR\_REPORTADA@{OCORR\_REPORTADA}!enums.h@{enums.h}}\index{enums.h@{enums.h}!OCORR\_REPORTADA@{OCORR\_REPORTADA}}}\Hypertarget{enums_8h_aa03a901485bdef7b8e7ae6757c2943cda9525033b6698d23c5b8924457816c21b}\label{enums_8h_aa03a901485bdef7b8e7ae6757c2943cda9525033b6698d23c5b8924457816c21b} 
+OCORR\+\_\+\+REPORTADA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OCORR\_INTERVENCAO@{OCORR\_INTERVENCAO}!enums.h@{enums.h}}\index{enums.h@{enums.h}!OCORR\_INTERVENCAO@{OCORR\_INTERVENCAO}}}\Hypertarget{enums_8h_aa03a901485bdef7b8e7ae6757c2943cda8d712f4ee50e69f7be848844866e6509}\label{enums_8h_aa03a901485bdef7b8e7ae6757c2943cda8d712f4ee50e69f7be848844866e6509} 
+OCORR\+\_\+\+INTERVENCAO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OCORR\_CONCLUIDA@{OCORR\_CONCLUIDA}!enums.h@{enums.h}}\index{enums.h@{enums.h}!OCORR\_CONCLUIDA@{OCORR\_CONCLUIDA}}}\Hypertarget{enums_8h_aa03a901485bdef7b8e7ae6757c2943cda49d990d0891231db65af42118a982592}\label{enums_8h_aa03a901485bdef7b8e7ae6757c2943cda49d990d0891231db65af42118a982592} 
+OCORR\+\_\+\+CONCLUIDA&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{enums_8h_ad89d1d0c04fe1ea4e2f1d2d503c8b3ee}\index{enums.h@{enums.h}!Prioridade@{Prioridade}}
+\index{Prioridade@{Prioridade}!enums.h@{enums.h}}
+\doxysubsubsection{\texorpdfstring{Prioridade}{Prioridade}}
+{\footnotesize\ttfamily \label{enums_8h_ad89d1d0c04fe1ea4e2f1d2d503c8b3ee} 
+enum \mbox{\hyperlink{enums_8h_ad89d1d0c04fe1ea4e2f1d2d503c8b3ee}{Prioridade}}}
+
+
+
+Níveis de urgência para classificação de ocorrências. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BAIXA@{BAIXA}!enums.h@{enums.h}}\index{enums.h@{enums.h}!BAIXA@{BAIXA}}}\Hypertarget{enums_8h_ad89d1d0c04fe1ea4e2f1d2d503c8b3eea24a91d93586fd9660bf7d7f23620f144}\label{enums_8h_ad89d1d0c04fe1ea4e2f1d2d503c8b3eea24a91d93586fd9660bf7d7f23620f144} 
+BAIXA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NORMAL@{NORMAL}!enums.h@{enums.h}}\index{enums.h@{enums.h}!NORMAL@{NORMAL}}}\Hypertarget{enums_8h_ad89d1d0c04fe1ea4e2f1d2d503c8b3eea50d1448013c6f17125caee18aa418af7}\label{enums_8h_ad89d1d0c04fe1ea4e2f1d2d503c8b3eea50d1448013c6f17125caee18aa418af7} 
+NORMAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ALTA@{ALTA}!enums.h@{enums.h}}\index{enums.h@{enums.h}!ALTA@{ALTA}}}\Hypertarget{enums_8h_ad89d1d0c04fe1ea4e2f1d2d503c8b3eea5f504b4e3d4d75d14b4c8f8b89b85ac0}\label{enums_8h_ad89d1d0c04fe1ea4e2f1d2d503c8b3eea5f504b4e3d4d75d14b4c8f8b89b85ac0} 
+ALTA&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{enums_8h_a74d57d5ed91067127cc3a2537c50322a}\index{enums.h@{enums.h}!TipoEquipamento@{TipoEquipamento}}
+\index{TipoEquipamento@{TipoEquipamento}!enums.h@{enums.h}}
+\doxysubsubsection{\texorpdfstring{TipoEquipamento}{TipoEquipamento}}
+{\footnotesize\ttfamily \label{enums_8h_a74d57d5ed91067127cc3a2537c50322a} 
+enum \mbox{\hyperlink{enums_8h_a74d57d5ed91067127cc3a2537c50322a}{Tipo\+Equipamento}}}
+
+
+
+Categorização dos recursos materiais. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VESTUARIO@{VESTUARIO}!enums.h@{enums.h}}\index{enums.h@{enums.h}!VESTUARIO@{VESTUARIO}}}\Hypertarget{enums_8h_a74d57d5ed91067127cc3a2537c50322aaf2719e0e569bc0a2ca4554141b339c92}\label{enums_8h_a74d57d5ed91067127cc3a2537c50322aaf2719e0e569bc0a2ca4554141b339c92} 
+VESTUARIO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VEICULOS@{VEICULOS}!enums.h@{enums.h}}\index{enums.h@{enums.h}!VEICULOS@{VEICULOS}}}\Hypertarget{enums_8h_a74d57d5ed91067127cc3a2537c50322aa7487c761d4b5864cb0b848735280ec8c}\label{enums_8h_a74d57d5ed91067127cc3a2537c50322aa7487c761d4b5864cb0b848735280ec8c} 
+VEICULOS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FERRAMENTAS@{FERRAMENTAS}!enums.h@{enums.h}}\index{enums.h@{enums.h}!FERRAMENTAS@{FERRAMENTAS}}}\Hypertarget{enums_8h_a74d57d5ed91067127cc3a2537c50322aa7ade250ca3f5ef5e7ffa93cb3b8d2b7d}\label{enums_8h_a74d57d5ed91067127cc3a2537c50322aa7ade250ca3f5ef5e7ffa93cb3b8d2b7d} 
+FERRAMENTAS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMUNICACAO@{COMUNICACAO}!enums.h@{enums.h}}\index{enums.h@{enums.h}!COMUNICACAO@{COMUNICACAO}}}\Hypertarget{enums_8h_a74d57d5ed91067127cc3a2537c50322aa74dcd05169ccde9df9ef93b6a0a3a849}\label{enums_8h_a74d57d5ed91067127cc3a2537c50322aa74dcd05169ccde9df9ef93b6a0a3a849} 
+COMUNICACAO&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{enums_8h_ab65b46822216bbc3e525a5deeb6e9204}\index{enums.h@{enums.h}!TipoOcorrencia@{TipoOcorrencia}}
+\index{TipoOcorrencia@{TipoOcorrencia}!enums.h@{enums.h}}
+\doxysubsubsection{\texorpdfstring{TipoOcorrencia}{TipoOcorrencia}}
+{\footnotesize\ttfamily \label{enums_8h_ab65b46822216bbc3e525a5deeb6e9204} 
+enum \mbox{\hyperlink{enums_8h_ab65b46822216bbc3e525a5deeb6e9204}{Tipo\+Ocorrencia}}}
+
+
+
+Define a tipologia da ocorrência ou incêndio. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FLORESTAL@{FLORESTAL}!enums.h@{enums.h}}\index{enums.h@{enums.h}!FLORESTAL@{FLORESTAL}}}\Hypertarget{enums_8h_ab65b46822216bbc3e525a5deeb6e9204aea4a4e68c67cce1bc25305dbacafbbff}\label{enums_8h_ab65b46822216bbc3e525a5deeb6e9204aea4a4e68c67cce1bc25305dbacafbbff} 
+FLORESTAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{URBANO@{URBANO}!enums.h@{enums.h}}\index{enums.h@{enums.h}!URBANO@{URBANO}}}\Hypertarget{enums_8h_ab65b46822216bbc3e525a5deeb6e9204a6733ff5763111c1efec29177c178f55f}\label{enums_8h_ab65b46822216bbc3e525a5deeb6e9204a6733ff5763111c1efec29177c178f55f} 
+URBANO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INDUSTRIAL@{INDUSTRIAL}!enums.h@{enums.h}}\index{enums.h@{enums.h}!INDUSTRIAL@{INDUSTRIAL}}}\Hypertarget{enums_8h_ab65b46822216bbc3e525a5deeb6e9204a406f3375508845ce68a9f7660ec707f0}\label{enums_8h_ab65b46822216bbc3e525a5deeb6e9204a406f3375508845ce68a9f7660ec707f0} 
+INDUSTRIAL&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{enums_8h_a57c46da9480d65eb58e2656f0f133a60}\index{enums.h@{enums.h}!TipoQuartel@{TipoQuartel}}
+\index{TipoQuartel@{TipoQuartel}!enums.h@{enums.h}}
+\doxysubsubsection{\texorpdfstring{TipoQuartel}{TipoQuartel}}
+{\footnotesize\ttfamily \label{enums_8h_a57c46da9480d65eb58e2656f0f133a60} 
+enum \mbox{\hyperlink{enums_8h_a57c46da9480d65eb58e2656f0f133a60}{Tipo\+Quartel}}}
+
+
+
+Classificação da entidade detentora do quartel. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VOLUNTARIO@{VOLUNTARIO}!enums.h@{enums.h}}\index{enums.h@{enums.h}!VOLUNTARIO@{VOLUNTARIO}}}\Hypertarget{enums_8h_a57c46da9480d65eb58e2656f0f133a60a99348de412e0cf52923b90ae780cf4ba}\label{enums_8h_a57c46da9480d65eb58e2656f0f133a60a99348de412e0cf52923b90ae780cf4ba} 
+VOLUNTARIO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SAPADOR@{SAPADOR}!enums.h@{enums.h}}\index{enums.h@{enums.h}!SAPADOR@{SAPADOR}}}\Hypertarget{enums_8h_a57c46da9480d65eb58e2656f0f133a60a31613eaf8d7aeca943e5f0a7c07b2ea8}\label{enums_8h_a57c46da9480d65eb58e2656f0f133a60a31613eaf8d7aeca943e5f0a7c07b2ea8} 
+SAPADOR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MUNICIPAL@{MUNICIPAL}!enums.h@{enums.h}}\index{enums.h@{enums.h}!MUNICIPAL@{MUNICIPAL}}}\Hypertarget{enums_8h_a57c46da9480d65eb58e2656f0f133a60a0041d33a1db7d32d163d309fdbc9a0ac}\label{enums_8h_a57c46da9480d65eb58e2656f0f133a60a0041d33a1db7d32d163d309fdbc9a0ac} 
+MUNICIPAL&\\
+\hline
+
+\end{DoxyEnumFields}

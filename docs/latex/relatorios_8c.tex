@@ -1,0 +1,344 @@
+\doxysection{src/relatorios.c File Reference}
+\hypertarget{relatorios_8c}{}\label{relatorios_8c}\index{src/relatorios.c@{src/relatorios.c}}
+
+
+Implementação dos relatórios e estatísticas do sistema.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include "{}../headers/enums.\+h"{}}\newline
+{\ttfamily \#include "{}../headers/input.\+h"{}}\newline
+{\ttfamily \#include "{}../headers/log.\+h"{}}\newline
+{\ttfamily \#include "{}../headers/ocorrencia.\+h"{}}\newline
+{\ttfamily \#include "{}../headers/gestao\+Ocorrencia.\+h"{}}\newline
+{\ttfamily \#include "{}../headers/intervencao.\+h"{}}\newline
+{\ttfamily \#include "{}../headers/gestao\+Intervencao.\+h"{}}\newline
+{\ttfamily \#include "{}../headers/bombeiro.\+h"{}}\newline
+{\ttfamily \#include "{}../headers/gestao\+Bombeiro.\+h"{}}\newline
+{\ttfamily \#include "{}../headers/equipamento.\+h"{}}\newline
+{\ttfamily \#include "{}../headers/gestao\+Equipamento.\+h"{}}\newline
+{\ttfamily \#include "{}../headers/quartel.\+h"{}}\newline
+{\ttfamily \#include "{}../headers/gestao\+Quartel.\+h"{}}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_contador_recurso}{Contador\+Recurso}}
+\begin{DoxyCompactList}\small\item\em Estrutura auxiliar para contagem de recursos (Top X). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_stats_bombeiro}{Stats\+Bombeiro}}
+\begin{DoxyCompactList}\small\item\em Estrutura auxiliar para o ranking de desempenho de bombeiros. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{relatorios_8c_abf3f956b02ed1443094583facf07eccf}{get\+Str\+Estado\+Ocorrencia}} (\mbox{\hyperlink{enums_8h_aa03a901485bdef7b8e7ae6757c2943cd}{Estado\+Ocorrencia}} est)
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{relatorios_8c_a2f27e5bfd2883d2c5a41dfb7a8d54479}{get\+Str\+Tipo\+Equipamento}} (\mbox{\hyperlink{enums_8h_a74d57d5ed91067127cc3a2537c50322a}{Tipo\+Equipamento}} tipo)
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{relatorios_8c_a62104246a71d5711af6124a29cadf072}{get\+Str\+Estado\+Equipamento}} (\mbox{\hyperlink{enums_8h_a7798c1385e8c3c9babaffe702a6e11a8}{Estado\+Equipamento}} est)
+\item 
+long \mbox{\hyperlink{relatorios_8c_ac83e478bc82a6fdd37437084a737d7d5}{calcular\+Minutos\+Totais}} (\mbox{\hyperlink{struct_data}{Data}} d, \mbox{\hyperlink{struct_hora}{Hora}} h)
+\begin{DoxyCompactList}\small\item\em Calcula o total de minutos desde o ano 0 (aproximado) para comparações. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{relatorios_8c_a1c967f3bd33ecfe64ed04546b9e4d1cd}{calcular\+Diferenca\+Minutos}} (\mbox{\hyperlink{struct_data}{Data}} d1, \mbox{\hyperlink{struct_hora}{Hora}} h1, \mbox{\hyperlink{struct_data}{Data}} d2, \mbox{\hyperlink{struct_hora}{Hora}} h2)
+\begin{DoxyCompactList}\small\item\em Calcula a diferença em minutos entre duas datas/horas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{relatorios_8c_a7b6c1a72d6607f98a5069bc5ee35dfdc}{relatorio\+Estatisticas\+Gerais}} (\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} ocorrencias)
+\begin{DoxyCompactList}\small\item\em Gera estatísticas gerais sobre as ocorrências (Tipos, Prioridades, Estados). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{relatorios_8c_a24a61e1c92f8d60431a5447b4f643e14}{relatorio\+Tempo\+Medio\+Resposta}} (\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} ocorrencias)
+\begin{DoxyCompactList}\small\item\em Calcula o tempo médio decorrido desde o registo das ocorrências. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{relatorios_8c_a280343cec76fb59a501732a1963901bb}{relatorio\+Localizacao\+EFrequencia}} (\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} ocorrencias)
+\begin{DoxyCompactList}\small\item\em Analisa a frequência de ocorrências por localidade (string). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{relatorios_8c_a2842c5e530f4d6e874850cbe9e3ab0d3}{relatorio\+Intervencoes\+Estado}} (\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} intervencoes)
+\begin{DoxyCompactList}\small\item\em Mostra a percentagem de intervenções em cada estado (Planeamento, Execução, Concluída). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{relatorios_8c_a114f811e3b3b19456e09543d7ea85c05}{relatorio\+Tempo\+Duracao}} (\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} intervencoes)
+\begin{DoxyCompactList}\small\item\em Calcula a duração média das intervenções já concluídas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{relatorios_8c_a6107f7bf310a0da325eb7860a6e7b443}{relatorio\+Recursos\+Mais\+Utilizados}} (\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} intervencoes)
+\begin{DoxyCompactList}\small\item\em Identifica os \doxylink{struct_bombeiros}{Bombeiros} e \doxylink{struct_equipamentos}{Equipamentos} mais requisitados. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{relatorios_8c_a99f5aadee39948fdcd42b3b5a569e356}{relatorio\+Eficiencia}} (\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} intervencoes)
+\begin{DoxyCompactList}\small\item\em Calcula rácios operacionais (recursos por ocorrência e taxa de conclusão). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{relatorios_8c_a73ed85b226b83ddee988b20711d565ef}{relatorio\+Disponibilidade\+Especialidade}} (\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} bombeiros)
+\begin{DoxyCompactList}\small\item\em Lista quantos bombeiros \textquotesingle{}DISPONÍ\+VEIS\textquotesingle{} existem por especialidade. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{relatorios_8c_afd89271d47cd8de28c3d93417c84ad21}{relatorio\+Participacao\+Intervencoes}} (\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} bombeiros, \mbox{\hyperlink{struct_intervencoes}{Intervencoes}} intervencoes)
+\begin{DoxyCompactList}\small\item\em Conta em quantas intervenções cada bombeiro participou. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{relatorios_8c_ac503068c623f85494696722a64832923}{relatorio\+Ranking\+Desempenho}} (\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} intervencoes, \mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} ocorrencias, \mbox{\hyperlink{struct_bombeiros}{Bombeiros}} bombeiros)
+\begin{DoxyCompactList}\small\item\em Gera um ranking de desempenho com base nas intervenções CONCLUÍ\+DAS. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{relatorios_8c_ab928826d53a93e661c2f127299a7fbaf}{relatorio\+Inventario\+Equipamentos}} (\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} equipamentos)
+\begin{DoxyCompactList}\small\item\em Lista o inventário geral de equipamentos com contagem por tipo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{relatorios_8c_a11255f90a91fc2ad9d7b6d59f6eb4ebf}{relatorio\+Utilizacao\+Tipo\+Intervencao}} (\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} equipamentos)
+\begin{DoxyCompactList}\small\item\em Filtra e mostra apenas os equipamentos em estado \textquotesingle{}EQ\+\_\+\+EM\+\_\+\+USO\textquotesingle{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{relatorios_8c_a9c7518a829c735b8df9cdec8024ab6a7}{relatorio\+Manutencao\+Equipamentos}} (\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} equipamentos)
+\begin{DoxyCompactList}\small\item\em Filtra e mostra apenas os equipamentos em estado \textquotesingle{}EQ\+\_\+\+MANUTENCAO\textquotesingle{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{relatorios_8c_a51fe759f0f02cfe0588d58131286bcba}{relatorio\+Quarteis\+Por\+Tipo}} (\mbox{\hyperlink{struct_quarteis}{Quarteis}} quarteis)
+\begin{DoxyCompactList}\small\item\em Mostra a distribuição dos quartéis por tipo (Voluntários, Sapadores, Municipais). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{relatorios_8c_ae66ac7a3c900200d7857083c2fc1dfa7}{relatorio\+Ocupacao\+Quarteis}} (\mbox{\hyperlink{struct_quarteis}{Quarteis}} quarteis, \mbox{\hyperlink{struct_bombeiros}{Bombeiros}} bombeiros)
+\begin{DoxyCompactList}\small\item\em Analisa a lotação de cada quartel e a quantidade de operacionais prontos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{relatorios_8c_a2a2913dd29757b106d6f028ae9641a20}{relatorio\+Especialidades\+Por\+Quartel}} (\mbox{\hyperlink{struct_quarteis}{Quarteis}} quarteis, \mbox{\hyperlink{struct_bombeiros}{Bombeiros}} bombeiros)
+\begin{DoxyCompactList}\small\item\em Mostra a distribuição de especialidades (Florestal, Aéreo, Resgate) por quartel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{relatorios_8c_adee804f6d9fb43e77bb84e5478cc7212}{menu\+Relatorios\+Bombeiros}} (\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} intervencoes, \mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} ocorrencias, \mbox{\hyperlink{struct_bombeiros}{Bombeiros}} bombeiros)
+\begin{DoxyCompactList}\small\item\em Menu de navegação para os relatórios de \doxylink{struct_bombeiros}{Bombeiros}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{relatorios_8c_aa6fed0fbe24e49ab0ca79146d65c5073}{menu\+Relatorios\+Equipamentos}} (\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} intervencoes, \mbox{\hyperlink{struct_equipamentos}{Equipamentos}} equipamentos)
+\begin{DoxyCompactList}\small\item\em Menu de navegação para os relatórios de \doxylink{struct_equipamentos}{Equipamentos}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{relatorios_8c_ae9d38e963aa001db153f7fdab648c05b}{menu\+Relatorios\+Intervencoes}} (\mbox{\hyperlink{struct_intervencoes}{Intervencoes}} intervencoes)
+\begin{DoxyCompactList}\small\item\em Menu de navegação para os relatórios de Intervenções. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{relatorios_8c_adfc778d718fc99809d564e7af04d3bdf}{menu\+Relatorios\+Ocorrencias}} (\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} ocorrencias)
+\begin{DoxyCompactList}\small\item\em Menu de navegação para os relatórios de Ocorrências. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{relatorios_8c_a97e1bbe185b7130dd98720ee6315ea54}{menu\+Relatorios\+Quarteis}} (\mbox{\hyperlink{struct_quarteis}{Quarteis}} quarteis, \mbox{\hyperlink{struct_bombeiros}{Bombeiros}} bombeiros)
+\begin{DoxyCompactList}\small\item\em Menu de navegação para os relatórios de Quartéis. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementação dos relatórios e estatísticas do sistema. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{relatorios_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{relatorios_8c_a1c967f3bd33ecfe64ed04546b9e4d1cd}\index{relatorios.c@{relatorios.c}!calcularDiferencaMinutos@{calcularDiferencaMinutos}}
+\index{calcularDiferencaMinutos@{calcularDiferencaMinutos}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{calcularDiferencaMinutos()}{calcularDiferencaMinutos()}}
+{\footnotesize\ttfamily \label{relatorios_8c_a1c967f3bd33ecfe64ed04546b9e4d1cd} 
+int calcular\+Diferenca\+Minutos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_data}{Data}}}]{d1}{, }\item[{\mbox{\hyperlink{struct_hora}{Hora}}}]{h1}{, }\item[{\mbox{\hyperlink{struct_data}{Data}}}]{d2}{, }\item[{\mbox{\hyperlink{struct_hora}{Hora}}}]{h2}{}\end{DoxyParamCaption})}
+
+
+
+Calcula a diferença em minutos entre duas datas/horas. 
+
+\Hypertarget{relatorios_8c_ac83e478bc82a6fdd37437084a737d7d5}\index{relatorios.c@{relatorios.c}!calcularMinutosTotais@{calcularMinutosTotais}}
+\index{calcularMinutosTotais@{calcularMinutosTotais}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{calcularMinutosTotais()}{calcularMinutosTotais()}}
+{\footnotesize\ttfamily \label{relatorios_8c_ac83e478bc82a6fdd37437084a737d7d5} 
+long calcular\+Minutos\+Totais (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_data}{Data}}}]{d}{, }\item[{\mbox{\hyperlink{struct_hora}{Hora}}}]{h}{}\end{DoxyParamCaption})}
+
+
+
+Calcula o total de minutos desde o ano 0 (aproximado) para comparações. 
+
+\Hypertarget{relatorios_8c_a62104246a71d5711af6124a29cadf072}\index{relatorios.c@{relatorios.c}!getStrEstadoEquipamento@{getStrEstadoEquipamento}}
+\index{getStrEstadoEquipamento@{getStrEstadoEquipamento}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{getStrEstadoEquipamento()}{getStrEstadoEquipamento()}}
+{\footnotesize\ttfamily \label{relatorios_8c_a62104246a71d5711af6124a29cadf072} 
+char \texorpdfstring{$\ast$}{*} get\+Str\+Estado\+Equipamento (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enums_8h_a7798c1385e8c3c9babaffe702a6e11a8}{Estado\+Equipamento}}}]{est}{}\end{DoxyParamCaption})}
+
+\Hypertarget{relatorios_8c_abf3f956b02ed1443094583facf07eccf}\index{relatorios.c@{relatorios.c}!getStrEstadoOcorrencia@{getStrEstadoOcorrencia}}
+\index{getStrEstadoOcorrencia@{getStrEstadoOcorrencia}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{getStrEstadoOcorrencia()}{getStrEstadoOcorrencia()}}
+{\footnotesize\ttfamily \label{relatorios_8c_abf3f956b02ed1443094583facf07eccf} 
+char \texorpdfstring{$\ast$}{*} get\+Str\+Estado\+Ocorrencia (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enums_8h_aa03a901485bdef7b8e7ae6757c2943cd}{Estado\+Ocorrencia}}}]{est}{}\end{DoxyParamCaption})}
+
+\Hypertarget{relatorios_8c_a2f27e5bfd2883d2c5a41dfb7a8d54479}\index{relatorios.c@{relatorios.c}!getStrTipoEquipamento@{getStrTipoEquipamento}}
+\index{getStrTipoEquipamento@{getStrTipoEquipamento}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{getStrTipoEquipamento()}{getStrTipoEquipamento()}}
+{\footnotesize\ttfamily \label{relatorios_8c_a2f27e5bfd2883d2c5a41dfb7a8d54479} 
+char \texorpdfstring{$\ast$}{*} get\+Str\+Tipo\+Equipamento (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enums_8h_a74d57d5ed91067127cc3a2537c50322a}{Tipo\+Equipamento}}}]{tipo}{}\end{DoxyParamCaption})}
+
+\Hypertarget{relatorios_8c_adee804f6d9fb43e77bb84e5478cc7212}\index{relatorios.c@{relatorios.c}!menuRelatoriosBombeiros@{menuRelatoriosBombeiros}}
+\index{menuRelatoriosBombeiros@{menuRelatoriosBombeiros}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{menuRelatoriosBombeiros()}{menuRelatoriosBombeiros()}}
+{\footnotesize\ttfamily \label{relatorios_8c_adee804f6d9fb43e77bb84e5478cc7212} 
+void menu\+Relatorios\+Bombeiros (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}}]{intervencoes}{, }\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}}}]{ocorrencias}{, }\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}}}]{bombeiros}{}\end{DoxyParamCaption})}
+
+
+
+Menu de navegação para os relatórios de \doxylink{struct_bombeiros}{Bombeiros}. 
+
+Relatórios de produtividade/atuação dos bombeiros (cruza dados com intervenções). \Hypertarget{relatorios_8c_aa6fed0fbe24e49ab0ca79146d65c5073}\index{relatorios.c@{relatorios.c}!menuRelatoriosEquipamentos@{menuRelatoriosEquipamentos}}
+\index{menuRelatoriosEquipamentos@{menuRelatoriosEquipamentos}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{menuRelatoriosEquipamentos()}{menuRelatoriosEquipamentos()}}
+{\footnotesize\ttfamily \label{relatorios_8c_aa6fed0fbe24e49ab0ca79146d65c5073} 
+void menu\+Relatorios\+Equipamentos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}}]{intervencoes}{, }\item[{\mbox{\hyperlink{struct_equipamentos}{Equipamentos}}}]{equipamentos}{}\end{DoxyParamCaption})}
+
+
+
+Menu de navegação para os relatórios de \doxylink{struct_equipamentos}{Equipamentos}. 
+
+Relatórios de utilização e estado dos equipamentos nas intervenções. \Hypertarget{relatorios_8c_ae9d38e963aa001db153f7fdab648c05b}\index{relatorios.c@{relatorios.c}!menuRelatoriosIntervencoes@{menuRelatoriosIntervencoes}}
+\index{menuRelatoriosIntervencoes@{menuRelatoriosIntervencoes}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{menuRelatoriosIntervencoes()}{menuRelatoriosIntervencoes()}}
+{\footnotesize\ttfamily \label{relatorios_8c_ae9d38e963aa001db153f7fdab648c05b} 
+void menu\+Relatorios\+Intervencoes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}}]{intervencoes}{}\end{DoxyParamCaption})}
+
+
+
+Menu de navegação para os relatórios de Intervenções. 
+
+Análise de dados das intervenções (tempos médios, datas, eficácia). \Hypertarget{relatorios_8c_adfc778d718fc99809d564e7af04d3bdf}\index{relatorios.c@{relatorios.c}!menuRelatoriosOcorrencias@{menuRelatoriosOcorrencias}}
+\index{menuRelatoriosOcorrencias@{menuRelatoriosOcorrencias}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{menuRelatoriosOcorrencias()}{menuRelatoriosOcorrencias()}}
+{\footnotesize\ttfamily \label{relatorios_8c_adfc778d718fc99809d564e7af04d3bdf} 
+void menu\+Relatorios\+Ocorrencias (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}}}]{ocorrencias}{}\end{DoxyParamCaption})}
+
+
+
+Menu de navegação para os relatórios de Ocorrências. 
+
+Estatísticas globais sobre ocorrências (tipos, locais, frequência). \Hypertarget{relatorios_8c_a97e1bbe185b7130dd98720ee6315ea54}\index{relatorios.c@{relatorios.c}!menuRelatoriosQuarteis@{menuRelatoriosQuarteis}}
+\index{menuRelatoriosQuarteis@{menuRelatoriosQuarteis}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{menuRelatoriosQuarteis()}{menuRelatoriosQuarteis()}}
+{\footnotesize\ttfamily \label{relatorios_8c_a97e1bbe185b7130dd98720ee6315ea54} 
+void menu\+Relatorios\+Quarteis (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}}}]{quarteis}{, }\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}}}]{bombeiros}{}\end{DoxyParamCaption})}
+
+
+
+Menu de navegação para os relatórios de Quartéis. 
+
+Relatórios operacionais dos quartéis (lotação e distribuição de efetivos). \Hypertarget{relatorios_8c_a73ed85b226b83ddee988b20711d565ef}\index{relatorios.c@{relatorios.c}!relatorioDisponibilidadeEspecialidade@{relatorioDisponibilidadeEspecialidade}}
+\index{relatorioDisponibilidadeEspecialidade@{relatorioDisponibilidadeEspecialidade}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{relatorioDisponibilidadeEspecialidade()}{relatorioDisponibilidadeEspecialidade()}}
+{\footnotesize\ttfamily \label{relatorios_8c_a73ed85b226b83ddee988b20711d565ef} 
+void relatorio\+Disponibilidade\+Especialidade (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}}}]{bombeiros}{}\end{DoxyParamCaption})}
+
+
+
+Lista quantos bombeiros \textquotesingle{}DISPONÍ\+VEIS\textquotesingle{} existem por especialidade. 
+
+\Hypertarget{relatorios_8c_a99f5aadee39948fdcd42b3b5a569e356}\index{relatorios.c@{relatorios.c}!relatorioEficiencia@{relatorioEficiencia}}
+\index{relatorioEficiencia@{relatorioEficiencia}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{relatorioEficiencia()}{relatorioEficiencia()}}
+{\footnotesize\ttfamily \label{relatorios_8c_a99f5aadee39948fdcd42b3b5a569e356} 
+void relatorio\+Eficiencia (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}}]{intervencoes}{}\end{DoxyParamCaption})}
+
+
+
+Calcula rácios operacionais (recursos por ocorrência e taxa de conclusão). 
+
+\Hypertarget{relatorios_8c_a2a2913dd29757b106d6f028ae9641a20}\index{relatorios.c@{relatorios.c}!relatorioEspecialidadesPorQuartel@{relatorioEspecialidadesPorQuartel}}
+\index{relatorioEspecialidadesPorQuartel@{relatorioEspecialidadesPorQuartel}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{relatorioEspecialidadesPorQuartel()}{relatorioEspecialidadesPorQuartel()}}
+{\footnotesize\ttfamily \label{relatorios_8c_a2a2913dd29757b106d6f028ae9641a20} 
+void relatorio\+Especialidades\+Por\+Quartel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}}}]{quarteis}{, }\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}}}]{bombeiros}{}\end{DoxyParamCaption})}
+
+
+
+Mostra a distribuição de especialidades (Florestal, Aéreo, Resgate) por quartel. 
+
+\Hypertarget{relatorios_8c_a7b6c1a72d6607f98a5069bc5ee35dfdc}\index{relatorios.c@{relatorios.c}!relatorioEstatisticasGerais@{relatorioEstatisticasGerais}}
+\index{relatorioEstatisticasGerais@{relatorioEstatisticasGerais}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{relatorioEstatisticasGerais()}{relatorioEstatisticasGerais()}}
+{\footnotesize\ttfamily \label{relatorios_8c_a7b6c1a72d6607f98a5069bc5ee35dfdc} 
+void relatorio\+Estatisticas\+Gerais (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}}}]{ocorrencias}{}\end{DoxyParamCaption})}
+
+
+
+Gera estatísticas gerais sobre as ocorrências (Tipos, Prioridades, Estados). 
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Contabiliza ocorrências iterando sobre o array e incrementando contadores locais. \Hypertarget{relatorios_8c_a2842c5e530f4d6e874850cbe9e3ab0d3}\index{relatorios.c@{relatorios.c}!relatorioIntervencoesEstado@{relatorioIntervencoesEstado}}
+\index{relatorioIntervencoesEstado@{relatorioIntervencoesEstado}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{relatorioIntervencoesEstado()}{relatorioIntervencoesEstado()}}
+{\footnotesize\ttfamily \label{relatorios_8c_a2842c5e530f4d6e874850cbe9e3ab0d3} 
+void relatorio\+Intervencoes\+Estado (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}}]{intervencoes}{}\end{DoxyParamCaption})}
+
+
+
+Mostra a percentagem de intervenções em cada estado (Planeamento, Execução, Concluída). 
+
+\Hypertarget{relatorios_8c_ab928826d53a93e661c2f127299a7fbaf}\index{relatorios.c@{relatorios.c}!relatorioInventarioEquipamentos@{relatorioInventarioEquipamentos}}
+\index{relatorioInventarioEquipamentos@{relatorioInventarioEquipamentos}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{relatorioInventarioEquipamentos()}{relatorioInventarioEquipamentos()}}
+{\footnotesize\ttfamily \label{relatorios_8c_ab928826d53a93e661c2f127299a7fbaf} 
+void relatorio\+Inventario\+Equipamentos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_equipamentos}{Equipamentos}}}]{equipamentos}{}\end{DoxyParamCaption})}
+
+
+
+Lista o inventário geral de equipamentos com contagem por tipo. 
+
+\Hypertarget{relatorios_8c_a280343cec76fb59a501732a1963901bb}\index{relatorios.c@{relatorios.c}!relatorioLocalizacaoEFrequencia@{relatorioLocalizacaoEFrequencia}}
+\index{relatorioLocalizacaoEFrequencia@{relatorioLocalizacaoEFrequencia}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{relatorioLocalizacaoEFrequencia()}{relatorioLocalizacaoEFrequencia()}}
+{\footnotesize\ttfamily \label{relatorios_8c_a280343cec76fb59a501732a1963901bb} 
+void relatorio\+Localizacao\+EFrequencia (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}}}]{ocorrencias}{}\end{DoxyParamCaption})}
+
+
+
+Analisa a frequência de ocorrências por localidade (string). 
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Cria uma lista dinâmica temporária de locais únicos para contar a repetição. \Hypertarget{relatorios_8c_a9c7518a829c735b8df9cdec8024ab6a7}\index{relatorios.c@{relatorios.c}!relatorioManutencaoEquipamentos@{relatorioManutencaoEquipamentos}}
+\index{relatorioManutencaoEquipamentos@{relatorioManutencaoEquipamentos}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{relatorioManutencaoEquipamentos()}{relatorioManutencaoEquipamentos()}}
+{\footnotesize\ttfamily \label{relatorios_8c_a9c7518a829c735b8df9cdec8024ab6a7} 
+void relatorio\+Manutencao\+Equipamentos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_equipamentos}{Equipamentos}}}]{equipamentos}{}\end{DoxyParamCaption})}
+
+
+
+Filtra e mostra apenas os equipamentos em estado \textquotesingle{}EQ\+\_\+\+MANUTENCAO\textquotesingle{}. 
+
+\Hypertarget{relatorios_8c_ae66ac7a3c900200d7857083c2fc1dfa7}\index{relatorios.c@{relatorios.c}!relatorioOcupacaoQuarteis@{relatorioOcupacaoQuarteis}}
+\index{relatorioOcupacaoQuarteis@{relatorioOcupacaoQuarteis}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{relatorioOcupacaoQuarteis()}{relatorioOcupacaoQuarteis()}}
+{\footnotesize\ttfamily \label{relatorios_8c_ae66ac7a3c900200d7857083c2fc1dfa7} 
+void relatorio\+Ocupacao\+Quarteis (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}}}]{quarteis}{, }\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}}}]{bombeiros}{}\end{DoxyParamCaption})}
+
+
+
+Analisa a lotação de cada quartel e a quantidade de operacionais prontos. 
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Emite alertas visuais e LOGS de aviso caso existam quartéis sobrelotados ou sem nenhum operacional disponível. \Hypertarget{relatorios_8c_afd89271d47cd8de28c3d93417c84ad21}\index{relatorios.c@{relatorios.c}!relatorioParticipacaoIntervencoes@{relatorioParticipacaoIntervencoes}}
+\index{relatorioParticipacaoIntervencoes@{relatorioParticipacaoIntervencoes}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{relatorioParticipacaoIntervencoes()}{relatorioParticipacaoIntervencoes()}}
+{\footnotesize\ttfamily \label{relatorios_8c_afd89271d47cd8de28c3d93417c84ad21} 
+void relatorio\+Participacao\+Intervencoes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}}}]{bombeiros}{, }\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}}]{intervencoes}{}\end{DoxyParamCaption})}
+
+
+
+Conta em quantas intervenções cada bombeiro participou. 
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Percorre todas as intervenções e verifica se o ID do bombeiro está na lista de alocados. \Hypertarget{relatorios_8c_a51fe759f0f02cfe0588d58131286bcba}\index{relatorios.c@{relatorios.c}!relatorioQuarteisPorTipo@{relatorioQuarteisPorTipo}}
+\index{relatorioQuarteisPorTipo@{relatorioQuarteisPorTipo}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{relatorioQuarteisPorTipo()}{relatorioQuarteisPorTipo()}}
+{\footnotesize\ttfamily \label{relatorios_8c_a51fe759f0f02cfe0588d58131286bcba} 
+void relatorio\+Quarteis\+Por\+Tipo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}}}]{quarteis}{}\end{DoxyParamCaption})}
+
+
+
+Mostra a distribuição dos quartéis por tipo (Voluntários, Sapadores, Municipais). 
+
+\Hypertarget{relatorios_8c_ac503068c623f85494696722a64832923}\index{relatorios.c@{relatorios.c}!relatorioRankingDesempenho@{relatorioRankingDesempenho}}
+\index{relatorioRankingDesempenho@{relatorioRankingDesempenho}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{relatorioRankingDesempenho()}{relatorioRankingDesempenho()}}
+{\footnotesize\ttfamily \label{relatorios_8c_ac503068c623f85494696722a64832923} 
+void relatorio\+Ranking\+Desempenho (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}}]{intervencoes}{, }\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}}}]{ocorrencias}{, }\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}}}]{bombeiros}{}\end{DoxyParamCaption})}
+
+
+
+Gera um ranking de desempenho com base nas intervenções CONCLUÍ\+DAS. 
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Calcula o tempo médio de resposta (diferença entre Registo da Ocorrência e Início da Intervenção) para as equipas onde o bombeiro esteve presente. \Hypertarget{relatorios_8c_a6107f7bf310a0da325eb7860a6e7b443}\index{relatorios.c@{relatorios.c}!relatorioRecursosMaisUtilizados@{relatorioRecursosMaisUtilizados}}
+\index{relatorioRecursosMaisUtilizados@{relatorioRecursosMaisUtilizados}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{relatorioRecursosMaisUtilizados()}{relatorioRecursosMaisUtilizados()}}
+{\footnotesize\ttfamily \label{relatorios_8c_a6107f7bf310a0da325eb7860a6e7b443} 
+void relatorio\+Recursos\+Mais\+Utilizados (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}}]{intervencoes}{}\end{DoxyParamCaption})}
+
+
+
+Identifica os \doxylink{struct_bombeiros}{Bombeiros} e \doxylink{struct_equipamentos}{Equipamentos} mais requisitados. 
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Utiliza arrays auxiliares ({\ttfamily \doxylink{struct_contador_recurso}{Contador\+Recurso}}) para acumular a contagem de IDs presentes nos arrays aninhados de cada intervenção e ordena (Bubble Sort). \Hypertarget{relatorios_8c_a114f811e3b3b19456e09543d7ea85c05}\index{relatorios.c@{relatorios.c}!relatorioTempoDuracao@{relatorioTempoDuracao}}
+\index{relatorioTempoDuracao@{relatorioTempoDuracao}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{relatorioTempoDuracao()}{relatorioTempoDuracao()}}
+{\footnotesize\ttfamily \label{relatorios_8c_a114f811e3b3b19456e09543d7ea85c05} 
+void relatorio\+Tempo\+Duracao (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}}]{intervencoes}{}\end{DoxyParamCaption})}
+
+
+
+Calcula a duração média das intervenções já concluídas. 
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Identifica também a intervenção que demorou mais tempo. \Hypertarget{relatorios_8c_a24a61e1c92f8d60431a5447b4f643e14}\index{relatorios.c@{relatorios.c}!relatorioTempoMedioResposta@{relatorioTempoMedioResposta}}
+\index{relatorioTempoMedioResposta@{relatorioTempoMedioResposta}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{relatorioTempoMedioResposta()}{relatorioTempoMedioResposta()}}
+{\footnotesize\ttfamily \label{relatorios_8c_a24a61e1c92f8d60431a5447b4f643e14} 
+void relatorio\+Tempo\+Medio\+Resposta (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}}}]{ocorrencias}{}\end{DoxyParamCaption})}
+
+
+
+Calcula o tempo médio decorrido desde o registo das ocorrências. 
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Utiliza {\ttfamily difftime} da biblioteca {\ttfamily time.\+h} para comparar a data de registo com a hora atual do sistema. \Hypertarget{relatorios_8c_a11255f90a91fc2ad9d7b6d59f6eb4ebf}\index{relatorios.c@{relatorios.c}!relatorioUtilizacaoTipoIntervencao@{relatorioUtilizacaoTipoIntervencao}}
+\index{relatorioUtilizacaoTipoIntervencao@{relatorioUtilizacaoTipoIntervencao}!relatorios.c@{relatorios.c}}
+\doxysubsubsection{\texorpdfstring{relatorioUtilizacaoTipoIntervencao()}{relatorioUtilizacaoTipoIntervencao()}}
+{\footnotesize\ttfamily \label{relatorios_8c_a11255f90a91fc2ad9d7b6d59f6eb4ebf} 
+void relatorio\+Utilizacao\+Tipo\+Intervencao (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_equipamentos}{Equipamentos}}}]{equipamentos}{}\end{DoxyParamCaption})}
+
+
+
+Filtra e mostra apenas os equipamentos em estado \textquotesingle{}EQ\+\_\+\+EM\+\_\+\+USO\textquotesingle{}. 
+

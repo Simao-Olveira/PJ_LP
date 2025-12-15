@@ -1,0 +1,39 @@
+\doxysection{input.\+h}
+\hypertarget{input_8h_source}{}\label{input_8h_source}\index{headers/input.h@{headers/input.h}}
+\mbox{\hyperlink{input_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ INPUT\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ INPUT\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ VALOR\_INVALIDO\ "{}O\ valor\ inserido\ é\ inválido"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ MAX\_INT\ 2147483647}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ SIZE\_BUFFER\ 100}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_data_a3d1171ac670a8e8a672c481f22d1fa9f}{dia}};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_data_a9fc86758220eae0e735655f81fd9d9bc}{mes}};}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_data_ac404d93cbf0169fd9e89edc17d0c5572}{ano}};}
+\DoxyCodeLine{00022\ \}\ \mbox{\hyperlink{struct_data}{Data}};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_hora_ad863c87ae0cbfddf31d1059cc2759c95}{horas}};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_hora_a8ba495bc2de233d759f0df5d5eea2a15}{minutos}};}
+\DoxyCodeLine{00028\ \}\ \mbox{\hyperlink{struct_hora}{Hora}};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ -\/-\/-\/\ Funções\ de\ Input\ -\/-\/-\/}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{input_8h_a11ac4d3ec555747d95fee8ae7aa18b5d}{cleanInputBuffer}}();}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00036\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{input_8h_aa8f067a5ff0a81c9af0f5fd554750960}{obterInteiro}}(\textcolor{keywordtype}{int}\ minValor,\ \textcolor{keywordtype}{int}\ maxValor,\ \textcolor{keywordtype}{char}\ *msg);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00039\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{input_8h_a8deaff72b3466f323d5ffe40426e1ea1}{lerString}}(\textcolor{keywordtype}{char}\ *\textcolor{keywordtype}{string},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ tamanho,\ \textcolor{keywordtype}{char}\ *msg);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

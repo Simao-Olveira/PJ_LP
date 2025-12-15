@@ -1,0 +1,160 @@
+\doxysection{headers/gestao\+Equipamento.h File Reference}
+\hypertarget{gestao_equipamento_8h}{}\label{gestao_equipamento_8h}\index{headers/gestaoEquipamento.h@{headers/gestaoEquipamento.h}}
+{\ttfamily \#include "{}equipamento.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{gestao_equipamento_8h_a5a5fdcf23bac340af6e79ae5125a7a4b}{imprimir\+Tipo\+Equipamento}} (\mbox{\hyperlink{enums_8h_a74d57d5ed91067127cc3a2537c50322a}{Tipo\+Equipamento}} tipo)
+\begin{DoxyCompactList}\small\item\em Traduz o tipo de equipamento (enum) para uma string legível. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{gestao_equipamento_8h_ac58142a63dd619ba75b364046c2da33a}{procurar\+Equipamento}} (\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \mbox{\hyperlink{struct_equipamentos}{Equipamentos}}, int id)
+\begin{DoxyCompactList}\small\item\em Procura um equipamento pelo ID e devolve o índice (ou -\/1 caso não encontre). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_equipamento_8h_a5ac91e5cf92cb3e7e559a57599ed8083}{adicionar\+Equipamento}} (\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{struct_equipamentos}{Equipamentos}})
+\begin{DoxyCompactList}\small\item\em Adiciona um novo equipamento ao array dinâmico. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_equipamento_8h_a73c28d5826b7d48b972c3fda126c7ee6}{libertar\+Mem\+Equipamentos}} (\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{struct_equipamentos}{Equipamentos}})
+\begin{DoxyCompactList}\small\item\em Liberta toda a memória alocada para os equipamentos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_equipamento_8h_a9a1abee0fa4b7f0adcc6acb6a77fc9b5}{imprimir\+Equipamento}} (\mbox{\hyperlink{struct_equipamento}{Equipamento}} \mbox{\hyperlink{struct_equipamento}{Equipamento}})
+\begin{DoxyCompactList}\small\item\em Mostra os dados de um único equipamento. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_equipamento_8h_a3569cce5aa0fe07437e0130a573caab3}{listar\+Equipamentos}} (\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \mbox{\hyperlink{struct_equipamentos}{Equipamentos}})
+\begin{DoxyCompactList}\small\item\em Lista todos os equipamentos registados. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_equipamento_8h_abd4ffba23509783e7b79c74acff7f6bc}{atualizar\+Dados\+Equipamento}} (\mbox{\hyperlink{struct_equipamento}{Equipamento}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{struct_equipamento}{Equipamento}})
+\begin{DoxyCompactList}\small\item\em Atualiza dados de um equipamento (função auxiliar). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_equipamento_8h_a3f904fc19ad736506a998e8b4d8555f8}{editar\+Equipamento}} (\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{struct_equipamentos}{Equipamentos}})
+\begin{DoxyCompactList}\small\item\em Menu interativo para editar um equipamento existente. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_equipamento_8h_ab9f510c51baa3a04d394a693c8a0860c}{eliminar\+Equipamento}} (\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{struct_equipamentos}{Equipamentos}})
+\begin{DoxyCompactList}\small\item\em Remove um equipamento do sistema. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_equipamento_8h_a37cea8c3fc9f6da2d33ee414ea773983}{carregar\+Equipamentos}} (\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}equipamentos)
+\begin{DoxyCompactList}\small\item\em Carrega os dados do ficheiro binário. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_equipamento_8h_a7ac5ccbcd00d035481006bba3161bb0e}{guardar\+Equipamentos}} (\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}equipamentos)
+\begin{DoxyCompactList}\small\item\em Guarda os dados no ficheiro binário. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{gestao_equipamento_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{gestao_equipamento_8h_a5ac91e5cf92cb3e7e559a57599ed8083}\index{gestaoEquipamento.h@{gestaoEquipamento.h}!adicionarEquipamento@{adicionarEquipamento}}
+\index{adicionarEquipamento@{adicionarEquipamento}!gestaoEquipamento.h@{gestaoEquipamento.h}}
+\doxysubsubsection{\texorpdfstring{adicionarEquipamento()}{adicionarEquipamento()}}
+{\footnotesize\ttfamily \label{gestao_equipamento_8h_a5ac91e5cf92cb3e7e559a57599ed8083} 
+void adicionar\+Equipamento (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}}]{equipamentos}{}\end{DoxyParamCaption})}
+
+
+
+Adiciona um novo equipamento ao array dinâmico. 
+
+Adiciona um novo equipamento ao array dinâmico.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Gera um ID automático (max+1), verifica a capacidade do array (realocando memória se estiver cheio) e aloca memória dinâmica específica para o nome antes de guardar os restantes dados inseridos pelo utilizador. \Hypertarget{gestao_equipamento_8h_abd4ffba23509783e7b79c74acff7f6bc}\index{gestaoEquipamento.h@{gestaoEquipamento.h}!atualizarDadosEquipamento@{atualizarDadosEquipamento}}
+\index{atualizarDadosEquipamento@{atualizarDadosEquipamento}!gestaoEquipamento.h@{gestaoEquipamento.h}}
+\doxysubsubsection{\texorpdfstring{atualizarDadosEquipamento()}{atualizarDadosEquipamento()}}
+{\footnotesize\ttfamily \label{gestao_equipamento_8h_abd4ffba23509783e7b79c74acff7f6bc} 
+void atualizar\+Dados\+Equipamento (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_equipamento}{Equipamento}} \texorpdfstring{$\ast$}{*}}]{equipamento}{}\end{DoxyParamCaption})}
+
+
+
+Atualiza dados de um equipamento (função auxiliar). 
+
+Atualiza dados de um equipamento (função auxiliar).
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Permite alterar campos individuais. Se o nome for alterado, a memória da string é realocada para se ajustar ao tamanho do novo texto. \Hypertarget{gestao_equipamento_8h_a37cea8c3fc9f6da2d33ee414ea773983}\index{gestaoEquipamento.h@{gestaoEquipamento.h}!carregarEquipamentos@{carregarEquipamentos}}
+\index{carregarEquipamentos@{carregarEquipamentos}!gestaoEquipamento.h@{gestaoEquipamento.h}}
+\doxysubsubsection{\texorpdfstring{carregarEquipamentos()}{carregarEquipamentos()}}
+{\footnotesize\ttfamily \label{gestao_equipamento_8h_a37cea8c3fc9f6da2d33ee414ea773983} 
+void carregar\+Equipamentos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}}]{equipamentos}{}\end{DoxyParamCaption})}
+
+
+
+Carrega os dados do ficheiro binário. 
+
+Carrega os dados do ficheiro binário.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Lê os contadores iniciais para alocar o array. De seguida, para cada equipamento, lê primeiro o tamanho do nome para alocar a memória exata antes de ler os caracteres da string. \Hypertarget{gestao_equipamento_8h_a3f904fc19ad736506a998e8b4d8555f8}\index{gestaoEquipamento.h@{gestaoEquipamento.h}!editarEquipamento@{editarEquipamento}}
+\index{editarEquipamento@{editarEquipamento}!gestaoEquipamento.h@{gestaoEquipamento.h}}
+\doxysubsubsection{\texorpdfstring{editarEquipamento()}{editarEquipamento()}}
+{\footnotesize\ttfamily \label{gestao_equipamento_8h_a3f904fc19ad736506a998e8b4d8555f8} 
+void editar\+Equipamento (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}}]{equipamentos}{}\end{DoxyParamCaption})}
+
+
+
+Menu interativo para editar um equipamento existente. 
+
+Menu interativo para editar um equipamento existente. \Hypertarget{gestao_equipamento_8h_ab9f510c51baa3a04d394a693c8a0860c}\index{gestaoEquipamento.h@{gestaoEquipamento.h}!eliminarEquipamento@{eliminarEquipamento}}
+\index{eliminarEquipamento@{eliminarEquipamento}!gestaoEquipamento.h@{gestaoEquipamento.h}}
+\doxysubsubsection{\texorpdfstring{eliminarEquipamento()}{eliminarEquipamento()}}
+{\footnotesize\ttfamily \label{gestao_equipamento_8h_ab9f510c51baa3a04d394a693c8a0860c} 
+void eliminar\+Equipamento (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}}]{equipamentos}{}\end{DoxyParamCaption})}
+
+
+
+Remove um equipamento do sistema. 
+
+Remove um equipamento do sistema.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Liberta a memória do nome e reorganiza o array, movendo todos os elementos seguintes uma posição para trás (shift left) para preencher o vazio. \Hypertarget{gestao_equipamento_8h_a7ac5ccbcd00d035481006bba3161bb0e}\index{gestaoEquipamento.h@{gestaoEquipamento.h}!guardarEquipamentos@{guardarEquipamentos}}
+\index{guardarEquipamentos@{guardarEquipamentos}!gestaoEquipamento.h@{gestaoEquipamento.h}}
+\doxysubsubsection{\texorpdfstring{guardarEquipamentos()}{guardarEquipamentos()}}
+{\footnotesize\ttfamily \label{gestao_equipamento_8h_a7ac5ccbcd00d035481006bba3161bb0e} 
+void guardar\+Equipamentos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}}]{equipamentos}{}\end{DoxyParamCaption})}
+
+
+
+Guarda os dados no ficheiro binário. 
+
+Guarda os dados no ficheiro binário.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Escreve a estrutura em disco. Para a string (nome), guarda o tamanho em bytes seguido dos caracteres, garantindo a recuperação correta. \Hypertarget{gestao_equipamento_8h_a9a1abee0fa4b7f0adcc6acb6a77fc9b5}\index{gestaoEquipamento.h@{gestaoEquipamento.h}!imprimirEquipamento@{imprimirEquipamento}}
+\index{imprimirEquipamento@{imprimirEquipamento}!gestaoEquipamento.h@{gestaoEquipamento.h}}
+\doxysubsubsection{\texorpdfstring{imprimirEquipamento()}{imprimirEquipamento()}}
+{\footnotesize\ttfamily \label{gestao_equipamento_8h_a9a1abee0fa4b7f0adcc6acb6a77fc9b5} 
+void imprimir\+Equipamento (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_equipamento}{Equipamento}}}]{equipamento}{}\end{DoxyParamCaption})}
+
+
+
+Mostra os dados de um único equipamento. 
+
+Mostra os dados de um único equipamento. \Hypertarget{gestao_equipamento_8h_a5a5fdcf23bac340af6e79ae5125a7a4b}\index{gestaoEquipamento.h@{gestaoEquipamento.h}!imprimirTipoEquipamento@{imprimirTipoEquipamento}}
+\index{imprimirTipoEquipamento@{imprimirTipoEquipamento}!gestaoEquipamento.h@{gestaoEquipamento.h}}
+\doxysubsubsection{\texorpdfstring{imprimirTipoEquipamento()}{imprimirTipoEquipamento()}}
+{\footnotesize\ttfamily \label{gestao_equipamento_8h_a5a5fdcf23bac340af6e79ae5125a7a4b} 
+void imprimir\+Tipo\+Equipamento (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enums_8h_a74d57d5ed91067127cc3a2537c50322a}{Tipo\+Equipamento}}}]{tipo}{}\end{DoxyParamCaption})}
+
+
+
+Traduz o tipo de equipamento (enum) para uma string legível. 
+
+Traduz o tipo de equipamento (enum) para uma string legível. \Hypertarget{gestao_equipamento_8h_a73c28d5826b7d48b972c3fda126c7ee6}\index{gestaoEquipamento.h@{gestaoEquipamento.h}!libertarMemEquipamentos@{libertarMemEquipamentos}}
+\index{libertarMemEquipamentos@{libertarMemEquipamentos}!gestaoEquipamento.h@{gestaoEquipamento.h}}
+\doxysubsubsection{\texorpdfstring{libertarMemEquipamentos()}{libertarMemEquipamentos()}}
+{\footnotesize\ttfamily \label{gestao_equipamento_8h_a73c28d5826b7d48b972c3fda126c7ee6} 
+void libertar\+Mem\+Equipamentos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_equipamentos}{Equipamentos}} \texorpdfstring{$\ast$}{*}}]{equipamentos}{}\end{DoxyParamCaption})}
+
+
+
+Liberta toda a memória alocada para os equipamentos. 
+
+Liberta toda a memória alocada para os equipamentos.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Itera sobre os registos para libertar individualmente as strings (nomes) e, só depois, liberta o bloco de memória do array principal. \Hypertarget{gestao_equipamento_8h_a3569cce5aa0fe07437e0130a573caab3}\index{gestaoEquipamento.h@{gestaoEquipamento.h}!listarEquipamentos@{listarEquipamentos}}
+\index{listarEquipamentos@{listarEquipamentos}!gestaoEquipamento.h@{gestaoEquipamento.h}}
+\doxysubsubsection{\texorpdfstring{listarEquipamentos()}{listarEquipamentos()}}
+{\footnotesize\ttfamily \label{gestao_equipamento_8h_a3569cce5aa0fe07437e0130a573caab3} 
+void listar\+Equipamentos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_equipamentos}{Equipamentos}}}]{Equipamentos}{}\end{DoxyParamCaption})}
+
+
+
+Lista todos os equipamentos registados. 
+
+\Hypertarget{gestao_equipamento_8h_ac58142a63dd619ba75b364046c2da33a}\index{gestaoEquipamento.h@{gestaoEquipamento.h}!procurarEquipamento@{procurarEquipamento}}
+\index{procurarEquipamento@{procurarEquipamento}!gestaoEquipamento.h@{gestaoEquipamento.h}}
+\doxysubsubsection{\texorpdfstring{procurarEquipamento()}{procurarEquipamento()}}
+{\footnotesize\ttfamily \label{gestao_equipamento_8h_ac58142a63dd619ba75b364046c2da33a} 
+int procurar\+Equipamento (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_equipamentos}{Equipamentos}}}]{equipamentos}{, }\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Procura um equipamento pelo ID e devolve o índice (ou -\/1 caso não encontre). 
+
+Procura um equipamento pelo ID e devolve o índice (ou -\/1 caso não encontre).
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Percorre sequencialmente a lista até encontrar o identificador fornecido, devolvendo a posição (índice) onde se encontra. \begin{DoxyReturn}{Returns}
+O índice no array ou -\/1 se não encontrar. 
+\end{DoxyReturn}

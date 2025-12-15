@@ -1,0 +1,45 @@
+\doxysection{src/main.c File Reference}
+\hypertarget{main_8c}{}\label{main_8c}\index{src/main.c@{src/main.c}}
+
+
+Ponto de entrada da aplicação (Fire Station Management System).  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include "{}iniciar.\+h"{}}\newline
+{\ttfamily \#include "{}log.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em Função principal do programa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Ponto de entrada da aplicação (Fire Station Management System). 
+
+
+
+\label{doc-func-members}
+\Hypertarget{main_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Função principal do programa. 
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Lógica de Execução\+:
+\begin{DoxyEnumerate}
+\item Regista imediatamente o início da execução no sistema de logs para auditoria.
+\item Delega a responsabilidade total de inicialização (alocação de memória, leitura de ficheiros e execução do menu) para a função {\ttfamily \doxylink{iniciar_8h_a9c1de3f9a105ba78bdff4ee3de87ddea}{iniciar\+Sistema}}.
+\item Verifica o código de retorno\+: se {\ttfamily \doxylink{iniciar_8h_a9c1de3f9a105ba78bdff4ee3de87ddea}{iniciar\+Sistema}} devolver um valor diferente de 0, significa que houve um erro crítico (ex\+: falta de memória), forçando o encerramento com código de erro 1. \begin{DoxyReturn}{Returns}
+0 em caso de sucesso, 1 em caso de erro fatal. 
+\end{DoxyReturn}
+
+\end{DoxyEnumerate}

@@ -1,0 +1,191 @@
+\doxysection{src/bombeiro.c File Reference}
+\hypertarget{bombeiro_8c}{}\label{bombeiro_8c}\index{src/bombeiro.c@{src/bombeiro.c}}
+
+
+Implementação das funções de gestão de bombeiros.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include "{}bombeiro.\+h"{}}\newline
+{\ttfamily \#include "{}gestao\+Bombeiro.\+h"{}}\newline
+{\ttfamily \#include "{}quartel.\+h"{}}\newline
+{\ttfamily \#include "{}gestao\+Quartel.\+h"{}}\newline
+{\ttfamily \#include "{}enums.\+h"{}}\newline
+{\ttfamily \#include "{}input.\+h"{}}\newline
+{\ttfamily \#include "{}log.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{bombeiro_8c_a25ef9bdc3c4ee09e4b66bd951d4264d4}{imprimir\+Especialidade}} (\mbox{\hyperlink{enums_8h_a3685ad31303a5ee1aeba0f1c032488cd}{Especialidade\+Bombeiro}} esp)
+\begin{DoxyCompactList}\small\item\em Converte o enum Especialidade numa string para impressão. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bombeiro_8c_a71569a49e87c392d405fb4a7d8afc03f}{imprimir\+Estado}} (\mbox{\hyperlink{enums_8h_ad5420257991cb90bfdc64197c35fdaeb}{Estado\+Bombeiro}} est)
+\begin{DoxyCompactList}\small\item\em Converte o enum Estado numa string para impressão. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{bombeiro_8c_add7a64b75108c9f35318e61c1e58c3bb}{procurar\+Bombeiro}} (\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} bombeiros, int id)
+\begin{DoxyCompactList}\small\item\em Procura um bombeiro pelo ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bombeiro_8c_a3ee2f9be5fdef7091b0ddbfc49b4c1da}{adicionar\+Bombeiro}} (\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}bombeiros, \mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}quarteis)
+\begin{DoxyCompactList}\small\item\em Adiciona um novo bombeiro ao sistema. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bombeiro_8c_aca2231e06e0915a2fa89030ad994ae04}{libertar\+Mem\+Bombeiros}} (\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}bombeiros)
+\begin{DoxyCompactList}\small\item\em Liberta toda a memória associada aos bombeiros. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bombeiro_8c_a9fc77b0db4f6153ec00b2a203593d1e2}{imprimir\+Bombeiro}} (\mbox{\hyperlink{struct_bombeiro}{Bombeiro}} bombeiro)
+\begin{DoxyCompactList}\small\item\em Imprime os detalhes de um único bombeiro no ecrã. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bombeiro_8c_a971aa73479d9d75e675def8d61306a03}{listar\+Bombeiros}} (\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} bombeiros)
+\begin{DoxyCompactList}\small\item\em Lista todos os bombeiros registados. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bombeiro_8c_a797bfa560c4fe5d759ac2b84ccc86395}{atualizar\+Dados\+Bombeiro}} (\mbox{\hyperlink{struct_bombeiro}{Bombeiro}} \texorpdfstring{$\ast$}{*}bombeiro, \mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}quarteis)
+\begin{DoxyCompactList}\small\item\em Submenu para atualizar campos específicos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bombeiro_8c_adbe695fdfc621f7111a286607c97ea0d}{editar\+Bombeiro}} (\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}bombeiros, \mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}quarteis)
+\begin{DoxyCompactList}\small\item\em Procura o bombeiro pelo ID e inicia o menu de edição. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bombeiro_8c_aabc049dbaa3ea69221eca5a32dc3574a}{eliminar\+Bombeiro}} (\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}bombeiros)
+\begin{DoxyCompactList}\small\item\em Elimina um bombeiro do array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bombeiro_8c_a38ac5f58b1623cda69612aefe6debc60}{carregar\+Bombeiros}} (\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}bombeiros)
+\begin{DoxyCompactList}\small\item\em Carrega dados do ficheiro binário. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bombeiro_8c_a850148118e04dba92ee55f82da0078e9}{guardar\+Bombeiros}} (\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}bombeiros)
+\begin{DoxyCompactList}\small\item\em Guarda dados em ficheiro binário. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementação das funções de gestão de bombeiros. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{bombeiro_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{bombeiro_8c_a3ee2f9be5fdef7091b0ddbfc49b4c1da}\index{bombeiro.c@{bombeiro.c}!adicionarBombeiro@{adicionarBombeiro}}
+\index{adicionarBombeiro@{adicionarBombeiro}!bombeiro.c@{bombeiro.c}}
+\doxysubsubsection{\texorpdfstring{adicionarBombeiro()}{adicionarBombeiro()}}
+{\footnotesize\ttfamily \label{bombeiro_8c_a3ee2f9be5fdef7091b0ddbfc49b4c1da} 
+void adicionar\+Bombeiro (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}}]{bombeiros}{, }\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}}]{quarteis}{}\end{DoxyParamCaption})}
+
+
+
+Adiciona um novo bombeiro ao sistema. 
+
+Cria um novo bombeiro (usa \textquotesingle{}\doxylink{struct_quarteis}{Quarteis}\textquotesingle{} para validar se o ID do quartel existe).
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Calcula automaticamente o próximo ID disponível e verifica se existe capacidade no array dinâmico, redimensionando a memória (realloc) se necessário. A função aloca memória específica para o nome e valida se o quartel indicado existe na lista de quartéis antes de criar o registo final. \Hypertarget{bombeiro_8c_a797bfa560c4fe5d759ac2b84ccc86395}\index{bombeiro.c@{bombeiro.c}!atualizarDadosBombeiro@{atualizarDadosBombeiro}}
+\index{atualizarDadosBombeiro@{atualizarDadosBombeiro}!bombeiro.c@{bombeiro.c}}
+\doxysubsubsection{\texorpdfstring{atualizarDadosBombeiro()}{atualizarDadosBombeiro()}}
+{\footnotesize\ttfamily \label{bombeiro_8c_a797bfa560c4fe5d759ac2b84ccc86395} 
+void atualizar\+Dados\+Bombeiro (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiro}{Bombeiro}} \texorpdfstring{$\ast$}{*}}]{bombeiro}{, }\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}}]{quarteis}{}\end{DoxyParamCaption})}
+
+
+
+Submenu para atualizar campos específicos. 
+
+Atualiza dados de um bombeiro (usa \textquotesingle{}\doxylink{struct_quarteis}{Quarteis}\textquotesingle{} para validar trocas de quartel).
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Permite a edição parcial dos campos. Ao alterar o nome, a memória é realocada para se ajustar ao tamanho da nova string. A alteração do quartel implica uma nova pesquisa para validar se o ID existe. \Hypertarget{bombeiro_8c_a38ac5f58b1623cda69612aefe6debc60}\index{bombeiro.c@{bombeiro.c}!carregarBombeiros@{carregarBombeiros}}
+\index{carregarBombeiros@{carregarBombeiros}!bombeiro.c@{bombeiro.c}}
+\doxysubsubsection{\texorpdfstring{carregarBombeiros()}{carregarBombeiros()}}
+{\footnotesize\ttfamily \label{bombeiro_8c_a38ac5f58b1623cda69612aefe6debc60} 
+void carregar\+Bombeiros (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}}]{bombeiros}{}\end{DoxyParamCaption})}
+
+
+
+Carrega dados do ficheiro binário. 
+
+Carrega os dados do ficheiro binário.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Lê inicialmente os totais para alocar o array de estruturas. De seguida, recupera os dados de cada bombeiro, lendo primeiro o tamanho do nome (int) para alocar a memória exata necessária antes de ler os caracteres da string. \Hypertarget{bombeiro_8c_adbe695fdfc621f7111a286607c97ea0d}\index{bombeiro.c@{bombeiro.c}!editarBombeiro@{editarBombeiro}}
+\index{editarBombeiro@{editarBombeiro}!bombeiro.c@{bombeiro.c}}
+\doxysubsubsection{\texorpdfstring{editarBombeiro()}{editarBombeiro()}}
+{\footnotesize\ttfamily \label{bombeiro_8c_adbe695fdfc621f7111a286607c97ea0d} 
+void editar\+Bombeiro (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}}]{bombeiros}{, }\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}}]{quarteis}{}\end{DoxyParamCaption})}
+
+
+
+Procura o bombeiro pelo ID e inicia o menu de edição. 
+
+Menu para editar um bombeiro (usa \textquotesingle{}\doxylink{struct_quarteis}{Quarteis}\textquotesingle{} para garantir consistência). \Hypertarget{bombeiro_8c_aabc049dbaa3ea69221eca5a32dc3574a}\index{bombeiro.c@{bombeiro.c}!eliminarBombeiro@{eliminarBombeiro}}
+\index{eliminarBombeiro@{eliminarBombeiro}!bombeiro.c@{bombeiro.c}}
+\doxysubsubsection{\texorpdfstring{eliminarBombeiro()}{eliminarBombeiro()}}
+{\footnotesize\ttfamily \label{bombeiro_8c_aabc049dbaa3ea69221eca5a32dc3574a} 
+void eliminar\+Bombeiro (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}}]{bombeiros}{}\end{DoxyParamCaption})}
+
+
+
+Elimina um bombeiro do array. 
+
+Remove um bombeiro do sistema.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Liberta a memória alocada para o nome do bombeiro alvo e reorganiza o array, deslocando todos os elementos seguintes uma posição para trás (shift left) para preencher o espaço vazio. \Hypertarget{bombeiro_8c_a850148118e04dba92ee55f82da0078e9}\index{bombeiro.c@{bombeiro.c}!guardarBombeiros@{guardarBombeiros}}
+\index{guardarBombeiros@{guardarBombeiros}!bombeiro.c@{bombeiro.c}}
+\doxysubsubsection{\texorpdfstring{guardarBombeiros()}{guardarBombeiros()}}
+{\footnotesize\ttfamily \label{bombeiro_8c_a850148118e04dba92ee55f82da0078e9} 
+void guardar\+Bombeiros (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}}]{bombeiros}{}\end{DoxyParamCaption})}
+
+
+
+Guarda dados em ficheiro binário. 
+
+Guarda os dados no ficheiro binário.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Escreve a estrutura completa em disco. Para as strings dinâmicas (nomes), guarda primeiro o tamanho da string em bytes seguido dos caracteres, permitindo a recuperação correta na leitura. \Hypertarget{bombeiro_8c_a9fc77b0db4f6153ec00b2a203593d1e2}\index{bombeiro.c@{bombeiro.c}!imprimirBombeiro@{imprimirBombeiro}}
+\index{imprimirBombeiro@{imprimirBombeiro}!bombeiro.c@{bombeiro.c}}
+\doxysubsubsection{\texorpdfstring{imprimirBombeiro()}{imprimirBombeiro()}}
+{\footnotesize\ttfamily \label{bombeiro_8c_a9fc77b0db4f6153ec00b2a203593d1e2} 
+void imprimir\+Bombeiro (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiro}{Bombeiro}}}]{bombeiro}{}\end{DoxyParamCaption})}
+
+
+
+Imprime os detalhes de um único bombeiro no ecrã. 
+
+Mostra os dados de um único bombeiro. \Hypertarget{bombeiro_8c_a25ef9bdc3c4ee09e4b66bd951d4264d4}\index{bombeiro.c@{bombeiro.c}!imprimirEspecialidade@{imprimirEspecialidade}}
+\index{imprimirEspecialidade@{imprimirEspecialidade}!bombeiro.c@{bombeiro.c}}
+\doxysubsubsection{\texorpdfstring{imprimirEspecialidade()}{imprimirEspecialidade()}}
+{\footnotesize\ttfamily \label{bombeiro_8c_a25ef9bdc3c4ee09e4b66bd951d4264d4} 
+void imprimir\+Especialidade (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enums_8h_a3685ad31303a5ee1aeba0f1c032488cd}{Especialidade\+Bombeiro}}}]{esp}{}\end{DoxyParamCaption})}
+
+
+
+Converte o enum Especialidade numa string para impressão. 
+
+\Hypertarget{bombeiro_8c_a71569a49e87c392d405fb4a7d8afc03f}\index{bombeiro.c@{bombeiro.c}!imprimirEstado@{imprimirEstado}}
+\index{imprimirEstado@{imprimirEstado}!bombeiro.c@{bombeiro.c}}
+\doxysubsubsection{\texorpdfstring{imprimirEstado()}{imprimirEstado()}}
+{\footnotesize\ttfamily \label{bombeiro_8c_a71569a49e87c392d405fb4a7d8afc03f} 
+void imprimir\+Estado (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enums_8h_ad5420257991cb90bfdc64197c35fdaeb}{Estado\+Bombeiro}}}]{est}{}\end{DoxyParamCaption})}
+
+
+
+Converte o enum Estado numa string para impressão. 
+
+\Hypertarget{bombeiro_8c_aca2231e06e0915a2fa89030ad994ae04}\index{bombeiro.c@{bombeiro.c}!libertarMemBombeiros@{libertarMemBombeiros}}
+\index{libertarMemBombeiros@{libertarMemBombeiros}!bombeiro.c@{bombeiro.c}}
+\doxysubsubsection{\texorpdfstring{libertarMemBombeiros()}{libertarMemBombeiros()}}
+{\footnotesize\ttfamily \label{bombeiro_8c_aca2231e06e0915a2fa89030ad994ae04} 
+void libertar\+Mem\+Bombeiros (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}}]{bombeiros}{}\end{DoxyParamCaption})}
+
+
+
+Liberta toda a memória associada aos bombeiros. 
+
+Liberta toda a memória alocada para os bombeiros.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Itera sobre todos os registos para libertar individualmente a memória das strings (nomes) antes de libertar o array principal de estruturas. \Hypertarget{bombeiro_8c_a971aa73479d9d75e675def8d61306a03}\index{bombeiro.c@{bombeiro.c}!listarBombeiros@{listarBombeiros}}
+\index{listarBombeiros@{listarBombeiros}!bombeiro.c@{bombeiro.c}}
+\doxysubsubsection{\texorpdfstring{listarBombeiros()}{listarBombeiros()}}
+{\footnotesize\ttfamily \label{bombeiro_8c_a971aa73479d9d75e675def8d61306a03} 
+void listar\+Bombeiros (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}}}]{bombeiros}{}\end{DoxyParamCaption})}
+
+
+
+Lista todos os bombeiros registados. 
+
+\Hypertarget{bombeiro_8c_add7a64b75108c9f35318e61c1e58c3bb}\index{bombeiro.c@{bombeiro.c}!procurarBombeiro@{procurarBombeiro}}
+\index{procurarBombeiro@{procurarBombeiro}!bombeiro.c@{bombeiro.c}}
+\doxysubsubsection{\texorpdfstring{procurarBombeiro()}{procurarBombeiro()}}
+{\footnotesize\ttfamily \label{bombeiro_8c_add7a64b75108c9f35318e61c1e58c3bb} 
+int procurar\+Bombeiro (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}}}]{bombeiros}{, }\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Procura um bombeiro pelo ID. 
+
+Procura um bombeiro pelo ID e devolve o índice (ou -\/1 caso não encontre).
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Percorre sequencialmente a lista de bombeiros até encontrar o identificador correspondente, devolvendo a posição (índice) onde este se encontra. \begin{DoxyReturn}{Returns}
+O índice no array se encontrado, ou -\/1 caso contrário. 
+\end{DoxyReturn}

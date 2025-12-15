@@ -1,0 +1,117 @@
+\doxysection{Intervencao Struct Reference}
+\hypertarget{struct_intervencao}{}\label{struct_intervencao}\index{Intervencao@{Intervencao}}
+
+
+Representa uma intervenção (ação operacional) numa ocorrência.  
+
+
+
+
+{\ttfamily \#include $<$intervencao.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{struct_intervencao_a7441ef0865bcb3db9b8064dd7375c1ea}{id}}
+\item 
+int \mbox{\hyperlink{struct_intervencao_aa0891c9318ca0f7a0d7e6c07a0f921ac}{id\+Ocorrencia}}
+\item 
+int \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_intervencao_a8a8adfbdfc0db529592d47692a238705}{ids\+Bombeiros}}
+\item 
+int \mbox{\hyperlink{struct_intervencao_a7eb49a899ce1627fda55d6902be41ac3}{num\+Bombeiros}}
+\item 
+int \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_intervencao_a961f21335ebd8fa2328b7950042b2bec}{ids\+Equipamentos}}
+\item 
+int \mbox{\hyperlink{struct_intervencao_aea78ac17ea0d166fe20d190e8b45c12e}{num\+Equipamentos}}
+\item 
+\mbox{\hyperlink{enums_8h_a28c304fa648c40b80c0e6e484baf34b0}{Estado\+Intervencao}} \mbox{\hyperlink{struct_intervencao_a1513b25f158aea71ef1184ad012ac3b7}{estado}}
+\item 
+\mbox{\hyperlink{struct_data}{Data}} \mbox{\hyperlink{struct_intervencao_a5eb2340e50a291abf8e9c94c69757cea}{data\+Inicio}}
+\item 
+\mbox{\hyperlink{struct_hora}{Hora}} \mbox{\hyperlink{struct_intervencao_a9398e879ae9533fb0541cbdaf8d582db}{hora\+Inicio}}
+\item 
+\mbox{\hyperlink{struct_data}{Data}} \mbox{\hyperlink{struct_intervencao_a4a57340813d717aeb07774b8d02a0c93}{data\+Fim}}
+\item 
+\mbox{\hyperlink{struct_hora}{Hora}} \mbox{\hyperlink{struct_intervencao_a2606509797574bf57da5fa21d24138c7}{hora\+Fim}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Representa uma intervenção (ação operacional) numa ocorrência. 
+
+Esta estrutura faz a ligação entre uma ocorrência e os recursos alocados (bombeiros e equipamentos), registando também os tempos de início e fim. 
+
+\label{doc-variable-members}
+\Hypertarget{struct_intervencao_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_intervencao_a4a57340813d717aeb07774b8d02a0c93}\index{Intervencao@{Intervencao}!dataFim@{dataFim}}
+\index{dataFim@{dataFim}!Intervencao@{Intervencao}}
+\doxysubsubsection{\texorpdfstring{dataFim}{dataFim}}
+{\footnotesize\ttfamily \label{struct_intervencao_a4a57340813d717aeb07774b8d02a0c93} 
+\mbox{\hyperlink{struct_data}{Data}} data\+Fim}
+
+\doxylink{struct_data}{Data} de conclusão da intervenção \Hypertarget{struct_intervencao_a5eb2340e50a291abf8e9c94c69757cea}\index{Intervencao@{Intervencao}!dataInicio@{dataInicio}}
+\index{dataInicio@{dataInicio}!Intervencao@{Intervencao}}
+\doxysubsubsection{\texorpdfstring{dataInicio}{dataInicio}}
+{\footnotesize\ttfamily \label{struct_intervencao_a5eb2340e50a291abf8e9c94c69757cea} 
+\mbox{\hyperlink{struct_data}{Data}} data\+Inicio}
+
+\doxylink{struct_data}{Data} de início da intervenção \Hypertarget{struct_intervencao_a1513b25f158aea71ef1184ad012ac3b7}\index{Intervencao@{Intervencao}!estado@{estado}}
+\index{estado@{estado}!Intervencao@{Intervencao}}
+\doxysubsubsection{\texorpdfstring{estado}{estado}}
+{\footnotesize\ttfamily \label{struct_intervencao_a1513b25f158aea71ef1184ad012ac3b7} 
+\mbox{\hyperlink{enums_8h_a28c304fa648c40b80c0e6e484baf34b0}{Estado\+Intervencao}} estado}
+
+Estado atual da intervenção (ex\+: Em curso, Terminada) \Hypertarget{struct_intervencao_a2606509797574bf57da5fa21d24138c7}\index{Intervencao@{Intervencao}!horaFim@{horaFim}}
+\index{horaFim@{horaFim}!Intervencao@{Intervencao}}
+\doxysubsubsection{\texorpdfstring{horaFim}{horaFim}}
+{\footnotesize\ttfamily \label{struct_intervencao_a2606509797574bf57da5fa21d24138c7} 
+\mbox{\hyperlink{struct_hora}{Hora}} hora\+Fim}
+
+\doxylink{struct_hora}{Hora} de conclusão da intervenção \Hypertarget{struct_intervencao_a9398e879ae9533fb0541cbdaf8d582db}\index{Intervencao@{Intervencao}!horaInicio@{horaInicio}}
+\index{horaInicio@{horaInicio}!Intervencao@{Intervencao}}
+\doxysubsubsection{\texorpdfstring{horaInicio}{horaInicio}}
+{\footnotesize\ttfamily \label{struct_intervencao_a9398e879ae9533fb0541cbdaf8d582db} 
+\mbox{\hyperlink{struct_hora}{Hora}} hora\+Inicio}
+
+\doxylink{struct_hora}{Hora} de início da intervenção \Hypertarget{struct_intervencao_a7441ef0865bcb3db9b8064dd7375c1ea}\index{Intervencao@{Intervencao}!id@{id}}
+\index{id@{id}!Intervencao@{Intervencao}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{struct_intervencao_a7441ef0865bcb3db9b8064dd7375c1ea} 
+int id}
+
+Identificador único da intervenção \Hypertarget{struct_intervencao_aa0891c9318ca0f7a0d7e6c07a0f921ac}\index{Intervencao@{Intervencao}!idOcorrencia@{idOcorrencia}}
+\index{idOcorrencia@{idOcorrencia}!Intervencao@{Intervencao}}
+\doxysubsubsection{\texorpdfstring{idOcorrencia}{idOcorrencia}}
+{\footnotesize\ttfamily \label{struct_intervencao_aa0891c9318ca0f7a0d7e6c07a0f921ac} 
+int id\+Ocorrencia}
+
+Identificador da ocorrência à qual a intervenção se refere \Hypertarget{struct_intervencao_a8a8adfbdfc0db529592d47692a238705}\index{Intervencao@{Intervencao}!idsBombeiros@{idsBombeiros}}
+\index{idsBombeiros@{idsBombeiros}!Intervencao@{Intervencao}}
+\doxysubsubsection{\texorpdfstring{idsBombeiros}{idsBombeiros}}
+{\footnotesize\ttfamily \label{struct_intervencao_a8a8adfbdfc0db529592d47692a238705} 
+int\texorpdfstring{$\ast$}{*} ids\+Bombeiros}
+
+Array dinâmico de IDs dos bombeiros alocados à intervenção \Hypertarget{struct_intervencao_a961f21335ebd8fa2328b7950042b2bec}\index{Intervencao@{Intervencao}!idsEquipamentos@{idsEquipamentos}}
+\index{idsEquipamentos@{idsEquipamentos}!Intervencao@{Intervencao}}
+\doxysubsubsection{\texorpdfstring{idsEquipamentos}{idsEquipamentos}}
+{\footnotesize\ttfamily \label{struct_intervencao_a961f21335ebd8fa2328b7950042b2bec} 
+int\texorpdfstring{$\ast$}{*} ids\+Equipamentos}
+
+Array dinâmico de IDs dos equipamentos utilizados \Hypertarget{struct_intervencao_a7eb49a899ce1627fda55d6902be41ac3}\index{Intervencao@{Intervencao}!numBombeiros@{numBombeiros}}
+\index{numBombeiros@{numBombeiros}!Intervencao@{Intervencao}}
+\doxysubsubsection{\texorpdfstring{numBombeiros}{numBombeiros}}
+{\footnotesize\ttfamily \label{struct_intervencao_a7eb49a899ce1627fda55d6902be41ac3} 
+int num\+Bombeiros}
+
+Quantidade de bombeiros atualmente alocados \Hypertarget{struct_intervencao_aea78ac17ea0d166fe20d190e8b45c12e}\index{Intervencao@{Intervencao}!numEquipamentos@{numEquipamentos}}
+\index{numEquipamentos@{numEquipamentos}!Intervencao@{Intervencao}}
+\doxysubsubsection{\texorpdfstring{numEquipamentos}{numEquipamentos}}
+{\footnotesize\ttfamily \label{struct_intervencao_aea78ac17ea0d166fe20d190e8b45c12e} 
+int num\+Equipamentos}
+
+Quantidade de equipamentos utilizados 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+headers/\mbox{\hyperlink{intervencao_8h}{intervencao.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,191 @@
+\doxysection{src/ocorrencia.c File Reference}
+\hypertarget{ocorrencia_8c}{}\label{ocorrencia_8c}\index{src/ocorrencia.c@{src/ocorrencia.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include "{}ocorrencia.\+h"{}}\newline
+{\ttfamily \#include "{}gestao\+Ocorrencia.\+h"{}}\newline
+{\ttfamily \#include "{}enums.\+h"{}}\newline
+{\ttfamily \#include "{}input.\+h"{}}\newline
+{\ttfamily \#include "{}log.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{ocorrencia_8c_a7632ef6cfad9c225a90cf8a909349391}{imprimir\+Tipo\+Ocorrencia}} (\mbox{\hyperlink{enums_8h_ab65b46822216bbc3e525a5deeb6e9204}{Tipo\+Ocorrencia}} tipo)
+\begin{DoxyCompactList}\small\item\em Converte o tipo de ocorrência em texto para impressão. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ocorrencia_8c_aa796a5af0fb71ef73e2833c03e89ff2f}{imprimir\+Prioridade}} (\mbox{\hyperlink{enums_8h_ad89d1d0c04fe1ea4e2f1d2d503c8b3ee}{Prioridade}} prioridade)
+\begin{DoxyCompactList}\small\item\em Converte a prioridade em texto para impressão. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ocorrencia_8c_a10136cda41995f868091c9fcedbb87fd}{imprimir\+Estado\+Ocorrencia}} (\mbox{\hyperlink{enums_8h_aa03a901485bdef7b8e7ae6757c2943cd}{Estado\+Ocorrencia}} estado)
+\begin{DoxyCompactList}\small\item\em Converte o estado da ocorrência em texto para impressão. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ocorrencia_8c_a0555ff13f46c8c23d0470757035760aa}{procurar\+Ocorrencia}} (\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} ocorrencias, int id)
+\begin{DoxyCompactList}\small\item\em Procura uma ocorrência pelo ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ocorrencia_8c_a7ba65d63f6d2883b2cf947c92f663268}{adicionar\+Ocorrencia}} (\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}ocorrencias)
+\begin{DoxyCompactList}\small\item\em Adiciona uma nova ocorrência ao sistema. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ocorrencia_8c_a19e8bb7cf777a1785d6a021a21b3cd30}{libertar\+Mem\+Ocorrencias}} (\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}ocorrencias)
+\begin{DoxyCompactList}\small\item\em Liberta toda a memória associada às ocorrências. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ocorrencia_8c_a31c46c3aad2be0c683f490d44f311925}{imprimir\+Ocorrencia}} (\mbox{\hyperlink{struct_ocorrencia}{Ocorrencia}} oc)
+\begin{DoxyCompactList}\small\item\em Imprime os detalhes de uma única ocorrência. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ocorrencia_8c_a3fbcdc4641ce8d3c786eb70cca466c98}{listar\+Ocorrencias}} (\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} ocorrencias)
+\begin{DoxyCompactList}\small\item\em Lista todas as ocorrências registadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ocorrencia_8c_a3efb5cefeb8a7c9cc9cdbe3376871632}{atualizar\+Dados\+Ocorrencia}} (\mbox{\hyperlink{struct_ocorrencia}{Ocorrencia}} \texorpdfstring{$\ast$}{*}ocorrencia)
+\begin{DoxyCompactList}\small\item\em Submenu para atualizar dados de uma ocorrência. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ocorrencia_8c_af87466f79c56f51ee851fb8215fcadbc}{editar\+Ocorrencia}} (\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}ocorrencias)
+\begin{DoxyCompactList}\small\item\em Procura a ocorrência e inicia o menu de edição. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ocorrencia_8c_ac40c6c88331da83c56ff0a08cd4c8c30}{eliminar\+Ocorrencia}} (\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}ocorrencias)
+\begin{DoxyCompactList}\small\item\em Elimina uma ocorrência do sistema. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ocorrencia_8c_a47a63db42219429cbb87b9dc34e4df8b}{carregar\+Ocorrencias}} (\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}ocorrencias)
+\begin{DoxyCompactList}\small\item\em Carrega dados das ocorrências do ficheiro binário. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ocorrencia_8c_ad2e07e7fe4a08c213a7f6ff007c4c48c}{guardar\+Ocorrencias}} (\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}ocorrencias)
+\begin{DoxyCompactList}\small\item\em Guarda dados das ocorrências em ficheiro binário. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{ocorrencia_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{ocorrencia_8c_a7ba65d63f6d2883b2cf947c92f663268}\index{ocorrencia.c@{ocorrencia.c}!adicionarOcorrencia@{adicionarOcorrencia}}
+\index{adicionarOcorrencia@{adicionarOcorrencia}!ocorrencia.c@{ocorrencia.c}}
+\doxysubsubsection{\texorpdfstring{adicionarOcorrencia()}{adicionarOcorrencia()}}
+{\footnotesize\ttfamily \label{ocorrencia_8c_a7ba65d63f6d2883b2cf947c92f663268} 
+void adicionar\+Ocorrencia (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}}]{ocorrencias}{}\end{DoxyParamCaption})}
+
+
+
+Adiciona uma nova ocorrência ao sistema. 
+
+Regista uma nova ocorrência no sistema.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Gera um novo ID sequencial e verifica se existe espaço no array dinâmico, redimensionando-\/o se necessário. Aloca memória específica para a string \textquotesingle{}local\textquotesingle{} e regista a data/hora atuais e o estado inicial como \textquotesingle{}Reportada\textquotesingle{}. \Hypertarget{ocorrencia_8c_a3efb5cefeb8a7c9cc9cdbe3376871632}\index{ocorrencia.c@{ocorrencia.c}!atualizarDadosOcorrencia@{atualizarDadosOcorrencia}}
+\index{atualizarDadosOcorrencia@{atualizarDadosOcorrencia}!ocorrencia.c@{ocorrencia.c}}
+\doxysubsubsection{\texorpdfstring{atualizarDadosOcorrencia()}{atualizarDadosOcorrencia()}}
+{\footnotesize\ttfamily \label{ocorrencia_8c_a3efb5cefeb8a7c9cc9cdbe3376871632} 
+void atualizar\+Dados\+Ocorrencia (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ocorrencia}{Ocorrencia}} \texorpdfstring{$\ast$}{*}}]{ocorrencia}{}\end{DoxyParamCaption})}
+
+
+
+Submenu para atualizar dados de uma ocorrência. 
+
+Atualiza dados de uma ocorrência (função auxiliar).
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Permite a edição de campos individuais. Ao alterar o local, a memória é realocada para se ajustar ao tamanho da nova string. \Hypertarget{ocorrencia_8c_a47a63db42219429cbb87b9dc34e4df8b}\index{ocorrencia.c@{ocorrencia.c}!carregarOcorrencias@{carregarOcorrencias}}
+\index{carregarOcorrencias@{carregarOcorrencias}!ocorrencia.c@{ocorrencia.c}}
+\doxysubsubsection{\texorpdfstring{carregarOcorrencias()}{carregarOcorrencias()}}
+{\footnotesize\ttfamily \label{ocorrencia_8c_a47a63db42219429cbb87b9dc34e4df8b} 
+void carregar\+Ocorrencias (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}}]{ocorrencias}{}\end{DoxyParamCaption})}
+
+
+
+Carrega dados das ocorrências do ficheiro binário. 
+
+Carrega os dados do ficheiro binário.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Lê os contadores iniciais para alocar o array. Para cada ocorrência, lê os dados primitivos e, em seguida, lê o tamanho da string \textquotesingle{}local\textquotesingle{} para alocar a memória exata antes de ler os caracteres. \Hypertarget{ocorrencia_8c_af87466f79c56f51ee851fb8215fcadbc}\index{ocorrencia.c@{ocorrencia.c}!editarOcorrencia@{editarOcorrencia}}
+\index{editarOcorrencia@{editarOcorrencia}!ocorrencia.c@{ocorrencia.c}}
+\doxysubsubsection{\texorpdfstring{editarOcorrencia()}{editarOcorrencia()}}
+{\footnotesize\ttfamily \label{ocorrencia_8c_af87466f79c56f51ee851fb8215fcadbc} 
+void editar\+Ocorrencia (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}}]{ocorrencias}{}\end{DoxyParamCaption})}
+
+
+
+Procura a ocorrência e inicia o menu de edição. 
+
+Menu interativo para editar uma ocorrência. \Hypertarget{ocorrencia_8c_ac40c6c88331da83c56ff0a08cd4c8c30}\index{ocorrencia.c@{ocorrencia.c}!eliminarOcorrencia@{eliminarOcorrencia}}
+\index{eliminarOcorrencia@{eliminarOcorrencia}!ocorrencia.c@{ocorrencia.c}}
+\doxysubsubsection{\texorpdfstring{eliminarOcorrencia()}{eliminarOcorrencia()}}
+{\footnotesize\ttfamily \label{ocorrencia_8c_ac40c6c88331da83c56ff0a08cd4c8c30} 
+void eliminar\+Ocorrencia (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}}]{ocorrencias}{}\end{DoxyParamCaption})}
+
+
+
+Elimina uma ocorrência do sistema. 
+
+Remove uma ocorrência do sistema.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Liberta a memória da string \textquotesingle{}local\textquotesingle{} e reorganiza o array, movendo todos os elementos seguintes uma posição para trás (shift left) para preencher o vazio. \Hypertarget{ocorrencia_8c_ad2e07e7fe4a08c213a7f6ff007c4c48c}\index{ocorrencia.c@{ocorrencia.c}!guardarOcorrencias@{guardarOcorrencias}}
+\index{guardarOcorrencias@{guardarOcorrencias}!ocorrencia.c@{ocorrencia.c}}
+\doxysubsubsection{\texorpdfstring{guardarOcorrencias()}{guardarOcorrencias()}}
+{\footnotesize\ttfamily \label{ocorrencia_8c_ad2e07e7fe4a08c213a7f6ff007c4c48c} 
+void guardar\+Ocorrencias (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}}]{ocorrencias}{}\end{DoxyParamCaption})}
+
+
+
+Guarda dados das ocorrências em ficheiro binário. 
+
+Guarda os dados no ficheiro binário.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Escreve a estrutura em disco. Para a string \textquotesingle{}local\textquotesingle{}, guarda primeiro o tamanho em bytes seguido dos caracteres, permitindo a recuperação correta. \Hypertarget{ocorrencia_8c_a10136cda41995f868091c9fcedbb87fd}\index{ocorrencia.c@{ocorrencia.c}!imprimirEstadoOcorrencia@{imprimirEstadoOcorrencia}}
+\index{imprimirEstadoOcorrencia@{imprimirEstadoOcorrencia}!ocorrencia.c@{ocorrencia.c}}
+\doxysubsubsection{\texorpdfstring{imprimirEstadoOcorrencia()}{imprimirEstadoOcorrencia()}}
+{\footnotesize\ttfamily \label{ocorrencia_8c_a10136cda41995f868091c9fcedbb87fd} 
+void imprimir\+Estado\+Ocorrencia (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enums_8h_aa03a901485bdef7b8e7ae6757c2943cd}{Estado\+Ocorrencia}}}]{estado}{}\end{DoxyParamCaption})}
+
+
+
+Converte o estado da ocorrência em texto para impressão. 
+
+\Hypertarget{ocorrencia_8c_a31c46c3aad2be0c683f490d44f311925}\index{ocorrencia.c@{ocorrencia.c}!imprimirOcorrencia@{imprimirOcorrencia}}
+\index{imprimirOcorrencia@{imprimirOcorrencia}!ocorrencia.c@{ocorrencia.c}}
+\doxysubsubsection{\texorpdfstring{imprimirOcorrencia()}{imprimirOcorrencia()}}
+{\footnotesize\ttfamily \label{ocorrencia_8c_a31c46c3aad2be0c683f490d44f311925} 
+void imprimir\+Ocorrencia (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ocorrencia}{Ocorrencia}}}]{oc}{}\end{DoxyParamCaption})}
+
+
+
+Imprime os detalhes de uma única ocorrência. 
+
+Mostra os detalhes de uma única ocorrência. \Hypertarget{ocorrencia_8c_aa796a5af0fb71ef73e2833c03e89ff2f}\index{ocorrencia.c@{ocorrencia.c}!imprimirPrioridade@{imprimirPrioridade}}
+\index{imprimirPrioridade@{imprimirPrioridade}!ocorrencia.c@{ocorrencia.c}}
+\doxysubsubsection{\texorpdfstring{imprimirPrioridade()}{imprimirPrioridade()}}
+{\footnotesize\ttfamily \label{ocorrencia_8c_aa796a5af0fb71ef73e2833c03e89ff2f} 
+void imprimir\+Prioridade (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enums_8h_ad89d1d0c04fe1ea4e2f1d2d503c8b3ee}{Prioridade}}}]{prioridade}{}\end{DoxyParamCaption})}
+
+
+
+Converte a prioridade em texto para impressão. 
+
+\Hypertarget{ocorrencia_8c_a7632ef6cfad9c225a90cf8a909349391}\index{ocorrencia.c@{ocorrencia.c}!imprimirTipoOcorrencia@{imprimirTipoOcorrencia}}
+\index{imprimirTipoOcorrencia@{imprimirTipoOcorrencia}!ocorrencia.c@{ocorrencia.c}}
+\doxysubsubsection{\texorpdfstring{imprimirTipoOcorrencia()}{imprimirTipoOcorrencia()}}
+{\footnotesize\ttfamily \label{ocorrencia_8c_a7632ef6cfad9c225a90cf8a909349391} 
+void imprimir\+Tipo\+Ocorrencia (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enums_8h_ab65b46822216bbc3e525a5deeb6e9204}{Tipo\+Ocorrencia}}}]{tipo}{}\end{DoxyParamCaption})}
+
+
+
+Converte o tipo de ocorrência em texto para impressão. 
+
+\Hypertarget{ocorrencia_8c_a19e8bb7cf777a1785d6a021a21b3cd30}\index{ocorrencia.c@{ocorrencia.c}!libertarMemOcorrencias@{libertarMemOcorrencias}}
+\index{libertarMemOcorrencias@{libertarMemOcorrencias}!ocorrencia.c@{ocorrencia.c}}
+\doxysubsubsection{\texorpdfstring{libertarMemOcorrencias()}{libertarMemOcorrencias()}}
+{\footnotesize\ttfamily \label{ocorrencia_8c_a19e8bb7cf777a1785d6a021a21b3cd30} 
+void libertar\+Mem\+Ocorrencias (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}} \texorpdfstring{$\ast$}{*}}]{ocorrencias}{}\end{DoxyParamCaption})}
+
+
+
+Liberta toda a memória associada às ocorrências. 
+
+Liberta toda a memória alocada para as ocorrências.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Itera sobre o array para libertar a memória alocada para a string \textquotesingle{}local\textquotesingle{} de cada ocorrência antes de libertar o ponteiro principal. \Hypertarget{ocorrencia_8c_a3fbcdc4641ce8d3c786eb70cca466c98}\index{ocorrencia.c@{ocorrencia.c}!listarOcorrencias@{listarOcorrencias}}
+\index{listarOcorrencias@{listarOcorrencias}!ocorrencia.c@{ocorrencia.c}}
+\doxysubsubsection{\texorpdfstring{listarOcorrencias()}{listarOcorrencias()}}
+{\footnotesize\ttfamily \label{ocorrencia_8c_a3fbcdc4641ce8d3c786eb70cca466c98} 
+void listar\+Ocorrencias (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}}}]{ocorrencias}{}\end{DoxyParamCaption})}
+
+
+
+Lista todas as ocorrências registadas. 
+
+\Hypertarget{ocorrencia_8c_a0555ff13f46c8c23d0470757035760aa}\index{ocorrencia.c@{ocorrencia.c}!procurarOcorrencia@{procurarOcorrencia}}
+\index{procurarOcorrencia@{procurarOcorrencia}!ocorrencia.c@{ocorrencia.c}}
+\doxysubsubsection{\texorpdfstring{procurarOcorrencia()}{procurarOcorrencia()}}
+{\footnotesize\ttfamily \label{ocorrencia_8c_a0555ff13f46c8c23d0470757035760aa} 
+int procurar\+Ocorrencia (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}}}]{ocorrencias}{, }\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Procura uma ocorrência pelo ID. 
+
+Procura uma ocorrência pelo ID e devolve o índice (ou -\/1 caso não encontre).
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Percorre o array de ocorrências até encontrar o ID correspondente. \begin{DoxyReturn}{Returns}
+O índice no array ou -\/1 se não encontrar. 
+\end{DoxyReturn}

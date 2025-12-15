@@ -1,0 +1,161 @@
+\doxysection{headers/gestao\+Quartel.h File Reference}
+\hypertarget{gestao_quartel_8h}{}\label{gestao_quartel_8h}\index{headers/gestaoQuartel.h@{headers/gestaoQuartel.h}}
+
+
+Gestão de quartéis (CRUD e Ficheiros).  
+
+
+{\ttfamily \#include "{}quartel.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{gestao_quartel_8h_a9e72611be43f2a6d9d9dcc8b85570790}{procurar\+Quartel}} (\mbox{\hyperlink{struct_quarteis}{Quarteis}} quarteis, int id)
+\begin{DoxyCompactList}\small\item\em Procura um quartel pelo ID e devolve o índice (ou -\/1 caso não encontre). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_quartel_8h_ac01a2a7f2081698548d26db5e35a88ab}{adicionar\+Quartel}} (\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}quarteis)
+\begin{DoxyCompactList}\small\item\em Adiciona um novo quartel ao sistema. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_quartel_8h_a1c87c74525cfe22581059b3563148a60}{libertar\+Mem\+Quarteis}} (\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}quarteis)
+\begin{DoxyCompactList}\small\item\em Liberta toda a memória alocada para os quartéis. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_quartel_8h_a93c59c9dd66a024c78404ecf33784fbb}{imprimir\+Quartel}} (\mbox{\hyperlink{struct_quartel}{Quartel}} quartel)
+\begin{DoxyCompactList}\small\item\em Mostra os dados de um único quartel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_quartel_8h_a2a666a61a66a59816a55e7bd3839168b}{listar\+Quarteis}} (\mbox{\hyperlink{struct_quarteis}{Quarteis}} quarteis)
+\begin{DoxyCompactList}\small\item\em Lista todos os quartéis registados. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_quartel_8h_a343830234e08e2723b3716b7843765ae}{atualizar\+Dados\+Quartel}} (\mbox{\hyperlink{struct_quartel}{Quartel}} \texorpdfstring{$\ast$}{*}quartel)
+\begin{DoxyCompactList}\small\item\em Atualiza dados de um quartel (função auxiliar). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_quartel_8h_a4fe59c588131d7758fb4d5d5c1195b1c}{editar\+Quartel}} (\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}quarteis)
+\begin{DoxyCompactList}\small\item\em Menu interativo para editar um quartel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_quartel_8h_a535bd8d12e99b947f9fa6b4c852ca3d7}{eliminar\+Quartel}} (\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}quarteis)
+\begin{DoxyCompactList}\small\item\em Remove um quartel do sistema. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_quartel_8h_aa45acc387ef7868597da8af014e4709e}{carregar\+Quarteis}} (\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}quarteis)
+\begin{DoxyCompactList}\small\item\em Carrega os dados do ficheiro binário. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_quartel_8h_a218a8d0e8296165f87ab248773bc74f5}{guardar\+Quarteis}} (\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}quarteis)
+\begin{DoxyCompactList}\small\item\em Guarda os dados no ficheiro binário. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Gestão de quartéis (CRUD e Ficheiros). 
+
+
+
+\label{doc-func-members}
+\Hypertarget{gestao_quartel_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{gestao_quartel_8h_ac01a2a7f2081698548d26db5e35a88ab}\index{gestaoQuartel.h@{gestaoQuartel.h}!adicionarQuartel@{adicionarQuartel}}
+\index{adicionarQuartel@{adicionarQuartel}!gestaoQuartel.h@{gestaoQuartel.h}}
+\doxysubsubsection{\texorpdfstring{adicionarQuartel()}{adicionarQuartel()}}
+{\footnotesize\ttfamily \label{gestao_quartel_8h_ac01a2a7f2081698548d26db5e35a88ab} 
+void adicionar\+Quartel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}}]{quarteis}{}\end{DoxyParamCaption})}
+
+
+
+Adiciona um novo quartel ao sistema. 
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Lógica de Criação\+:
+\begin{DoxyEnumerate}
+\item Gera um ID sequencial.
+\item Redimensiona o array principal se estiver cheio.
+\item Aloca memória dinâmica para {\bfseries{duas}} strings diferentes\+: \textquotesingle{}nome\textquotesingle{} e \textquotesingle{}local\textquotesingle{}. O tamanho alocado é estritamente o necessário (strlen + 1) para otimizar memória. 
+\end{DoxyEnumerate}\Hypertarget{gestao_quartel_8h_a343830234e08e2723b3716b7843765ae}\index{gestaoQuartel.h@{gestaoQuartel.h}!atualizarDadosQuartel@{atualizarDadosQuartel}}
+\index{atualizarDadosQuartel@{atualizarDadosQuartel}!gestaoQuartel.h@{gestaoQuartel.h}}
+\doxysubsubsection{\texorpdfstring{atualizarDadosQuartel()}{atualizarDadosQuartel()}}
+{\footnotesize\ttfamily \label{gestao_quartel_8h_a343830234e08e2723b3716b7843765ae} 
+void atualizar\+Dados\+Quartel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_quartel}{Quartel}} \texorpdfstring{$\ast$}{*}}]{quartel}{}\end{DoxyParamCaption})}
+
+
+
+Atualiza dados de um quartel (função auxiliar). 
+
+Atualiza dados de um quartel (função auxiliar).
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Permite a edição individual de campos. O uso de {\ttfamily realloc} nas strings (nome e local) garante que a memória se ajusta ao tamanho dos novos dados. \Hypertarget{gestao_quartel_8h_aa45acc387ef7868597da8af014e4709e}\index{gestaoQuartel.h@{gestaoQuartel.h}!carregarQuarteis@{carregarQuarteis}}
+\index{carregarQuarteis@{carregarQuarteis}!gestaoQuartel.h@{gestaoQuartel.h}}
+\doxysubsubsection{\texorpdfstring{carregarQuarteis()}{carregarQuarteis()}}
+{\footnotesize\ttfamily \label{gestao_quartel_8h_aa45acc387ef7868597da8af014e4709e} 
+void carregar\+Quarteis (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}}]{quarteis}{}\end{DoxyParamCaption})}
+
+
+
+Carrega os dados do ficheiro binário. 
+
+Carrega os dados do ficheiro binário.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Lê os contadores iniciais. Para cada quartel, lê os dados primitivos e, sequencialmente, o tamanho e o conteúdo das strings \textquotesingle{}nome\textquotesingle{} e \textquotesingle{}local\textquotesingle{}, alocando memória dinâmica para cada uma. \Hypertarget{gestao_quartel_8h_a4fe59c588131d7758fb4d5d5c1195b1c}\index{gestaoQuartel.h@{gestaoQuartel.h}!editarQuartel@{editarQuartel}}
+\index{editarQuartel@{editarQuartel}!gestaoQuartel.h@{gestaoQuartel.h}}
+\doxysubsubsection{\texorpdfstring{editarQuartel()}{editarQuartel()}}
+{\footnotesize\ttfamily \label{gestao_quartel_8h_a4fe59c588131d7758fb4d5d5c1195b1c} 
+void editar\+Quartel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}}]{quarteis}{}\end{DoxyParamCaption})}
+
+
+
+Menu interativo para editar um quartel. 
+
+Menu interativo para editar um quartel. \Hypertarget{gestao_quartel_8h_a535bd8d12e99b947f9fa6b4c852ca3d7}\index{gestaoQuartel.h@{gestaoQuartel.h}!eliminarQuartel@{eliminarQuartel}}
+\index{eliminarQuartel@{eliminarQuartel}!gestaoQuartel.h@{gestaoQuartel.h}}
+\doxysubsubsection{\texorpdfstring{eliminarQuartel()}{eliminarQuartel()}}
+{\footnotesize\ttfamily \label{gestao_quartel_8h_a535bd8d12e99b947f9fa6b4c852ca3d7} 
+void eliminar\+Quartel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}}]{quarteis}{}\end{DoxyParamCaption})}
+
+
+
+Remove um quartel do sistema. 
+
+Remove um quartel do sistema.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Liberta a memória das strings \textquotesingle{}nome\textquotesingle{} e \textquotesingle{}local\textquotesingle{}, e reorganiza o array (shift left) para preencher a posição eliminada. \Hypertarget{gestao_quartel_8h_a218a8d0e8296165f87ab248773bc74f5}\index{gestaoQuartel.h@{gestaoQuartel.h}!guardarQuarteis@{guardarQuarteis}}
+\index{guardarQuarteis@{guardarQuarteis}!gestaoQuartel.h@{gestaoQuartel.h}}
+\doxysubsubsection{\texorpdfstring{guardarQuarteis()}{guardarQuarteis()}}
+{\footnotesize\ttfamily \label{gestao_quartel_8h_a218a8d0e8296165f87ab248773bc74f5} 
+void guardar\+Quarteis (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}}]{quarteis}{}\end{DoxyParamCaption})}
+
+
+
+Guarda os dados no ficheiro binário. 
+
+Guarda os dados no ficheiro binário.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Serializa a estrutura escrevendo os campos fixos e, para cada string (\textquotesingle{}nome\textquotesingle{} e \textquotesingle{}local\textquotesingle{}), escreve primeiro o tamanho em bytes e depois os caracteres. \Hypertarget{gestao_quartel_8h_a93c59c9dd66a024c78404ecf33784fbb}\index{gestaoQuartel.h@{gestaoQuartel.h}!imprimirQuartel@{imprimirQuartel}}
+\index{imprimirQuartel@{imprimirQuartel}!gestaoQuartel.h@{gestaoQuartel.h}}
+\doxysubsubsection{\texorpdfstring{imprimirQuartel()}{imprimirQuartel()}}
+{\footnotesize\ttfamily \label{gestao_quartel_8h_a93c59c9dd66a024c78404ecf33784fbb} 
+void imprimir\+Quartel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_quartel}{Quartel}}}]{q}{}\end{DoxyParamCaption})}
+
+
+
+Mostra os dados de um único quartel. 
+
+Mostra os dados de um único quartel. \Hypertarget{gestao_quartel_8h_a1c87c74525cfe22581059b3563148a60}\index{gestaoQuartel.h@{gestaoQuartel.h}!libertarMemQuarteis@{libertarMemQuarteis}}
+\index{libertarMemQuarteis@{libertarMemQuarteis}!gestaoQuartel.h@{gestaoQuartel.h}}
+\doxysubsubsection{\texorpdfstring{libertarMemQuarteis()}{libertarMemQuarteis()}}
+{\footnotesize\ttfamily \label{gestao_quartel_8h_a1c87c74525cfe22581059b3563148a60} 
+void libertar\+Mem\+Quarteis (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}}]{quarteis}{}\end{DoxyParamCaption})}
+
+
+
+Liberta toda a memória alocada para os quartéis. 
+
+Liberta toda a memória alocada para os quartéis.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Itera sobre o array para libertar individualmente as strings \textquotesingle{}nome\textquotesingle{} e \textquotesingle{}local\textquotesingle{} de cada registo antes de libertar o array de estruturas. \Hypertarget{gestao_quartel_8h_a2a666a61a66a59816a55e7bd3839168b}\index{gestaoQuartel.h@{gestaoQuartel.h}!listarQuarteis@{listarQuarteis}}
+\index{listarQuarteis@{listarQuarteis}!gestaoQuartel.h@{gestaoQuartel.h}}
+\doxysubsubsection{\texorpdfstring{listarQuarteis()}{listarQuarteis()}}
+{\footnotesize\ttfamily \label{gestao_quartel_8h_a2a666a61a66a59816a55e7bd3839168b} 
+void listar\+Quarteis (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}}}]{quarteis}{}\end{DoxyParamCaption})}
+
+
+
+Lista todos os quartéis registados. 
+
+\Hypertarget{gestao_quartel_8h_a9e72611be43f2a6d9d9dcc8b85570790}\index{gestaoQuartel.h@{gestaoQuartel.h}!procurarQuartel@{procurarQuartel}}
+\index{procurarQuartel@{procurarQuartel}!gestaoQuartel.h@{gestaoQuartel.h}}
+\doxysubsubsection{\texorpdfstring{procurarQuartel()}{procurarQuartel()}}
+{\footnotesize\ttfamily \label{gestao_quartel_8h_a9e72611be43f2a6d9d9dcc8b85570790} 
+int procurar\+Quartel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}}}]{quarteis}{, }\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Procura um quartel pelo ID e devolve o índice (ou -\/1 caso não encontre). 
+
+Procura um quartel pelo ID e devolve o índice (ou -\/1 caso não encontre).
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Percorre sequencialmente a lista de quartéis até encontrar o ID correspondente. \begin{DoxyReturn}{Returns}
+O índice no array ou -\/1 se não encontrar. 
+\end{DoxyReturn}

@@ -1,0 +1,159 @@
+\doxysection{headers/gestao\+Bombeiro.h File Reference}
+\hypertarget{gestao_bombeiro_8h}{}\label{gestao_bombeiro_8h}\index{headers/gestaoBombeiro.h@{headers/gestaoBombeiro.h}}
+
+
+Gestão de bombeiros (CRUD e Ficheiros).  
+
+
+{\ttfamily \#include "{}bombeiro.\+h"{}}\newline
+{\ttfamily \#include "{}quartel.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{gestao_bombeiro_8h_add7a64b75108c9f35318e61c1e58c3bb}{procurar\+Bombeiro}} (\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} bombeiros, int id)
+\begin{DoxyCompactList}\small\item\em Procura um bombeiro pelo ID e devolve o índice (ou -\/1 caso não encontre). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_bombeiro_8h_a3ee2f9be5fdef7091b0ddbfc49b4c1da}{adicionar\+Bombeiro}} (\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}bombeiros, \mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}quarteis)
+\begin{DoxyCompactList}\small\item\em Cria um novo bombeiro (usa \textquotesingle{}\doxylink{struct_quarteis}{Quarteis}\textquotesingle{} para validar se o ID do quartel existe). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_bombeiro_8h_aca2231e06e0915a2fa89030ad994ae04}{libertar\+Mem\+Bombeiros}} (\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}bombeiros)
+\begin{DoxyCompactList}\small\item\em Liberta toda a memória alocada para os bombeiros. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_bombeiro_8h_a9fc77b0db4f6153ec00b2a203593d1e2}{imprimir\+Bombeiro}} (\mbox{\hyperlink{struct_bombeiro}{Bombeiro}} bombeiro)
+\begin{DoxyCompactList}\small\item\em Mostra os dados de um único bombeiro. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_bombeiro_8h_a971aa73479d9d75e675def8d61306a03}{listar\+Bombeiros}} (\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} bombeiros)
+\begin{DoxyCompactList}\small\item\em Lista todos os bombeiros registados. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_bombeiro_8h_a797bfa560c4fe5d759ac2b84ccc86395}{atualizar\+Dados\+Bombeiro}} (\mbox{\hyperlink{struct_bombeiro}{Bombeiro}} \texorpdfstring{$\ast$}{*}bombeiro, \mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}quarteis)
+\begin{DoxyCompactList}\small\item\em Atualiza dados de um bombeiro (usa \textquotesingle{}\doxylink{struct_quarteis}{Quarteis}\textquotesingle{} para validar trocas de quartel). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_bombeiro_8h_adbe695fdfc621f7111a286607c97ea0d}{editar\+Bombeiro}} (\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}bombeiros, \mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}quarteis)
+\begin{DoxyCompactList}\small\item\em Menu para editar um bombeiro (usa \textquotesingle{}\doxylink{struct_quarteis}{Quarteis}\textquotesingle{} para garantir consistência). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_bombeiro_8h_aabc049dbaa3ea69221eca5a32dc3574a}{eliminar\+Bombeiro}} (\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}bombeiros)
+\begin{DoxyCompactList}\small\item\em Remove um bombeiro do sistema. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_bombeiro_8h_a38ac5f58b1623cda69612aefe6debc60}{carregar\+Bombeiros}} (\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}bombeiros)
+\begin{DoxyCompactList}\small\item\em Carrega os dados do ficheiro binário. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gestao_bombeiro_8h_a850148118e04dba92ee55f82da0078e9}{guardar\+Bombeiros}} (\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}bombeiros)
+\begin{DoxyCompactList}\small\item\em Guarda os dados no ficheiro binário. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Gestão de bombeiros (CRUD e Ficheiros). 
+
+
+
+\label{doc-func-members}
+\Hypertarget{gestao_bombeiro_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{gestao_bombeiro_8h_a3ee2f9be5fdef7091b0ddbfc49b4c1da}\index{gestaoBombeiro.h@{gestaoBombeiro.h}!adicionarBombeiro@{adicionarBombeiro}}
+\index{adicionarBombeiro@{adicionarBombeiro}!gestaoBombeiro.h@{gestaoBombeiro.h}}
+\doxysubsubsection{\texorpdfstring{adicionarBombeiro()}{adicionarBombeiro()}}
+{\footnotesize\ttfamily \label{gestao_bombeiro_8h_a3ee2f9be5fdef7091b0ddbfc49b4c1da} 
+void adicionar\+Bombeiro (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}}]{bombeiros}{, }\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}}]{quarteis}{}\end{DoxyParamCaption})}
+
+
+
+Cria um novo bombeiro (usa \textquotesingle{}\doxylink{struct_quarteis}{Quarteis}\textquotesingle{} para validar se o ID do quartel existe). 
+
+Cria um novo bombeiro (usa \textquotesingle{}\doxylink{struct_quarteis}{Quarteis}\textquotesingle{} para validar se o ID do quartel existe).
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Calcula automaticamente o próximo ID disponível e verifica se existe capacidade no array dinâmico, redimensionando a memória (realloc) se necessário. A função aloca memória específica para o nome e valida se o quartel indicado existe na lista de quartéis antes de criar o registo final. \Hypertarget{gestao_bombeiro_8h_a797bfa560c4fe5d759ac2b84ccc86395}\index{gestaoBombeiro.h@{gestaoBombeiro.h}!atualizarDadosBombeiro@{atualizarDadosBombeiro}}
+\index{atualizarDadosBombeiro@{atualizarDadosBombeiro}!gestaoBombeiro.h@{gestaoBombeiro.h}}
+\doxysubsubsection{\texorpdfstring{atualizarDadosBombeiro()}{atualizarDadosBombeiro()}}
+{\footnotesize\ttfamily \label{gestao_bombeiro_8h_a797bfa560c4fe5d759ac2b84ccc86395} 
+void atualizar\+Dados\+Bombeiro (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiro}{Bombeiro}} \texorpdfstring{$\ast$}{*}}]{bombeiro}{, }\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}}]{quarteis}{}\end{DoxyParamCaption})}
+
+
+
+Atualiza dados de um bombeiro (usa \textquotesingle{}\doxylink{struct_quarteis}{Quarteis}\textquotesingle{} para validar trocas de quartel). 
+
+Atualiza dados de um bombeiro (usa \textquotesingle{}\doxylink{struct_quarteis}{Quarteis}\textquotesingle{} para validar trocas de quartel).
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Permite a edição parcial dos campos. Ao alterar o nome, a memória é realocada para se ajustar ao tamanho da nova string. A alteração do quartel implica uma nova pesquisa para validar se o ID existe. \Hypertarget{gestao_bombeiro_8h_a38ac5f58b1623cda69612aefe6debc60}\index{gestaoBombeiro.h@{gestaoBombeiro.h}!carregarBombeiros@{carregarBombeiros}}
+\index{carregarBombeiros@{carregarBombeiros}!gestaoBombeiro.h@{gestaoBombeiro.h}}
+\doxysubsubsection{\texorpdfstring{carregarBombeiros()}{carregarBombeiros()}}
+{\footnotesize\ttfamily \label{gestao_bombeiro_8h_a38ac5f58b1623cda69612aefe6debc60} 
+void carregar\+Bombeiros (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}}]{bombeiros}{}\end{DoxyParamCaption})}
+
+
+
+Carrega os dados do ficheiro binário. 
+
+Carrega os dados do ficheiro binário.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Lê inicialmente os totais para alocar o array de estruturas. De seguida, recupera os dados de cada bombeiro, lendo primeiro o tamanho do nome (int) para alocar a memória exata necessária antes de ler os caracteres da string. \Hypertarget{gestao_bombeiro_8h_adbe695fdfc621f7111a286607c97ea0d}\index{gestaoBombeiro.h@{gestaoBombeiro.h}!editarBombeiro@{editarBombeiro}}
+\index{editarBombeiro@{editarBombeiro}!gestaoBombeiro.h@{gestaoBombeiro.h}}
+\doxysubsubsection{\texorpdfstring{editarBombeiro()}{editarBombeiro()}}
+{\footnotesize\ttfamily \label{gestao_bombeiro_8h_adbe695fdfc621f7111a286607c97ea0d} 
+void editar\+Bombeiro (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}}]{bombeiros}{, }\item[{\mbox{\hyperlink{struct_quarteis}{Quarteis}} \texorpdfstring{$\ast$}{*}}]{quarteis}{}\end{DoxyParamCaption})}
+
+
+
+Menu para editar um bombeiro (usa \textquotesingle{}\doxylink{struct_quarteis}{Quarteis}\textquotesingle{} para garantir consistência). 
+
+Menu para editar um bombeiro (usa \textquotesingle{}\doxylink{struct_quarteis}{Quarteis}\textquotesingle{} para garantir consistência). \Hypertarget{gestao_bombeiro_8h_aabc049dbaa3ea69221eca5a32dc3574a}\index{gestaoBombeiro.h@{gestaoBombeiro.h}!eliminarBombeiro@{eliminarBombeiro}}
+\index{eliminarBombeiro@{eliminarBombeiro}!gestaoBombeiro.h@{gestaoBombeiro.h}}
+\doxysubsubsection{\texorpdfstring{eliminarBombeiro()}{eliminarBombeiro()}}
+{\footnotesize\ttfamily \label{gestao_bombeiro_8h_aabc049dbaa3ea69221eca5a32dc3574a} 
+void eliminar\+Bombeiro (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}}]{bombeiros}{}\end{DoxyParamCaption})}
+
+
+
+Remove um bombeiro do sistema. 
+
+Remove um bombeiro do sistema.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Liberta a memória alocada para o nome do bombeiro alvo e reorganiza o array, deslocando todos os elementos seguintes uma posição para trás (shift left) para preencher o espaço vazio. \Hypertarget{gestao_bombeiro_8h_a850148118e04dba92ee55f82da0078e9}\index{gestaoBombeiro.h@{gestaoBombeiro.h}!guardarBombeiros@{guardarBombeiros}}
+\index{guardarBombeiros@{guardarBombeiros}!gestaoBombeiro.h@{gestaoBombeiro.h}}
+\doxysubsubsection{\texorpdfstring{guardarBombeiros()}{guardarBombeiros()}}
+{\footnotesize\ttfamily \label{gestao_bombeiro_8h_a850148118e04dba92ee55f82da0078e9} 
+void guardar\+Bombeiros (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}}]{bombeiros}{}\end{DoxyParamCaption})}
+
+
+
+Guarda os dados no ficheiro binário. 
+
+Guarda os dados no ficheiro binário.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Escreve a estrutura completa em disco. Para as strings dinâmicas (nomes), guarda primeiro o tamanho da string em bytes seguido dos caracteres, permitindo a recuperação correta na leitura. \Hypertarget{gestao_bombeiro_8h_a9fc77b0db4f6153ec00b2a203593d1e2}\index{gestaoBombeiro.h@{gestaoBombeiro.h}!imprimirBombeiro@{imprimirBombeiro}}
+\index{imprimirBombeiro@{imprimirBombeiro}!gestaoBombeiro.h@{gestaoBombeiro.h}}
+\doxysubsubsection{\texorpdfstring{imprimirBombeiro()}{imprimirBombeiro()}}
+{\footnotesize\ttfamily \label{gestao_bombeiro_8h_a9fc77b0db4f6153ec00b2a203593d1e2} 
+void imprimir\+Bombeiro (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiro}{Bombeiro}}}]{bombeiro}{}\end{DoxyParamCaption})}
+
+
+
+Mostra os dados de um único bombeiro. 
+
+Mostra os dados de um único bombeiro. \Hypertarget{gestao_bombeiro_8h_aca2231e06e0915a2fa89030ad994ae04}\index{gestaoBombeiro.h@{gestaoBombeiro.h}!libertarMemBombeiros@{libertarMemBombeiros}}
+\index{libertarMemBombeiros@{libertarMemBombeiros}!gestaoBombeiro.h@{gestaoBombeiro.h}}
+\doxysubsubsection{\texorpdfstring{libertarMemBombeiros()}{libertarMemBombeiros()}}
+{\footnotesize\ttfamily \label{gestao_bombeiro_8h_aca2231e06e0915a2fa89030ad994ae04} 
+void libertar\+Mem\+Bombeiros (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}} \texorpdfstring{$\ast$}{*}}]{bombeiros}{}\end{DoxyParamCaption})}
+
+
+
+Liberta toda a memória alocada para os bombeiros. 
+
+Liberta toda a memória alocada para os bombeiros.
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Itera sobre todos os registos para libertar individualmente a memória das strings (nomes) antes de libertar o array principal de estruturas. \Hypertarget{gestao_bombeiro_8h_a971aa73479d9d75e675def8d61306a03}\index{gestaoBombeiro.h@{gestaoBombeiro.h}!listarBombeiros@{listarBombeiros}}
+\index{listarBombeiros@{listarBombeiros}!gestaoBombeiro.h@{gestaoBombeiro.h}}
+\doxysubsubsection{\texorpdfstring{listarBombeiros()}{listarBombeiros()}}
+{\footnotesize\ttfamily \label{gestao_bombeiro_8h_a971aa73479d9d75e675def8d61306a03} 
+void listar\+Bombeiros (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}}}]{bombeiros}{}\end{DoxyParamCaption})}
+
+
+
+Lista todos os bombeiros registados. 
+
+\Hypertarget{gestao_bombeiro_8h_add7a64b75108c9f35318e61c1e58c3bb}\index{gestaoBombeiro.h@{gestaoBombeiro.h}!procurarBombeiro@{procurarBombeiro}}
+\index{procurarBombeiro@{procurarBombeiro}!gestaoBombeiro.h@{gestaoBombeiro.h}}
+\doxysubsubsection{\texorpdfstring{procurarBombeiro()}{procurarBombeiro()}}
+{\footnotesize\ttfamily \label{gestao_bombeiro_8h_add7a64b75108c9f35318e61c1e58c3bb} 
+int procurar\+Bombeiro (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_bombeiros}{Bombeiros}}}]{bombeiros}{, }\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Procura um bombeiro pelo ID e devolve o índice (ou -\/1 caso não encontre). 
+
+Procura um bombeiro pelo ID e devolve o índice (ou -\/1 caso não encontre).
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Percorre sequencialmente a lista de bombeiros até encontrar o identificador correspondente, devolvendo a posição (índice) onde este se encontra. \begin{DoxyReturn}{Returns}
+O índice no array se encontrado, ou -\/1 caso contrário. 
+\end{DoxyReturn}

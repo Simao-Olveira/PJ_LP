@@ -1,0 +1,43 @@
+\doxysection{gestao\+Intervencao.\+h}
+\hypertarget{gestao_intervencao_8h_source}{}\label{gestao_intervencao_8h_source}\index{headers/gestaoIntervencao.h@{headers/gestaoIntervencao.h}}
+\mbox{\hyperlink{gestao_intervencao_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ GESTAOINTERVENCAO\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ GESTAOINTERVENCAO\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{intervencao_8h}{intervencao.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ocorrencia_8h}{ocorrencia.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{bombeiro_8h}{bombeiro.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{equipamento_8h}{equipamento.h}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00015\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gestao_intervencao_8h_a8859ce45f8887c3d61558d28f8ee0b98}{imprimirEstadoIntervencao}}(\mbox{\hyperlink{enums_8h_a28c304fa648c40b80c0e6e484baf34b0}{EstadoIntervencao}}\ estado);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ -\/-\/-\/\ Funções\ Principais\ -\/-\/-\/}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00020\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gestao_intervencao_8h_a88eb866910a79e894eb7bef85b613cfc}{procurarIntervencao}}(\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}\ intervencoes,\ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gestao_intervencao_8h_ae51fe4dbb653d9a34ac24c4567bb430d}{adicionarIntervencao}}(\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}\ *intervencoes,\ \mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}}\ *ocorrencias,\ \mbox{\hyperlink{struct_bombeiros}{Bombeiros}}\ *bombeiros,\ \mbox{\hyperlink{struct_equipamentos}{Equipamentos}}\ *equipamentos);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gestao_intervencao_8h_aab7f1d36695a50efe1d8deab50e26d86}{libertarMemIntervencoes}}(\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}\ *intervencoes);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gestao_intervencao_8h_a67a6555e49cbce235ab9912a0d5bc0ee}{imprimirIntervencao}}(\mbox{\hyperlink{struct_intervencao}{Intervencao}}\ intervencao);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gestao_intervencao_8h_a4812443ac358e02b61ac324710ecdd87}{listarIntervencoes}}(\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}\ intervencoes);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00035\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gestao_intervencao_8h_aa3a2806d17f2c2e614a316c1805f8f91}{atualizarDadosIntervencao}}(\mbox{\hyperlink{struct_intervencao}{Intervencao}}\ *intervencao,\ \mbox{\hyperlink{struct_bombeiros}{Bombeiros}}\ *bombeiros,\ \mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}}\ *ocorrencias,\ \mbox{\hyperlink{struct_equipamentos}{Equipamentos}}\ *equipamentos);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00038\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gestao_intervencao_8h_a1fd80d5f79a73012883e9772a3823177}{editarIntervencao}}(\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}\ *intervencoes,\ \mbox{\hyperlink{struct_bombeiros}{Bombeiros}}\ *bombeiros,\ \mbox{\hyperlink{struct_ocorrencias}{Ocorrencias}}\ *ocorrencias,\ \mbox{\hyperlink{struct_equipamentos}{Equipamentos}}\ *equipamentos);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00041\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gestao_intervencao_8h_a21d8aa9ea02f778cafbed7f50492e5ac}{eliminarIntervencao}}(\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}\ *intervencoes);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ -\/-\/-\/\ Persistência\ de\ Dados\ -\/-\/-\/}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gestao_intervencao_8h_af8d5c0c6dbba68e5ae68f5cc757e0c74}{carregarIntervencoes}}(\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}\ *intervencoes);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gestao_intervencao_8h_aa522273cc93433c417b87af856e79490}{guardarIntervencoes}}(\mbox{\hyperlink{struct_intervencoes}{Intervencoes}}\ *intervencoes);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
