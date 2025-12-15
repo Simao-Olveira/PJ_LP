@@ -283,8 +283,7 @@ void menuQuarteis(Quarteis *quarteis) {
         printf("4. Remover Quarteis\n");
         printf("0. Voltar ao Menu Principal\n");
         printf("--------------//--------------\n");
-        printf("Escolha uma opcao: ");
-        scanf("%d", &opcao);
+        opcao = obterInteiro(0, 4, "Escolha uma opcao: ");
 
         switch(opcao) {
             case 1:
@@ -338,23 +337,23 @@ void menuRelatorios(Ocorrencias *ocorrencias, Intervencoes *intervencoes, Bombei
         switch(opcao) {
             case 1:
                 //logMsg("A abrir menu de relatórios de ocorrências.");
-                //relatoriosOcorrencias(*ocorrencias);
+                menuRelatoriosOcorrencias(*intervencoes, *ocorrencias);
                 break;
             case 2:
-                //logMsg("A abrir menu de relatórios de intervenções.");
-                //relatoriosIntervencoes(*intervencoes, *ocorrencias);
+                logMsg("A abrir menu de relatórios de intervenções.");
+                menuRelatoriosIntervencoes(*intervencoes);
                 break;
             case 3:
                 logMsg("A abrir menu de relatórios de bombeiros.");
-                relatoriosBombeiros(*intervencoes, *ocorrencias, *bombeiros);
+                menuRelatoriosBombeiros(*intervencoes, *ocorrencias, *bombeiros);
                 break;
             case 4:
                 logMsg("A abrir menu de relatórios de equipamentos.");
-                relatoriosEquipamentos(*intervencoes, *ocorrencias, *equipamentos);
+                menuRelatoriosEquipamentos(*intervencoes, *ocorrencias, *equipamentos);
                 break;
             case 5:
-                //logMsg("A abrir menu de relatórios de quarteis.");
-                //relatoriosQuarteis(*quarteis, *bombeiros);
+                logMsg("A abrir menu de relatórios de quarteis.");
+                menuRelatoriosQuarteis(*quarteis);
                 break;
             case 0:
                 logMsg("A sair do menu de relatórios.");
@@ -363,10 +362,5 @@ void menuRelatorios(Ocorrencias *ocorrencias, Intervencoes *intervencoes, Bombei
             default:
                 printf("Opcao invalida! Tente novamente.\n");
         }
-        if(opcao != 0) {
-            printf("Pressione ENTER para voltar ao menu...");
-            getchar();
-        }
-
     } while(opcao != 0);
 }

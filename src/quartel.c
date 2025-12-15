@@ -33,11 +33,9 @@ int procurarQuartel(Quarteis quarteis, int id) {
     }
     return -1;
 }
-
 void adicionarQuartel(Quarteis *quarteis) {
     printf("\n--- Novo Quartel ---\n");
 
-    // Gerar ID Automático (Lógica do Bombeiro)
     int maiorId = 0;
     for(int i = 0; i < quarteis->numQuarteis; i++) {
         if(quarteis->quarteis[i].id > maiorId) {
@@ -48,44 +46,43 @@ void adicionarQuartel(Quarteis *quarteis) {
 
     if (procurarQuartel(*quarteis, id) == -1) {
 
-        // Realocação de Memória do Array
-        if (quarteis->totalQuarteis == quarteis->numQuarteis) {
-            quarteis->totalQuarteis += 2; 
-            Quartel *temp = (Quartel*) realloc(quarteis->quarteis, quarteis->totalQuarteis * sizeof(Quartel));
+        if ((*quarteis).totalQuarteis == (*quarteis).numQuarteis) {
+            (*quarteis).totalQuarteis += 2; 
+            Quartel *temp = (Quartel*) realloc((*quarteis).quarteis, ((*quarteis).totalQuarteis) * sizeof(Quartel));
             if (temp == NULL) {
                 printf("Erro ao alocar memória!\n");
                 return;
             }
-            quarteis->quarteis = temp;
+            (*quarteis).quarteis = temp;
         }
 
-        // Ponteiro auxiliar para facilitar leitura
-        int i = quarteis->numQuarteis;
-        quarteis->quarteis[i].id = id;
+        // Preenchimento dos dados
+        (*quarteis).quarteis[(*quarteis).numQuarteis].id = id;
 
-        // Leitura do Nome (Dinâmico)
         char buffer[SIZE_BUFFER];
-        lerString(buffer, SIZE_BUFFER, "Nome do Quartel: ");
-        quarteis->quarteis[i].nome = (char*) malloc((strlen(buffer) + 1) * sizeof(char));
-        if (quarteis->quarteis[i].nome != NULL) {
-            strcpy(quarteis->quarteis[i].nome, buffer);
+        
+        // Nome
+        lerString(buffer, SIZE_BUFFER, "Nome: ");
+        (*quarteis).quarteis[(*quarteis).numQuarteis].nome = (char*) malloc((strlen(buffer) + 1) * sizeof(char));
+        if ((*quarteis).quarteis[(*quarteis).numQuarteis].nome != NULL) {
+            strcpy((*quarteis).quarteis[(*quarteis).numQuarteis].nome, buffer);
         }
-
-        // Leitura do Local (Dinâmico)
+        
+        // Localização (Lógica igual ao Nome)
         lerString(buffer, SIZE_BUFFER, "Localização: ");
-        quarteis->quarteis[i].local = (char*) malloc((strlen(buffer) + 1) * sizeof(char));
-        if (quarteis->quarteis[i].local != NULL) {
-            strcpy(quarteis->quarteis[i].local, buffer);
+        (*quarteis).quarteis[(*quarteis).numQuarteis].local = (char*) malloc((strlen(buffer) + 1) * sizeof(char));
+        if ((*quarteis).quarteis[(*quarteis).numQuarteis].local != NULL) {
+            strcpy((*quarteis).quarteis[(*quarteis).numQuarteis].local, buffer);
         }
 
-        // Outros Dados
-        quarteis->quarteis[i].capacidade = obterInteiro(1, 1000, "Capacidade: ");
+        // Outros campos
+        (*quarteis).quarteis[(*quarteis).numQuarteis].capacidade = obterInteiro(1, 1000, "Capacidade: ");
 
         printf("\nTipos de Quartel:\n0 - Voluntário\n1 - Sapador\n2 - Municipal\n");
         int tipoInput = obterInteiro(0, 2, "Selecione o tipo: ");
-        quarteis->quarteis[i].tipo = (TipoQuartel) tipoInput;
+        (*quarteis).quarteis[(*quarteis).numQuarteis].tipo = (TipoQuartel)tipoInput;
 
-        quarteis->numQuarteis++;
+        (*quarteis).numQuarteis++;
         printf("Quartel criado com sucesso!\n");
     } else {
         printf("O quartel com esse ID já existe!!\n");
@@ -125,7 +122,6 @@ void listarQuarteis(Quarteis quarteis) {
         printf("Não existem quarteis registados!!\n");
     }
 }
-
 void atualizarDadosQuartel(Quartel *quartel) {
     int escolha;
     char buffer[SIZE_BUFFER];
@@ -138,7 +134,6 @@ void atualizarDadosQuartel(Quartel *quartel) {
         printf("4- Tipo\n");
         printf("0- Voltar\n");
         escolha = obterInteiro(0, 4, "\nEscolha uma opção: ");
-        
         switch (escolha) {
             case 0:
                 break;

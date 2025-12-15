@@ -358,3 +358,327 @@
 2025-12-14 21:40:38 - A sair do sistema.
 2025-12-14 21:40:38 - Sistema encerrado.
 
+2025-12-14 22:52:15 - Iniciar sistema.
+2025-12-14 22:52:15 - A iniciar a alocação de memória para ocorrências.
+2025-12-14 22:52:15 - A iniciar a alocação de memória para intervenções.
+2025-12-14 22:52:15 - A iniciar a alocação de memória para bombeiros.
+2025-12-14 22:52:15 - A iniciar a alocação de memória para equipamentos.
+2025-12-14 22:52:15 - A iniciar a alocação de memória para quarteis.
+2025-12-14 22:52:15 - A iniciar a leitura dos ficheiros de dados.
+2025-12-14 22:52:15 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-14 22:52:15 - Intervenções carregadas com sucesso do ficheiro.
+2025-12-14 22:52:15 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-14 22:52:15 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-14 22:52:15 - Ficheiro 'quarteis.bin' não foi encontrado. A iniciar a lista vazia.
+2025-12-14 22:52:15 - A iniciar o menu principal.
+2025-12-14 22:52:20 - A entrar no menu de relatórios.
+2025-12-14 22:52:24 - A abrir menu de relatórios de bombeiros.
+2025-12-14 22:55:45 - A sair do menu de relatórios.
+2025-12-14 22:55:46 - A sair do sistema.
+2025-12-14 22:55:46 - Sistema encerrado.
+
+2025-12-14 23:03:57 - Iniciar sistema.
+2025-12-14 23:03:57 - A iniciar a alocação de memória para ocorrências.
+2025-12-14 23:03:57 - A iniciar a alocação de memória para intervenções.
+2025-12-14 23:03:57 - A iniciar a alocação de memória para bombeiros.
+2025-12-14 23:03:57 - A iniciar a alocação de memória para equipamentos.
+2025-12-14 23:03:57 - A iniciar a alocação de memória para quarteis.
+2025-12-14 23:03:57 - A iniciar a leitura dos ficheiros de dados.
+2025-12-14 23:03:57 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-14 23:03:57 - Intervenções carregadas com sucesso do ficheiro.
+2025-12-14 23:03:57 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-14 23:03:57 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-14 23:03:57 - Ficheiro 'quarteis.bin' não foi encontrado. A iniciar a lista vazia.
+2025-12-14 23:03:57 - A iniciar o menu principal.
+2025-12-14 23:04:17 - A entrar no menu de relatórios.
+2025-12-14 23:04:19 - A abrir menu de relatórios de bombeiros.
+2025-12-14 23:06:09 - A sair do menu de relatórios.
+2025-12-14 23:06:10 - A sair do sistema.
+2025-12-14 23:06:10 - Sistema encerrado.
+
+2025-12-14 23:06:13 - Iniciar sistema.
+2025-12-14 23:06:13 - A iniciar a alocação de memória para ocorrências.
+2025-12-14 23:06:13 - A iniciar a alocação de memória para intervenções.
+2025-12-14 23:06:13 - A iniciar a alocação de memória para bombeiros.
+2025-12-14 23:06:13 - A iniciar a alocação de memória para equipamentos.
+2025-12-14 23:06:13 - A iniciar a alocação de memória para quarteis.
+2025-12-14 23:06:13 - A iniciar a leitura dos ficheiros de dados.
+2025-12-14 23:06:13 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-14 23:06:13 - Intervenções carregadas com sucesso do ficheiro.
+2025-12-14 23:06:13 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-14 23:06:13 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-14 23:06:13 - Ficheiro 'quarteis.bin' não foi encontrado. A iniciar a lista vazia.
+2025-12-14 23:06:13 - A iniciar o menu principal.
+2025-12-14 23:06:15 - A entrar no menu de relatórios.
+2025-12-14 23:09:24 - A abrir menu de relatórios de intervenções.
+2025-12-14 23:13:51 - A sair do menu de relatórios.
+2025-12-14 23:13:53 - A entrar no menu de relatórios.
+2025-12-14 23:13:55 - A abrir menu de relatórios de intervenções.
+2025-12-14 23:14:27 - A abrir menu de relatórios de bombeiros.
+2025-12-14 23:15:11 - A abrir menu de relatórios de bombeiros.
+2025-12-14 23:15:32 - A abrir menu de relatórios de equipamentos.
+2025-12-14 23:17:37 - A abrir menu de relatórios de bombeiros.
+2025-12-14 23:17:50 - A sair do menu de relatórios.
+2025-12-14 23:17:53 - A sair do sistema.
+2025-12-14 23:17:53 - Sistema encerrado.
+
+2025-12-14 23:17:56 - Iniciar sistema.
+2025-12-14 23:17:56 - A iniciar a alocação de memória para ocorrências.
+2025-12-14 23:17:56 - A iniciar a alocação de memória para intervenções.
+2025-12-14 23:17:56 - A iniciar a alocação de memória para bombeiros.
+2025-12-14 23:17:56 - A iniciar a alocação de memória para equipamentos.
+2025-12-14 23:17:56 - A iniciar a alocação de memória para quarteis.
+2025-12-14 23:17:56 - A iniciar a leitura dos ficheiros de dados.
+2025-12-14 23:17:56 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-14 23:17:56 - Intervenções carregadas com sucesso do ficheiro.
+2025-12-14 23:17:56 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-14 23:17:56 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-14 23:17:56 - Ficheiro 'quarteis.bin' não foi encontrado. A iniciar a lista vazia.
+2025-12-14 23:17:56 - A iniciar o menu principal.
+2025-12-14 23:18:00 - A entrar no menu de relatórios.
+2025-12-14 23:28:38 - A abrir menu de relatórios de equipamentos.
+2025-12-14 23:33:28 - A sair do menu de relatórios.
+2025-12-14 23:33:29 - A sair do sistema.
+2025-12-14 23:33:29 - Sistema encerrado.
+
+2025-12-14 23:33:32 - Iniciar sistema.
+2025-12-14 23:33:32 - A iniciar a alocação de memória para ocorrências.
+2025-12-14 23:33:32 - A iniciar a alocação de memória para intervenções.
+2025-12-14 23:33:32 - A iniciar a alocação de memória para bombeiros.
+2025-12-14 23:33:32 - A iniciar a alocação de memória para equipamentos.
+2025-12-14 23:33:32 - A iniciar a alocação de memória para quarteis.
+2025-12-14 23:33:32 - A iniciar a leitura dos ficheiros de dados.
+2025-12-14 23:33:32 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-14 23:33:32 - Intervenções carregadas com sucesso do ficheiro.
+2025-12-14 23:33:32 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-14 23:33:32 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-14 23:33:32 - Ficheiro 'quarteis.bin' não foi encontrado. A iniciar a lista vazia.
+2025-12-14 23:33:32 - A iniciar o menu principal.
+2025-12-14 23:33:47 - A entrar no menu de relatórios.
+2025-12-14 23:33:54 - A abrir menu de relatórios de intervenções.
+2025-12-14 23:34:02 - A abrir menu de relatórios de bombeiros.
+2025-12-14 23:34:06 - A abrir menu de relatórios de intervenções.
+2025-12-14 23:34:15 - A abrir menu de relatórios de bombeiros.
+2025-12-14 23:34:24 - A abrir menu de relatórios de equipamentos.
+2025-12-14 23:34:33 - A abrir menu de relatórios de equipamentos.
+2025-12-14 23:34:38 - A abrir menu de relatórios de equipamentos.
+2025-12-14 23:36:04 - A sair do menu de relatórios.
+2025-12-14 23:36:04 - A sair do sistema.
+2025-12-14 23:36:04 - Sistema encerrado.
+
+2025-12-14 23:37:41 - Iniciar sistema.
+2025-12-14 23:37:41 - A iniciar a alocação de memória para ocorrências.
+2025-12-14 23:37:41 - A iniciar a alocação de memória para intervenções.
+2025-12-14 23:37:41 - A iniciar a alocação de memória para bombeiros.
+2025-12-14 23:37:41 - A iniciar a alocação de memória para equipamentos.
+2025-12-14 23:37:41 - A iniciar a alocação de memória para quarteis.
+2025-12-14 23:37:41 - A iniciar a leitura dos ficheiros de dados.
+2025-12-14 23:37:41 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-14 23:37:42 - Intervenções carregadas com sucesso do ficheiro.
+2025-12-14 23:37:42 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-14 23:37:42 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-14 23:37:42 - Ficheiro 'quarteis.bin' não foi encontrado. A iniciar a lista vazia.
+2025-12-14 23:37:42 - A iniciar o menu principal.
+2025-12-14 23:37:43 - A entrar no menu de relatórios.
+2025-12-14 23:37:44 - A abrir menu de relatórios de quarteis.
+2025-12-14 23:37:49 - A sair do menu de relatórios.
+2025-12-14 23:37:52 - A entrar no menu de relatórios.
+2025-12-14 23:37:53 - A sair do menu de relatórios.
+2025-12-14 23:37:54 - A entrar no menu de quarteis.
+2025-12-14 23:37:55 - A adicionar um novo quartel.
+2025-12-14 23:38:52 - A listar quarteis.
+2025-12-14 23:50:10 - Iniciar sistema.
+2025-12-14 23:50:10 - A iniciar a alocação de memória para ocorrências.
+2025-12-14 23:50:10 - A iniciar a alocação de memória para intervenções.
+2025-12-14 23:50:10 - A iniciar a alocação de memória para bombeiros.
+2025-12-14 23:50:10 - A iniciar a alocação de memória para equipamentos.
+2025-12-14 23:50:10 - A iniciar a alocação de memória para quarteis.
+2025-12-14 23:50:10 - A iniciar a leitura dos ficheiros de dados.
+2025-12-14 23:50:10 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-14 23:50:10 - Intervenções carregadas com sucesso do ficheiro.
+2025-12-14 23:50:10 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-14 23:50:10 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-14 23:50:10 - Ficheiro 'quarteis.bin' não foi encontrado. A iniciar a lista vazia.
+2025-12-14 23:50:10 - A iniciar o menu principal.
+2025-12-14 23:50:13 - A entrar no menu de quarteis.
+2025-12-14 23:50:23 - A adicionar um novo quartel.
+2025-12-14 23:51:03 - Iniciar sistema.
+2025-12-14 23:51:03 - A iniciar a alocação de memória para ocorrências.
+2025-12-14 23:51:03 - A iniciar a alocação de memória para intervenções.
+2025-12-14 23:51:03 - A iniciar a alocação de memória para bombeiros.
+2025-12-14 23:51:03 - A iniciar a alocação de memória para equipamentos.
+2025-12-14 23:51:03 - A iniciar a alocação de memória para quarteis.
+2025-12-14 23:51:03 - A iniciar a leitura dos ficheiros de dados.
+2025-12-14 23:51:03 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-14 23:51:03 - Intervenções carregadas com sucesso do ficheiro.
+2025-12-14 23:51:03 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-14 23:51:03 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-14 23:51:03 - Ficheiro 'quarteis.bin' não foi encontrado. A iniciar a lista vazia.
+2025-12-14 23:51:03 - A iniciar o menu principal.
+2025-12-14 23:51:05 - A entrar no menu de bombeiros.
+2025-12-14 23:51:06 - A adicionar um novo bombeiro.
+2025-12-15 00:03:26 - Iniciar sistema.
+2025-12-15 00:03:26 - A iniciar a alocação de memória para ocorrências.
+2025-12-15 00:03:26 - A iniciar a alocação de memória para intervenções.
+2025-12-15 00:03:26 - A iniciar a alocação de memória para bombeiros.
+2025-12-15 00:03:26 - A iniciar a alocação de memória para equipamentos.
+2025-12-15 00:03:26 - A iniciar a alocação de memória para quarteis.
+2025-12-15 00:03:26 - A iniciar a leitura dos ficheiros de dados.
+2025-12-15 00:03:26 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-15 00:03:26 - Intervenções carregadas com sucesso do ficheiro.
+2025-12-15 00:03:26 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 00:03:26 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 00:03:26 - Ficheiro 'quarteis.bin' não foi encontrado. A iniciar a lista vazia.
+2025-12-15 00:03:26 - A iniciar o menu principal.
+2025-12-15 00:03:29 - A entrar no menu de quarteis.
+2025-12-15 00:03:30 - A adicionar um novo quartel.
+2025-12-15 00:08:14 - Iniciar sistema.
+2025-12-15 00:08:14 - A iniciar a alocação de memória para ocorrências.
+2025-12-15 00:08:14 - A iniciar a alocação de memória para intervenções.
+2025-12-15 00:08:14 - A iniciar a alocação de memória para bombeiros.
+2025-12-15 00:08:14 - A iniciar a alocação de memória para equipamentos.
+2025-12-15 00:08:14 - A iniciar a alocação de memória para quarteis.
+2025-12-15 00:08:14 - A iniciar a leitura dos ficheiros de dados.
+2025-12-15 00:08:14 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-15 00:08:14 - Intervenções carregadas com sucesso do ficheiro.
+2025-12-15 00:08:14 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 00:08:14 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 00:08:14 - Ficheiro 'quarteis.bin' não foi encontrado. A iniciar a lista vazia.
+2025-12-15 00:08:14 - A iniciar o menu principal.
+2025-12-15 00:08:17 - A entrar no menu de quarteis.
+2025-12-15 00:08:18 - A adicionar um novo quartel.
+2025-12-15 00:15:34 - Iniciar sistema.
+2025-12-15 00:15:34 - A iniciar a alocação de memória para ocorrências.
+2025-12-15 00:15:34 - A iniciar a alocação de memória para intervenções.
+2025-12-15 00:15:34 - A iniciar a alocação de memória para bombeiros.
+2025-12-15 00:15:34 - A iniciar a alocação de memória para equipamentos.
+2025-12-15 00:15:34 - A iniciar a alocação de memória para quarteis.
+2025-12-15 00:15:34 - A iniciar a leitura dos ficheiros de dados.
+2025-12-15 00:15:34 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-15 00:15:34 - Intervenções carregadas com sucesso do ficheiro.
+2025-12-15 00:15:34 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 00:15:34 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 00:15:34 - Ficheiro 'quarteis.bin' não foi encontrado. A iniciar a lista vazia.
+2025-12-15 00:15:34 - A iniciar o menu principal.
+2025-12-15 00:15:36 - A entrar no menu de quarteis.
+2025-12-15 00:15:37 - A adicionar um novo quartel.
+2025-12-15 00:16:09 - A sair do menu de quarteis.
+2025-12-15 00:16:09 - A guardar quarteis no ficheiro.
+2025-12-15 00:16:09 - Quarteis guardados com sucesso no ficheiro.
+2025-12-15 00:16:13 - A entrar no menu de relatórios.
+2025-12-15 00:16:19 - A abrir menu de relatórios de quarteis.
+2025-12-15 00:20:25 - A sair do menu de relatórios.
+2025-12-15 00:20:26 - A sair do sistema.
+2025-12-15 00:20:26 - Sistema encerrado.
+
+2025-12-15 00:20:29 - Iniciar sistema.
+2025-12-15 00:20:29 - A iniciar a alocação de memória para ocorrências.
+2025-12-15 00:20:29 - A iniciar a alocação de memória para intervenções.
+2025-12-15 00:20:29 - A iniciar a alocação de memória para bombeiros.
+2025-12-15 00:20:29 - A iniciar a alocação de memória para equipamentos.
+2025-12-15 00:20:29 - A iniciar a alocação de memória para quarteis.
+2025-12-15 00:20:29 - A iniciar a leitura dos ficheiros de dados.
+2025-12-15 00:20:29 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-15 00:20:29 - Intervenções carregadas com sucesso do ficheiro.
+2025-12-15 00:20:29 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 00:20:29 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 00:20:29 - Quarteis carregados com sucesso do ficheiro.
+2025-12-15 00:20:29 - A iniciar o menu principal.
+2025-12-15 00:20:30 - A entrar no menu de relatórios.
+2025-12-15 00:20:32 - A abrir menu de relatórios de quarteis.
+2025-12-15 00:22:49 - A sair do menu de relatórios.
+2025-12-15 00:22:50 - A sair do sistema.
+2025-12-15 00:22:50 - Sistema encerrado.
+
+2025-12-15 00:22:53 - Iniciar sistema.
+2025-12-15 00:22:53 - A iniciar a alocação de memória para ocorrências.
+2025-12-15 00:22:53 - A iniciar a alocação de memória para intervenções.
+2025-12-15 00:22:53 - A iniciar a alocação de memória para bombeiros.
+2025-12-15 00:22:53 - A iniciar a alocação de memória para equipamentos.
+2025-12-15 00:22:53 - A iniciar a alocação de memória para quarteis.
+2025-12-15 00:22:53 - A iniciar a leitura dos ficheiros de dados.
+2025-12-15 00:22:53 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-15 00:22:53 - Intervenções carregadas com sucesso do ficheiro.
+2025-12-15 00:22:53 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 00:22:53 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 00:22:53 - Quarteis carregados com sucesso do ficheiro.
+2025-12-15 00:22:53 - A iniciar o menu principal.
+2025-12-15 00:22:55 - A entrar no menu de relatórios.
+2025-12-15 00:25:23 - A abrir menu de relatórios de intervenções.
+2025-12-15 00:25:34 - A abrir menu de relatórios de equipamentos.
+2025-12-15 00:26:11 - A sair do menu de relatórios.
+2025-12-15 00:26:12 - A sair do sistema.
+2025-12-15 00:26:12 - Sistema encerrado.
+
+2025-12-15 00:26:14 - Iniciar sistema.
+2025-12-15 00:26:14 - A iniciar a alocação de memória para ocorrências.
+2025-12-15 00:26:14 - A iniciar a alocação de memória para intervenções.
+2025-12-15 00:26:14 - A iniciar a alocação de memória para bombeiros.
+2025-12-15 00:26:14 - A iniciar a alocação de memória para equipamentos.
+2025-12-15 00:26:14 - A iniciar a alocação de memória para quarteis.
+2025-12-15 00:26:14 - A iniciar a leitura dos ficheiros de dados.
+2025-12-15 00:26:14 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-15 00:26:14 - Intervenções carregadas com sucesso do ficheiro.
+2025-12-15 00:26:14 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 00:26:14 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 00:26:14 - Quarteis carregados com sucesso do ficheiro.
+2025-12-15 00:26:14 - A iniciar o menu principal.
+2025-12-15 00:26:16 - A entrar no menu de relatórios.
+2025-12-15 00:26:38 - A abrir menu de relatórios de intervenções.
+2025-12-15 00:26:43 - A abrir menu de relatórios de intervenções.
+2025-12-15 00:27:08 - A abrir menu de relatórios de quarteis.
+2025-12-15 00:27:20 - Iniciar sistema.
+2025-12-15 00:27:20 - A iniciar a alocação de memória para ocorrências.
+2025-12-15 00:27:20 - A iniciar a alocação de memória para intervenções.
+2025-12-15 00:27:20 - A iniciar a alocação de memória para bombeiros.
+2025-12-15 00:27:20 - A iniciar a alocação de memória para equipamentos.
+2025-12-15 00:27:20 - A iniciar a alocação de memória para quarteis.
+2025-12-15 00:27:20 - A iniciar a leitura dos ficheiros de dados.
+2025-12-15 00:27:20 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-15 00:27:20 - Intervenções carregadas com sucesso do ficheiro.
+2025-12-15 00:27:20 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 00:27:20 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 00:27:20 - Quarteis carregados com sucesso do ficheiro.
+2025-12-15 00:27:20 - A iniciar o menu principal.
+2025-12-15 00:27:22 - A entrar no menu de relatórios.
+2025-12-15 00:27:23 - A abrir menu de relatórios de quarteis.
+2025-12-15 00:27:54 - Iniciar sistema.
+2025-12-15 00:27:54 - A iniciar a alocação de memória para ocorrências.
+2025-12-15 00:27:54 - A iniciar a alocação de memória para intervenções.
+2025-12-15 00:27:54 - A iniciar a alocação de memória para bombeiros.
+2025-12-15 00:27:54 - A iniciar a alocação de memória para equipamentos.
+2025-12-15 00:27:54 - A iniciar a alocação de memória para quarteis.
+2025-12-15 00:27:54 - A iniciar a leitura dos ficheiros de dados.
+2025-12-15 00:27:54 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-15 00:27:54 - Intervenções carregadas com sucesso do ficheiro.
+2025-12-15 00:27:54 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 00:27:54 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 00:27:54 - Quarteis carregados com sucesso do ficheiro.
+2025-12-15 00:27:54 - A iniciar o menu principal.
+2025-12-15 00:27:58 - A entrar no menu de relatórios.
+2025-12-15 00:28:00 - A abrir menu de relatórios de quarteis.
+2025-12-15 00:37:17 - A sair do menu de relatórios.
+2025-12-15 00:37:17 - A sair do sistema.
+2025-12-15 00:37:17 - Sistema encerrado.
+
+2025-12-15 00:37:21 - Iniciar sistema.
+2025-12-15 00:37:21 - A iniciar a alocação de memória para ocorrências.
+2025-12-15 00:37:21 - A iniciar a alocação de memória para intervenções.
+2025-12-15 00:37:21 - A iniciar a alocação de memória para bombeiros.
+2025-12-15 00:37:21 - A iniciar a alocação de memória para equipamentos.
+2025-12-15 00:37:21 - A iniciar a alocação de memória para quarteis.
+2025-12-15 00:37:21 - A iniciar a leitura dos ficheiros de dados.
+2025-12-15 00:37:21 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-15 00:37:21 - Intervenções carregadas com sucesso do ficheiro.
+2025-12-15 00:37:21 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 00:37:21 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 00:37:21 - Quarteis carregados com sucesso do ficheiro.
+2025-12-15 00:37:21 - A iniciar o menu principal.
+2025-12-15 00:37:22 - A entrar no menu de relatórios.
+2025-12-15 00:37:27 - A abrir menu de relatórios de intervenções.
+2025-12-15 00:40:50 - A abrir menu de relatórios de intervenções.
+2025-12-15 00:40:57 - A abrir menu de relatórios de bombeiros.
+2025-12-15 00:41:32 - A sair do menu de relatórios.
+2025-12-15 00:41:33 - A sair do sistema.
+2025-12-15 00:41:33 - Sistema encerrado.
+
