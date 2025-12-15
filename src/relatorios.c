@@ -755,7 +755,7 @@ void menuRelatoriosBombeiros(Intervencoes intervencoes, Ocorrencias ocorrencias,
     } while(opcao != 0);
 }
 
-void menuRelatoriosEquipamentos(Intervencoes intervencoes, Ocorrencias ocorrencias, Equipamentos equipamentos) {
+void menuRelatoriosEquipamentos(Intervencoes intervencoes, Equipamentos equipamentos) {
     if (equipamentos.numEquipamentos == 0) {
         printf("Sem equipamentos para gerar relatórios.\n");
         return;
@@ -836,7 +836,7 @@ void menuRelatoriosIntervencoes(Intervencoes intervencoes) {
     } while(opcao != 0);
 }
 
-void menuRelatoriosOcorrencias(Intervencoes intervencoes, Ocorrencias ocorrencias) {
+void menuRelatoriosOcorrencias(Ocorrencias ocorrencias) {
     if (ocorrencias.numOcorrencias == 0) {
         printf("Sem ocorrencias para gerar relatorios.\n");
         return;
