@@ -89,11 +89,11 @@ int iniciarSistema() {
     }
 
     logMsg("A iniciar a leitura dos ficheiros de dados.");
-    readOcorrencias(&ocorrencias);
-    readIntervencoes(&intervencoes);
-    readBombeiros(&bombeiros);
-    readEquipamentos(&equipamentos);
-    readQuarteis(&quarteis);
+    carregarOcorrencias(&ocorrencias);
+    carregarIntervencoes(&intervencoes);
+    carregarBombeiros(&bombeiros);
+    carregarEquipamentos(&equipamentos);
+    carregarQuarteis(&quarteis);
     
     logMsg("A iniciar o menu principal.");
     menuPrincipal(&ocorrencias, &intervencoes, &bombeiros, &equipamentos, &quarteis);

@@ -14,7 +14,7 @@ void editarQuartel(Quarteis *quarteis);
 void eliminarQuartel(Quarteis *quarteis);
 
 // Funções de Ficheiros
-void readQuarteis(Quarteis *quarteis);
-void writeQuarteis(Quarteis *quarteis);
+void carregarQuarteis(Quarteis *quarteis);
+void guardarQuarteis(Quarteis *quarteis);
 
 #endif

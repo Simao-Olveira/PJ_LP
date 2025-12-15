@@ -203,7 +203,7 @@ void eliminarBombeiro(Bombeiros *bombeiros) {
 
 // ------ FICHEIROS ------
 
-void readBombeiros(Bombeiros *bombeiros) {
+void carregarBombeiros(Bombeiros *bombeiros) {
     FILE *ficheiro = fopen("data/bombeiros.bin", "rb");
     
     if (ficheiro == NULL) {
@@ -242,7 +242,7 @@ void readBombeiros(Bombeiros *bombeiros) {
     fclose(ficheiro);
     logMsg("Bombeiros carregados com sucesso do ficheiro.");
 }
-void writeBombeiros(Bombeiros *bombeiros) {
+void guardarBombeiros(Bombeiros *bombeiros) {
     FILE *ficheiro = fopen("data/bombeiros.bin", "wb");
     if (ficheiro == NULL) {
         printf("\nErro ao criar ficheiro.\n");

@@ -114,7 +114,7 @@ void menuOcorrencias(Ocorrencias *ocorrencias) {
                 logMsg("A sair do menu de ocorrências.");
                 printf("A Sair...\n");
                 logMsg("A guardar ocorrências no ficheiro.");
-                writeOcorrencias(ocorrencias);
+                guardarOcorrencias(ocorrencias);
                 break;
             default:
                 printf("Opcao invalida! Tente novamente.\n");
@@ -162,7 +162,7 @@ void menuIntervencoes(Intervencoes *intervencoes, Ocorrencias *ocorrencias, Bomb
                 logMsg("A sair do menu de intervenções.");
                 printf("A Sair...\n");
                 logMsg("A guardar intervenções no ficheiro.");
-                writeIntervencoes(intervencoes);
+                guardarIntervencoes(intervencoes);
                 break;
             default:
                 printf("Opcao invalida! Tente novamente.\n");
@@ -210,7 +210,7 @@ void menuBombeiros(Bombeiros *bombeiros) {
                 logMsg("A sair do menu de bombeiros.");
                 printf("A Sair...\n");
                 logMsg("A guardar bombeiros no ficheiro.");
-                writeBombeiros(bombeiros);
+                guardarBombeiros(bombeiros);
                 break;
             default:
                 printf("Opcao invalida! Tente novamente.\n");
@@ -258,7 +258,7 @@ void menuEquipamentos(Equipamentos *equipamentos) {
                 logMsg("A sair do menu de equipamentos.");
                 printf("A Sair...\n");
                 logMsg("A guardar equipamentos no ficheiro.");
-                writeEquipamentos(equipamentos);
+                guardarEquipamentos(equipamentos);
                 break;
             default:
                 printf("Opcao invalida! Tente novamente.\n");
@@ -306,7 +306,7 @@ void menuQuarteis(Quarteis *quarteis) {
                 logMsg("A sair do menu de quarteis.");
                 printf("A Sair...\n");
                 logMsg("A guardar quarteis no ficheiro.");
-                writeQuarteis(quarteis);
+                guardarQuarteis(quarteis);
                 break;
             default:
                 printf("Opcao invalida! Tente novamente.\n");

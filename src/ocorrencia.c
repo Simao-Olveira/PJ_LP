@@ -248,7 +248,7 @@ void eliminarOcorrencia(Ocorrencias *ocorrencias) {
 
 // ------ FICHEIROS ------
 
-void readOcorrencias(Ocorrencias *ocorrencias) {
+void carregarOcorrencias(Ocorrencias *ocorrencias) {
     FILE *ficheiro = fopen("data/ocorrencias.bin", "rb");
     
     if (ficheiro == NULL) {
@@ -296,7 +296,7 @@ void readOcorrencias(Ocorrencias *ocorrencias) {
     logMsg("Ocorrências carregadas com sucesso do ficheiro.");
 }
 
-void writeOcorrencias(Ocorrencias *ocorrencias) {
+void guardarOcorrencias(Ocorrencias *ocorrencias) {
     FILE *ficheiro = fopen("data/ocorrencias.bin", "wb");
     
     if (ficheiro == NULL) {

@@ -18,6 +18,6 @@ void editarIntervencao(Intervencoes *intervencoes);
 void eliminarIntervencao(Intervencoes *intervencoes);
 
 // Funções de Ficheiros
-void readIntervencoes(Intervencoes *intervencoes);
-void writeIntervencoes(Intervencoes *intervencoes);
+void carregarIntervencoes(Intervencoes *intervencoes);
+void guardarIntervencoes(Intervencoes *intervencoes);
 #endif

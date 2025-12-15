@@ -201,7 +201,7 @@ void eliminarQuartel(Quarteis *quarteis) {
 }
 
 // ------ FICHEIROS ------
-void readQuarteis(Quarteis *quarteis) {
+void carregarQuarteis(Quarteis *quarteis) {
     FILE *ficheiro = fopen("data/quarteis.bin", "rb");
     
     // 1. FICHEIRO NÃO EXISTE: Inicia lista vazia e limpa memória
@@ -256,7 +256,7 @@ void readQuarteis(Quarteis *quarteis) {
     logMsg("Quarteis carregados com sucesso do ficheiro.");
 }
 
-void writeQuarteis(Quarteis *quarteis) {
+void guardarQuarteis(Quarteis *quarteis) {
     FILE *ficheiro = fopen("data/quarteis.bin", "wb");
     if (ficheiro == NULL) {
         printf("\nErro ao criar ficheiro 'quarteis.bin'.\n");

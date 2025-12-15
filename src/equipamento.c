@@ -221,7 +221,7 @@ void eliminarEquipamento(Equipamentos *equipamentos) {
 
 // ------ FICHEIROS ------
 
-void readEquipamentos(Equipamentos *equipamentos) {
+void carregarEquipamentos(Equipamentos *equipamentos) {
     FILE *ficheiro = fopen("data/equipamentos.bin", "rb");
     
     // 1. FICHEIRO NÃO EXISTE
@@ -264,10 +264,10 @@ void readEquipamentos(Equipamentos *equipamentos) {
     }
     
     fclose(ficheiro);
-    logMsg("Bombeiros carregados com sucesso do ficheiro.");
+    logMsg("Equipamentos carregados com sucesso do ficheiro.");
 }
 
-void writeEquipamentos(Equipamentos *equipamentos) {
+void guardarEquipamentos(Equipamentos *equipamentos) {
     FILE *ficheiro = fopen("data/equipamentos.bin", "wb");
     if (ficheiro == NULL) {
         printf("\nErro ao criar ficheiro 'equipamentos.bin'.\n");

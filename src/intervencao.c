@@ -336,7 +336,7 @@ void eliminarIntervencao(Intervencoes *intervencoes) {
 // --- FICHEIROS ---
 
 
-void readIntervencoes(Intervencoes *intervencoes) {
+void carregarIntervencoes(Intervencoes *intervencoes) {
     FILE *ficheiro = fopen("data/intervencoes.bin", "rb");
     
     // Inicialização segura (como explicado anteriormente)
@@ -394,7 +394,7 @@ void readIntervencoes(Intervencoes *intervencoes) {
     logMsg("Intervenções carregadas com sucesso do ficheiro.");
 }
 
-void writeIntervencoes(Intervencoes *intervencoes) {
+void guardarIntervencoes(Intervencoes *intervencoes) {
     FILE *ficheiro = fopen("data/intervencoes.bin", "wb");
     if (ficheiro == NULL) { 
         printf("\nErro ao criar ficheiro 'intervencoes.bin'.\n");

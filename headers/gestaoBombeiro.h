@@ -14,7 +14,7 @@ void editarBombeiro(Bombeiros *bombeiros);
 void eliminarBombeiro(Bombeiros *bombeiros);
 
 // Funções de Ficheiros
-void readBombeiros(Bombeiros *bombeiros);
-void writeBombeiros(Bombeiros *bombeiros);
+void carregarBombeiros(Bombeiros *bombeiros);
+void guardarBombeiros(Bombeiros *bombeiros);
 
 #endif

@@ -14,7 +14,7 @@ void editarOcorrencia(Ocorrencias *ocorrencias);
 void eliminarOcorrencia(Ocorrencias *ocorrencias);
 
 // Funções de Ficheiros
-void readOcorrencias(Ocorrencias *ocorrencias);
-void writeOcorrencias(Ocorrencias *ocorrencias);
+void carregarOcorrencias(Ocorrencias *ocorrencias);
+void guardarOcorrencias(Ocorrencias *ocorrencias);
 
 #endif

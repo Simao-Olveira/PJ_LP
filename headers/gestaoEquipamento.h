@@ -16,7 +16,7 @@ void editarEquipamento(Equipamentos *Equipamentos);
 void eliminarEquipamento(Equipamentos *Equipamentos);
 
 // Funções de Ficheiros
-void readEquipamentos(Equipamentos *equipamentos);
-void writeEquipamentos(Equipamentos *equipamentos);
+void carregarEquipamentos(Equipamentos *equipamentos);
+void guardarEquipamentos(Equipamentos *equipamentos);
 
 #endif
