@@ -1,5 +1,5 @@
 /**
- * @file gestao_ocorrencia.h
+ * @file gestaoOcorrencia.h
  * @brief Gestão de ocorrências (CRUD e Ficheiros).
  */
 

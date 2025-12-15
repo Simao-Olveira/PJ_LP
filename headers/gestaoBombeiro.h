@@ -1,5 +1,5 @@
 /**
- * @file gestaobombeiro.h
+ * @file gestaoBombeiro.h
  * @brief Gestão de bombeiros (CRUD e Ficheiros).
  */
 

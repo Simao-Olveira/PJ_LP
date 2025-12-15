@@ -2,3 +2,25 @@
 2025-12-15 17:19:36 - A encerrar o sistema e a libertar memória.
 2025-12-15 17:19:36 - Sistema encerrado corretamente.
 
+2025-12-15 17:33:03 - Iniciar sistema.
+2025-12-15 17:33:03 - A iniciar o carregamento dos dados e alocação de memória.
+2025-12-15 17:33:03 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-15 17:33:03 - Intervenções carregadas com sucesso do ficheiro.
+2025-12-15 17:33:03 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 17:33:03 - Equipamentos carregados com sucesso do ficheiro.
+2025-12-15 17:33:03 - Quarteis carregados com sucesso do ficheiro.
+2025-12-15 17:33:03 - Dados carregados. A iniciar o menu principal.
+2025-12-15 17:33:18 - A entrar no menu de bombeiros.
+2025-12-15 17:33:23 - A adicionar um novo bombeiro.
+2025-12-15 18:43:02 - Iniciar sistema.
+2025-12-15 18:43:02 - A iniciar o carregamento dos dados e alocação de memória.
+2025-12-15 18:43:02 - Ocorrências carregadas com sucesso do ficheiro.
+2025-12-15 18:43:02 - Intervenções carregadas com sucesso do ficheiro.
+2025-12-15 18:43:02 - Bombeiros carregados com sucesso do ficheiro.
+2025-12-15 18:43:02 - Equipamentos carregados com sucesso do ficheiro.
+2025-12-15 18:43:02 - Quarteis carregados com sucesso do ficheiro.
+2025-12-15 18:43:02 - Dados carregados. A iniciar o menu principal.
+2025-12-15 18:43:04 - A sair do sistema.
+2025-12-15 18:43:04 - A encerrar o sistema e a libertar memória.
+2025-12-15 18:43:04 - Sistema encerrado corretamente.
+

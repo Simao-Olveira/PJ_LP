@@ -26,13 +26,12 @@
 #include "../headers/gestaoQuartel.h"
 
 /** * @brief Inicializa o sistema, carrega dados e arranca o menu principal.
- * * Lógica do Algoritmo:
- * 1. Declara as estruturas de controlo (Ocorrencias, Bombeiros, etc.) na stack.
- * 2. Chama as funções de carregamento (ex: carregarBombeiros). Estas funções são
+ * Declara as estruturas de controlo (Ocorrencias, Bombeiros, etc.) na stack.
+ * Chama as funções de carregamento (ex: carregarBombeiros). Estas funções são
  * responsáveis por alocar a memória dinâmica necessária. Se os ficheiros não
  * existirem, elas inicializam as estruturas vazias prontas a usar.
- * 3. Transfere o controlo para o Menu Principal.
- * 4. Após o fecho do menu (encerramento do programa), chama as funções de libertação
+ * Transfere o controlo para o Menu Principal.
+ * Após o fecho do menu (encerramento do programa), chama as funções de libertação
  * de memória para garantir um encerramento limpo.
  * @return 0 em caso de sucesso.
  */

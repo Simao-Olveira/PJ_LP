@@ -1,5 +1,5 @@
 /**
- * @file menu.h
+ * @file menus.h
  * @brief Menus de navegação e interação com o utilizador.
  */
 

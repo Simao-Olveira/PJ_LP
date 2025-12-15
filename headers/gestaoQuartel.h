@@ -1,5 +1,5 @@
 /**
- * @file gestaoquartel.h
+ * @file gestaoQuartel.h
  * @brief Gestão de quartéis (CRUD e Ficheiros).
  */
 

@@ -1,5 +1,5 @@
 /**
- * @file gestao_equipamento.h
+ * @file gestaoEquipamento.h
  * @brief Gestão de equipamentos (CRUD e Ficheiros).
  */
 

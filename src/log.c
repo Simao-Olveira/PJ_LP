@@ -9,15 +9,14 @@
 #include "log.h"
 
 /** * @brief Escreve uma mensagem no ficheiro de log com carimbo temporal.
- * * Lógica de Registo:
- * 1. Captura a hora atual do sistema (time/localtime).
- * 2. Tenta abrir o ficheiro "log.txt" em modo de "append" ('a'). Este modo é crucial
+ * Captura a hora atual do sistema (time/localtime).
+ * Tenta abrir o ficheiro "log.txt" em modo de "append" ('a'). Este modo é crucial
  * para garantir que as mensagens anteriores não são apagadas, acrescentando 
  * a nova linha ao final do ficheiro.
- * 3. Validação Crítica: Se não for possível abrir o ficheiro (ex: permissões, disco cheio),
+ * Validação Crítica: Se não for possível abrir o ficheiro (ex: permissões, disco cheio),
  * o programa encerra forçosamente (exit), pois um sistema sem logs não é auditável.
- * 4. Formata e escreve a string: "AAAA-MM-DD HH:MM:SS - Mensagem".
- * 5. Fecha o ficheiro imediatamente para garantir a persistência dos dados em disco.
+ * Formata e escreve a string: "AAAA-MM-DD HH:MM:SS - Mensagem".
+ * Fecha o ficheiro imediatamente para garantir a persistência dos dados em disco.
  * * @param msg A mensagem de texto a ser registada.
  */
 void logMsg(char *msg) {

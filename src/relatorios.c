@@ -25,7 +25,7 @@
 
 // --- ESTRUTURAS AUXILIARES LOCAIS ---
 
-/** @brief Estrutura auxiliar para contagem de recursos (Top X). */
+/** @brief Estrutura auxiliar para contagem de recursos. */
 typedef struct {
     int id;
     int contagem;
@@ -39,8 +39,9 @@ typedef struct {
     int tempoTotalResposta; // Minutos acumulados
 } StatsBombeiro;
 
-// --- FUNÇÕES AUXILIARES (CONVERSÃO ENUM -> TEXTO) ---
+// --- FUNÇÕES AUXILIARES ---
 
+/** @brief Função auxiliar que converte o estado da ocorrência para texto. */
 char* getStrEstadoOcorrencia(EstadoOcorrencia est) {
     switch(est) {
         case OCORR_REPORTADA: return "Reportada";
@@ -50,6 +51,7 @@ char* getStrEstadoOcorrencia(EstadoOcorrencia est) {
     }
 }
 
+/** @brief Função auxiliar que converte o tipo do equipamento para texto. */
 char* getStrTipoEquipamento(TipoEquipamento tipo) {
     switch(tipo) {
         case VESTUARIO: return "Vestuario";
@@ -60,6 +62,7 @@ char* getStrTipoEquipamento(TipoEquipamento tipo) {
     }
 }
 
+/** @brief Função auxiliar que converte o estado do equipamento para texto. */
 char* getStrEstadoEquipamento(EstadoEquipamento est) {
     switch(est) {
         case EQ_DISPONIVEL: return "Disponivel";
@@ -660,10 +663,7 @@ void relatorioQuarteisPorTipo(Quarteis quarteis) {
     logMsg("Relatório de tipos de quartel gerado.");
 }
 
-/** * @brief Analisa a lotação de cada quartel e a quantidade de operacionais prontos.
- * * Emite alertas visuais e LOGS de aviso caso existam quartéis sobrelotados 
- * ou sem nenhum operacional disponível.
- */
+/** * @brief Analisa a lotação de cada quartel e a quantidade de operacionais prontos.*/
 void relatorioOcupacaoQuarteis(Quarteis quarteis, Bombeiros bombeiros) {
     printf("\n=======================================================================\n");
     printf("              RELATÓRIO DE OCUPAÇÃO E OPERACIONALIDADE                 \n");

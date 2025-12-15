@@ -1,5 +1,5 @@
 /**
- * @file gestao_intervencao.h
+ * @file gestaoIntervencao.h
  * @brief Gestão de intervenções (CRUD e Ficheiros).
  */
 

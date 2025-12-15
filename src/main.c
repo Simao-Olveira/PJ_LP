@@ -9,11 +9,10 @@
 #include "log.h"
 
 /** * @brief Função principal do programa.
- * * Lógica de Execução:
- * 1. Regista imediatamente o início da execução no sistema de logs para auditoria.
- * 2. Delega a responsabilidade total de inicialização (alocação de memória, 
+ * Regista imediatamente o início da execução no sistema de logs para auditoria.
+ * Delega a responsabilidade total de inicialização (alocação de memória, 
  * leitura de ficheiros e execução do menu) para a função `iniciarSistema`.
- * 3. Verifica o código de retorno: se `iniciarSistema` devolver um valor diferente 
+ * Verifica o código de retorno: se `iniciarSistema` devolver um valor diferente 
  * de 0, significa que houve um erro crítico (ex: falta de memória), forçando 
  * o encerramento com código de erro 1.
  * @return 0 em caso de sucesso, 1 em caso de erro fatal.
